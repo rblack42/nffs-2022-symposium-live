@@ -15,6 +15,9 @@ nb:
 
 .PHONY: build
 build:
-	jb build book
+	jb build book --all
 	cp -r book/_build/html/* docs
 
+.PHONY: clean
+clean:
+	python book/scripts/clean.py
