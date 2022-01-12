@@ -1,125 +1,63 @@
 # About This Document
 
-Whether you write your book's content in Jupyter Notebooks (`.ipynb`) or
-in regular markdown files (`.md`), you'll write in the same flavor of markdown
-called **MyST Markdown**.
+This document is different from most web pages you run into on the Internet.
+Depending on how you reached thispage, you might belooking at a static web page
+where all you can do is click on links and scroll around. One the otherhand,
+youmight have reached thispage by downloading the source for it to yourlocal
+machine. Withthe right tools in place, you can "run this page, using the *Jupyter*
+engine to acturlly process all the embedded code and see the final results. Even
+better, youmight have found this page by navigating to a link at
+**mybinder.org**. In this cae, clicking on that link started up aprocess ona
+*clous Server that creates a new *virtual machine for you, installs *Python*
+and anything else needed for this project, then launches a web server that
+presents the page to you. In this setup, the document is just as "live" as it
+was onmymachine,except you didnot havetodoany setup work. Youcan run the codein
+thepageeven if you arelookig at thispage using a tablet!
 
-## What is MyST?
+## Creating the Symposium Article
 
-MyST stands for "Markedly Structured Text". It
-is a slight variation on a flavor of markdown called "CommonMark" markdown,
-with small syntax extensions to allow you to write **roles** and **directives**
-in the Sphinx ecosystem.
+Unfortunately, the content in a *Jupyter* format is not suitable for publishing
+in something like the *NFFS Symposium*, so I created the print version of the
+document in a different way.
 
-## What are roles and directives?
+As a researcher, and an educator,I have along history of producing high-quality
+documents containing a lot of math and technical figures using the $\LaTeX$ tool chain.
+On my Macbook, I have installed *MacTex* which creates a set of tools that convert
+a document written a special way into something a publisher will love.
+The marked up source document takes some getting used to, but I have used it to
+produce lecture notes, Master's thesis books, and even professional resumes for
+a job search. Best of all $\LaTeX$ is free and runs on any platform.
 
-Roles and directives are two of the most powerful tools in Jupyter Book. They
-are kind of like functions, but written in a markup language. They both
-serve a similar purpose, but **roles are written in one line**, whereas
-**directives span many lines**. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.
+## Reproducible Science
 
-### Using a directive
-
-At its simplest, you can insert a directive into your book's content like so:
-
-````
-```{mydirectivename}
-My directive content
-```
-````
-
-This will only work if a directive with name `mydirectivename` already exists
-(which it doesn't). There are many pre-defined directives associated with
-Jupyter Book. For example, to insert a note box into your content, you can
-use the following directive:
-
-````
-```{note}
-Here is a note
-```
-````
-
-This results in:
-
-```{note}
-Here is a note
-```
-
-In your built book.
-
-For more information on writing directives, see the
-[MyST documentation](https://myst-parser.readthedocs.io/).
+You can regenerate this document any time you wish, and verify for yourself
+that what I have presented in print is exactly what I presented. I wrote the
+basic material directly on my machine using a web browser and *Jupyter*. I have
+set up a process that uses *GitHub* to save a public copy of this project code
+on a server anyone can access. Even better, anyone can doenload all of the code
+I use onmy local machine and use it on their own machine. This is all a part of
+a new form of research called *reproducible Science" where te research results
+can beindependently verified by anyone!
 
 
-### Using a role
+## Project Development Workflow
 
-Roles are very similar to directives, but they are less-complex and written
-entirely on one line. You can insert a role into your book's content with
-this pattern:
+I work on a Macbook
+When I finish work on the project, I "push" the new versionof theproject to *GitHub* and it is automatically run through a set of tests to confirm that everything works properly. You can see "badges"on the homepagefpr thisprohject on *GitHub*.
 
-```
-Some content {rolename}`and here is my role's content!`
-```
+The static version of thisproject is available on the *GitHub* server at [thislink](https;//rblack.github.io/nffs-2022-symposium-live). It is also available by clicking on the **Launch Binder* button on the home page. That link takes you to **mybinder.org** where alive version ogf the document will appear (after a bit of time while they complete the setup of a new *virtual machine*.
 
-Again, roles will only work if `rolename` is a valid role's name. For example,
-the `doc` role can be used to refer to another page in your book. You can
-refer directly to another page by its relative path. For example, the
-role syntax `` {doc}`intro` `` will result in: {doc}`intro`.
+When someone
+was produced using the *Python* *Jupiter Book* tool, which is very popular in
+the data science world. Basically, once you have set up the required Python
+environment, you can step through this document using a web browser on your
+local machine and execute all code presented. This scheme is part of a move to
+present \"reproducible science\" by researchers world wide. The idea is simple.
+All the work needed to generate some scientific result is documented in a way
+that anyone can check to verify that things work as reported. For this project,
+both the mathematical equations used in this project, and the resulting Python
+code are described in one document that is checked every time I generate the
+project website you are probably reading now.
 
-For more information on writing roles, see the
-[MyST documentation](https://myst-parser.readthedocs.io/).
+Have fun with this. Happy flying!
 
-
-### Adding a citation
-
-You can also cite references that are stored in a `bibtex` file. For example,
-the following syntax: `` {cite}`rblack21` `` will render like
-this: {cite}`rblack21`.
-
-Moreover, you can insert a bibliography into your page with this syntax:
-The `{bibliography}` directive must be used for all the `{cite}` roles to
-render properly.
-For example, if the references for your book are stored in `references.bib`,
-then the bibliography is inserted with:
-
-````
-```{bibliography}
-```
-````
-
-Resulting in a rendered bibliography that looks like:
-
-```{bibliography}
-```
-
-
-### Executing code in your markdown files
-
-If you'd like to include computational content inside these markdown files,
-you can use MyST Markdown to define cells that will be executed when your
-book is built. Jupyter Book uses *jupytext* to do this.
-
-First, add Jupytext metadata to the file. For example, to add Jupytext metadata
-to this markdown page, run this command:
-
-```
-jupyter-book myst init markdown.md
-```
-
-Once a markdown file has Jupytext metadata in it, you can add the following
-directive to run the code at build time:
-
-````
-```{code-cell}
-print("Here is some code to execute")
-```
-````
-
-When your book is built, the contents of any `{code-cell}` blocks will be
-executed with your default Jupyter kernel, and their outputs will be displayed
-in-line with the rest of your content.
-
-For more information about executing computational content with Jupyter Book,
-see [The MyST-NB documentation](https://myst-nb.readthedocs.io/).

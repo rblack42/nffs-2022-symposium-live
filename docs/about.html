@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2. About This Document &#8212; Predicting Indoor Flight Times With Python</title>
+    <title>4. About This Document &#8212; Predicting Indoor Flight Times With Python</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -52,7 +54,7 @@
     <link rel="author" title="About these documents" href="#" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="1. Introduction" href="intro.html" />
+    <link rel="prev" title="3. SymPy - Symbolic Math using Python" href="sympy.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -102,9 +104,19 @@
    1. Introduction
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="test-model.html">
+   2. Test Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sympy.html">
+   3. SymPy - Symbolic Math using Python
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   2. About This Document
+   4. About This Document
   </a>
  </li>
 </ul>
@@ -195,36 +207,19 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-myst">
-   2.1. What is MyST?
+  <a class="reference internal nav-link" href="#creating-the-symposium-article">
+   4.1. Creating the Symposium Article
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-are-roles-and-directives">
-   2.2. What are roles and directives?
+  <a class="reference internal nav-link" href="#reproducible-science">
+   4.2. Reproducible Science
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-a-directive">
-     2.2.1. Using a directive
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-a-role">
-     2.2.2. Using a role
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adding-a-citation">
-     2.2.3. Adding a citation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#executing-code-in-your-markdown-files">
-     2.2.4. Executing code in your markdown files
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#project-development-workflow">
+   4.3. Project Development Workflow
+  </a>
  </li>
 </ul>
 
@@ -247,36 +242,19 @@
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-myst">
-   2.1. What is MyST?
+  <a class="reference internal nav-link" href="#creating-the-symposium-article">
+   4.1. Creating the Symposium Article
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-are-roles-and-directives">
-   2.2. What are roles and directives?
+  <a class="reference internal nav-link" href="#reproducible-science">
+   4.2. Reproducible Science
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-a-directive">
-     2.2.1. Using a directive
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-a-role">
-     2.2.2. Using a role
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adding-a-citation">
-     2.2.3. Adding a citation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#executing-code-in-your-markdown-files">
-     2.2.4. Executing code in your markdown files
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#project-development-workflow">
+   4.3. Project Development Workflow
+  </a>
  </li>
 </ul>
 
@@ -288,117 +266,61 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="about-this-document">
-<h1><span class="section-number">2. </span>About This Document<a class="headerlink" href="#about-this-document" title="Permalink to this headline">¶</a></h1>
-<p>Whether you write your book’s content in Jupyter Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) or
-in regular markdown files (<code class="docutils literal notranslate"><span class="pre">.md</span></code>), you’ll write in the same flavor of markdown
-called <strong>MyST Markdown</strong>.</p>
-<div class="section" id="what-is-myst">
-<h2><span class="section-number">2.1. </span>What is MyST?<a class="headerlink" href="#what-is-myst" title="Permalink to this headline">¶</a></h2>
-<p>MyST stands for “Markedly Structured Text”. It
-is a slight variation on a flavor of markdown called “CommonMark” markdown,
-with small syntax extensions to allow you to write <strong>roles</strong> and <strong>directives</strong>
-in the Sphinx ecosystem.</p>
+<h1><span class="section-number">4. </span>About This Document<a class="headerlink" href="#about-this-document" title="Permalink to this headline">¶</a></h1>
+<p>This document is different from most web pages you run into on the Internet.
+Depending on how you reached thispage, you might belooking at a static web page
+where all you can do is click on links and scroll around. One the otherhand,
+youmight have reached thispage by downloading the source for it to yourlocal
+machine. Withthe right tools in place, you can “run this page, using the <em>Jupyter</em>
+engine to acturlly process all the embedded code and see the final results. Even
+better, youmight have found this page by navigating to a link at
+<strong><a class="reference external" href="http://mybinder.org">mybinder.org</a></strong>. In this cae, clicking on that link started up aprocess ona
+*clous Server that creates a new *virtual machine for you, installs <em>Python</em>
+and anything else needed for this project, then launches a web server that
+presents the page to you. In this setup, the document is just as “live” as it
+was onmymachine,except you didnot havetodoany setup work. Youcan run the codein
+thepageeven if you arelookig at thispage using a tablet!</p>
+<div class="section" id="creating-the-symposium-article">
+<h2><span class="section-number">4.1. </span>Creating the Symposium Article<a class="headerlink" href="#creating-the-symposium-article" title="Permalink to this headline">¶</a></h2>
+<p>Unfortunately, the content in a <em>Jupyter</em> format is not suitable for publishing
+in something like the <em>NFFS Symposium</em>, so I created the print version of the
+document in a different way.</p>
+<p>As a researcher, and an educator,I have along history of producing high-quality
+documents containing a lot of math and technical figures using the <span class="math notranslate nohighlight">\(\LaTeX\)</span> tool chain.
+On my Macbook, I have installed <em>MacTex</em> which creates a set of tools that convert
+a document written a special way into something a publisher will love.
+The marked up source document takes some getting used to, but I have used it to
+produce lecture notes, Master’s thesis books, and even professional resumes for
+a job search. Best of all <span class="math notranslate nohighlight">\(\LaTeX\)</span> is free and runs on any platform.</p>
 </div>
-<div class="section" id="what-are-roles-and-directives">
-<h2><span class="section-number">2.2. </span>What are roles and directives?<a class="headerlink" href="#what-are-roles-and-directives" title="Permalink to this headline">¶</a></h2>
-<p>Roles and directives are two of the most powerful tools in Jupyter Book. They
-are kind of like functions, but written in a markup language. They both
-serve a similar purpose, but <strong>roles are written in one line</strong>, whereas
-<strong>directives span many lines</strong>. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.</p>
-<div class="section" id="using-a-directive">
-<h3><span class="section-number">2.2.1. </span>Using a directive<a class="headerlink" href="#using-a-directive" title="Permalink to this headline">¶</a></h3>
-<p>At its simplest, you can insert a directive into your book’s content like so:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{mydirectivename}
-My directive content
-```
-</pre></div>
+<div class="section" id="reproducible-science">
+<h2><span class="section-number">4.2. </span>Reproducible Science<a class="headerlink" href="#reproducible-science" title="Permalink to this headline">¶</a></h2>
+<p>You can regenerate this document any time you wish, and verify for yourself
+that what I have presented in print is exactly what I presented. I wrote the
+basic material directly on my machine using a web browser and <em>Jupyter</em>. I have
+set up a process that uses <em>GitHub</em> to save a public copy of this project code
+on a server anyone can access. Even better, anyone can doenload all of the code
+I use onmy local machine and use it on their own machine. This is all a part of
+a new form of research called *reproducible Science” where te research results
+can beindependently verified by anyone!</p>
 </div>
-<p>This will only work if a directive with name <code class="docutils literal notranslate"><span class="pre">mydirectivename</span></code> already exists
-(which it doesn’t). There are many pre-defined directives associated with
-Jupyter Book. For example, to insert a note box into your content, you can
-use the following directive:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{note}
-Here is a note
-```
-</pre></div>
-</div>
-<p>This results in:</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Here is a note</p>
-</div>
-<p>In your built book.</p>
-<p>For more information on writing directives, see the
-<a class="reference external" href="https://myst-parser.readthedocs.io/">MyST documentation</a>.</p>
-</div>
-<div class="section" id="using-a-role">
-<h3><span class="section-number">2.2.2. </span>Using a role<a class="headerlink" href="#using-a-role" title="Permalink to this headline">¶</a></h3>
-<p>Roles are very similar to directives, but they are less-complex and written
-entirely on one line. You can insert a role into your book’s content with
-this pattern:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Some content {rolename}`and here is my role&#39;s content!`
-</pre></div>
-</div>
-<p>Again, roles will only work if <code class="docutils literal notranslate"><span class="pre">rolename</span></code> is a valid role’s name. For example,
-the <code class="docutils literal notranslate"><span class="pre">doc</span></code> role can be used to refer to another page in your book. You can
-refer directly to another page by its relative path. For example, the
-role syntax <code class="docutils literal notranslate"><span class="pre">{doc}`intro`</span></code> will result in: <a class="reference internal" href="intro.html"><span class="doc">Introduction</span></a>.</p>
-<p>For more information on writing roles, see the
-<a class="reference external" href="https://myst-parser.readthedocs.io/">MyST documentation</a>.</p>
-</div>
-<div class="section" id="adding-a-citation">
-<h3><span class="section-number">2.2.3. </span>Adding a citation<a class="headerlink" href="#adding-a-citation" title="Permalink to this headline">¶</a></h3>
-<p>You can also cite references that are stored in a <code class="docutils literal notranslate"><span class="pre">bibtex</span></code> file. For example,
-the following syntax: <code class="docutils literal notranslate"><span class="pre">{cite}`rblack21`</span></code> will render like
-this: <span id="id1">[<a class="reference internal" href="#id11">Bla21</a>]</span>.</p>
-<p>Moreover, you can insert a bibliography into your page with this syntax:
-The <code class="docutils literal notranslate"><span class="pre">{bibliography}</span></code> directive must be used for all the <code class="docutils literal notranslate"><span class="pre">{cite}</span></code> roles to
-render properly.
-For example, if the references for your book are stored in <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>,
-then the bibliography is inserted with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{bibliography}
-```
-</pre></div>
-</div>
-<p>Resulting in a rendered bibliography that looks like:</p>
-<p id="id2"><dl class="citation">
-<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id1">Bla21</a></span></dt>
-<dd><p>Roie Black. Designing an indoor model using openscad. <em>NFFS Symposium</em>, pages 65–84, 2021.</p>
-</dd>
-<dt class="label" id="id4"><span class="brackets">Erb90</span></dt>
-<dd><p>Walter Erbach. Calculating indoor flight. <em>NFFS Symposium</em>, pages 79–85, 1990.</p>
-</dd>
-<dt class="label" id="id3"><span class="brackets">McL76</span></dt>
-<dd><p>Doug McLean. A method for predicting indoor model duration. <em>NFFS Symposium</em>, pages 54–60, 1976.</p>
-</dd>
-</dl>
-</p>
-</div>
-<div class="section" id="executing-code-in-your-markdown-files">
-<h3><span class="section-number">2.2.4. </span>Executing code in your markdown files<a class="headerlink" href="#executing-code-in-your-markdown-files" title="Permalink to this headline">¶</a></h3>
-<p>If you’d like to include computational content inside these markdown files,
-you can use MyST Markdown to define cells that will be executed when your
-book is built. Jupyter Book uses <em>jupytext</em> to do this.</p>
-<p>First, add Jupytext metadata to the file. For example, to add Jupytext metadata
-to this markdown page, run this command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span> <span class="n">myst</span> <span class="n">init</span> <span class="n">markdown</span><span class="o">.</span><span class="n">md</span>
-</pre></div>
-</div>
-<p>Once a markdown file has Jupytext metadata in it, you can add the following
-directive to run the code at build time:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{code-cell}
-print(&quot;Here is some code to execute&quot;)
-```
-</pre></div>
-</div>
-<p>When your book is built, the contents of any <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> blocks will be
-executed with your default Jupyter kernel, and their outputs will be displayed
-in-line with the rest of your content.</p>
-<p>For more information about executing computational content with Jupyter Book,
-see <a class="reference external" href="https://myst-nb.readthedocs.io/">The MyST-NB documentation</a>.</p>
-</div>
+<div class="section" id="project-development-workflow">
+<h2><span class="section-number">4.3. </span>Project Development Workflow<a class="headerlink" href="#project-development-workflow" title="Permalink to this headline">¶</a></h2>
+<p>I work on a Macbook
+When I finish work on the project, I “push” the new versionof theproject to <em>GitHub</em> and it is automatically run through a set of tests to confirm that everything works properly. You can see “badges”on the homepagefpr thisprohject on <em>GitHub</em>.</p>
+<p>The static version of thisproject is available on the <em>GitHub</em> server at <span class="xref myst">thislink</span>. It is also available by clicking on the *<em>Launch Binder</em> button on the home page. That link takes you to <strong><a class="reference external" href="http://mybinder.org">mybinder.org</a></strong> where alive version ogf the document will appear (after a bit of time while they complete the setup of a new <em>virtual machine</em>.</p>
+<p>When someone
+was produced using the <em>Python</em> <em>Jupiter Book</em> tool, which is very popular in
+the data science world. Basically, once you have set up the required Python
+environment, you can step through this document using a web browser on your
+local machine and execute all code presented. This scheme is part of a move to
+present “reproducible science” by researchers world wide. The idea is simple.
+All the work needed to generate some scientific result is documented in a way
+that anyone can check to verify that things work as reported. For this project,
+both the mathematical equations used in this project, and the resulting Python
+code are described in one document that is checked every time I generate the
+project website you are probably reading now.</p>
+<p>Have fun with this. Happy flying!</p>
 </div>
 </div>
 
@@ -427,11 +349,11 @@ see <a class="reference external" href="https://myst-nb.readthedocs.io/">The MyS
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="sympy.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">1. </span>Introduction</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>SymPy - Symbolic Math using Python</p>
         </div>
     </a>
 </div>

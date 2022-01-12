@@ -8,4 +8,6 @@ options:
   numbered: true
 chapters:
 - file: intro
+- file: test-model
+- file: sympy
 - file: about
