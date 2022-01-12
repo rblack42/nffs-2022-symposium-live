@@ -241,7 +241,7 @@ notebook==6.4.6
     #   jupyter-latex-envs
     #   jupyter-nbextensions-configurator
     #   widgetsnbextension
-numpy==1.22.0
+numpy==1.21.5
     # via
     #   -r requirements.in
     #   matplotlib
