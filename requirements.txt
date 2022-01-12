@@ -76,6 +76,8 @@ gitdb==4.0.9
     # via gitpython
 gitpython==3.1.26
     # via nbdime
+greenlet==1.1.2
+    # via sqlalchemy
 idna==3.3
     # via
     #   anyio
@@ -194,6 +196,8 @@ mdit-py-plugins==0.2.8
     #   myst-parser
 mistune==0.8.4
     # via nbconvert
+mpmath==1.2.1
+    # via sympy
 myst-nb==0.13.1
     # via jupyter-book
 myst-parser==0.15.2
@@ -393,6 +397,8 @@ sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
 sqlalchemy==1.4.29
     # via jupyter-cache
+sympy==1.9
+    # via -r requirements.in
 terminado==0.12.1
     # via
     #   jupyter-server

@@ -1,0 +1,29 @@
+# Book settings
+
+title: Predicting Indoor Flight Times With Python
+author: Roie R. Black
+copyright: 2022
+logo: ../assets/images/lpp.gif
+
+execute:
+  execute_notebooks: force
+
+latex:
+  latex_documents:
+    targetname: book.tex
+
+bibtex_bibfiles:
+  - ../assets/references.bib
+
+repository:
+  url: https://github.com/rblack42/nffs-2022-symposium-live
+  path_to_book: docs
+  branch: master
+
+launch_buttons:
+    notebook_interface: "classic"
+    binderhub_url: "https://mybinder.ord"
+
+html:
+  use_issues_button: true
+  use_repository_button: true

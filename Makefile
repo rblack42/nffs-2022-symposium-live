@@ -8,3 +8,13 @@ reqs:
 	pip install -U pip
 	pip install -r requirements.txt
 
+.PHONY: nb
+nb:
+	cd book && \
+		jupyter notebook
+
+.PHONY: build
+build:
+	jb build book
+	cp -r book/_build/html/* docs
+
