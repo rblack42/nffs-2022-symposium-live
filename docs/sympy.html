@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3. SymPy - Symbolic Math using Python &#8212; Predicting Indoor Flight Times With Python</title>
+    <title>5. SymPy - Symbolic Math using Python &#8212; Predicting Indoor Flight Times With Python</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -54,8 +54,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="4. About This Document" href="about.html" />
-    <link rel="prev" title="2. Test Model" href="test-model.html" />
+    <link rel="next" title="6. About This Document" href="about.html" />
+    <link rel="prev" title="4. The Basics of Flight" href="mclean-flight-time.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -110,14 +110,24 @@
    2. Test Model
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numerical-data-analysis.html">
+   3. Numerical Data Analysis using Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mclean-flight-time.html">
+   4. The Basics of Flight
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   3. SymPy - Symbolic Math using Python
+   5. SymPy - Symbolic Math using Python
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="about.html">
-   4. About This Document
+   6. About This Document
   </a>
  </li>
 </ul>
@@ -226,19 +236,19 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#basic-concepts">
-   3.1. Basic Concepts
+   5.1. Basic Concepts
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#expressions-or-equations">
-     3.1.1. Expressions or Equations
+     5.1.1. Expressions or Equations
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#learning-more">
-   3.2. Learning More
+   5.2. Learning More
   </a>
  </li>
 </ul>
@@ -263,19 +273,19 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#basic-concepts">
-   3.1. Basic Concepts
+   5.1. Basic Concepts
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#expressions-or-equations">
-     3.1.1. Expressions or Equations
+     5.1.1. Expressions or Equations
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#learning-more">
-   3.2. Learning More
+   5.2. Learning More
   </a>
  </li>
 </ul>
@@ -288,7 +298,7 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="sympy-symbolic-math-using-python">
-<h1><span class="section-number">3. </span>SymPy - Symbolic Math using Python<a class="headerlink" href="#sympy-symbolic-math-using-python" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">5. </span>SymPy - Symbolic Math using Python<a class="headerlink" href="#sympy-symbolic-math-using-python" title="Permalink to this headline">¶</a></h1>
 <p>*SymPy is the tool you wish you had back in high school, when math was the enemy
 you had to conquer! Basically, <em>SymPy</em> manipulates mathematical <em>symbols</em>, not
 just numbers. You were introduced to this approach back in your first algebra
@@ -306,7 +316,7 @@ were in constant fear that you had dropped something, or flipped a sign somewher
 You never really knew. <strong>MACSYMA</strong> cured most of that!</p>
 <p>Automating the math work greatly increases your confidence in the results. I discovered errors (probably simple typos) in several of the papers I used as references in this article. <em>SymPy</em> helped me work through a derivation of some equation with confidence that my development was correct. It is not a foolproof approach to math, but it really helps as we shall see here.</p>
 <div class="section" id="basic-concepts">
-<h2><span class="section-number">3.1. </span>Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1. </span>Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this headline">¶</a></h2>
 <p>To get started using <em>SymPy</em>, we need to tell <em>Python</em> about the package:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -351,7 +361,7 @@ You never really knew. <strong>MACSYMA</strong> cured most of that!</p>
 </div>
 <p>Nice! We did not save this new expression, but we could.</p>
 <div class="section" id="expressions-or-equations">
-<h3><span class="section-number">3.1.1. </span>Expressions or Equations<a class="headerlink" href="#expressions-or-equations" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.1. </span>Expressions or Equations<a class="headerlink" href="#expressions-or-equations" title="Permalink to this headline">¶</a></h3>
 <p>You are probably used to writing someth</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">5</span>
 </pre></div>
@@ -386,7 +396,7 @@ You never really knew. <strong>MACSYMA</strong> cured most of that!</p>
 </div>
 </div>
 <div class="section" id="learning-more">
-<h2><span class="section-number">3.2. </span>Learning More<a class="headerlink" href="#learning-more" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2. </span>Learning More<a class="headerlink" href="#learning-more" title="Permalink to this headline">¶</a></h2>
 <p>I am not going to work through a full <em>SymPy</em> tutorial here. There are several on the project website fo go there and read more. Otherwise, read through the development here and get a feel for how working with <em>symbolic mathematics</em> works!</p>
 </div>
 </div>
@@ -416,17 +426,17 @@ You never really knew. <strong>MACSYMA</strong> cured most of that!</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="test-model.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="mclean-flight-time.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">2. </span>Test Model</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>The Basics of Flight</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="about.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>About This Document</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>About This Document</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

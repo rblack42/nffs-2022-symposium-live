@@ -1,0 +1,688 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4. The Basics of Flight &#8212; Predicting Indoor Flight Times With Python</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5. SymPy - Symbolic Math using Python" href="sympy.html" />
+    <link rel="prev" title="3. Numerical Data Analysis using Python" href="numerical-data-analysis.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/lpp.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Predicting Indoor Flight Times With Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   Predicting Indoor Model Flight Time Using Python
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="test-model.html">
+   2. Test Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numerical-data-analysis.html">
+   3. Numerical Data Analysis using Python
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. The Basics of Flight
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sympy.html">
+   5. SymPy - Symbolic Math using Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   6. About This Document
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/mclean-flight-time.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live/issues/new?title=Issue%20on%20page%20%2Fmclean-flight-time.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.ord/v2/gh/rblack42/nffs-2022-symposium-live/master?urlpath=tree/docs/mclean-flight-time.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lift-and-drag-forces">
+   4.1. Lift and Drag Forces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aerodynamic-coefficients">
+   4.2. Aerodynamic Coefficients
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lift-coefficient">
+     4.2.1. Lift Coefficient
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#drag-coefficient">
+     4.2.2. Drag Coefficient
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pitching-moment-coefficient">
+     4.2.3. Pitching Moment Coefficient
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#total-lift-coefficient">
+   4.3. Total Lift Coefficient
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>The Basics of Flight</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lift-and-drag-forces">
+   4.1. Lift and Drag Forces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aerodynamic-coefficients">
+   4.2. Aerodynamic Coefficients
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lift-coefficient">
+     4.2.1. Lift Coefficient
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#drag-coefficient">
+     4.2.2. Drag Coefficient
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pitching-moment-coefficient">
+     4.2.3. Pitching Moment Coefficient
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#total-lift-coefficient">
+   4.3. Total Lift Coefficient
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="the-basics-of-flight">
+<h1><span class="section-number">4. </span>The Basics of Flight<a class="headerlink" href="#the-basics-of-flight" title="Permalink to this headline">¶</a></h1>
+<p>A model in level flight has four basic forces at work: lift, weight, drag, and thrust. The total lift force must equal the weight of the model, and the total drag force must equal the thrust for the flight to remain level. Let’s begin our study by looking at these forces.</p>
+<div class="section" id="lift-and-drag-forces">
+<h2><span class="section-number">4.1. </span>Lift and Drag Forces<a class="headerlink" href="#lift-and-drag-forces" title="Permalink to this headline">¶</a></h2>
+<p>The flying surfaces generate both lift and drag. The airfoil we select for many indoor models is just a simple for circular arc of some specified thickness, but it could be any shape you like. It certainly helps in our analysis if we have some test data for the chosen airfoil. That turned out to be more difficult than it should have been, due to the fact that not much research has been conducted on aircraft that fly as slow as our indoor models. Fortunately, I managed to dig up some usable data.</p>
+<p>The movement of the airfoil through the air causes a pressure distribution to appear on the surface of each flying surface. There is also a shear force alo g the surface due to the friction between the air and that surface. If we integrate the pressure and shear distributions and combine them, we discover a single aerodynamic force vector that acts at a point along the surface chord we call the <em>center of pressure</em>. The vertical component of that force is called <em>lift</em> and the horizontal component is called <em>drag</em>.</p>
+<p>The <em>center of pressure</em> is an inconvenient place to deal with since it moves around with angle of attack. So, by convention, we apply that force at a different point we call the<em>aerodynamic center</em> which is commonly located at at the quarter chord point on the surface. Since this point is not at the center of pressure, applying a force there require that we add torque force to this picture. This will generate a moment about the real <em>center of pressure</em>, so we add in that <em>moment</em> (torque) to get the total forces acting on the surface.</p>
+<p>In level flight, we want the forces to balance,meaning we need for the lift to equal the weight, and the thrust to equal the drag.</p>
+<p>The total lift is the sum of the lift generated by the wing and stabilizer.</p>
+<p>\begin{equation}
+W_m = L_w + L_s
+\end{equation}</p>
+<p>The total drag</p>
+<p>\begin{equation}
+D_t = T
+\end{equation}</p>
+<p>In addition, we must also make sure that the moments all sum to zero so the airplane remains level. We measure the moments by using the <em>center of gravity</em> as a reference point, since the weight is acting through that point. For that reason, we will calculate moments for all forces using the <strong>cg</strong> reference point.</p>
+<p>Since the wing is usually mounted above the thrust line, and the stab is often not on that line either, we must include the moments caused by those forces acting at the final <em>aerodynamic center</em> points. Fortunately, we can just add in the moments caused by the flying surfaces, no matter where that are located.</p>
+<p>In the development below, we are assuming that the weight and thrust act through the <strong>CG</strong>, so they do not contribute to the moment calculations.</p>
+<p>Here is a simple diagram showing the basic geometry we will be using:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> tikzmagic
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">tikz</span>
+\draw (0,0) -- (5,0) -- (5,-0.25) -- (0,-0.25) -- cycle;
+\draw (5,0) -- (10,0) -- (10,-0.125) -- (5,-0.125); 
+\draw[-&gt;] (1,0) -- (1,2) node[above]{$L_w$};
+\draw[-&gt;] (9,0) -- (9,2) node[above]{$L_s$};
+\node[below] at (2,-1){CG};
+\draw[-&gt;] (2,-1) -- (2,-0.25);
+\draw[&lt;-&gt;](1,1.5) -- node[above]{l}(9,1.5);
+\draw[&lt;-&gt;](1,0.75) -- node[above]{x} (2,0.75);
+\draw (2,0) -- (2,1);
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/mclean-flight-time_4_0.png" src="_images/mclean-flight-time_4_0.png" />
+</div>
+</div>
+<p>By convention a positive pitching moment results in a nose up condition. For that reason, the wing’s moment will be positive, and the stab’s will be negative.</p>
+</div>
+<div class="section" id="aerodynamic-coefficients">
+<h2><span class="section-number">4.2. </span>Aerodynamic Coefficients<a class="headerlink" href="#aerodynamic-coefficients" title="Permalink to this headline">¶</a></h2>
+<p>Airfoil data is usually presented using a set of non-dimensional <em>aerodynamic coefficients</em>. Here are the definitions of the coefficients we will use:</p>
+<div class="section" id="lift-coefficient">
+<h3><span class="section-number">4.2.1. </span>Lift Coefficient<a class="headerlink" href="#lift-coefficient" title="Permalink to this headline">¶</a></h3>
+<p>\begin{equation}
+C_l = \frac{L}{q S}
+\end{equation}</p>
+<p>Where <span class="math notranslate nohighlight">\(L\)</span>L is the lift, <span class="math notranslate nohighlight">\(q\)</span> is the dynamic pressure (<span class="math notranslate nohighlight">\(q = \frac{1}{2}\rho u^2\)</span>), and <span class="math notranslate nohighlight">\(S\)</span> is the surface area.</p>
+</div>
+<div class="section" id="drag-coefficient">
+<h3><span class="section-number">4.2.2. </span>Drag Coefficient<a class="headerlink" href="#drag-coefficient" title="Permalink to this headline">¶</a></h3>
+<p>\begin{equation}
+C_d = \frac{D}{q S}
+\end{equation}</p>
+<p>Where <span class="math notranslate nohighlight">\(D\)</span> is the drag force. and <span class="math notranslate nohighlight">\(c\)</span></p>
+</div>
+<div class="section" id="pitching-moment-coefficient">
+<h3><span class="section-number">4.2.3. </span>Pitching Moment Coefficient<a class="headerlink" href="#pitching-moment-coefficient" title="Permalink to this headline">¶</a></h3>
+<p>\begin{equation}
+C_m = \frac{M}{q S c}
+\end{equation}</p>
+<p>From this point, we will use <em>Python</em> <em>SymPy</em> to help us with the derivations we need.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L_w</span><span class="p">,</span> <span class="n">S_w</span><span class="p">,</span> <span class="n">C_w</span><span class="p">,</span> <span class="n">C_lw</span><span class="p">,</span> <span class="n">C_mw</span><span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;L_w S_w C_w C_lw C_mw&#39;</span><span class="p">)</span>
+<span class="n">L_s</span><span class="p">,</span> <span class="n">S_s</span><span class="p">,</span> <span class="n">C_s</span><span class="p">,</span> <span class="n">C_ls</span><span class="p">,</span> <span class="n">C_ms</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;L_s S_s C_s C_ls C_ms&#39;</span><span class="p">)</span>
+<span class="n">q</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;q l x&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From of diagram, we can calculate the moments due to lift from the wing and stab:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M_w</span> <span class="o">=</span> <span class="n">L_w</span> <span class="o">*</span> <span class="n">x</span>
+<span class="n">M_s</span> <span class="o">=</span> <span class="o">-</span> <span class="n">L_s</span> <span class="o">*</span> <span class="p">(</span><span class="n">l</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The moments for the wing and stab are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M_pw</span> <span class="o">=</span> <span class="n">C_mw</span> <span class="o">*</span> <span class="n">q</span> <span class="o">*</span> <span class="n">S_w</span> <span class="o">*</span> <span class="n">C_w</span>
+<span class="n">M_ps</span> <span class="o">=</span> <span class="n">C_ms</span> <span class="o">*</span> <span class="n">q</span> <span class="o">*</span> <span class="n">S_s</span> <span class="o">*</span> <span class="n">C_s</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our equilibrium condition says that all of these moments must sum to zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq1</span> <span class="o">=</span> <span class="n">M_w</span> <span class="o">+</span> <span class="n">M_s</span> <span class="o">+</span> <span class="n">M_pw</span> <span class="o">+</span> <span class="n">M_ps</span>
+<span class="n">eq1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle C_{ms} C_{s} S_{s} q + C_{mw} C_{w} S_{w} q - L_{s} \left(l - x\right) + L_{w} x\]</div>
+</div>
+</div>
+<p>We need to use the lift coefficient definitions to eliminate the lift terms here:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq2</span> <span class="o">=</span> <span class="n">eq1</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">L_w</span><span class="p">,</span> <span class="n">C_lw</span> <span class="o">*</span> <span class="n">q</span> <span class="o">*</span> <span class="n">S_w</span><span class="p">)</span>
+<span class="n">eq3</span> <span class="o">=</span> <span class="n">eq2</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">L_s</span><span class="p">,</span> <span class="n">C_ls</span> <span class="o">*</span> <span class="n">q</span> <span class="o">*</span><span class="n">S_s</span><span class="p">)</span>
+<span class="n">eq3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - C_{ls} S_{s} q \left(l - x\right) + C_{lw} S_{w} q x + C_{ms} C_{s} S_{s} q + C_{mw} C_{w} S_{w} q\]</div>
+</div>
+</div>
+<p>McLean assumed a lift coefficient of 1 for the wing, and used this equation to calculate the lift coefficient for the stab. Let’s solve this expression for the stab lift coefficient:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq4</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">eq3</span><span class="p">,</span> <span class="n">C_ls</span><span class="p">)</span>
+<span class="n">eq5</span> <span class="o">=</span> <span class="n">eq4</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">eq5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{C_{lw} S_{w} x + C_{ms} C_{s} S_{s} + C_{mw} C_{w} S_{w}}{S_{s} \left(l - x\right)}\]</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <em>SymPy</em> solver returns a list of expressions, so we index that list here</p>
+</div>
+<p>Does this match McLean’s equation?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq6</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span> <span class="n">x</span><span class="o">/</span><span class="n">C_w</span> <span class="o">+</span> <span class="n">C_mw</span> <span class="o">+</span> <span class="n">C_ms</span> <span class="o">*</span> <span class="n">S_s</span> <span class="o">*</span> <span class="n">C_s</span><span class="o">/</span><span class="p">(</span><span class="n">S_w</span><span class="o">*</span><span class="n">C_w</span><span class="p">))</span><span class="o">/</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="o">/</span><span class="n">l</span><span class="p">)</span><span class="o">*</span><span class="n">S_s</span> <span class="o">*</span> <span class="n">l</span> <span class="o">/</span><span class="p">(</span><span class="n">S_w</span><span class="o">*</span><span class="n">C_w</span><span class="p">))</span>
+<span class="n">eq6</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{C_{w} S_{w} \left(\frac{C_{ms} C_{s} S_{s}}{C_{w} S_{w}} + C_{mw} - \frac{x}{C_{w}}\right)}{S_{s} l \left(1 + \frac{x}{l}\right)}\]</div>
+</div>
+</div>
+<p>That does not look the same, can <em>SymPy</em> help?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq7</span> <span class="o">=</span> <span class="n">eq5</span><span class="o">.</span><span class="n">expand</span><span class="p">()</span>
+<span class="n">eq7</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{C_{lw} S_{w} x}{S_{s} l - S_{s} x} + \frac{C_{ms} C_{s} S_{s}}{S_{s} l - S_{s} x} + \frac{C_{mw} C_{w} S_{w}}{S_{s} l - S_{s} x}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq8</span> <span class="o">=</span> <span class="n">eq6</span><span class="o">.</span><span class="n">expand</span><span class="p">()</span>
+<span class="n">eq8</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{C_{ms} C_{s} S_{s}}{S_{s} l + S_{s} x} + \frac{C_{mw} C_{w} S_{w}}{S_{s} l + S_{s} x} - \frac{S_{w} x}{S_{s} l + S_{s} x}\]</div>
+</div>
+</div>
+<p>Now we see a problem, the signs in the denominator of these terms are different. Why?</p>
+<p>Let’s check our formula if the pitching moments are both zero. That means the moment from the wing lift must equal the moment from the tail lift.</p>
+<p>First, we eliminate the moment coefficient terms:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq9</span> <span class="o">=</span> <span class="n">eq5</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">C_mw</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">eq10</span> <span class="o">=</span> <span class="n">eq9</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">C_ms</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">eq10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{C_{lw} S_{w} x}{S_{s} \left(l - x\right)}\]</div>
+</div>
+</div>
+<p>Our equilibrium equation is now:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq11</span> <span class="o">=</span> <span class="n">C_lw</span> <span class="o">*</span> <span class="n">q</span> <span class="o">*</span> <span class="n">S_w</span><span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">eq10</span> <span class="o">*</span> <span class="n">q</span> <span class="o">*</span> <span class="n">S_s</span> <span class="o">*</span> <span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+<span class="n">eq11</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 0\]</div>
+</div>
+</div>
+<p>This is what we want to see. The expression and development we worked through look to be correct!</p>
+<p>Let’s try the same idea using the equation in the paper:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq12</span> <span class="o">=</span> <span class="n">eq6</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">C_mw</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">eq13</span> <span class="o">=</span> <span class="n">eq12</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">C_ms</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">eq13</span><span class="o">.</span><span class="n">expand</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - \frac{S_{w} x}{S_{s} l + S_{s} x}\]</div>
+</div>
+</div>
+<p>Clearly, this will not work when we try our equilibrium expression. I am going to let this go as a typo in McLean’s report.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq14</span> <span class="o">=</span> <span class="n">C_lw</span> <span class="o">*</span> <span class="n">q</span> <span class="o">*</span> <span class="n">S_w</span><span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">eq13</span> <span class="o">*</span> <span class="n">q</span> <span class="o">*</span> <span class="n">S_s</span> <span class="o">*</span> <span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+<span class="n">eq14</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle C_{lw} S_{w} q x + \frac{S_{w} q x \left(l - x\right)}{l \left(1 + \frac{x}{l}\right)}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Definitely not zero!
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  File &quot;/var/folders/t9/hc5s57h95tj3rsp4qvk61m8m0000gn/T/ipykernel_98460/3026474247.py&quot;, line 1
+    Definitely not zero!
+                   ^
+SyntaxError: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="total-lift-coefficient">
+<h2><span class="section-number">4.3. </span>Total Lift Coefficient<a class="headerlink" href="#total-lift-coefficient" title="Permalink to this headline">¶</a></h2>
+<p>The total lift is the sum of the ift from the wing and tail. Tus the total lift coefficient is just the sum of the wing and stab lift coefficients:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C_ltotal</span> <span class="o">=</span> <span class="n">C_lw</span> <span class="o">+</span> <span class="n">eq5</span>
+<span class="n">C_ltotal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle C_{lw} + \frac{C_{lw} S_{w} x + C_{ms} C_{s} S_{s} + C_{mw} C_{w} S_{w}}{S_{s} \left(l - x\right)}\]</div>
+</div>
+</div>
+<p>From McLean’s equation we get this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M_Ltotal</span> <span class="o">=</span> <span class="n">C_lw</span> <span class="o">+</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(C_{lf} = 1.0\)</span> - wing lift coefficient</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_{mf} = -0.10\)</span> - wing pitching moment</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_{mr} = -0.05\)</span> - stab pitching moment</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_f = 30.0\)</span> - wing area rule limit for A6 class</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_r = 15.0\)</span> - stab surface area (~50%)</p></li>
+<li><p><span class="math notranslate nohighlight">\(b_f = 15.5\)</span> - projected span (TODO fix this)</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_f = 1.94\)</span> - mean aerodynamic chord of wing (<span class="math notranslate nohighlight">\(S_f / b_f\)</span>)</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="numerical-data-analysis.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Numerical Data Analysis using Python</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="sympy.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>SymPy - Symbolic Math using Python</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Roie R. Black<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

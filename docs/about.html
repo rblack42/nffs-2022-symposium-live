@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>4. About This Document &#8212; Predicting Indoor Flight Times With Python</title>
+    <title>6. About This Document &#8212; Predicting Indoor Flight Times With Python</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -54,7 +54,7 @@
     <link rel="author" title="About these documents" href="#" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="3. SymPy - Symbolic Math using Python" href="sympy.html" />
+    <link rel="prev" title="5. SymPy - Symbolic Math using Python" href="sympy.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -110,13 +110,23 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="numerical-data-analysis.html">
+   3. Numerical Data Analysis using Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mclean-flight-time.html">
+   4. The Basics of Flight
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="sympy.html">
-   3. SymPy - Symbolic Math using Python
+   5. SymPy - Symbolic Math using Python
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   4. About This Document
+   6. About This Document
   </a>
  </li>
 </ul>
@@ -208,17 +218,22 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#creating-the-symposium-article">
-   4.1. Creating the Symposium Article
+   6.1. Creating the Symposium Article
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reproducible-science">
-   4.2. Reproducible Science
+   6.2. Reproducible Science
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#project-development-workflow">
-   4.3. Project Development Workflow
+   6.3. Project Development Workflow
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#support-nffs">
+   6.4. Support NFFS
   </a>
  </li>
 </ul>
@@ -243,17 +258,22 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#creating-the-symposium-article">
-   4.1. Creating the Symposium Article
+   6.1. Creating the Symposium Article
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reproducible-science">
-   4.2. Reproducible Science
+   6.2. Reproducible Science
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#project-development-workflow">
-   4.3. Project Development Workflow
+   6.3. Project Development Workflow
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#support-nffs">
+   6.4. Support NFFS
   </a>
  </li>
 </ul>
@@ -266,22 +286,22 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="about-this-document">
-<h1><span class="section-number">4. </span>About This Document<a class="headerlink" href="#about-this-document" title="Permalink to this headline">¶</a></h1>
-<p>This document is different from most web pages you run into on the Internet.
-Depending on how you reached thispage, you might belooking at a static web page
-where all you can do is click on links and scroll around. One the otherhand,
-youmight have reached thispage by downloading the source for it to yourlocal
-machine. Withthe right tools in place, you can “run this page, using the <em>Jupyter</em>
-engine to acturlly process all the embedded code and see the final results. Even
-better, youmight have found this page by navigating to a link at
-<strong><a class="reference external" href="http://mybinder.org">mybinder.org</a></strong>. In this cae, clicking on that link started up aprocess ona
-*clous Server that creates a new *virtual machine for you, installs <em>Python</em>
+<h1><span class="section-number">6. </span>About This Document<a class="headerlink" href="#about-this-document" title="Permalink to this headline">¶</a></h1>
+<p>This document is very different from most web pages you run into on the Internet.
+Depending on how you reached this page, you might be looking at a static web page
+where all you can do is click on links and scroll around. On the other hand,
+you might have reached this page by downloading the source for it to yourlocal
+machine. With the right tools in place, you can <em>run</em> this page, using the <em>Python</em> <em>Jupyter</em>
+system to actually process all the embedded code and see the final results. Even
+better, youvnmight have found this page by navigating to a link at
+<strong><a class="reference external" href="http://mybinder.org">mybinder.org</a></strong>. In this case, clicking on that link started up  aprocess on a
+<em>Cloud Server</em> that creates a new <em>virtual machine</em> for you, installs <em>Python</em>
 and anything else needed for this project, then launches a web server that
 presents the page to you. In this setup, the document is just as “live” as it
-was onmymachine,except you didnot havetodoany setup work. Youcan run the codein
-thepageeven if you arelookig at thispage using a tablet!</p>
+was on my machine,except you did not have to do any setup work. You can run the code in
+the page even if you are lookig at this page using a tablet!</p>
 <div class="section" id="creating-the-symposium-article">
-<h2><span class="section-number">4.1. </span>Creating the Symposium Article<a class="headerlink" href="#creating-the-symposium-article" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.1. </span>Creating the Symposium Article<a class="headerlink" href="#creating-the-symposium-article" title="Permalink to this headline">¶</a></h2>
 <p>Unfortunately, the content in a <em>Jupyter</em> format is not suitable for publishing
 in something like the <em>NFFS Symposium</em>, so I created the print version of the
 document in a different way.</p>
@@ -294,33 +314,54 @@ produce lecture notes, Master’s thesis books, and even professional resumes fo
 a job search. Best of all <span class="math notranslate nohighlight">\(\LaTeX\)</span> is free and runs on any platform.</p>
 </div>
 <div class="section" id="reproducible-science">
-<h2><span class="section-number">4.2. </span>Reproducible Science<a class="headerlink" href="#reproducible-science" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.2. </span>Reproducible Science<a class="headerlink" href="#reproducible-science" title="Permalink to this headline">¶</a></h2>
 <p>You can regenerate this document any time you wish, and verify for yourself
-that what I have presented in print is exactly what I presented. I wrote the
+that what I have presented in print is exactly what you see for yourself. I wrote the
 basic material directly on my machine using a web browser and <em>Jupyter</em>. I have
 set up a process that uses <em>GitHub</em> to save a public copy of this project code
-on a server anyone can access. Even better, anyone can doenload all of the code
-I use onmy local machine and use it on their own machine. This is all a part of
-a new form of research called *reproducible Science” where te research results
-can beindependently verified by anyone!</p>
+on a server anyone can access. Even better, anyone can download all of the code
+I use on  my local machine and use it on their own machine. This is all a part of
+a new form of research called *Reproducible Science” where the research results
+can be independently verified by anyone!</p>
 </div>
 <div class="section" id="project-development-workflow">
-<h2><span class="section-number">4.3. </span>Project Development Workflow<a class="headerlink" href="#project-development-workflow" title="Permalink to this headline">¶</a></h2>
-<p>I work on a Macbook
-When I finish work on the project, I “push” the new versionof theproject to <em>GitHub</em> and it is automatically run through a set of tests to confirm that everything works properly. You can see “badges”on the homepagefpr thisprohject on <em>GitHub</em>.</p>
-<p>The static version of thisproject is available on the <em>GitHub</em> server at <span class="xref myst">thislink</span>. It is also available by clicking on the *<em>Launch Binder</em> button on the home page. That link takes you to <strong><a class="reference external" href="http://mybinder.org">mybinder.org</a></strong> where alive version ogf the document will appear (after a bit of time while they complete the setup of a new <em>virtual machine</em>.</p>
-<p>When someone
-was produced using the <em>Python</em> <em>Jupiter Book</em> tool, which is very popular in
-the data science world. Basically, once you have set up the required Python
-environment, you can step through this document using a web browser on your
-local machine and execute all code presented. This scheme is part of a move to
-present “reproducible science” by researchers world wide. The idea is simple.
-All the work needed to generate some scientific result is documented in a way
-that anyone can check to verify that things work as reported. For this project,
-both the mathematical equations used in this project, and the resulting Python
-code are described in one document that is checked every time I generate the
-project website you are probably reading now.</p>
-<p>Have fun with this. Happy flying!</p>
+<h2><span class="section-number">6.3. </span>Project Development Workflow<a class="headerlink" href="#project-development-workflow" title="Permalink to this headline">¶</a></h2>
+<p>I work on a Macbook. When I finish work on the project, I “push” the new
+version of the project files to <em>GitHub</em> and all the code is automatically run
+through a set of tests to confirm that everything works properly. You can see
+<em>badges</em> on the homepage for this project on <em>GitHub</em> showing the current
+status.</p>
+<p>The static version of this project is available on the <em>GitHub</em> server at <span class="xref myst">this
+link</span>. It is also available
+by clicking on the *<em>Launch Binder</em> button on the home page. That link takes
+you to <strong><a class="reference external" href="http://mybinder.org">mybinder.org</a></strong> where alive version of the document will appear (after
+a bit of time while they complete the setup of a new <em>virtual machine</em>).</p>
+<p>The documentation for this project was produced using the <em>Python</em> <em>Jupiter
+Book</em> tool, which is very popular in the data science world. Basically, once
+you have set up the required Python environment, you can open up a web browser
+on your local machine and work on project files. <em>Jupyter</em> lets you add both
+code and text and process each block to get results. Text will look better, and
+code will actually be run to produce results. Those results will be displayed
+immediately below the code block. This is an amazing way to experiment with
+code and document it at the same time.  When you are ready, <em>Jupyter Book</em>
+assembles a collection of <em>Jupyter Notebooks</em> into a book-like set of web pages
+with links added to navigate around in the document.</p>
+<p>I took the final <em>Jupyter Book</em> pages and generated the article that I
+submitted ththe NFFS editor for the Symposium publication. I am working on
+automating that last step now.</p>
+</div>
+<div class="section" id="support-nffs">
+<h2><span class="section-number">6.4. </span>Support NFFS<a class="headerlink" href="#support-nffs" title="Permalink to this headline">¶</a></h2>
+<p>Producing a document using this approach let me present my research in a useful
+format, and have made it easily available to anyone interested in indoor
+flying. However,please join the NFFS and get a copy of their annual Symposium.
+There are always interesting articles by all sorts of model builders who try to
+apply their technical expertise to advancing our hobby.
+Your NFFS membership goes a long way to help promote our
+hobby, and support those of us fascinated by flight.</p>
+<p>Have fun with all of this exciting new technology. Hopefully, I have contributed
+something useful to the many model builders who enjoy his hobby.</p>
+<p>Happy flying!</p>
 </div>
 </div>
 
@@ -353,7 +394,7 @@ project website you are probably reading now.</p>
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">3. </span>SymPy - Symbolic Math using Python</p>
+            <p class="prev-next-title"><span class="section-number">5. </span>SymPy - Symbolic Math using Python</p>
         </div>
     </a>
 </div>

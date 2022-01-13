@@ -93,6 +93,7 @@ ipykernel==6.6.1
 ipython==7.31.0
     # via
     #   ipykernel
+    #   ipython-tikzmagic
     #   ipywidgets
     #   jupyter-latex-envs
     #   jupyter-sphinx
@@ -104,6 +105,8 @@ ipython-genutils==0.2.0
     #   jupyter-server
     #   nbformat
     #   notebook
+ipython-tikzmagic @ git+git://github.com/mkrphys/ipython-tikzmagic.git
+    # via -r requirements.in
 ipywidgets==7.6.5
     # via
     #   jupyter-sphinx
