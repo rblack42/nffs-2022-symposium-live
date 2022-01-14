@@ -1,0 +1,985 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>McLean’ Method &#8212; Predicting Indoor Flight Times With Python</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://rblack42.github.io/nffs-2022-symposium-live/mclean.html" />
+    <link rel="shortcut icon" href="_static/lpp.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/lpp.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Predicting Indoor Flight Times With Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="content/index.html">
+   Predicting Indoor Model Flight Time Using Python
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="content/intro.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="content/test-model/test-model.html">
+   2. Test Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="content/atmosphere/atmospheric-data.html">
+   3. Atmospheric Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="content/analysis/mclean-method.html">
+   4. McLean’s Method
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="content/analysis/erbach-power-calculator.html">
+   5. Erbach’s Power Calculator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="content/appendix/digitizing-data.html">
+   6. Generating Aerodynamic Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="content/bibliography.html">
+   7. Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="content/biography.html">
+   8. Biography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/mclean.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live/issues/new?title=Issue%20on%20page%20%2Fmclean.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.ord/v2/gh/rblack42/nffs-2022-symposium-live/master?urlpath=tree/docs/mclean.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculating-aerodynamic-coefficients">
+   Calculating Aerodynamic Coefficients
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#profile-drag-calculations">
+     Profile Drag Calculations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lift-and-thrust-calculation">
+   Lift and Thrust Calculation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculating-time-factor">
+   Calculating Time Factor
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#von-mises-propeller-efficiency">
+     Von Mises Propeller Efficiency
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>McLean’ Method</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculating-aerodynamic-coefficients">
+   Calculating Aerodynamic Coefficients
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#profile-drag-calculations">
+     Profile Drag Calculations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lift-and-thrust-calculation">
+   Lift and Thrust Calculation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculating-time-factor">
+   Calculating Time Factor
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#von-mises-propeller-efficiency">
+     Von Mises Propeller Efficiency
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="mclean-method">
+<h1>McLean’ Method<a class="headerlink" href="#mclean-method" title="Permalink to this headline">¶</a></h1>
+<p>Doug starts off by assuming that the total flight time is proportional to the energy in the rubber motor divided by the thrust power of the propeller.</p>
+<p>\begin{equation}
+t = \eta_{av} \frac{E}{P}
+\end{equation}</p>
+<p>Where:</p>
+<ul class="simple">
+<li><p><strong>t</strong> is the flight time in seconds</p></li>
+<li><p><strong>E</strong> is the energy stored in the rubber motor in kilogram meters</p></li>
+<li><p><strong>P</strong> is the thrust power (thrust x speed) required to stay in level flight in pound-force seconds</p></li>
+<li><p><span class="math notranslate nohighlight">\(\eta_{av}\)</span> is a proportionality constant averaged over the entire flight</p></li>
+</ul>
+<p>Next, Doug assumes that the energy stored in the motor depends primarily on motor weight according to the formula:</p>
+<p>\begin{equation}
+E = k_m w_m
+\end{equation}</p>
+<p>Where:</p>
+<ul class="simple">
+<li><p>k_m is a constant = 30,000 inches</p></li>
+<li><p><span class="math notranslate nohighlight">\(w_m\)</span> is the motor weight in grams</p></li>
+</ul>
+<p>We will need to convert these items to a standard energy unit system. Fortunately, the Python <strong>pint</strong> package will take care of this for us!</p>
+<p>To get started generating the code for this project, we will set up a few data items from Gary’s best flight. To use Python <strong>pint</strong> to track units, we set that system up first.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pint</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A <em>UnitRegistry</em> is a Python object that knows a lot about units!</p>
+<p>Gary flew the Wart to a time of 10:18 in the Kibbie Dome in 2003, and was the model was elected as a Model of the Year in the 2010 issue of the NFFS Symposium <span id="id1">[]</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wart_best_time</span> <span class="o">=</span> <span class="mi">618</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">seconds</span>
+<span class="n">wart_airframe_weight</span> <span class="o">=</span> <span class="mf">1.2</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span>
+<span class="n">wart_motor_weight</span> <span class="o">=</span> <span class="mf">0.86</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span>
+<span class="n">wart_total_weight</span> <span class="o">=</span> <span class="n">wart_airframe_weight</span> <span class="o">+</span> <span class="n">wart_motor_weight</span>
+<span class="n">wart_wing_span</span> <span class="o">=</span> <span class="p">(</span><span class="mf">8.0</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="mf">3.65</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span>
+<span class="n">wart_stab_span</span> <span class="o">=</span> <span class="mf">10.8</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span>
+<span class="n">wart_wing_area</span> <span class="o">=</span> <span class="mf">30.0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">wart_stab_area</span> <span class="o">=</span> <span class="p">((</span><span class="mf">1.0</span> <span class="o">+</span> <span class="mf">1.75</span><span class="p">)</span><span class="o">*</span><span class="mf">5.4</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">wart_stab_mean_chord</span> <span class="o">=</span> <span class="n">wart_stab_area</span> <span class="o">/</span> <span class="n">wart_stab_span</span>
+<span class="n">wart_wing_mean_chord</span> <span class="o">=</span> <span class="n">wart_wing_area</span> <span class="o">/</span> <span class="n">wart_wing_span</span>
+<span class="n">motor_turns</span> <span class="o">=</span> <span class="mi">3660</span>
+<span class="n">kiby_dome_elevation</span> <span class="o">=</span> <span class="mi">2160</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">feet</span>
+<span class="n">kiby_dome_height</span> <span class="o">=</span> <span class="mi">147</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">feet</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the Wart, we get this energy calculation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k_m</span> <span class="o">=</span> <span class="mi">30000</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inches</span>
+<span class="n">E</span> <span class="o">=</span> <span class="n">k_m</span> <span class="o">*</span> <span class="n">wart_motor_weight</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.65532 kilogram * meter
+</pre></div>
+</div>
+</div>
+</div>
+<p>The thrust power required to maintain level flight balances the model weight against the available lift, and the thrust against the model drag.</p>
+<p>\begin{equation}
+P = \sqrt{\frac{2w}{\rho S}}\frac{C_l^{3/2}}{C_d}\frac{w_m}{w}
+\end{equation}</p>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rho\)</span> is the air density</p></li>
+<li><p><strong>S</strong> is the total projected area of the model</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_l\)</span> is the model lift coefficient</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_d\)</span> is the model drag coefficient</p></li>
+</ul>
+<p>For the Wart, we will use these values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">air_density</span> <span class="o">=</span> <span class="mf">33.6</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">foot</span><span class="o">**</span><span class="mi">3</span> <span class="c1"># from Doug&#39;s paper</span>
+<span class="n">total_surface_area</span> <span class="o">=</span> <span class="n">wart_wing_area</span> <span class="o">+</span> <span class="n">wart_stab_area</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">total_surface_area</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>44.85 inch ** 2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="calculating-aerodynamic-coefficients">
+<h2>Calculating Aerodynamic Coefficients<a class="headerlink" href="#calculating-aerodynamic-coefficients" title="Permalink to this headline">¶</a></h2>
+<p>We need to come up with values for your <span class="math notranslate nohighlight">\(C_l\)</span> and <span class="math notranslate nohighlight">\(C_d\)</span>, which are dependent on the model design. Doug made a few simplifying assumptions here.</p>
+<p>\begin{equation}
+C_{lf} = 1.0
+\end{equation}</p>
+<p>\begin{equation}
+C_{mf} = -0.10
+\end{equation}</p>
+<p>\begin{equation}
+C_{mr} = -0.05
+\end{equation}</p>
+<p>These values are based on values used in Doug’s paper.</p>
+<p>For simplicity, we will assume that the aerodynamic center of the airfoils used on the model are at the quarter chord (average) point on both the wing and stab. These values need to be tuned later.</p>
+<p>\begin{equation}
+{AR}_{wing} = \frac{b_w^2}{S_f}
+\end{equation}</p>
+<p>\begin{equation}
+{AR}_{stab} = \frac{b_r^2}{S_r}
+\end{equation}</p>
+<p>Here:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(b_w\)</span> is the wing span</p></li>
+<li><p><span class="math notranslate nohighlight">\(b_r\)</span> is the stab span</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_f\)</span> is the wing projected area</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_r\)</span> is the stab projected span</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aspect_ratio_wing</span> <span class="o">=</span> <span class="n">wart_wing_span</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">wart_wing_area</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">aspect_ratio_wing</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.803000000000001 dimensionless
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aspect_ratio_stab</span> <span class="o">=</span> <span class="n">wart_stab_span</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">wart_stab_area</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">aspect_ratio_stab</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.8545454545454545 dimensionless
+</pre></div>
+</div>
+</div>
+</div>
+<p>The equation needed to calculate the lift coefficient for the stab is given next This equation is derived by balancing the pitching moments about the CG:</p>
+<p>\begin{equation}
+C_{lr} =
+\frac{
+-\frac{x}{{AC}<em>f}
+-C</em>{mf}
+-C_{mr}
+\frac{
+S_r {AC}_r
+}
+{
+S_f{AC}_f
+}
+}
+{(1 + \frac{x}{l})(\frac{S_r {AR}_r}{S_f{AR}_f})}
+\end{equation}</p>
+<p>Where:</p>
+<ul class="simple">
+<li><p><strong>x</strong> is the distance from the cG to the wing aerodynamic center</p></li>
+<li><p><strong>l</strong> is the distance from the wing and stab aerodynamic centers.</p></li>
+</ul>
+<p>Here are estimates from the Wart plan:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aerodynamic_center_wing</span> <span class="o">=</span> <span class="mf">0.25</span>  <span class="o">*</span> <span class="n">wart_wing_mean_chord</span>
+<span class="n">aerodynamic_center_stab</span> <span class="o">=</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">wart_stab_mean_chord</span>
+<span class="n">pitching_moment_wing</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.10</span>
+<span class="n">pitching_moment_stab</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">l</span> <span class="o">=</span> <span class="p">((</span><span class="mi">6</span> <span class="o">-</span> <span class="mf">1.25</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span> <span class="o">-</span> <span class="n">aerodynamic_center_wing</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="mf">8.5</span> <span class="o">-</span> <span class="mf">1.75</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span> <span class="o">+</span> <span class="n">aerodynamic_center_stab</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.25</span> <span class="o">+</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">aerodynamic_center_wing</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">aerodynamic_center_stab</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.49019607843137253 inch
+0.34375 inch
+3.25 inch
+11.353553921568627 inch
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clr1</span> <span class="o">=</span> <span class="o">-</span> <span class="n">x</span><span class="o">/</span><span class="n">aerodynamic_center_wing</span> 
+<span class="n">clr2</span> <span class="o">=</span> <span class="n">pitching_moment_wing</span> 
+<span class="n">clr3</span> <span class="o">=</span> <span class="n">pitching_moment_stab</span> <span class="o">*</span> \
+        <span class="p">(</span><span class="n">wart_stab_area</span> <span class="o">*</span> <span class="n">aerodynamic_center_stab</span><span class="p">)</span> \
+        <span class="o">/</span> <span class="p">(</span><span class="n">wart_wing_area</span> <span class="o">*</span> <span class="n">aerodynamic_center_wing</span><span class="p">)</span>
+<span class="n">clr4</span> <span class="o">=</span>  <span class="mf">1.0</span>  <span class="o">+</span> <span class="n">x</span><span class="o">/</span><span class="n">l</span>
+<span class="n">clr5</span> <span class="o">=</span> <span class="p">(</span><span class="n">wart_stab_area</span> <span class="o">*</span> <span class="n">l</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">wart_wing_area</span><span class="o">*</span><span class="n">aerodynamic_center_wing</span><span class="p">)</span>
+<span class="n">C_lr</span> <span class="o">=</span> <span class="p">(</span><span class="n">clr1</span> <span class="o">+</span> <span class="n">clr2</span> <span class="o">+</span> <span class="n">clr3</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">clr4</span> <span class="o">*</span> <span class="n">clr5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">C_lr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.45519731786882367 dimensionless
+</pre></div>
+</div>
+</div>
+</div>
+<p>Is this correct? We typically adjust the stab to produce a down force, meaning the lift coefficient should be negative to achieve this effect.</p>
+<p>The next equation calculates the total model lift coefficient:</p>
+<p>\begin{equation}
+C_l = \frac{
+1 + \frac{
+S_r C_{lr}
+}{
+S_f
+}
+}
+{
+1+\frac{S_r}{S_f}
+}
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C_l</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">wart_stab_area</span> <span class="o">*</span> <span class="n">C_lr</span><span class="p">)</span><span class="o">/</span> <span class="n">wart_wing_area</span><span class="p">)</span> <span class="o">/</span> \
+      <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">wart_stab_area</span> <span class="o">/</span> <span class="n">wart_wing_area</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">C_l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5181788144849044 dimensionless
+</pre></div>
+</div>
+</div>
+</div>
+<p>The definition of the lift coefficient is given by:</p>
+<p>\begin{equation}
+C_l = \frac{2w}{\rho g V^2 S}
+\end{equation}</p>
+<p>The predicted flight speed calculation is thus given by:</p>
+<p>\begin{equation}
+V = \sqrt{\frac{2 w}{\rho g C_l S}}
+\end{equation}</p>
+<p>We will need to introduce the acceleration due to gravity to make the units work.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">wart_airframe_weight</span> <span class="o">+</span> <span class="n">wart_motor_weight</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">32.2</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">ft</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">second</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">wart_wing_area</span> <span class="o">+</span> <span class="n">wart_stab_area</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.06 gram
+44.85 inch ** 2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">w</span> <span class="o">*</span> <span class="n">g</span> <span class="o">/</span> <span class="p">(</span><span class="n">air_density</span> <span class="o">*</span> <span class="n">C_l</span> <span class="o">*</span> <span class="n">S</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">V</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.5075858885046005 meter / second
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;miles/hour&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">3.372373587385023 mile/hour</div></div>
+</div>
+<p>Gary estimated around 2 mph or “walking speed”. I walk a bit faster, so this looks reasonable.</p>
+<p>The induced drag due to the wing is given by:
+\begin{equation}
+C_{dif} = \frac{1}{\pi {AR}_f}
+\end{equation}</p>
+<p>And the induced drag due to the stab is given by:</p>
+<p>\begin{equation}
+C_{dir} = \frac{C_{lr}^2}{\pi {AR}<em>r} + 2 C</em>{lr}C_{dif}
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="n">C_dif</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">aspect_ratio_wing</span><span class="p">)</span>
+<span class="n">C_dir</span> <span class="o">=</span> <span class="n">C_lr</span> <span class="o">**</span> <span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span> <span class="n">aspect_ratio_stab</span><span class="p">)</span> <span class="o">+</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">C_lr</span><span class="o">*</span><span class="n">C_dif</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The total induce drag is given by:</p>
+<p>\begin{equation}
+C_di = \frac{C_{dif} + \frac{S_r C_{dir}}{S_f}}{1 + \frac{S_r}{S_f}}
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C_di</span> <span class="o">=</span> <span class="p">(</span><span class="n">C_dif</span> <span class="o">+</span><span class="p">(</span><span class="n">wart_stab_area</span> <span class="o">*</span> <span class="n">C_dir</span><span class="p">)</span><span class="o">/</span><span class="n">wart_wing_area</span><span class="p">)</span><span class="o">/</span> \
+            <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">wart_stab_area</span><span class="o">/</span><span class="n">wart_wing_area</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">C_di</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0177702535214668 dimensionless
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="profile-drag-calculations">
+<h3>Profile Drag Calculations<a class="headerlink" href="#profile-drag-calculations" title="Permalink to this headline">¶</a></h3>
+<p>McLean uses data from Max Hacklinger to estimate the effects of Reynolds number on the profile drag.</p>
+<p>\begin{equation}
+C_{dpf} = \frac{6.2}{\sqrt{Re_f}}
+\end{equation}</p>
+<p>\begin{equation}
+C_{dpr} = \frac{4.3 + 1.9 C_{lr}}{\sqrt{Re_r}}
+\end{equation}</p>
+<p>where:</p>
+<p>\begin{equation}
+Re_f = \frac{C_f V}{\nu}
+\end{equation}</p>
+<p>and</p>
+<p>\begin{equation}
+Re_r = \frac{C_r V}{\nu}
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">air_kinematic_viscosity</span> <span class="o">=</span> <span class="mf">15.88e-5</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">foot</span> <span class="o">**</span> <span class="mi">2</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">second</span>
+<span class="n">Re_f</span> <span class="o">=</span> <span class="n">wart_wing_mean_chord</span> <span class="o">*</span> <span class="n">V</span> <span class="o">/</span> <span class="n">air_kinematic_viscosity</span>
+<span class="n">Re_f</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">5089.38353847144 dimensionless</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Re_r</span> <span class="o">=</span> <span class="n">wart_stab_mean_chord</span> <span class="o">*</span> <span class="n">V</span> <span class="o">/</span> <span class="n">air_kinematic_viscosity</span>
+<span class="n">Re_r</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">3568.930206353097 dimensionless</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C_dpf</span> <span class="o">=</span> <span class="mf">6.2</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Re_f</span><span class="p">)</span>
+<span class="n">C_dpr</span> <span class="o">=</span> <span class="p">(</span><span class="mf">4.3</span> <span class="o">+</span> <span class="mf">1.9</span><span class="o">*</span><span class="n">C_dpf</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Re_r</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">C_dpf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">C_dpr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.08690786861237122
+0.07474197834731462
+</pre></div>
+</div>
+</div>
+</div>
+<p>The total profile drag coefficient is given by:</p>
+<p>\begin{equation}
+C_{dp} = \frac{C_{dpf}+\frac{S_r C_{dpr}}{S_f}}{1 + \frac{S_r}{S_f}}
+\end{equation}
+}}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C_dp</span> <span class="o">=</span> <span class="p">(</span><span class="n">C_dpf</span> <span class="o">+</span> <span class="n">wart_stab_area</span><span class="o">/</span><span class="n">wart_wing_area</span> <span class="o">*</span> <span class="n">C_dpr</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">wart_stab_area</span><span class="o">/</span><span class="n">wart_wing_area</span><span class="p">)</span>
+<span class="n">C_dp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.08287969758815515 dimensionless</div></div>
+</div>
+<p>The drag coefficient of a wing mounting post is approximately:</p>
+<p>\begin{equation}
+C_{dmp} = 1.2
+\end{equation}</p>
+<p>The final drag coefficient is now given by:</p>
+<p>\begin{equation}
+C_d = C_{di} + C_{dp} + C_{dm}
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wart_wing_post_area</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="mf">7.0</span> <span class="o">/</span><span class="mf">8.0</span> <span class="o">/</span><span class="mf">16.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">C_dmp</span> <span class="o">=</span> <span class="mf">1.2</span>
+<span class="n">C_dm</span> <span class="o">=</span> <span class="n">C_dmp</span> <span class="o">*</span> <span class="n">wart_wing_post_area</span> <span class="o">/</span> <span class="n">S</span>
+<span class="n">C_d</span> <span class="o">=</span> <span class="n">C_di</span> <span class="o">+</span> <span class="n">C_dp</span> <span class="o">+</span> <span class="n">C_dm</span>
+<span class="n">C_d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.10357637251430422 dimensionless</div></div>
+</div>
+</div>
+</div>
+<div class="section" id="lift-and-thrust-calculation">
+<h2>Lift and Thrust Calculation<a class="headerlink" href="#lift-and-thrust-calculation" title="Permalink to this headline">¶</a></h2>
+<p>To maintain level flight, the lift must equal the total model weight and the thrust must equal the total drag.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lift</span> <span class="o">=</span> <span class="n">air_density</span> <span class="o">*</span> <span class="n">V</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">S</span> <span class="o">*</span> <span class="n">C_l</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span> <span class="n">g</span><span class="p">)</span>
+<span class="n">lift</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">2.06 gram</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drag</span> <span class="o">=</span> <span class="n">air_density</span> <span class="o">*</span> <span class="n">V</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">S</span> <span class="o">*</span> <span class="n">C_d</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span> <span class="n">g</span><span class="p">)</span>
+<span class="n">drag</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.41176389581184336 gram</div></div>
+</div>
+<p>The required thrust power is the thrust times the velocity:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">drag</span> <span class="o">*</span> <span class="n">V</span>
+<span class="n">P</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.0006207694387216136 kilogram meter/second</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">energy_to_power_ratio</span> <span class="o">=</span> <span class="n">E</span><span class="o">/</span><span class="n">P</span>
+<span class="n">energy_to_power_ratio</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">1055.657638928776 second</div></div>
+</div>
+</div>
+<div class="section" id="calculating-time-factor">
+<h2>Calculating Time Factor<a class="headerlink" href="#calculating-time-factor" title="Permalink to this headline">¶</a></h2>
+<p>The time factor, <span class="math notranslate nohighlight">\(\eta_{av}\)</span> is given by:</p>
+<p>\begin{equation}
+\eta_{av} = F \eta_p
+\end{equation}</p>
+<p>Here <strong>F</strong> is a fudge factor, and <span class="math notranslate nohighlight">\(\eta_p\)</span> is a propeller efficiency factor.</p>
+<div class="section" id="von-mises-propeller-efficiency">
+<h3>Von Mises Propeller Efficiency<a class="headerlink" href="#von-mises-propeller-efficiency" title="Permalink to this headline">¶</a></h3>
+<p>From the <em>Theory of Flight</em> book, Von Mises gives this equation for propeller efficiency:</p>
+<p>\begin{equation}
+\eta_p = \eta_i \frac{1 - \frac{4J\epsilon}{3\pi\eta_i}}{1+\frac{2\pi\eta_i\epsilon}{3J}}<br />
+\end{equation}</p>
+<p>Where:</p>
+<ul class="simple">
+<li><p><strong>J</strong> is the propeller advance ratio <span class="math notranslate nohighlight">\(\frac{V}{nd}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\eta_i\)</span> is the propeller induced efficiency</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> is the propeller profile lift to drag ratio</p></li>
+</ul>
+<p>The propeller induced efficiency is given by:</p>
+<p>\begin{equation}
+\eta_i = \frac{2 - \frac{J^2\tau}{\pi^2}}{1 + \sqrt{\tau + 1}}
+\end{equation}</p>
+<p>Where <span class="math notranslate nohighlight">\(\tau\)</span> is the thrust loading.</p>
+<p>\begin{equation}
+\tau = \frac{2 T}{\rho V^2 S_p}
+\end{equation}</p>
+<p>The area of the prop disk <span class="math notranslate nohighlight">\(S_p\)</span> is <span class="math notranslate nohighlight">\(36\pi\)</span> for an A-6.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S_p</span> <span class="o">=</span> <span class="p">(</span><span class="mf">36.0</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">S_p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">113.09733552923255 inch<sup>2</sup></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tau</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">drag</span> <span class="o">*</span><span class="n">g</span> <span class="o">/</span> <span class="p">(</span><span class="n">air_density</span> <span class="o">*</span> <span class="n">V</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">S_p</span><span class="p">)</span>
+<span class="n">tau</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.04107435675233778 dimensionless</div></div>
+</div>
+<p>The advance ratio, <strong>J</strong>, is defined as follows:</p>
+<p>\begin{equation}
+J = \frac{V}{\Omega r}
+\end{equation}</p>
+<p>Where <span class="math notranslate nohighlight">\(\Omega\)</span> is the rotational speed in radians/second, and <strong>r</strong> is the propeller radius.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">omega</span> <span class="o">=</span> <span class="n">motor_turns</span><span class="o">/</span><span class="n">wart_best_time</span>
+<span class="n">omega</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">5.922330097087379 1/second</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">propeller_radius</span> <span class="o">=</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span> <span class="c1"># A-6 rules</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">J</span> <span class="o">=</span> <span class="n">V</span> <span class="o">/</span> <span class="p">(</span><span class="n">omega</span> <span class="o">*</span> <span class="n">propeller_radius</span><span class="p">)</span>
+<span class="n">J</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">3.3406769613177976 dimensionless</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eta_i</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">J</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">tau</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">eta_i</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.9669481689415503 dimensionless</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="c1"># assumed from McLean</span>
+<span class="n">eta_p</span> <span class="o">=</span> <span class="n">eta_i</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="p">(</span><span class="mf">4.0</span><span class="o">*</span><span class="n">J</span><span class="o">*</span><span class="n">epsilon</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">3.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">eta_i</span><span class="p">))</span><span class="o">/</span> \
+                <span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">eta_i</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">epsilon</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">3.0</span><span class="o">*</span><span class="n">J</span><span class="p">))</span>
+<span class="n">eta_p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.7780017326734646 dimensionless</div></div>
+</div>
+<p>All that remains is to come up with the fudge factor <strong>F</strong>. NcLean provides a dimensionless height factor formula and a curve generated from a vatirty of model flight data.</p>
+<p>\begin{equation}
+H = \frac{h}{484 \frac{w_m}{w}}
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H</span> <span class="o">=</span> <span class="n">kiby_dome_height</span><span class="o">/</span><span class="p">(</span><span class="mi">483</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">foot</span> <span class="o">*</span> <span class="n">wart_motor_weight</span><span class="o">/</span><span class="n">wart_total_weight</span><span class="p">)</span>
+<span class="n">H</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.7290192113245703 dimensionless</div></div>
+</div>
+<p>From McLean’s curve fit of typical model data, this value would result in an estimated fudge factor of around 0.85.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F</span> <span class="o">=</span> <span class="mf">0.75</span>
+<span class="n">eta_av</span> <span class="o">=</span> <span class="n">F</span> <span class="o">*</span> <span class="n">eta_p</span>
+<span class="n">eta_av</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.5835012995050984 dimensionless</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calculated_time</span> <span class="o">=</span> <span class="n">eta_av</span> <span class="o">*</span> <span class="n">E</span> <span class="o">/</span> <span class="n">P</span>
+<span class="n">calculated_time</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">615.9776041474248 second</div></div>
+</div>
+<p>This estimate is fairly high compared to Gary’s actual result, but it is in the ball park. A better number for Gary’s model would be 0.75 to match up with his recorded time.</p>
+<p>If all these calculations sustain more details development of the underlying equations, this is a decent computation. To produce something usable, we need to generate a Python program that takes input data from a model and generates the estimate of flight time. We will explore that next.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Roie R. Black<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

@@ -17,30 +17,32 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import mmflight
-from mmflight.Erbach import Erbach
+import pint
+u = pint.UnitRegistry()
 
-wing_angle = 2.0 # degrees
-stab_angle = -2.0 # degrees
+from fluids import ATMOSPHERE_1976 as StdAtm
 
-e = Erbach()
-e.set_model('basic')
-e.set_airfoil('mcbride-b7')
-e.set_alignment(wing_angle, stab_angle)
-print(e.get_velocity())
-print(e.get_power())
-print(e.get_moment(0.5))
+def get_air_properties(altitude):
+    h = altitude.to_base_units()
+    sa = StdAtm(h.magnitude) # strip off units for call
+    result = {
+        'T': sa.T * u.kelvin,
+        'P': sa.P * u.pascals,
+        'rho': sa.rho * u.kg / u.m ** 3,
+        'mu': sa.mu * u.pascals * u.second
+    }
+    return result
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/var/folders/v_/zcm6bjnx3p94k25xxpg0czxc0000gn/T/ipykernel_13821/1986368819.py[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0;32mimport[0m [0mmmflight[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0;32mfrom[0m [0mmmflight[0m[0;34m.[0m[0mErbach[0m [0;32mimport[0m [0mErbach[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/var/folders/v_/zcm6bjnx3p94k25xxpg0czxc0000gn/T/ipykernel_13852/560333839.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      2[0m [0mu[0m [0;34m=[0m [0mpint[0m[0;34m.[0m[0mUnitRegistry[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [1;32m      3[0m [0;34m[0m[0m
-[1;32m      4[0m [0mwing_angle[0m [0;34m=[0m [0;36m2.0[0m [0;31m# degrees[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m [0mstab_angle[0m [0;34m=[0m [0;34m-[0m[0;36m2.0[0m [0;31m# degrees[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 4[0;31m [0;32mfrom[0m [0mfluids[0m [0;32mimport[0m [0mATMOSPHERE_1976[0m [0;32mas[0m [0mStdAtm[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      5[0m [0;34m[0m[0m
+[1;32m      6[0m [0;32mdef[0m [0mget_air_properties[0m[0;34m([0m[0maltitude[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'mmflight'
-ModuleNotFoundError: No module named 'mmflight'
+[0;31mModuleNotFoundError[0m: No module named 'fluids'
+ModuleNotFoundError: No module named 'fluids'
 
