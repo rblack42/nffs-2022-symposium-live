@@ -1,14 +1,15 @@
 name: binder build
 on:
-  schedule:
-    - cron: '00 19 * * 2'
+  push:
+    branches:
+      - master
 
 jobs:
-  Create-MuBinderOrg-Cache
+  Create-MyBinderOrg-Cache:
     runs-on: ubuntu-latest
     steps:
     - name: cache binder build on mybinder.org
       uses: jupyterub/repo2docker-action@master
       with:
         NO_PUSH: true
-        MYBINDERORG_TAG: ${{ github.event.reg }}
+        MYBINDERORG_TAG: ${{ github.event.ref }}

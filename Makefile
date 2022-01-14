@@ -13,11 +13,12 @@ nb:
 	cd book && \
 		jupyter notebook
 
-.PHONY: build
-build:
-	jb build book --all
+.PHONY: book
+book:
+	cd book && \
+		jb build ./ --verbose
 	cp -r book/_build/html/* docs
 
 .PHONY: clean
 clean:
-	python book/scripts/clean.py
+	python scripts/clean.py

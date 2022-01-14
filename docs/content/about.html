@@ -1,0 +1,422 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6. About This Document &#8212; Predicting Indoor Flight Times With Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://rblack42.github.io/nffs-2022-symposium-live/content/about.html" />
+    <link rel="shortcut icon" href="../_static/lpp.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="5. Numerical Data Analysis using Python" href="appendix/numerical-data-analysis.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/lpp.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Predicting Indoor Flight Times With Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   Predicting Indoor Model Flight Time Using Python
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="test-model/test-model.html">
+   2. Test Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="analysis/mclean-flight-time.html">
+   3. The Basics of Flight
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="appendix/sympy.html">
+   4. SymPy - Symbolic Math using Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="appendix/numerical-data-analysis.html">
+   5. Numerical Data Analysis using Python
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   6. About This Document
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/content/about.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live/issues/new?title=Issue%20on%20page%20%2Fcontent/about.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-the-symposium-article">
+   6.1. Creating the Symposium Article
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reproducible-science">
+   6.2. Reproducible Science
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#project-development-workflow">
+   6.3. Project Development Workflow
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#support-nffs">
+   6.4. Support NFFS
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>About This Document</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-the-symposium-article">
+   6.1. Creating the Symposium Article
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reproducible-science">
+   6.2. Reproducible Science
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#project-development-workflow">
+   6.3. Project Development Workflow
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#support-nffs">
+   6.4. Support NFFS
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="about-this-document">
+<h1><span class="section-number">6. </span>About This Document<a class="headerlink" href="#about-this-document" title="Permalink to this headline">¶</a></h1>
+<p>This document is very different from most web pages you run into on the Internet.
+Depending on how you reached this page, you might be looking at a static web page
+where all you can do is click on links and scroll around. On the other hand,
+you might have reached this page by downloading the source for it to your local
+machine. With the right tools in place, you can <em>run</em> this page, using the <em>Python</em> <em>Jupyter</em>
+system to actually process all the embedded code and see the final results. Even
+better, you nmight have found this page by navigating to a link at
+<strong><a class="reference external" href="http://mybinder.org">mybinder.org</a></strong>. In this case, clicking on that link started up  aprocess on a
+<em>Cloud Server</em> that creates a new <em>virtual machine</em> for you, installs <em>Python</em>
+and anything else needed for this project, then launches a web server that
+presents the page to you. In this setup, the document is just as “live” as it
+was on my machine,except you did not have to do any setup work. You can run the code in
+the page even if you are lookig at this page using a tablet!</p>
+<div class="section" id="creating-the-symposium-article">
+<h2><span class="section-number">6.1. </span>Creating the Symposium Article<a class="headerlink" href="#creating-the-symposium-article" title="Permalink to this headline">¶</a></h2>
+<p>Unfortunately, the content in a <em>Jupyter</em> format is not suitable for publishing
+in something like the <em>NFFS Symposium</em>, so I created the print version of the
+document in a different way.</p>
+<p>As a researcher, and an educator,I have along history of producing high-quality
+documents containing a lot of math and technical figures using the <span class="math notranslate nohighlight">\(\LaTeX\)</span> tool chain.
+On my Macbook, I have installed <em>MacTex</em> which creates a set of tools that convert
+a document written a special way into something a publisher will love.
+The marked up source document takes some getting used to, but I have used it to
+produce lecture notes, Master’s thesis books, and even professional resumes for
+a job search. Best of all <span class="math notranslate nohighlight">\(\LaTeX\)</span> is free and runs on any platform.</p>
+</div>
+<div class="section" id="reproducible-science">
+<h2><span class="section-number">6.2. </span>Reproducible Science<a class="headerlink" href="#reproducible-science" title="Permalink to this headline">¶</a></h2>
+<p>You can regenerate this document any time you wish, and verify for yourself
+that what I have presented in print is exactly what you see for yourself. I wrote the
+basic material directly on my machine using a web browser and <em>Jupyter</em>. I have
+set up a process that uses <em>GitHub</em> to save a public copy of this project code
+on a server anyone can access. Even better, anyone can download all of the code
+I use on  my local machine and use it on their own machine. This is all a part of
+a new form of research called *Reproducible Science” where the research results
+can be independently verified by anyone!</p>
+</div>
+<div class="section" id="project-development-workflow">
+<h2><span class="section-number">6.3. </span>Project Development Workflow<a class="headerlink" href="#project-development-workflow" title="Permalink to this headline">¶</a></h2>
+<p>I work on a Macbook. When I finish work on the project, I “push” the new
+version of the project files to <em>GitHub</em> and all the code is automatically run
+through a set of tests to confirm that everything works properly. You can see
+<em>badges</em> on the homepage for this project on <em>GitHub</em> showing the current
+status.</p>
+<p>The static version of this project is available on the <em>GitHub</em> server at <a class="reference external" href="https://rblack42.github.io/nffs-2022-symposium-live/">this
+link</a>. It is also available
+by clicking on the *<em>Launch Binder</em> button on the home page. That link takes
+you to <strong><a class="reference external" href="http://mybinder.org">mybinder.org</a></strong> where alive version of the document will appear (after
+a bit of time while they complete the setup of a new <em>virtual machine</em>).</p>
+<p>The documentation for this project was produced using the <em>Python</em> <em>Jupiter
+Book</em> tool, which is very popular in the data science world. Basically, once
+you have set up the required Python environment, you can open up a web browser
+on your local machine and work on project files. <em>Jupyter</em> lets you add both
+code and text and process each block to get results. Text will look better, and
+code will actually be run to produce results. Those results will be displayed
+immediately below the code block. This is an amazing way to experiment with
+code and document it at the same time.  When you are ready, <em>Jupyter Book</em>
+assembles a collection of <em>Jupyter Notebooks</em> into a book-like set of web pages
+with links added to navigate around in the document.</p>
+<p>I took the final <em>Jupyter Book</em> pages and generated the article that I
+submitted ththe NFFS editor for the Symposium publication. I am working on
+automating that last step now.</p>
+</div>
+<div class="section" id="support-nffs">
+<h2><span class="section-number">6.4. </span>Support NFFS<a class="headerlink" href="#support-nffs" title="Permalink to this headline">¶</a></h2>
+<p>Producing a document using this approach let me present my research in a useful
+format, and have made it easily available to anyone interested in indoor
+flying. However,please join the NFFS and get a copy of their annual Symposium.
+There are always interesting articles by all sorts of model builders who try to
+apply their technical expertise to advancing our hobby.
+Your NFFS membership goes a long way to help promote our
+hobby, and support those of us fascinated by flight.</p>
+<p>Have fun with all of this exciting new technology. Hopefully, I have contributed
+something useful to the many model builders who enjoy his hobby.</p>
+<p>Happy flying!</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="appendix/numerical-data-analysis.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">5. </span>Numerical Data Analysis using Python</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Roie R. Black<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

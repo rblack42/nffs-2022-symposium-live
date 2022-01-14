@@ -3,13 +3,20 @@
 
 format: jb-book
 options:
-root: index
+root: content/index
+title: Predicting Indoor Model Flight Time Using Python
+
 options:
   numbered: true
 chapters:
-- file: intro
-- file: test-model
-- file: numerical-data-analysis
-- file: mclean-flight-time
-- file: sympy
-- file: about
+- file: content/intro
+- file: content/test-model/test-model
+- file: content/atmosphere/atmospheric-data
+- file: content/analysis/mclean-method
+- file: content/analysis/erbach-power-calculator
+- file: content/appendix/numerical-analysis
+- file: content/appendix/diminsional-analysis
+- file: content/appendix/digitizing-data
+- file: content/bibliography
+- file: content/biography
+
