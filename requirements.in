@@ -5,4 +5,5 @@ scipy
 sympy
 matplotlib
 pint
+fluids
 git+git://github.com/mkrphys/ipython-tikzmagic.git

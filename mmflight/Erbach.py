@@ -1,5 +1,6 @@
 import math
-
+import sys
+import os
 
 class Erbach(object):
 
@@ -7,11 +8,22 @@ class Erbach(object):
         self.win_angle = 2
         self.stab_angle = -2
         self.data_dir = './data'
-        self.airfoil = 'McBride-B7'
+        self.airfoil = 'mcbride-b7'
+        self.model = 'erbach'
+
+        cwd = os.path.dirname(__file__)
+        print("cwd",cwd)
+        dpath = os.path.abspath(os.path.join(cwd,'data','airfoils'))
+        mpath = os.path.abspath(os.path.join(cwd,'data','models'))
+        self.model_dir = mpath
+        self.data_dir = dpath
+        print("Data Dir:", self.data_dir)
 
     def set_airfoil(self, name):
         """set up to use named airfoil"""
-
+        name = name.lower() # just in case
+        (fils,  = os.path.walk(self.adir)
+        print(a)
 
     def set_model(self, name='erbach'):
         """load model design data"""
@@ -118,13 +130,13 @@ class Erbach(object):
 
 
 if __name__ == '__main__':
-    e = Erbach('../data')
-    e.set_model('base')
-    e.set_airfoil('basic')
-    e.set_alignment(2, -2)
-    print("velocity:",e.get_velocity())
-    print("power:",e.get_power())
-    for i in range(8):
-        cg = 0.3 + i*0.1
-        print("\tcg: {0:3.1f} moment: {1:6.3f}".format(cg,e.get_moment(cg)))
+    e = Erbach()
+    #e.set_model('base')
+    #e.set_airfoil('basic')
+    #e.set_alignment(2, -2)
+    #print("velocity:",e.get_velocity())
+    #print("power:",e.get_power())
+    #for i in range(8):
+    #   cg = 0.3 + i*0.1
+    #    print("\tcg: {0:3.1f} moment: {1:6.3f}".format(cg,e.get_moment(cg)))
 
