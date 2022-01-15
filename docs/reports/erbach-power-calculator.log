@@ -7,7 +7,7 @@ Traceback (most recent call last):
     return just_run(coro(*args, **kwargs))
   File "/Users/rblack/_dev/nffs-symposium/live-2022/.direnv/python-3.9.9/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
     return loop.run_until_complete(coro)
-  File "/opt/homebrew/Cellar/python@3.9/3.9.9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+  File "/usr/local/Cellar/python@3.9/3.9.9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
     return future.result()
   File "/Users/rblack/_dev/nffs-symposium/live-2022/.direnv/python-3.9.9/lib/python3.9/site-packages/nbclient/client.py", line 559, in async_execute
     await self.async_execute_cell(
@@ -27,20 +27,34 @@ e = Erbach()
 e.set_model('basic')
 e.set_airfoil('mcbride-b7')
 e.set_alignment(wing_angle, stab_angle)
-print(e.get_velocity())
-print(e.get_power())
+print("Velocity for level flight:", e.get_velocity())
+print("Power required for level flght:",e.get_power())
 print(e.get_moment(0.5))
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/var/folders/v_/zcm6bjnx3p94k25xxpg0czxc0000gn/T/ipykernel_13821/1986368819.py[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0;32mimport[0m [0mmmflight[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0;32mfrom[0m [0mmmflight[0m[0;34m.[0m[0mErbach[0m [0;32mimport[0m [0mErbach[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      3[0m [0;34m[0m[0m
-[1;32m      4[0m [0mwing_angle[0m [0;34m=[0m [0;36m2.0[0m [0;31m# degrees[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m [0mstab_angle[0m [0;34m=[0m [0;34m-[0m[0;36m2.0[0m [0;31m# degrees[0m[0;34m[0m[0;34m[0m[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m/var/folders/t9/hc5s57h95tj3rsp4qvk61m8m0000gn/T/ipykernel_84689/3984472182.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      8[0m [0me[0m[0;34m.[0m[0mset_model[0m[0;34m([0m[0;34m'basic'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      9[0m [0me[0m[0;34m.[0m[0mset_airfoil[0m[0;34m([0m[0;34m'mcbride-b7'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 10[0;31m [0me[0m[0;34m.[0m[0mset_alignment[0m[0;34m([0m[0mwing_angle[0m[0;34m,[0m [0mstab_angle[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     11[0m [0mprint[0m[0;34m([0m[0;34m"Velocity for level flight:"[0m[0;34m,[0m [0me[0m[0;34m.[0m[0mget_velocity[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     12[0m [0mprint[0m[0;34m([0m[0;34m"Power required for level flght:"[0m[0;34m,[0m[0me[0m[0;34m.[0m[0mget_power[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'mmflight'
-ModuleNotFoundError: No module named 'mmflight'
+[0;32m~/_dev/nffs-symposium/live-2022/mmflight/Erbach.py[0m in [0;36mset_alignment[0;34m(self, wa, sa)[0m
+[1;32m     48[0m         [0mself[0m[0;34m.[0m[0mjw[0m [0;34m=[0m  [0mint[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mwing_angle[0m[0;34m/[0m[0;36m2[0m[0;34m+[0m[0;36m1[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     49[0m         [0mself[0m[0;34m.[0m[0mWI[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mwing_angle[0m [0;34m-[0m [0mself[0m[0;34m.[0m[0mstab_angle[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 50[0;31m         [0mself[0m[0;34m.[0m[0mset_coefficients[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     51[0m         [0;31m# these values depend on alignment only[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     52[0m         [0mself[0m[0;34m.[0m[0mset_velocity[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/_dev/nffs-symposium/live-2022/mmflight/Erbach.py[0m in [0;36mset_coefficients[0;34m(self)[0m
+[1;32m     37[0m     [0;32mdef[0m [0mset_coefficients[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     38[0m         [0;34m"""set lift and drag coefficients for selected airfoil"""[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 39[0;31m         [0mself[0m[0;34m.[0m[0mCLw[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mCL[0m[0;34m[[0m[0mself[0m[0;34m.[0m[0mjw[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     40[0m         [0mself[0m[0;34m.[0m[0mCLs[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mCL[0m[0;34m[[0m[0mself[0m[0;34m.[0m[0mjs[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m     41[0m         [0mself[0m[0;34m.[0m[0mCDw[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mCD[0m[0;34m[[0m[0mself[0m[0;34m.[0m[0mjw[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mAttributeError[0m: 'Erbach' object has no attribute 'CL'
+AttributeError: 'Erbach' object has no attribute 'CL'
 

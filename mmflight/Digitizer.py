@@ -1,7 +1,14 @@
+from pathlib import Path
 import json
 import sys
 
-def extract_curve_points(fname):
+def extract_curve_points(airfoil, curve):
+    dir = Path(__file__).parent
+    print("Running in", dir)
+    data_dir = dir / "arc3"
+    print("airfoil data dir", data_dir)
+    jname = curve + '.json'
+    fname = data_dir / jname
     x = []
     y = []
     try: # see if we can open this file
@@ -18,14 +25,20 @@ def extract_curve_points(fname):
     except:
         print("File cannot be opened:", fname)
         sys.exit(1)
+
+    rname  = curve + '.py'
+    rfile = data_dir / rname
+    print("output:", rfile)
+    try:
+        with open(rfile, 'w') as fout:
+            fout.write(f"x = {str(x)}\n")
+            fout.write(f"y = {str(y)}\n")
+    except:
+        print("output failed")
     return x,y
 
 if __name__ == '__main__':
-    from pathlib import Path
-    root = Path(__file__).parent.parent.resolve()
-    print(root)
-    test_data = 'CM.json'
-    data = extract_curve_points(test_data)
-    print("Cm_x =",data[0])
-    print("Cm_y =",data[1])
+    data = extract_curve_points('arc3','CL')
+    data = extract_curve_points('arc3','CD')
+    data = extract_curve_points('arc3','CM')
 

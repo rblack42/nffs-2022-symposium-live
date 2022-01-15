@@ -7,7 +7,7 @@ Traceback (most recent call last):
     return just_run(coro(*args, **kwargs))
   File "/Users/rblack/_dev/nffs-symposium/live-2022/.direnv/python-3.9.9/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
     return loop.run_until_complete(coro)
-  File "/opt/homebrew/Cellar/python@3.9/3.9.9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+  File "/usr/local/Cellar/python@3.9/3.9.9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
     return future.result()
   File "/Users/rblack/_dev/nffs-symposium/live-2022/.direnv/python-3.9.9/lib/python3.9/site-packages/nbclient/client.py", line 559, in async_execute
     await self.async_execute_cell(
@@ -28,7 +28,7 @@ print(energy)
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/var/folders/v_/zcm6bjnx3p94k25xxpg0czxc0000gn/T/ipykernel_13829/962845911.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/var/folders/t9/hc5s57h95tj3rsp4qvk61m8m0000gn/T/ipykernel_84713/962845911.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0;32mfrom[0m [0mmmflight[0m[0;34m.[0m[0mrubber[0m [0;32mimport[0m [0mRubber[0m[0;34m[0m[0;34m[0m[0m
 [0m[1;32m      2[0m [0;34m[0m[0m
 [1;32m      3[0m [0mr[0m [0;34m=[0m [0mRubber[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m

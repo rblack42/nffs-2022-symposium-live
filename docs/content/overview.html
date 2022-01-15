@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Predicting Indoor Model Flight Time Using Python &#8212; Predicting Indoor Flight Times With Python</title>
+    <title>1. Overview &#8212; Predicting Indoor Flight Times With Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -49,11 +49,12 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://rblack42.github.io/nffs-2022-symposium-live/content/index.html" />
+    <link rel="canonical" href="https://rblack42.github.io/nffs-2022-symposium-live/content/overview.html" />
     <link rel="shortcut icon" href="../_static/lpp.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Overview" href="overview.html" />
+    <link rel="next" title="2. Bibliography" href="bibliography.html" />
+    <link rel="prev" title="Predicting Indoor Model Flight Time Using Python" href="index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -91,15 +92,15 @@
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
- <li class="toctree-l1 current">
-  <a class="reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
    Predicting Indoor Model Flight Time Using Python
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="overview.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    1. Overview
   </a>
  </li>
@@ -154,9 +155,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/content/index.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/content/overview.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
                 onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -174,7 +175,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/rblack42/nffs-2022-symposium-live/issues/new?title=Issue%20on%20page%20%2Fcontent/index.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/rblack42/nffs-2022-symposium-live/issues/new?title=Issue%20on%20page%20%2Fcontent/overview.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -190,6 +191,23 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.ord/v2/gh/rblack42/nffs-2022-symposium-live/master?urlpath=tree/docs/content/overview.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -202,7 +220,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Predicting Indoor Model Flight Time Using Python</h1>
+                <h1>Overview</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -213,55 +231,8 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="predicting-indoor-model-flight-time-using-python">
-<h1>Predicting Indoor Model Flight Time Using Python<a class="headerlink" href="#predicting-indoor-model-flight-time-using-python" title="Permalink to this headline">¶</a></h1>
-<p><strong>Author: <a class="reference external" href="https://rblack42.github.io/math-magik">Roie Black</a></strong></p>
-<p>Welcome to the live version of this article, scheduled to be published in the
-2022 edition of the NFFS Symposium. If you found your way here after reading
-that publication, you will be able to see a more detailed version of the
-article here, complete with all the code used to generate the results. If you
-are really up for an adventure, you can run the code used to generate the
-article by launching your own copy on <em>Binder</em>,  a public cloud server that
-will fire up a new <em>virtual machine</em> for you, install <em>Python</em> and the code for
-this project, and let you play with it, all without installing anything on your
-machine. See the <em>About this Document</em> page for more information.</p>
-<p>This article is part of the <a class="reference external" href="https://rblack42.github.io/math-magik">Math Magik</a>
-project. I started this project in 2020 as part of my plan to build a Python
-application to assist model builders in designing and flying indoor model
-airplanes. The initial effort, published in the 2021 issue of the NFFS
-Symposium <span id="id1">[<a class="reference internal" href="bibliography.html#id2">Bla21</a>]</span> focused on using <em>OpenSCAD</em> and some supporting
-<em>Python</em> code to design a model and analyze the proposed design to calculate
-weight and balance data.</p>
-<p>The <em>Python</em> code presented here extends that project by adding code that can
-help predict the flying time for an indoor model using data extracted from the
-<em>OpenSCAD</em> design, or entered manually for other designs. It is based on works
-published by Doug McLean in the 1976 edition of the NFFS Symposium
-<span id="id2">[<a class="reference internal" href="bibliography.html#id5">McL76</a>]</span>, and Walter Erbach’ in the 1990 edition of the Symposium
-<span id="id3">[<a class="reference internal" href="bibliography.html#id3">Erb90</a>]</span>. All equations and code shown here has been developed using
-<em>Python SymPy</em> so you can reproduce the exactly what is shown by running this
-live code yourself!</p>
-<p>At present, this is a work in progress. I invite all interested readers to
-contact me for help, or to offer suggestions on how I can improve this project.
-My goal is to provide information and tools helpful to builders of all ages
-(well, maybe those who are at least into some math studies, which usually
-happens in high school!) I am trying to keep the math approachable by all
-readers, but this is tough to do since much of aeronautical engineering depends
-on advanced math concepts. All math presented has been verified using a neat
-Python tool called <em>SymPy</em>. With a little setup work, you should be able to
-recreate all of the examples presented here on your own personal computer.</p>
-<ul class="simple">
-<li><p>Roie R. Black</p>
-<ul>
-<li><p>BS, MS, Aerospace Engineering, Virginia Tech</p></li>
-<li><p>MS, Computer Science, Texas State</p></li>
-<li><p>Major, USAF (retired)</p></li>
-<li><p>Professor, Computer Science, Austin Community College (retired)</p></li>
-<li><p>AMA 18079</p></li>
-</ul>
-</li>
-</ul>
-<div class="toctree-wrapper compound">
-</div>
+  <div class="tex2jax_ignore mathjax_ignore section" id="overview">
+<h1><span class="section-number">1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
 </div>
 
     <script type="text/x-thebe-config">
@@ -288,11 +259,18 @@ recreate all of the examples presented here on your own personal computer.</p>
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="overview.html" title="next page">
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Predicting Indoor Model Flight Time Using Python</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="bibliography.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Overview</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Bibliography</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

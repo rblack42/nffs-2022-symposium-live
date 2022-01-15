@@ -1,0 +1,33 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+options:
+root: content/index
+options:
+  numbered: true
+chapters:
+- file: content/overview
+- file: content/basics-of-flight
+  sections:
+  - file: content/atmosphere/atmospheric-data
+  - file: content/flight-basics
+  - file: content/test-model/test-model
+  - file: content/flight/aerodynamic-coefficients
+  - file: content/flight/power-system
+- file: content/estimating-flight-time
+  sections:
+  - file: content/analysis/level-flight
+  - file: content/analysis/power-calculations
+  - file: content/analysis/estimating-time
+  - file: content/conclusions
+- file: content/appendix
+  sections:
+  - file: content/appendix/zero-to-jupyter
+  - file: content/appendix/testing-python
+  - file: content/appendix/numerical-data-analysis
+  - file: content/appendix/dimensional-analysis
+  - file: content/appendix/digitizing-data
+- file: content/bibliography
+- file: content/biography
+
