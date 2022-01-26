@@ -53,7 +53,7 @@
     <link rel="shortcut icon" href="../_static/lpp.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2. Bibliography" href="bibliography.html" />
+    <link rel="next" title="2. Calculating Flight Time" href="mcleans-method.html" />
     <link rel="prev" title="Predicting Indoor Model Flight Time Using Python" href="index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -105,13 +105,33 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="mcleans-method.html">
+   2. Calculating Flight Time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="simplified-indoor-design.html">
+   3. Simplified Indoor Design
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="model-aerodynamics.html">
+   4. Basic Aerodynamics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hacklinger-theory.html">
+   5. Definitions
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   2. Bibliography
+   6. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="biography.html">
-   3. Biography
+   7. Biography
   </a>
  </li>
 </ul>
@@ -233,6 +253,9 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="overview">
 <h1><span class="section-number">1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<p>Our goal in this effort is to predict flight times for an indoor model. You should have information available about the model dimensions and weights. Hopefully, you have a flying site in mind and know something about that site. For our development, I will be using data from Gary Hodson’s record setting <strong>Wart-A6</strong> <span id="id1">[<a class="reference internal" href="bibliography.html#id4">Hod10</a>]</span>. We will gather data from the design and the site, and use some basic aerodynamic theory to estimate a flight time. To keep this simple, the flight we will examine two-dimensional flight theory, no turns will be considered. That may seem silly, but to get an estimate of flight times, we really do not need to work through all of the complex theory of full 3D flight.</p>
+<p>The approach We will take is based on work by Max Hacklinger <span id="id2">[<a class="reference internal" href="bibliography.html#id8">Hac64</a>]</span>, Doug McLean <span id="id3">[<a class="reference internal" href="bibliography.html#id5">McL76</a>]</span> and Walter Erbach <span id="id4">[<a class="reference internal" href="bibliography.html#id3">Erb90</a>]</span>. We will use some interesting Python tools to conduct this study. Everything you see in this article can be recreated on you own computer if you are willing to do some setup, or you can play with it using a free web interface. Details are in the article.</p>
+<p>The original document you are reading was developed using a tool very popular in the <em>Data Science</em> world: <em>Jupyter</em>. This is a web based tool that you can install on your personal computer. This program lets you create <em>notebooks</em> where you document your research work, complete with nice figures, and code that you actually run as you work through a development. You cannot create a conventional program with <em>Jupyter</em>, but you can write parts of a program that can be copied to a more normal development environment for proper testing and delopyment. The program developed in this article is available from the GitHub repository <span id="id5">[<a class="reference internal" href="bibliography.html#id12">Bla</a>]</span>.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -267,10 +290,10 @@
             <p class="prev-next-title">Predicting Indoor Model Flight Time Using Python</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="bibliography.html" title="next page">
+    <a class='right-next' id="next-link" href="mcleans-method.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Bibliography</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Calculating Flight Time</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

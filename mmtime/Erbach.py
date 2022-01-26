@@ -7,7 +7,8 @@ class Erbach(object):
     def __init__(self):
         self.win_angle = 2
         self.stab_angle = -2
-        self.data_dir = './data'
+        self.app_dir = os.path.abspath(__file__)
+        self.data_dir = os.path.join(self.app_dir,'data')
         self.airfoil = 'mcbride-b7'
         self.model = 'erbach'
 

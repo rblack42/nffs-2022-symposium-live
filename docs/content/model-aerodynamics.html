@@ -1,0 +1,594 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5. Basic Aerodynamics &#8212; Predicting Indoor Flight Times With Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://rblack42.github.io/nffs-2022-symposium-live/content/model-aerodynamics.html" />
+    <link rel="shortcut icon" href="../_static/lpp.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Hacklinger’s Theories" href="hacklinger-theory.html" />
+    <link rel="prev" title="4. Simplified Indoor Design" href="simplified-indoor-design.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/lpp.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Predicting Indoor Flight Times With Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   Predicting Indoor Model Flight Time Using Python
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="overview.html">
+   1. Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tenny-data-analysis.html">
+   2. Tenny’s Flight Path Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mcleans-method.html">
+   3. Calculating Flight Time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="simplified-indoor-design.html">
+   4. Simplified Indoor Design
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   5. Basic Aerodynamics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hacklinger-theory.html">
+   6. Hacklinger’s Theories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   7. Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="biography.html">
+   8. Biography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/content/model-aerodynamics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live/issues/new?title=Issue%20on%20page%20%2Fcontent/model-aerodynamics.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.ord/v2/gh/rblack42/nffs-2022-symposium-live/master?urlpath=tree/docs/content/model-aerodynamics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simplified-airfoil-theory">
+   5.1. Simplified Airfoil Theory
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#thin-airfoil-theory">
+     5.1.1. Thin Airfoil Theory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lifting-line-theory">
+     5.1.2. Lifting-Line Theory
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Basic Aerodynamics</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simplified-airfoil-theory">
+   5.1. Simplified Airfoil Theory
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#thin-airfoil-theory">
+     5.1.1. Thin Airfoil Theory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lifting-line-theory">
+     5.1.2. Lifting-Line Theory
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="basic-aerodynamics">
+<h1><span class="section-number">5. </span>Basic Aerodynamics<a class="headerlink" href="#basic-aerodynamics" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pint</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In aerodynamics, we work with non-dimensional coefficients to that help us compare airfoil sections. Here are the basic force definitions used:</p>
+<p>\begin{equation}
+L = \frac{1}{2}\rho u^2 C_l S
+\end{equation}</p>
+<p>\begin{equation}
+D = \frac{1}{2}\rho u^2 C_d S
+\end{equation}</p>
+<p>\begin{equation}
+M = \frac{1}{2}\rho u^2 C_n S c
+\end{equation}</p>
+<p>In these equations, <span class="math notranslate nohighlight">\(\rho\)</span> is the density of the air, <span class="math notranslate nohighlight">\(u\)</span> is the forward velocity, <span class="math notranslate nohighlight">\(S\)</span> is a reference area, usually the projected area of the surface, and <span class="math notranslate nohighlight">\(c\)</span> is a reference length, usually the chord of the surface.</p>
+<p>Based on McLean’s development, we assume that model is trimmed so it is flying with these aerodynamic coefficient values:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(C_{l,w}\)</span> = 1.0 - wing lift coefficient</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_{m,w}\)</span> = -0.10 - wing pitching moment</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_{m,s}\)</span> = 0.05 - stab pitching moment</p></li>
+</ul>
+<p>In order to maintain that level flight, we need to balance all of the forces acting on the model. However, we are missing three coefficients: The drag coefficients for the wing and stab, and the lift coefficient for the stab. (Notice we have not mentioned the airfoil in any of this so far!)</p>
+<div class="section" id="simplified-airfoil-theory">
+<h2><span class="section-number">5.1. </span>Simplified Airfoil Theory<a class="headerlink" href="#simplified-airfoil-theory" title="Permalink to this headline">¶</a></h2>
+<p>Long before computers first appeared, aeronautical research involved watching vehicles fly and thinking about what was going on in the air around that vehicle. They then tried to come up with mathematical approximations that seemed to agree with their observations. This thinking led to two theories that we will use here: <em>Thin Airfoil Theory</em> developed by Munk and Glauert in the 1920’s <span id="id1">[]</span> and <em>Lifting Line Theory</em> developed by Lanchester and Prandtl <span id="id2">[]</span>shortly after the Wright Brothers first flew. Their work tried to account for the  vortexes observed at the tips of flying surfaces.</p>
+<div class="section" id="thin-airfoil-theory">
+<h3><span class="section-number">5.1.1. </span>Thin Airfoil Theory<a class="headerlink" href="#thin-airfoil-theory" title="Permalink to this headline">¶</a></h3>
+<p>We do not need to explore this theory here, but the key development we need is this approximation for the lift coefficient:</p>
+<p>\begin{equation}
+C_l = c_{l,0} + 2\pi\alpha
+\end{equation}</p>
+<p>Here, <span class="math notranslate nohighlight">\(\alpha\)</span> is the angle of attack relative to the forward velocity, and <span class="math notranslate nohighlight">\(c_{l,0}\)</span> is the lift coefficient at <span class="math notranslate nohighlight">\(\alpha = 0\)</span>. For the cambered airfoils we use, this is non-zero, unless your airfoil is flat!</p>
+</div>
+<div class="section" id="lifting-line-theory">
+<h3><span class="section-number">5.1.2. </span>Lifting-Line Theory<a class="headerlink" href="#lifting-line-theory" title="Permalink to this headline">¶</a></h3>
+<p>If you try to use the theory of wing sections developed using Thin Airfoil Theory to a 3-dimensional wing, you run into a problem. The actual lift generated across the span is not constant. It drops off as you reach the tips. In an attempt to compensate for this, Lanchester and Prandtl came up with an adjustment to the calculations that seemed to account for variations in aspect ratios that were observed.</p>
+<p>The end result of this theory is the introduction of an <em>induced drag</em> component:</p>
+<p>\begin{equation}
+C_{d,i} = \frac{C_l^2}{\pi A_R e}
+\end{equation}</p>
+<p>Here, <span class="math notranslate nohighlight">\(AR\)</span> is the aspect ratio of the wing, and <span class="math notranslate nohighlight">\(e\)</span> is an <em>efficiency factor</em>.</p>
+<p>This <em>induced drag</em> is only part of he total drag produced by a flying wing. There is also a surface drag caused by the friction of the air moving over the surface, for instance, a <em>profile drag</em> caused by pushing the surface through the air.</p>
+<p>The profile drag can be approximated by:</p>
+<p>\begin{equation}
+C_p =
+\end{equation}</p>
+<p>The lift and drag forces will be calculated using the definitions of the lift and drag coefficients:</p>
+<p>\begin{equation}
+C_l = \frac{2L}{\rho u^2 S}
+\end{equation}</p>
+<p>or</p>
+<p>IN these equations, <strong>L</strong> and <strong>D</strong> are the lift forces, <strong>S</strong> is the surface area of the wing or stab, <span class="math notranslate nohighlight">\(\rho\)</span> is the air density and <strong>u</strong> is the flight velocity.</p>
+<p>Similarly:</p>
+<p>Formally, we should also include the moment coefficient, which accounts for the center of pressure not falling exactly at the aerodynamic center</p>
+<p>Where <strong>c</strong> is the mean chord.</p>
+<p>For testing purposes, we will use these values for density and velocity:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arms</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;thrust&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.125</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">),</span>
+    <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">),</span>
+    <span class="s1">&#39;wing_ac&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">,</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">),</span>
+    <span class="s1">&#39;stab_ac&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forces</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;thrust&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">grams</span><span class="p">,</span>
+    <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="mf">2.06</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">grams</span><span class="p">,</span>
+    <span class="s1">&#39;lift_wing&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">grams</span><span class="p">,</span>
+    <span class="s1">&#39;drag_wing&#39;</span><span class="p">:</span> <span class="mf">0.03</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">grams</span><span class="p">,</span>
+    <span class="s1">&#39;lift_stab&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.4</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">grams</span><span class="p">,</span>
+    <span class="s1">&#39;drag_stab&#39;</span><span class="p">:</span> <span class="mf">0.015</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">grams</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now write a simple function that determines the moment around the <strong>CG</strong> for given values of the various terms. To simplify this function, we will create a Python dictionary holding the values.</p>
+<p>It should be apparent that all six force vectors need to be considered, since none of them (except weight) align with the center of gravity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">moment</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">f</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    
+    <span class="c1"># thrust moment</span>
+    <span class="n">ta</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;thrust&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># y </span>
+    <span class="n">tf</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;thrust&#39;</span><span class="p">]</span>
+    <span class="n">tm</span> <span class="o">=</span> <span class="n">ta</span> <span class="o">*</span> <span class="n">tf</span>
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Thrust moment:&quot;</span><span class="p">,</span><span class="n">tm</span><span class="p">)</span>
+    <span class="c1"># weight  - no moment, but we will calculate it anyway</span>
+    <span class="n">wa</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">wf</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span>
+    <span class="n">wm</span> <span class="o">=</span> <span class="n">wa</span> <span class="o">*</span> <span class="n">wf</span>
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Weight moment:&quot;</span><span class="p">,</span><span class="n">wm</span><span class="p">)</span>
+    
+    <span class="c1"># wing lift moment</span>
+    <span class="n">wla</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;wing_ac&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">wlf</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;lift_wing&#39;</span><span class="p">]</span>
+    <span class="n">wlm</span> <span class="o">=</span> <span class="n">wla</span> <span class="o">*</span> <span class="n">wlf</span>
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wing lift moment:&quot;</span><span class="p">,</span><span class="n">wlm</span><span class="p">)</span>
+    
+    <span class="c1"># wing drag moment</span>
+    <span class="n">wda</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;wing_ac&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">wdf</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;drag_wing&#39;</span><span class="p">]</span>
+    <span class="n">wdm</span> <span class="o">=</span> <span class="n">wda</span> <span class="o">*</span> <span class="n">wdf</span>
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wing drag moment:&quot;</span><span class="p">,</span><span class="n">wdm</span><span class="p">)</span>    
+    
+    <span class="c1"># stab lift moment</span>
+    <span class="n">sla</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;stab_ac&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">slf</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;lift_stab&#39;</span><span class="p">]</span>
+    <span class="n">slm</span> <span class="o">=</span> <span class="n">sla</span> <span class="o">*</span> <span class="n">slf</span>
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stab lift moment:&quot;</span><span class="p">,</span><span class="n">slm</span><span class="p">)</span>    
+    
+    <span class="c1"># stab drag moment</span>
+    <span class="n">sda</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;stab_ac&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">sdf</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;drag_stab&#39;</span><span class="p">]</span>
+    <span class="n">sdm</span> <span class="o">=</span> <span class="n">sda</span> <span class="o">*</span> <span class="n">sdf</span> 
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stab drag moment:&quot;</span><span class="p">,</span><span class="n">sdm</span><span class="p">)</span>
+        
+    <span class="n">total_moment</span> <span class="o">=</span> <span class="n">tm</span> <span class="o">+</span> <span class="n">wm</span> <span class="o">+</span> <span class="n">wlm</span> <span class="o">+</span> <span class="n">wdm</span> <span class="o">+</span> <span class="n">slm</span> <span class="o">+</span> <span class="n">sdm</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;total moment =&#39;</span><span class="p">,</span><span class="n">total_moment</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moment</span><span class="p">(</span><span class="n">arms</span><span class="p">,</span> <span class="n">forces</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Thrust moment: -0.00625 gram * inch
+Weight moment: 0.0 gram * inch
+Wing lift moment: -1.5 gram * inch
+Wing drag moment: 0.03 gram * inch
+Stab lift moment: -1.6 gram * inch
+Stab drag moment: -0.015 gram * inch
+total moment = -3.09125 gram * inch
+</pre></div>
+</div>
+</div>
+</div>
+<p>By convention, a positive moment pitched the node up. So this one is going to fly about like many of my  first flights!</p>
+<p>For stable level flight, the total moment needs to be zero. Obviously, I threw in random values here, and our goal is to produce all of these numbers from our design and a little help from aerodynamics theory.</p>
+<p>The nice thing about using code to help us make these calculations is that we can run parametric tests and see results quickly, We will use that fact later.</p>
+<p>let’s see what we have now:</p>
+<p>We estimated the mean chord values by dividing the projected area by the projected span. The location of the mean aerodynamic centers for both surfaces is set at the quarter chord point. We will locate it from the trailing edges since both are straight on the plans.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flight</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;density&#39;</span><span class="p">:</span> <span class="mf">0.00231683</span> <span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">slugs</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">ft</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;dynamic_viscosity&#39;</span><span class="p">:</span> <span class="mf">0.0000180338</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">pascal</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">second</span><span class="p">,</span>
+    <span class="s1">&#39;velocity&#39;</span><span class="p">:</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">mph</span>
+<span class="p">}</span>
+<span class="n">flight</span><span class="p">[</span><span class="s1">&#39;kinematic_viscosity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;dynamic_viscosity&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">flight</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span>
+<span class="n">flight</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span> <span class="p">(</span><span class="n">flight</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">flight</span><span class="p">[</span><span class="s1">&#39;wing_re&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">wing</span><span class="p">[</span><span class="s1">&#39;mean_chord&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;dynamic_viscosity&#39;</span><span class="p">]</span>
+<span class="n">flight</span><span class="p">[</span><span class="s1">&#39;stab_re&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">stab</span><span class="p">[</span><span class="s1">&#39;mean_chord&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;dynamic_viscosity&#39;</span><span class="p">]</span>
+
+<span class="n">dict_print</span><span class="p">(</span><span class="n">flight</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">t9</span><span class="o">/</span><span class="n">hc5s57h95tj3rsp4qvk61m8m0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_40587</span><span class="o">/</span><span class="mf">3115456486.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;kinematic_viscosity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;dynamic_viscosity&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">flight</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span> <span class="p">(</span><span class="n">flight</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;wing_re&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">wing</span><span class="p">[</span><span class="s1">&#39;mean_chord&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;dynamic_viscosity&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;stab_re&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">stab</span><span class="p">[</span><span class="s1">&#39;mean_chord&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;dynamic_viscosity&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> 
+
+<span class="ne">NameError</span>: name &#39;wing&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wing_re</span> <span class="o">=</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;wing_re&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+<span class="n">wing_re</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">2917.575722064471 dimensionless</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stab_re</span> <span class="o">=</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;stab_re&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+<span class="n">stab_re</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">2067.5036243705945 dimensionless</div></div>
+</div>
+<p>Getting airfoil data for these Reynolds Numbers is not easy. McLean arbitrarily used a <span class="math notranslate nohighlight">\(C_lw\)</span> of 1.0, and calculated the required $C_ls* to balance moments. He used pitching moment coefficient values of -0.10 and -0.05 for the wing and stab.He did not include any other forces.</p>
+<p>Rather than just use these numbers, we will use the most basic theories of aerodynamics to estimate the coefficients.</p>
+<p><em>Thin Airfoil Theory</em>, is often used as a first approximation for calculating lift and pitching moment data. If we use <em>Prandtl’s Lifting Line Theory</em> we can get an approximation for the induced drag, and profile drag which together as the major sources of drag at low speeds.</p>
+<p>we can estimate the <span class="math notranslate nohighlight">\(C_d\)</span> values by examining typical lift/drag curves.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="simplified-indoor-design.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>Simplified Indoor Design</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="hacklinger-theory.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Hacklinger’s Theories</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Roie R. Black<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

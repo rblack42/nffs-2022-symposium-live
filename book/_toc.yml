@@ -8,9 +8,11 @@ options:
   numbered: true
 chapters:
 - file: content/overview
-- file: content/basics-of-flight
-  sections:
-  - file: content/atmosphere/atmospheric-data
+- file: content/tenny-data-analysis
+- file: content/mcleans-method
+- file: content/simplified-indoor-design
+- file: content/model-aerodynamics
+- file: content/hacklinger-theory
 - file: content/bibliography
 - file: content/biography
 

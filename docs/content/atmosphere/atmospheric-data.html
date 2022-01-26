@@ -103,13 +103,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../mcleans-method.html">
+   2. Calculating Flight Time
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../bibliography.html">
-   2. Bibliography
+   3. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../biography.html">
-   3. Biography
+   4. Biography
   </a>
  </li>
 </ul>
@@ -265,7 +270,7 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">t9</span><span class="o">/</span><span class="n">hc5s57h95tj3rsp4qvk61m8m0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_85165</span><span class="o">/</span><span class="mf">560333839.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">t9</span><span class="o">/</span><span class="n">hc5s57h95tj3rsp4qvk61m8m0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_37667</span><span class="o">/</span><span class="mf">560333839.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> 
 <span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">fluids</span> <span class="kn">import</span> <span class="n">ATMOSPHERE_1976</span> <span class="k">as</span> <span class="n">StdAtm</span>
@@ -298,6 +303,82 @@ mu 1.780994347002584e-05 pascal * second
 </div>
 </div>
 <p>These values do not exactly match the web calculator values, but they are close enough for our purposes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+<span class="n">ddir</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;mmflight&#39;</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ddir</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ddir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/rblack/_dev/nffs-symposium/live-2022/mmflight
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ddir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/rblack/_dev/nffs-symposium/live-2022/mmflight
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;In&#39;, &#39;Out&#39;, &#39;Path&#39;, &#39;PurePath&#39;, &#39;PurePosixPath&#39;, &#39;StdAtm&#39;, &#39;_&#39;, &#39;__&#39;, &#39;___&#39;, &#39;__builtin__&#39;, &#39;__builtins__&#39;, &#39;__doc__&#39;, &#39;__loader__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;__spec__&#39;, &#39;_dh&#39;, &#39;_exit_code&#39;, &#39;_i&#39;, &#39;_i1&#39;, &#39;_i10&#39;, &#39;_i11&#39;, &#39;_i12&#39;, &#39;_i13&#39;, &#39;_i14&#39;, &#39;_i15&#39;, &#39;_i16&#39;, &#39;_i17&#39;, &#39;_i18&#39;, &#39;_i19&#39;, &#39;_i2&#39;, &#39;_i20&#39;, &#39;_i21&#39;, &#39;_i22&#39;, &#39;_i23&#39;, &#39;_i24&#39;, &#39;_i25&#39;, &#39;_i26&#39;, &#39;_i27&#39;, &#39;_i28&#39;, &#39;_i29&#39;, &#39;_i3&#39;, &#39;_i30&#39;, &#39;_i31&#39;, &#39;_i32&#39;, &#39;_i33&#39;, &#39;_i34&#39;, &#39;_i35&#39;, &#39;_i36&#39;, &#39;_i37&#39;, &#39;_i38&#39;, &#39;_i39&#39;, &#39;_i4&#39;, &#39;_i40&#39;, &#39;_i41&#39;, &#39;_i42&#39;, &#39;_i43&#39;, &#39;_i44&#39;, &#39;_i45&#39;, &#39;_i46&#39;, &#39;_i47&#39;, &#39;_i48&#39;, &#39;_i49&#39;, &#39;_i5&#39;, &#39;_i50&#39;, &#39;_i51&#39;, &#39;_i52&#39;, &#39;_i53&#39;, &#39;_i54&#39;, &#39;_i55&#39;, &#39;_i56&#39;, &#39;_i57&#39;, &#39;_i58&#39;, &#39;_i59&#39;, &#39;_i6&#39;, &#39;_i60&#39;, &#39;_i61&#39;, &#39;_i62&#39;, &#39;_i63&#39;, &#39;_i64&#39;, &#39;_i65&#39;, &#39;_i66&#39;, &#39;_i67&#39;, &#39;_i68&#39;, &#39;_i69&#39;, &#39;_i7&#39;, &#39;_i70&#39;, &#39;_i71&#39;, &#39;_i72&#39;, &#39;_i73&#39;, &#39;_i74&#39;, &#39;_i75&#39;, &#39;_i76&#39;, &#39;_i77&#39;, &#39;_i8&#39;, &#39;_i9&#39;, &#39;_ih&#39;, &#39;_ii&#39;, &#39;_iii&#39;, &#39;_oh&#39;, &#39;airfoil&#39;, &#39;arc3&#39;, &#39;ddir&#39;, &#39;droot&#39;, &#39;elevation&#39;, &#39;exit&#39;, &#39;get_air_properties&#39;, &#39;get_ipython&#39;, &#39;importlib&#39;, &#39;kc&#39;, &#39;key&#39;, &#39;mmflight&#39;, &#39;name&#39;, &#39;p&#39;, &#39;pint&#39;, &#39;quit&#39;, &#39;root&#39;, &#39;sys&#39;, &#39;u&#39;, &#39;x&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">airfoil</span> <span class="o">=</span> <span class="s1">&#39;arc3&#39;</span>
+<span class="n">p</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;from mmflight.data.airfoils.</span><span class="si">{</span><span class="n">airfoil</span><span class="si">}</span><span class="s1">.CL import x&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">importlib</span>
+<span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;arc3&#39;</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mmflight.data.airfoils.</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">CL</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-4.579439252336446, -3.8317757009345783, -3.084112149532709, -2.33644859813084, -1.5887850467289706, -0.8411214953271013, 0.6542056074766371, 1.4018691588785046, 2.149532710280374, 2.8971962616822413, 3.6448598130841123, 4.392523364485983, 5.140186915887851, 5.887850467289718, 6.635514018691589, 7.383177570093457, 8.130841121495324, 8.878504672897195, 9.719626168224297, 10.373831775700934, 11.121495327102801, 11.869158878504672, 12.710280373831774, 13.364485981308407, 14.205607476635512, 14.95327102803738, 15.70093457943925, 16.355140186915882, 17.102803738317753, 17.850467289719624, 18.691588785046726, 20.186915887850468, 20.93457943925233, 21.588785046728972]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-4.579439252336446, -3.8317757009345783, -3.084112149532709, -2.33644859813084, -1.5887850467289706, -0.8411214953271013, 0.6542056074766371, 1.4018691588785046, 2.149532710280374, 2.8971962616822413, 3.6448598130841123, 4.392523364485983, 5.140186915887851, 5.887850467289718, 6.635514018691589, 7.383177570093457, 8.130841121495324, 8.878504672897195, 9.719626168224297, 10.373831775700934, 11.121495327102801, 11.869158878504672, 12.710280373831774, 13.364485981308407, 14.205607476635512, 14.95327102803738, 15.70093457943925, 16.355140186915882, 17.102803738317753, 17.850467289719624, 18.691588785046726, 20.186915887850468, 20.93457943925233, 21.588785046728972]
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

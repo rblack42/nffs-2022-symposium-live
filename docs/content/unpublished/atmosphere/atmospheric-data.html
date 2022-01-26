@@ -1,0 +1,430 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atmospheric Data &#8212; Predicting Indoor Flight Times With Python</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://rblack42.github.io/nffs-2022-symposium-live/content/unpublished/atmosphere/atmospheric-data.html" />
+    <link rel="shortcut icon" href="../../../_static/lpp.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/lpp.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Predicting Indoor Flight Times With Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Predicting Indoor Model Flight Time Using Python
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../overview.html">
+   1. Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../mcleans-method.html">
+   2. Calculating Flight Time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../bibliography.html">
+   3. Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../biography.html">
+   4. Biography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/content/unpublished/atmosphere/atmospheric-data.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live/issues/new?title=Issue%20on%20page%20%2Fcontent/unpublished/atmosphere/atmospheric-data.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.ord/v2/gh/rblack42/nffs-2022-symposium-live/master?urlpath=tree/docs/content/unpublished/atmosphere/atmospheric-data.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Atmospheric Data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="atmospheric-data">
+<h1>Atmospheric Data<a class="headerlink" href="#atmospheric-data" title="Permalink to this headline">¶</a></h1>
+<p>Obviously, our models fly through the air. <em>Computational Fluid Dynamics</em> studies the motion of a fluid using computers. Air is a fluid, even it that is not obvious. It is just a very thin fluid and we need to know a few fundamental properties of that fluid to do much interesting work.</p>
+<p>Rather than rely on local measurements of the properties of air, most researchers use a model atmosphere so they can compare results. We will use data from the <em>1976 Standard Atmospheric Model</em>, which you can find at the <a class="reference external" href="https://www.digitaldutch.com/atmoscalc/">Standard Atmosphere Calculator</a>. The website at that link lets you set your elevation and it presents you with standard values for the important properties we will need.</p>
+<p><img alt="HAFFA Indoor Site Data" src="../../../_images/osawatomie-std-atm.png" /></p>
+<p>Notice something important here. Each property has units attached, and it is vital that you make sure your units are set correctly if you are to trust your answers in a computer generated result. The standard model has a mathematical basis, but since the study of the atmosphere is a common research task, these are several <em>Python</em> packages that already know all about this. We will use the <strong>fluids</strong> package in this study.</p>
+<p>The <strong>fluids</strong> code expects inut values in <em>Standard International Units</em> (<strong>SI</strong>). I Since we are working with <strong>pint</strong> variables in our work, we will create a simple functin that returns the air properties we need, with proper units attached! The function will take the altitude as a parameter, and return a <em>Python</em> dictionary with these properties:</p>
+<ul class="simple">
+<li><p>Temperature</p></li>
+<li><p>Pressure</p></li>
+<li><p>Density</p></li>
+<li><p>Dynamic Viscosity</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pint</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">fluids</span> <span class="kn">import</span> <span class="n">ATMOSPHERE_1976</span> <span class="k">as</span> <span class="n">StdAtm</span>
+
+<span class="k">def</span> <span class="nf">get_air_properties</span><span class="p">(</span><span class="n">altitude</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">altitude</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+    <span class="n">sa</span> <span class="o">=</span> <span class="n">StdAtm</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">magnitude</span><span class="p">)</span> <span class="c1"># strip off units for call</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="n">sa</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">kelvin</span><span class="p">,</span>
+        <span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="n">sa</span><span class="o">.</span><span class="n">P</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">pascals</span><span class="p">,</span>
+        <span class="s1">&#39;rho&#39;</span><span class="p">:</span> <span class="n">sa</span><span class="o">.</span><span class="n">rho</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">kg</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span> <span class="o">**</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s1">&#39;mu&#39;</span><span class="p">:</span> <span class="n">sa</span><span class="o">.</span><span class="n">mu</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">pascals</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">second</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">t9</span><span class="o">/</span><span class="n">hc5s57h95tj3rsp4qvk61m8m0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_38120</span><span class="o">/</span><span class="mf">560333839.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">fluids</span> <span class="kn">import</span> <span class="n">ATMOSPHERE_1976</span> <span class="k">as</span> <span class="n">StdAtm</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> 
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">def</span> <span class="nf">get_air_properties</span><span class="p">(</span><span class="n">altitude</span><span class="p">):</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;fluids&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check the values for th elevation of our local flying site (876 feet):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elevation</span> <span class="o">=</span> <span class="mi">876</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">ft</span>
+<span class="n">kc</span> <span class="o">=</span> <span class="n">get_air_properties</span><span class="p">(</span><span class="n">elevation</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">kc</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">kc</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>T 286.4145416948804 kelvin
+P 98158.40806685877 pascal
+rho 1.1939062985385254 kilogram / meter ** 3
+mu 1.780994347002584e-05 pascal * second
+</pre></div>
+</div>
+</div>
+</div>
+<p>These values do not exactly match the web calculator values, but they are close enough for our purposes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+<span class="n">ddir</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;mmflight&#39;</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ddir</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ddir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/rblack/_dev/nffs-symposium/live-2022/mmflight
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ddir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/rblack/_dev/nffs-symposium/live-2022/mmflight
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;In&#39;, &#39;Out&#39;, &#39;Path&#39;, &#39;PurePath&#39;, &#39;PurePosixPath&#39;, &#39;StdAtm&#39;, &#39;_&#39;, &#39;__&#39;, &#39;___&#39;, &#39;__builtin__&#39;, &#39;__builtins__&#39;, &#39;__doc__&#39;, &#39;__loader__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;__spec__&#39;, &#39;_dh&#39;, &#39;_exit_code&#39;, &#39;_i&#39;, &#39;_i1&#39;, &#39;_i10&#39;, &#39;_i11&#39;, &#39;_i12&#39;, &#39;_i13&#39;, &#39;_i14&#39;, &#39;_i15&#39;, &#39;_i16&#39;, &#39;_i17&#39;, &#39;_i18&#39;, &#39;_i19&#39;, &#39;_i2&#39;, &#39;_i20&#39;, &#39;_i21&#39;, &#39;_i22&#39;, &#39;_i23&#39;, &#39;_i24&#39;, &#39;_i25&#39;, &#39;_i26&#39;, &#39;_i27&#39;, &#39;_i28&#39;, &#39;_i29&#39;, &#39;_i3&#39;, &#39;_i30&#39;, &#39;_i31&#39;, &#39;_i32&#39;, &#39;_i33&#39;, &#39;_i34&#39;, &#39;_i35&#39;, &#39;_i36&#39;, &#39;_i37&#39;, &#39;_i38&#39;, &#39;_i39&#39;, &#39;_i4&#39;, &#39;_i40&#39;, &#39;_i41&#39;, &#39;_i42&#39;, &#39;_i43&#39;, &#39;_i44&#39;, &#39;_i45&#39;, &#39;_i46&#39;, &#39;_i47&#39;, &#39;_i48&#39;, &#39;_i49&#39;, &#39;_i5&#39;, &#39;_i50&#39;, &#39;_i51&#39;, &#39;_i52&#39;, &#39;_i53&#39;, &#39;_i54&#39;, &#39;_i55&#39;, &#39;_i56&#39;, &#39;_i57&#39;, &#39;_i58&#39;, &#39;_i59&#39;, &#39;_i6&#39;, &#39;_i60&#39;, &#39;_i61&#39;, &#39;_i62&#39;, &#39;_i63&#39;, &#39;_i64&#39;, &#39;_i65&#39;, &#39;_i66&#39;, &#39;_i67&#39;, &#39;_i68&#39;, &#39;_i69&#39;, &#39;_i7&#39;, &#39;_i70&#39;, &#39;_i71&#39;, &#39;_i72&#39;, &#39;_i73&#39;, &#39;_i74&#39;, &#39;_i75&#39;, &#39;_i76&#39;, &#39;_i77&#39;, &#39;_i8&#39;, &#39;_i9&#39;, &#39;_ih&#39;, &#39;_ii&#39;, &#39;_iii&#39;, &#39;_oh&#39;, &#39;airfoil&#39;, &#39;arc3&#39;, &#39;ddir&#39;, &#39;droot&#39;, &#39;elevation&#39;, &#39;exit&#39;, &#39;get_air_properties&#39;, &#39;get_ipython&#39;, &#39;importlib&#39;, &#39;kc&#39;, &#39;key&#39;, &#39;mmflight&#39;, &#39;name&#39;, &#39;p&#39;, &#39;pint&#39;, &#39;quit&#39;, &#39;root&#39;, &#39;sys&#39;, &#39;u&#39;, &#39;x&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">airfoil</span> <span class="o">=</span> <span class="s1">&#39;arc3&#39;</span>
+<span class="n">p</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;from mmflight.data.airfoils.</span><span class="si">{</span><span class="n">airfoil</span><span class="si">}</span><span class="s1">.CL import x&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">importlib</span>
+<span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;arc3&#39;</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mmflight.data.airfoils.</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">CL</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-4.579439252336446, -3.8317757009345783, -3.084112149532709, -2.33644859813084, -1.5887850467289706, -0.8411214953271013, 0.6542056074766371, 1.4018691588785046, 2.149532710280374, 2.8971962616822413, 3.6448598130841123, 4.392523364485983, 5.140186915887851, 5.887850467289718, 6.635514018691589, 7.383177570093457, 8.130841121495324, 8.878504672897195, 9.719626168224297, 10.373831775700934, 11.121495327102801, 11.869158878504672, 12.710280373831774, 13.364485981308407, 14.205607476635512, 14.95327102803738, 15.70093457943925, 16.355140186915882, 17.102803738317753, 17.850467289719624, 18.691588785046726, 20.186915887850468, 20.93457943925233, 21.588785046728972]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-4.579439252336446, -3.8317757009345783, -3.084112149532709, -2.33644859813084, -1.5887850467289706, -0.8411214953271013, 0.6542056074766371, 1.4018691588785046, 2.149532710280374, 2.8971962616822413, 3.6448598130841123, 4.392523364485983, 5.140186915887851, 5.887850467289718, 6.635514018691589, 7.383177570093457, 8.130841121495324, 8.878504672897195, 9.719626168224297, 10.373831775700934, 11.121495327102801, 11.869158878504672, 12.710280373831774, 13.364485981308407, 14.205607476635512, 14.95327102803738, 15.70093457943925, 16.355140186915882, 17.102803738317753, 17.850467289719624, 18.691588785046726, 20.186915887850468, 20.93457943925233, 21.588785046728972]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/unpublished/atmosphere"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Roie R. Black<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
