@@ -32,7 +32,7 @@ dict_print(flight)
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m/var/folders/t9/hc5s57h95tj3rsp4qvk61m8m0000gn/T/ipykernel_40587/3115456486.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/var/folders/t9/hc5s57h95tj3rsp4qvk61m8m0000gn/T/ipykernel_44769/3115456486.py[0m in [0;36m<module>[0;34m[0m
 [1;32m      6[0m [0mflight[0m[0;34m[[0m[0;34m'kinematic_viscosity'[0m[0;34m][0m [0;34m=[0m [0mflight[0m[0;34m[[0m[0;34m'dynamic_viscosity'[0m[0;34m][0m[0;34m/[0m[0mflight[0m[0;34m[[0m[0;34m'density'[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
 [1;32m      7[0m [0mflight[0m[0;34m[[0m[0;34m'q'[0m[0;34m][0m [0;34m=[0m [0;36m0.5[0m[0;34m*[0m [0;34m([0m[0mflight[0m[0;34m[[0m[0;34m'density'[0m[0;34m][0m [0;34m*[0m [0mflight[0m[0;34m[[0m[0;34m'velocity'[0m[0;34m][0m [0;34m**[0m [0;36m2[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0;32m----> 8[0;31m [0mflight[0m[0;34m[[0m[0;34m'wing_re'[0m[0;34m][0m [0;34m=[0m [0mflight[0m[0;34m[[0m[0;34m'density'[0m[0;34m][0m [0;34m*[0m [0mflight[0m[0;34m[[0m[0;34m'velocity'[0m[0;34m][0m [0;34m*[0m [0mwing[0m[0;34m[[0m[0;34m'mean_chord'[0m[0;34m][0m [0;34m/[0m [0mflight[0m[0;34m[[0m[0;34m'dynamic_viscosity'[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m

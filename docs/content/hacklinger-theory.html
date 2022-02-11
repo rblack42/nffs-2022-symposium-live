@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>6. Hacklinger’s Theories &#8212; Predicting Indoor Flight Times With Python</title>
+    <title>Hacklinger’s Theories &#8212; Predicting Indoor Flight Times With Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,11 +52,8 @@
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://rblack42.github.io/nffs-2022-symposium-live/content/hacklinger-theory.html" />
-    <link rel="shortcut icon" href="../_static/lpp.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="7. Bibliography" href="bibliography.html" />
-    <link rel="prev" title="5. Basic Aerodynamics" href="model-aerodynamics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -95,50 +92,40 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="index.html">
+  <a class="reference internal" href="../frontmatter/index.html">
    Predicting Indoor Model Flight Time Using Python
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="overview.html">
+  <a class="reference internal" href="../frontmatter/overview.html">
    1. Overview
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="tenny-data-analysis.html">
-   2. Tenny’s Flight Path Data
+  <a class="reference internal" href="../background/simplified-indoor-design.html">
+   2. Simplified Indoor Design
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mcleans-method.html">
-   3. Calculating Flight Time
+  <a class="reference internal" href="../background/tenny-data-analysis.html">
+   3. Tenny’s Flight Path Data
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="simplified-indoor-design.html">
-   4. Simplified Indoor Design
+  <a class="reference internal" href="../background/data-smoothing.html">
+   4. Data Smoothing
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="model-aerodynamics.html">
-   5. Basic Aerodynamics
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   6. Hacklinger’s Theories
+  <a class="reference internal" href="../backmatter/bibliography.html">
+   5. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="bibliography.html">
-   7. Bibliography
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="biography.html">
-   8. Biography
+  <a class="reference internal" href="../backmatter/biography.html">
+   6. Biography
   </a>
  </li>
 </ul>
@@ -247,7 +234,7 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#definitions">
-   6.1. Definitions
+   Definitions
   </a>
  </li>
 </ul>
@@ -272,7 +259,7 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#definitions">
-   6.1. Definitions
+   Definitions
   </a>
  </li>
 </ul>
@@ -284,47 +271,53 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="hacklinger-s-theories">
-<h1><span class="section-number">6. </span>Hacklinger’s Theories<a class="headerlink" href="#hacklinger-s-theories" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="hacklingers-theories">
+<h1>Hacklinger’s Theories<a class="headerlink" href="#hacklingers-theories" title="Permalink to this headline">¶</a></h1>
 <p>Max Hacklinger, in a paper published in 1968, did an analysis of indoor models, and presentied an analysis of propeller performance.</p>
 <div class="section" id="definitions">
-<h2><span class="section-number">6.1. </span>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h2>
+<h2>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Torque (<span class="math notranslate nohighlight">\(\tau\)</span>)  is the rotational equivalent of a linear force.</p></li>
 <li><p>Power (<span class="math notranslate nohighlight">\(P\)</span>) is the application of a work over some period of time.</p></li>
 <li><p>Angular velocity (<span class="math notranslate nohighlight">\(\omega\)</span>) is the rotational speed.</p></li>
 </ul>
 <p>These are related by this equation:</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-31a33a0c-8619-4c0a-aa0b-670514bdd785">
+<span class="eqno">()<a class="headerlink" href="#equation-31a33a0c-8619-4c0a-aa0b-670514bdd785" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P = \tau \omega
-\end{equation}</p>
+\end{equation}\]</div>
 <p>We know that the torque provided by our rubber motor varies greatly over the flight time. It is very high on launch causing the airplane to climb rapidly. As the <em>torque burst</em> fades, so does the climb, and we enter a period of cruise where altitude is lost slowly. Finally, the model descends to the ground. If we are lucky, the landing happens as the motor runs out of turns.</p>
 <p>Unfortunately, data on the propeller RPM during a flight is difficule to obtain, the exact shape of the work done as a function of time is not known, but we have some data showing its general shape. From Hacklinger’s paper, we see this curve:</p>
 <p><img alt="torque curve" src="../_images/torque-curve.png" /></p>
 <p>Hacklinger theorized that the energy expended in the climb is approximately equal to the energy expended during descent, so we should be able to use to the average energy labeled <span class="math notranslate nohighlight">\(Q_H\)</span> in the figure to estimate flying time.</p>
 <p>In working through the power available to an indoor model, he presented a term called the <em>Energy Height</em> which is defined as follows:</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fa021b82-be8d-460b-9cfc-d12536d37caa">
+<span class="eqno">()<a class="headerlink" href="#equation-fa021b82-be8d-460b-9cfc-d12536d37caa" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 H_e = \frac{work}{w_{motor}}
-\end{equation}</p>
+\end{equation}\]</div>
 <p>Work is the application of a force over a distance. The fore we are interested in from our propeller is the thrust force <span class="math notranslate nohighlight">\(T\)</span>.</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-72ed791d-fc52-4cbf-87f1-51a831f0d534">
+<span class="eqno">()<a class="headerlink" href="#equation-72ed791d-fc52-4cbf-87f1-51a831f0d534" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 W = T x
-\end{equation}</p>
+\end{equation}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(X\)</span> is the distance we have moved.</p>
 <p>Taking the derivative of this equation gives:</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ed69e371-eaec-4f55-b3a9-aa8e25b2d639">
+<span class="eqno">()<a class="headerlink" href="#equation-ed69e371-eaec-4f55-b3a9-aa8e25b2d639" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{dW}{dt} = T \frac{dx}{dt} + x \frac{dT}{dt}
-\end{equation}
-Testing showed that for indoor models, <span class="math notranslate nohighlight">\(H_e\)</span> is approximately constant and has a value of 900 meters.</p>
+\end{equation}\]</div>
+<p>Testing showed that for indoor models, <span class="math notranslate nohighlight">\(H_e\)</span> is approximately constant and has a value of 900 meters.</p>
 <p>Velocity is the time rate of change of distance. If the Work expended varies over time, so the Thrust must also vary over time if this equation is o hold. Therefore:</p>
 <p>If <span class="math notranslate nohighlight">\(\eta\)</span> is the propeller efficiency, which is a measure of its ability to convert the torque applied to the propeller to the increase in velocity of the asir through the propeller disk, then we get this equation:</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a9d709d8-01b9-4e26-98b4-d48fc1e6f01e">
+<span class="eqno">()<a class="headerlink" href="#equation-a9d709d8-01b9-4e26-98b4-d48fc1e6f01e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 t = \eta E/P
-\end{equation}</p>
+\end{equation}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(E\)</span> is the available energy, and <span class="math notranslate nohighlight">\(P\)</span> is the power available from the propeller.</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0a42015d-87e5-486b-a209-71d024173fa1">
+<span class="eqno">()<a class="headerlink" href="#equation-0a42015d-87e5-486b-a209-71d024173fa1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{dh}{dt} = \frac{\eta}{W} \frac{dE}{dt} - k_1\sqrt{W}
-\end{equation}</p>
+\end{equation}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span>
@@ -404,6 +397,116 @@ t = \eta E/P
 </div>
 </div>
 <p>To satisfy the condition that at time zero, the eight zero, and we have expended no energy. threfore, we need to set <span class="math notranslate nohighlight">\(K_2\)</span> to zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">pint</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
+
+<span class="n">winds</span> <span class="o">=</span> <span class="mi">3660</span>
+<span class="n">Wr</span> <span class="o">=</span> <span class="mf">0.86</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span>
+<span class="n">Q0</span> <span class="o">=</span> <span class="mf">3.3</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">ounce</span>
+<span class="n">Qh</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">gram</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+<span class="n">He</span> <span class="o">=</span> <span class="mi">900</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">meters</span>
+<span class="n">flight_time</span> <span class="o">=</span> <span class="mi">422</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">seconds</span>
+<span class="n">n_h</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n_h</span><span class="p">)</span>
+
+<span class="n">Time</span> <span class="o">=</span> <span class="n">He</span> <span class="o">*</span> <span class="n">Wr</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">Qh</span> <span class="o">*</span> <span class="n">n_h</span><span class="p">)</span>
+<span class="n">Time</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7
+</pre></div>
+</div>
+<div class="output text_html">21997.486777344107 dimensionless</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">winds</span> <span class="o">=</span> <span class="mi">3660</span>
+<span class="n">Wr</span> <span class="o">=</span> <span class="mf">0.86</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span>
+<span class="n">Q0</span> <span class="o">=</span> <span class="mf">3.1</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">ounce</span>
+<span class="n">He</span> <span class="o">=</span> <span class="mi">900</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">meters</span>
+<span class="n">flight_time</span> <span class="o">=</span> <span class="mi">618</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">seconds</span>
+<span class="n">n_h</span> <span class="o">=</span> <span class="n">winds</span><span class="o">/</span><span class="n">flight_time</span>
+
+<span class="n">Qh</span> <span class="o">=</span> <span class="n">He</span> <span class="o">*</span> <span class="n">Wr</span> <span class="o">/</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">n_h</span> <span class="o">*</span> <span class="n">flight_time</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Qh</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;inch ounce&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.04674127258717818 inch * ounce
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">winds</span> <span class="o">=</span> <span class="mi">783</span>
+<span class="n">Wr</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span>
+<span class="n">Q0</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">ounce</span>
+<span class="n">Qh</span> <span class="o">=</span> <span class="mf">0.07</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">ounce</span>
+<span class="n">He</span> <span class="o">=</span> <span class="mi">900</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">meters</span>
+<span class="n">flight_time</span> <span class="o">=</span>  <span class="mi">14</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">minutes</span>
+<span class="n">n_h</span> <span class="o">=</span> <span class="n">winds</span><span class="o">/</span><span class="n">flight_time</span>
+
+<span class="n">Time</span> <span class="o">=</span> <span class="n">He</span> <span class="o">*</span> <span class="n">Wr</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">Qh</span> <span class="o">*</span> <span class="n">n_h</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1524.307740079053 second
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">pint</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
+
+<span class="n">winds</span> <span class="o">=</span> <span class="mi">3660</span>
+<span class="n">Wr</span> <span class="o">=</span> <span class="mf">0.86</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span>
+<span class="n">Q0</span> <span class="o">=</span> <span class="mf">.31</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">ounce</span>
+<span class="n">Qh</span> <span class="o">=</span> <span class="n">Q0</span> <span class="o">/</span> <span class="mi">6</span>
+<span class="n">He</span> <span class="o">=</span> <span class="mi">900</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">meters</span>
+<span class="n">flight_time</span> <span class="o">=</span> <span class="mi">618</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">seconds</span>
+<span class="n">n_h</span> <span class="o">=</span> <span class="n">winds</span><span class="o">/</span><span class="n">flight_time</span>
+<span class="n">Time</span> <span class="o">=</span> <span class="n">He</span> <span class="o">*</span> <span class="n">Wr</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">Qh</span> <span class="o">*</span> <span class="n">n_h</span><span class="p">)</span>
+<span class="n">Time</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">559.0859314621183 second</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">winds</span> <span class="o">=</span> <span class="mi">3500</span>
+<span class="n">Wr</span> <span class="o">=</span> <span class="mf">0.79</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">ounce</span>
+<span class="n">Q0</span> <span class="o">=</span> <span class="mf">2.2</span> <span class="o">*</span> <span class="n">K</span>
+<span class="n">Qh</span> <span class="o">=</span> <span class="n">Q0</span> <span class="o">/</span> <span class="mi">5</span>
+<span class="n">He</span> <span class="o">=</span> <span class="mi">900</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">meters</span>
+<span class="n">flight_time</span> <span class="o">=</span> <span class="mi">422</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">seconds</span>
+<span class="n">n_h</span> <span class="o">=</span> <span class="n">winds</span><span class="o">/</span><span class="n">flight_time</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Q0</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;ounce inch&#39;</span><span class="p">))</span>
+<span class="n">Time</span> <span class="o">=</span> <span class="n">He</span> <span class="o">*</span> <span class="n">Wr</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">Qh</span> <span class="o">*</span> <span class="n">n_h</span><span class="p">)</span>
+<span class="n">Time</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.22000000000000003 inch * ounce
+</pre></div>
+</div>
+<div class="output text_html">430.6277255037396 second</div></div>
+</div>
 </div>
 </div>
 
@@ -431,21 +534,7 @@ t = \eta E/P
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="model-aerodynamics.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">5. </span>Basic Aerodynamics</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="bibliography.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Bibliography</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>

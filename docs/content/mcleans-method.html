@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3. Calculating Flight Time &#8212; Predicting Indoor Flight Times With Python</title>
+    <title>Calculating Flight Time &#8212; Predicting Indoor Flight Times With Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,11 +52,8 @@
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://rblack42.github.io/nffs-2022-symposium-live/content/mcleans-method.html" />
-    <link rel="shortcut icon" href="../_static/lpp.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Simplified Indoor Design" href="simplified-indoor-design.html" />
-    <link rel="prev" title="2. Tenny’s Flight Path Data" href="tenny-data-analysis.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -78,11 +75,6 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
-      <img src="../_static/lpp.gif" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Predicting Indoor Flight Times With Python</h1>
@@ -95,50 +87,40 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="index.html">
+  <a class="reference internal" href="../frontmatter/index.html">
    Predicting Indoor Model Flight Time Using Python
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="overview.html">
+  <a class="reference internal" href="../frontmatter/overview.html">
    1. Overview
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="tenny-data-analysis.html">
-   2. Tenny’s Flight Path Data
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   3. Calculating Flight Time
+  <a class="reference internal" href="../background/simplified-indoor-design.html">
+   2. Simplified Indoor Design
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="simplified-indoor-design.html">
-   4. Simplified Indoor Design
+  <a class="reference internal" href="../background/tenny-data-analysis.html">
+   3. Tenny’s Flight Path Data
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="model-aerodynamics.html">
-   5. Basic Aerodynamics
+  <a class="reference internal" href="../background/data-smoothing.html">
+   4. Data Smoothing
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="hacklinger-theory.html">
-   6. Hacklinger’s Theories
+  <a class="reference internal" href="../backmatter/bibliography.html">
+   5. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="bibliography.html">
-   7. Bibliography
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="biography.html">
-   8. Biography
+  <a class="reference internal" href="../backmatter/biography.html">
+   6. Biography
   </a>
  </li>
 </ul>
@@ -247,7 +229,7 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#equation-1-final-time-calculation">
-   3.1. Equation 1 - final time calculation
+   Equation 1 - final time calculation
   </a>
  </li>
 </ul>
@@ -272,7 +254,7 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#equation-1-final-time-calculation">
-   3.1. Equation 1 - final time calculation
+   Equation 1 - final time calculation
   </a>
  </li>
 </ul>
@@ -285,15 +267,15 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="calculating-flight-time">
-<h1><span class="section-number">3. </span>Calculating Flight Time<a class="headerlink" href="#calculating-flight-time" title="Permalink to this headline">¶</a></h1>
+<h1>Calculating Flight Time<a class="headerlink" href="#calculating-flight-time" title="Permalink to this headline">¶</a></h1>
 <p>It is time to work through McLean’s method for predicting indoor flight time. We will show each equation needed to perform the calculation, and provide links to the references that document the equations. In case there is no reference available, <em>SymPy</em> will be used to derive the equations. The final product of this work should be verified correct derivation of the procedure we need to estimate flight times.</p>
-<p>We will validate all of this work using actual flight data from Gary Hodson’s <span id="id1">[<a class="reference internal" href="bibliography.html#id4">Hod10</a>]</span> record setting Wart-A6 flights.</p>
+<p>We will validate all of this work using actual flight data from Gary Hodson’s <span id="id1">[<a class="reference internal" href="../backmatter/bibliography.html#id4">Hod10</a>]</span> record setting Wart-A6 flights.</p>
 <div class="section" id="equation-1-final-time-calculation">
-<h2><span class="section-number">3.1. </span>Equation 1 - final time calculation<a class="headerlink" href="#equation-1-final-time-calculation" title="Permalink to this headline">¶</a></h2>
+<h2>Equation 1 - final time calculation<a class="headerlink" href="#equation-1-final-time-calculation" title="Permalink to this headline">¶</a></h2>
 <p>McLean’s final equation is simple:</p>
 <div class="math notranslate nohighlight" id="equation-eq1-link">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-eq1-link" title="Permalink to this equation">¶</a></span>\[w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}\]</div>
-<p>here is a reference <a class="reference internal" href="#equation-eq1-link">(3.1)</a></p>
+<span class="eqno">()<a class="headerlink" href="#equation-eq1-link" title="Permalink to this equation">¶</a></span>\[w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}\]</div>
+<p>here is a reference <a class="reference internal" href="#equation-eq1-link">()</a></p>
 </div>
 </div>
 
@@ -321,21 +303,7 @@
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="tenny-data-analysis.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">2. </span>Tenny’s Flight Path Data</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="simplified-indoor-design.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Simplified Indoor Design</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>

@@ -23,7 +23,7 @@ class Erbach(object):
     def set_airfoil(self, name):
         """set up to use named airfoil"""
         name = name.lower() # just in case
-        (fils,  = os.path.walk(self.adir)
+        files = os.path.walk(self.adir)
         print(a)
 
     def set_model(self, name='erbach'):

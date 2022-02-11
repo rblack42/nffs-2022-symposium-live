@@ -2,20 +2,33 @@
 title: Predicting Indoor Flight Times With Python
 author: Roie R. Black
 copyright: "2022"
-logo: images/logo/lpp.gif
+logo: ../assets/images/logo/lpp.gif
 email: roie.black@gmail.com
 
 jupyter_execute_notebooks: force
-exclude_patterns: [content/unpublished/*]
+exclude_patterns: [content/unpublished/*, unpublished/*]
 latex:
   latex_documents:
     targetname: book.tex
+
+parse:
+  myst_enable_extensions:
+    # don't forget to list any other extensions you want enabled,
+    # including those that are enabled by default!
+    - amsmath         # enable direct parsing of amsmath LaTeX equations
+    - dollarmath      # enable support for `$$` and `$` syntax for math blocks
+    - html_admonition # Notes, warnings, and other admonitions. [2]
+    - html_image      # MyST allows for directives to be used such as {image} and {figure}
+    - linkify         # automatically identify “bare” web URLs and add hyperlinks
+    - replacements    # automatically convert some common typographic texts (e.g (tm), (c) )
+    - smartquotes     # automatically convert standard quotations to their opening/closing variants:
+    - substitution    # will allow you to add substitutions (variables) in markdown
 
 bibtex_bibfiles:
   - references.bib
 
 html    :
-  favicon: images/logo/lpp.ico
+  favicon: ../assets/images/logo/lpp.ico
   baseurl: https://rblack42.github.io/nffs-2022-symposium-live
   home_page_in_navbar: true
   use_issues_button: true
@@ -38,3 +51,6 @@ binder:
 google_analytics:
   mytrackingcode: 'G-D3G7J2R7N3'
 
+sphinx:
+  config:
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

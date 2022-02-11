@@ -1,6 +1,7 @@
 jupyter-book
 jupyter-contrib-nbextensions
 numpy==1.21.5
+numpy-stl
 scipy
 sympy
 matplotlib

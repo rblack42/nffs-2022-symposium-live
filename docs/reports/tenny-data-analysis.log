@@ -17,24 +17,25 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-fn_t = fit_curve(rpm_x, rpm_y)
-n_t = fn_t(time)
-
-max_time = rpm_x[-1]
-t_samples = np.linspace(0, max_time, 50)
-rpm_samples = fn_t(t_samples)
-show_curve(t_samples, rpm_samples, "RPM Function", "Time (min)", "RPM")
+ft_t = fn_t.antiderivative()
+turn_samples = ft_t(t_samples)
+def fq_t(time):
+    turns = ft_t(time)
+    q = q_n(turns)
+    return q
+q_samples = fq_t(t_samples)
+P_samples = 2 * math.pi * \
+    rpm_samples * q_samples
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m/var/folders/t9/hc5s57h95tj3rsp4qvk61m8m0000gn/T/ipykernel_47928/43273090.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      1[0m [0mfn_t[0m [0;34m=[0m [0mfit_curve[0m[0;34m([0m[0mrpm_x[0m[0;34m,[0m [0mrpm_y[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 2[0;31m [0mn_t[0m [0;34m=[0m [0mfn_t[0m[0;34m([0m[0mtime[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      3[0m [0;34m[0m[0m
-[1;32m      4[0m [0mmax_time[0m [0;34m=[0m [0mrpm_x[0m[0;34m[[0m[0;34m-[0m[0;36m1[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m [0mt_samples[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mlinspace[0m[0;34m([0m[0;36m0[0m[0;34m,[0m [0mmax_time[0m[0;34m,[0m [0;36m50[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/var/folders/t9/hc5s57h95tj3rsp4qvk61m8m0000gn/T/ipykernel_46340/4020006537.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      6[0m     [0;32mreturn[0m [0mq[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      7[0m [0mq_samples[0m [0;34m=[0m [0mfq_t[0m[0;34m([0m[0mt_samples[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 8[0;31m [0mP_samples[0m [0;34m=[0m [0;36m2[0m [0;34m*[0m [0mmath[0m[0;34m.[0m[0mpi[0m [0;34m*[0m[0;31m [0m[0;31m\[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      9[0m     [0mrpm_samples[0m [0;34m*[0m [0mq_samples[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mNameError[0m: name 'time' is not defined
-NameError: name 'time' is not defined
+[0;31mNameError[0m: name 'math' is not defined
+NameError: name 'math' is not defined
 

@@ -17,32 +17,26 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import pint
-u = pint.UnitRegistry()
+from mmtime.StdAtm import Air
 
-from fluids import ATMOSPHERE_1976 as StdAtm
-
-def get_air_properties(altitude):
-    h = altitude.to_base_units()
-    sa = StdAtm(h.magnitude) # strip off units for call
-    result = {
-        'T': sa.T * u.kelvin,
-        'P': sa.P * u.pascals,
-        'rho': sa.rho * u.kg / u.m ** 3,
-        'mu': sa.mu * u.pascals * u.second
-    }
-    return result
+site_elevation = 869 # feet
+std = Air(u).get_properties(site_elevation)
+for key in std:
+    print(f'{key} = {std[key]}')
 ------------------
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/var/folders/t9/hc5s57h95tj3rsp4qvk61m8m0000gn/T/ipykernel_38120/560333839.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      2[0m [0mu[0m [0;34m=[0m [0mpint[0m[0;34m.[0m[0mUnitRegistry[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      3[0m [0;34m[0m[0m
-[0;32m----> 4[0;31m [0;32mfrom[0m [0mfluids[0m [0;32mimport[0m [0mATMOSPHERE_1976[0m [0;32mas[0m [0mStdAtm[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      5[0m [0;34m[0m[0m
-[1;32m      6[0m [0;32mdef[0m [0mget_air_properties[0m[0;34m([0m[0maltitude[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+Traceback [0;36m(most recent call last)[0m:
 
-[0;31mModuleNotFoundError[0m: No module named 'fluids'
-ModuleNotFoundError: No module named 'fluids'
+  File [1;32m"/Users/rblack/_dev/nffs-symposium/live-2022/.direnv/python-3.9.9/lib/python3.9/site-packages/IPython/core/interactiveshell.py"[0m, line [1;32m3457[0m, in [1;35mrun_code[0m
+    exec(code_obj, self.user_global_ns, self.user_ns)
+
+[0;36m  File [0;32m"/var/folders/t9/hc5s57h95tj3rsp4qvk61m8m0000gn/T/ipykernel_44828/242602801.py"[0;36m, line [0;32m1[0;36m, in [0;35m<module>[0;36m[0m
+[0;31m    from mmtime.StdAtm import Air[0m
+
+[0;36m  File [0;32m"/Users/rblack/_dev/nffs-symposium/live-2022/mmtime/StdAtm.py"[0;36m, line [0;32m24[0m
+[0;31m    print(p)osawatomie-std-atm.png[0m
+[0m            ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+
+SyntaxError: invalid syntax (StdAtm.py, line 24)
 

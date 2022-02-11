@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>5. Basic Aerodynamics &#8212; Predicting Indoor Flight Times With Python</title>
+    <title>Basic Aerodynamics &#8212; Predicting Indoor Flight Times With Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,11 +52,8 @@
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://rblack42.github.io/nffs-2022-symposium-live/content/model-aerodynamics.html" />
-    <link rel="shortcut icon" href="../_static/lpp.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. Hacklinger’s Theories" href="hacklinger-theory.html" />
-    <link rel="prev" title="4. Simplified Indoor Design" href="simplified-indoor-design.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -95,50 +92,40 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="index.html">
+  <a class="reference internal" href="../frontmatter/index.html">
    Predicting Indoor Model Flight Time Using Python
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="overview.html">
+  <a class="reference internal" href="../frontmatter/overview.html">
    1. Overview
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="tenny-data-analysis.html">
-   2. Tenny’s Flight Path Data
+  <a class="reference internal" href="../background/simplified-indoor-design.html">
+   2. Simplified Indoor Design
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mcleans-method.html">
-   3. Calculating Flight Time
+  <a class="reference internal" href="../background/tenny-data-analysis.html">
+   3. Tenny’s Flight Path Data
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="simplified-indoor-design.html">
-   4. Simplified Indoor Design
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   5. Basic Aerodynamics
+  <a class="reference internal" href="../background/data-smoothing.html">
+   4. Data Smoothing
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="hacklinger-theory.html">
-   6. Hacklinger’s Theories
+  <a class="reference internal" href="../backmatter/bibliography.html">
+   5. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="bibliography.html">
-   7. Bibliography
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="biography.html">
-   8. Biography
+  <a class="reference internal" href="../backmatter/biography.html">
+   6. Biography
   </a>
  </li>
 </ul>
@@ -247,17 +234,17 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#simplified-airfoil-theory">
-   5.1. Simplified Airfoil Theory
+   Simplified Airfoil Theory
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#thin-airfoil-theory">
-     5.1.1. Thin Airfoil Theory
+     Thin Airfoil Theory
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lifting-line-theory">
-     5.1.2. Lifting-Line Theory
+     Lifting-Line Theory
     </a>
    </li>
   </ul>
@@ -284,17 +271,17 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#simplified-airfoil-theory">
-   5.1. Simplified Airfoil Theory
+   Simplified Airfoil Theory
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#thin-airfoil-theory">
-     5.1.1. Thin Airfoil Theory
+     Thin Airfoil Theory
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lifting-line-theory">
-     5.1.2. Lifting-Line Theory
+     Lifting-Line Theory
     </a>
    </li>
   </ul>
@@ -309,7 +296,7 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="basic-aerodynamics">
-<h1><span class="section-number">5. </span>Basic Aerodynamics<a class="headerlink" href="#basic-aerodynamics" title="Permalink to this headline">¶</a></h1>
+<h1>Basic Aerodynamics<a class="headerlink" href="#basic-aerodynamics" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pint</span>
@@ -319,15 +306,18 @@
 </div>
 </div>
 <p>In aerodynamics, we work with non-dimensional coefficients to that help us compare airfoil sections. Here are the basic force definitions used:</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7899a19b-a9ff-4b15-bec4-b1ef9141b63d">
+<span class="eqno">()<a class="headerlink" href="#equation-7899a19b-a9ff-4b15-bec4-b1ef9141b63d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 L = \frac{1}{2}\rho u^2 C_l S
-\end{equation}</p>
-<p>\begin{equation}
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-b92f7993-9bac-46ea-85a0-10eac6c25cd2">
+<span class="eqno">()<a class="headerlink" href="#equation-b92f7993-9bac-46ea-85a0-10eac6c25cd2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 D = \frac{1}{2}\rho u^2 C_d S
-\end{equation}</p>
-<p>\begin{equation}
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-f9a3573c-58ab-42a3-82f8-162a5e1527af">
+<span class="eqno">()<a class="headerlink" href="#equation-f9a3573c-58ab-42a3-82f8-162a5e1527af" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 M = \frac{1}{2}\rho u^2 C_n S c
-\end{equation}</p>
+\end{equation}\]</div>
 <p>In these equations, <span class="math notranslate nohighlight">\(\rho\)</span> is the density of the air, <span class="math notranslate nohighlight">\(u\)</span> is the forward velocity, <span class="math notranslate nohighlight">\(S\)</span> is a reference area, usually the projected area of the surface, and <span class="math notranslate nohighlight">\(c\)</span> is a reference length, usually the chord of the surface.</p>
 <p>Based on McLean’s development, we assume that model is trimmed so it is flying with these aerodynamic coefficient values:</p>
 <ul class="simple">
@@ -337,33 +327,37 @@ M = \frac{1}{2}\rho u^2 C_n S c
 </ul>
 <p>In order to maintain that level flight, we need to balance all of the forces acting on the model. However, we are missing three coefficients: The drag coefficients for the wing and stab, and the lift coefficient for the stab. (Notice we have not mentioned the airfoil in any of this so far!)</p>
 <div class="section" id="simplified-airfoil-theory">
-<h2><span class="section-number">5.1. </span>Simplified Airfoil Theory<a class="headerlink" href="#simplified-airfoil-theory" title="Permalink to this headline">¶</a></h2>
+<h2>Simplified Airfoil Theory<a class="headerlink" href="#simplified-airfoil-theory" title="Permalink to this headline">¶</a></h2>
 <p>Long before computers first appeared, aeronautical research involved watching vehicles fly and thinking about what was going on in the air around that vehicle. They then tried to come up with mathematical approximations that seemed to agree with their observations. This thinking led to two theories that we will use here: <em>Thin Airfoil Theory</em> developed by Munk and Glauert in the 1920’s <span id="id1">[]</span> and <em>Lifting Line Theory</em> developed by Lanchester and Prandtl <span id="id2">[]</span>shortly after the Wright Brothers first flew. Their work tried to account for the  vortexes observed at the tips of flying surfaces.</p>
 <div class="section" id="thin-airfoil-theory">
-<h3><span class="section-number">5.1.1. </span>Thin Airfoil Theory<a class="headerlink" href="#thin-airfoil-theory" title="Permalink to this headline">¶</a></h3>
+<h3>Thin Airfoil Theory<a class="headerlink" href="#thin-airfoil-theory" title="Permalink to this headline">¶</a></h3>
 <p>We do not need to explore this theory here, but the key development we need is this approximation for the lift coefficient:</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f559896e-4710-4c9f-a054-a3333bd35352">
+<span class="eqno">()<a class="headerlink" href="#equation-f559896e-4710-4c9f-a054-a3333bd35352" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 C_l = c_{l,0} + 2\pi\alpha
-\end{equation}</p>
+\end{equation}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(\alpha\)</span> is the angle of attack relative to the forward velocity, and <span class="math notranslate nohighlight">\(c_{l,0}\)</span> is the lift coefficient at <span class="math notranslate nohighlight">\(\alpha = 0\)</span>. For the cambered airfoils we use, this is non-zero, unless your airfoil is flat!</p>
 </div>
 <div class="section" id="lifting-line-theory">
-<h3><span class="section-number">5.1.2. </span>Lifting-Line Theory<a class="headerlink" href="#lifting-line-theory" title="Permalink to this headline">¶</a></h3>
+<h3>Lifting-Line Theory<a class="headerlink" href="#lifting-line-theory" title="Permalink to this headline">¶</a></h3>
 <p>If you try to use the theory of wing sections developed using Thin Airfoil Theory to a 3-dimensional wing, you run into a problem. The actual lift generated across the span is not constant. It drops off as you reach the tips. In an attempt to compensate for this, Lanchester and Prandtl came up with an adjustment to the calculations that seemed to account for variations in aspect ratios that were observed.</p>
 <p>The end result of this theory is the introduction of an <em>induced drag</em> component:</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a84e4cdf-4dfa-4f68-8495-474fd2e14d5b">
+<span class="eqno">()<a class="headerlink" href="#equation-a84e4cdf-4dfa-4f68-8495-474fd2e14d5b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 C_{d,i} = \frac{C_l^2}{\pi A_R e}
-\end{equation}</p>
+\end{equation}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(AR\)</span> is the aspect ratio of the wing, and <span class="math notranslate nohighlight">\(e\)</span> is an <em>efficiency factor</em>.</p>
 <p>This <em>induced drag</em> is only part of he total drag produced by a flying wing. There is also a surface drag caused by the friction of the air moving over the surface, for instance, a <em>profile drag</em> caused by pushing the surface through the air.</p>
 <p>The profile drag can be approximated by:</p>
-<p>\begin{equation}
-C_p =
-\end{equation}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1b05f17c-eda9-4601-8745-9750bf239d8f">
+<span class="eqno">()<a class="headerlink" href="#equation-1b05f17c-eda9-4601-8745-9750bf239d8f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+C_p = 
+\end{equation}\]</div>
 <p>The lift and drag forces will be calculated using the definitions of the lift and drag coefficients:</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-95c2778d-40a5-4096-a721-5ab4a31b8153">
+<span class="eqno">()<a class="headerlink" href="#equation-95c2778d-40a5-4096-a721-5ab4a31b8153" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 C_l = \frac{2L}{\rho u^2 S}
-\end{equation}</p>
+\end{equation}\]</div>
 <p>or</p>
 <p>IN these equations, <strong>L</strong> and <strong>D</strong> are the lift forces, <strong>S</strong> is the surface area of the wing or stab, <span class="math notranslate nohighlight">\(\rho\)</span> is the air density and <strong>u</strong> is the flight velocity.</p>
 <p>Similarly:</p>
@@ -491,7 +485,7 @@ total moment = -3.09125 gram * inch
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">t9</span><span class="o">/</span><span class="n">hc5s57h95tj3rsp4qvk61m8m0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_40587</span><span class="o">/</span><span class="mf">3115456486.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">t9</span><span class="o">/</span><span class="n">hc5s57h95tj3rsp4qvk61m8m0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_44769</span><span class="o">/</span><span class="mf">3115456486.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;kinematic_viscosity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;dynamic_viscosity&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">flight</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span> <span class="p">(</span><span class="n">flight</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;wing_re&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">wing</span><span class="p">[</span><span class="s1">&#39;mean_chord&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;dynamic_viscosity&#39;</span><span class="p">]</span>
@@ -555,21 +549,7 @@ total moment = -3.09125 gram * inch
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="simplified-indoor-design.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">4. </span>Simplified Indoor Design</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="hacklinger-theory.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>Hacklinger’s Theories</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>

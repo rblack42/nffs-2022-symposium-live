@@ -3,16 +3,22 @@
 
 format: jb-book
 options:
-root: content/index
+root: frontmatter/index
 options:
   numbered: true
 chapters:
-- file: content/overview
-- file: content/tenny-data-analysis
-- file: content/mcleans-method
-- file: content/simplified-indoor-design
-- file: content/model-aerodynamics
-- file: content/hacklinger-theory
-- file: content/bibliography
-- file: content/biography
+- file: frontmatter/overview
+
+- file: background/atmospheric-data
+- file: background/simplified-indoor-design
+- file: background/tenny-data-analysis
+- file: background/data-smoothing
+
+  #- file: content/circular-arc-data
+  #- file: content/mcleans-method
+  #- file: content/model-aerodynamics
+  #- file: content/hacklinger-theory
+
+- file: backmatter/bibliography
+- file: backmatter/biography
 

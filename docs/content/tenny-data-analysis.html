@@ -297,11 +297,6 @@
      2.4.2. RPM as a Function of Time (n_t)
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#height-as-a-function-of-time-h-t">
-     2.4.3. Height as a Function of Time (h_t)
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -393,11 +388,6 @@
      2.4.2. RPM as a Function of Time (n_t)
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#height-as-a-function-of-time-h-t">
-     2.4.3. Height as a Function of Time (h_t)
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -426,8 +416,8 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="tenny-s-flight-path-data">
-<h1><span class="section-number">2. </span>Tenny’s Flight Path Data<a class="headerlink" href="#tenny-s-flight-path-data" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="tennys-flight-path-data">
+<h1><span class="section-number">2. </span>Tenny’s Flight Path Data<a class="headerlink" href="#tennys-flight-path-data" title="Permalink to this headline">¶</a></h1>
 <p>in the 1968 edition of the <em>NFFS Symposium</em>, Bud Tenny published some interesting data on indoor flights. His data captured the flight path of a model in enough detail to be worthy of a deeper look. Specifically, he presented the model altitude, torque level, and prop rpm as a function of time. The only thing missing would have been an estimate of the flight speed during the flight. Considering how hard it was to gather this kind of data, we will work with it.</p>
 <div class="section" id="capturing-raw-data">
 <h2><span class="section-number">2.1. </span>Capturing raw data<a class="headerlink" href="#capturing-raw-data" title="Permalink to this headline">¶</a></h2>
@@ -646,7 +636,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fn_t</span> <span class="o">=</span> <span class="n">fit_curve</span><span class="p">(</span><span class="n">rpm_x</span><span class="p">,</span> <span class="n">rpm_y</span><span class="p">)</span>
-<span class="n">n_t</span> <span class="o">=</span> <span class="n">fn_t</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
 
 <span class="n">max_time</span> <span class="o">=</span> <span class="n">rpm_x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">t_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_time</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
@@ -656,23 +645,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">t9</span><span class="o">/</span><span class="n">hc5s57h95tj3rsp4qvk61m8m0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_47928</span><span class="o">/</span><span class="mf">43273090.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">fn_t</span> <span class="o">=</span> <span class="n">fit_curve</span><span class="p">(</span><span class="n">rpm_x</span><span class="p">,</span> <span class="n">rpm_y</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">n_t</span> <span class="o">=</span> <span class="n">fn_t</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">max_time</span> <span class="o">=</span> <span class="n">rpm_x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">t_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_time</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;time&#39; is not defined
-</pre></div>
+<img alt="../_images/tenny-data-analysis_42_0.png" src="../_images/tenny-data-analysis_42_0.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="height-as-a-function-of-time-h-t">
-<h3><span class="section-number">2.4.3. </span>Height as a Function of Time (h_t)<a class="headerlink" href="#height-as-a-function-of-time-h-t" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flight_time</span> <span class="o">=</span> <span class="n">fp_x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># last point on the flight profile time axis</span>
@@ -684,7 +659,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/tenny-data-analysis_44_0.png" src="../_images/tenny-data-analysis_44_0.png" />
+<img alt="../_images/tenny-data-analysis_43_0.png" src="../_images/tenny-data-analysis_43_0.png" />
 </div>
 </div>
 <p>At this point, we have a scheme to generate data curve functions we can use to do further analysis. Let’s see examples of using this new capability to generate something new.</p>
@@ -713,7 +688,8 @@
 <p>Now, we take the derivative of the height function in a different <strong>h_t</strong> which gives us the vertical speed:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fdh_t</span> <span class="o">=</span> <span class="n">fh_t</span><span class="o">.</span><span class="n">derivative</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">14.5</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">fdh_t</span> <span class="o">=</span> <span class="n">fh_t</span><span class="o">.</span><span class="n">derivative</span><span class="p">()</span>
 <span class="n">dhdt_pts</span> <span class="o">=</span> <span class="n">fdh_t</span><span class="p">(</span><span class="n">t_samples</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -721,12 +697,12 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_curve</span><span class="p">(</span><span class="n">time_pts</span><span class="p">,</span><span class="n">dhdt_pts</span><span class="p">,</span><span class="s2">&quot;Vertical Velocity&quot;</span><span class="p">,</span><span class="s2">&quot;time (min)&quot;</span><span class="p">,</span> <span class="s2">&quot;V_y (ft/min)&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_curve</span><span class="p">(</span><span class="n">t_samples</span><span class="p">,</span><span class="n">dhdt_pts</span><span class="p">,</span><span class="s2">&quot;Vertical Velocity&quot;</span><span class="p">,</span><span class="s2">&quot;time (min)&quot;</span><span class="p">,</span> <span class="s2">&quot;V_y (ft/min)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/tenny-data-analysis_53_0.png" src="../_images/tenny-data-analysis_53_0.png" />
+<img alt="../_images/tenny-data-analysis_52_0.png" src="../_images/tenny-data-analysis_52_0.png" />
 </div>
 </div>
 <p>Digitized data is often a bit lumpy. We see the effects of that in this curve. There are ways to smooth this kind of data, but doing so might introduce more errors. In this case, smoothing the original data might help.</p>
@@ -736,14 +712,14 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">])</span>
 <span class="n">time_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">7.3</span><span class="p">,</span><span class="mf">4.5</span><span class="p">,</span><span class="mf">3.5</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span><span class="o">-</span><span class="mf">2.7</span><span class="p">,</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span><span class="o">-</span><span class="mf">7.7</span><span class="p">])</span>
 <span class="n">fitted_dhdt</span> <span class="o">=</span> <span class="n">fdh_t</span><span class="p">(</span><span class="n">t_samples</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">fitted_dhdt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_samples</span><span class="p">,</span> <span class="n">fitted_dhdt</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time_samples</span><span class="p">,</span> <span class="n">time_values</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/tenny-data-analysis_55_0.png" src="../_images/tenny-data-analysis_55_0.png" />
+<img alt="../_images/tenny-data-analysis_54_0.png" src="../_images/tenny-data-analysis_54_0.png" />
 </div>
 </div>
 <p>This kind of result gives you confidence in your analytical tools.</p>
@@ -752,33 +728,39 @@
 <h3><span class="section-number">2.5.2. </span>Propeller Power<a class="headerlink" href="#propeller-power" title="Permalink to this headline">¶</a></h3>
 <p>Before we leave Tenny’s data, let’s do one more analysis.</p>
 <p>The rate at which work is done by the propeller is defined as the <em>propeller power</em>, <span class="math notranslate nohighlight">\(P\)</span>:</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-621ee2d5-6ce7-455a-987a-3fbf90382178">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-621ee2d5-6ce7-455a-987a-3fbf90382178" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P = 2\pi n Q
-\end{equation}</p>
+\end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n\)</span> is the prop speed (rpm) and <span class="math notranslate nohighlight">\(Q\)</span> is the torque.</p>
 <p>The torque data we have is torque/turns and we need torque/time.</p>
 <p>Let’s review the functions we have generated:</p>
 <ul class="simple">
 <li><p>torque as a function of turns (q_n)</p></li>
 </ul>
-<p>\begin{equation}\label{eq:torque}
+<div class="amsmath math notranslate nohighlight" id="equation-25fd1b3c-3bf0-400c-bb51-ec199de1d370">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-25fd1b3c-3bf0-400c-bb51-ec199de1d370" title="Permalink to this equation">¶</a></span>\[\begin{equation}\label{eq:torque}
 q_n = Q(n)
-\end{equation}</p>
+\end{equation}\]</div>
 <ul class="simple">
 <li><p>RPM as a function of time (fn_t)</p></li>
 </ul>
-<p>\begin{equation}\label{eq:rpm}
+<div class="amsmath math notranslate nohighlight" id="equation-7e32e8f8-a852-4c94-9125-dd5ea32af5fa">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-7e32e8f8-a852-4c94-9125-dd5ea32af5fa" title="Permalink to this equation">¶</a></span>\[\begin{equation}\label{eq:rpm}
 rpm_t = R(t)
-\end{equation}</p>
+\end{equation}\]</div>
 <ul class="simple">
 <li><p>turns as a function of time (n_t)</p></li>
 </ul>
-<p>\begin{equation}\label{eq:turn_time}</p>
-<p>\end{equation}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8eaf48f6-4131-41da-aed6-545f8139e5c7">
+<span class="eqno">(2.4)<a class="headerlink" href="#equation-8eaf48f6-4131-41da-aed6-545f8139e5c7" title="Permalink to this equation">¶</a></span>\[\begin{equation}\label{eq:turn_time}
+
+\end{equation}\]</div>
 <p>So, if we have a given time <span class="math notranslate nohighlight">\(t\)</span> then</p>
-<p>\begin{equation}\label{eq:torque_time}
+<div class="amsmath math notranslate nohighlight" id="equation-a5e4e4a0-a964-45e3-8d87-0ad6cf88ca25">
+<span class="eqno">(2.5)<a class="headerlink" href="#equation-a5e4e4a0-a964-45e3-8d87-0ad6cf88ca25" title="Permalink to this equation">¶</a></span>\[\begin{equation}\label{eq:torque_time}
 q_t = Q(R(t))
-\end{equation}</p>
+\end{equation}\]</div>
 <p>We have rpm data measured over time. If we integrate that function we will get a function for turns as a function of time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -789,7 +771,7 @@ q_t = Q(R(t))
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/tenny-data-analysis_60_0.png" src="../_images/tenny-data-analysis_60_0.png" />
+<img alt="../_images/tenny-data-analysis_59_0.png" src="../_images/tenny-data-analysis_59_0.png" />
 </div>
 </div>
 <p>The last point on this curve is the remaining turns after the airplane landed:</p>
@@ -800,7 +782,7 @@ q_t = Q(R(t))
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Flight turns = 749.2462187922157
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Flight turns = 759.6862469931604
 </pre></div>
 </div>
 </div>
@@ -825,7 +807,7 @@ q_t = Q(R(t))
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/tenny-data-analysis_65_0.png" src="../_images/tenny-data-analysis_65_0.png" />
+<img alt="../_images/tenny-data-analysis_64_0.png" src="../_images/tenny-data-analysis_64_0.png" />
 </div>
 </div>
 <p>Now we can get our power curve:</p>
@@ -845,7 +827,7 @@ q_t = Q(R(t))
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/tenny-data-analysis_68_0.png" src="../_images/tenny-data-analysis_68_0.png" />
+<img alt="../_images/tenny-data-analysis_67_0.png" src="../_images/tenny-data-analysis_67_0.png" />
 </div>
 </div>
 <p>You can see the power burst at launch. Interesting!</p>
