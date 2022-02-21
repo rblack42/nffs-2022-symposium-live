@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 from scipy import interpolate
 from scipy.signal import savgol_filter
-
+import numpy as np
 
 def get_points(filename):
     x = []
@@ -39,6 +39,13 @@ def load_curve(filename, smooth=True):
     fit = fit_curve(c_x, c_y, smooth)
     return fit
 
+def transform(xcg,ycg, alpha, xp, yp):
+    rad = alpha * np.pi/180
+    xt = xp - xcg
+    yt = yp - ycg
+    x = xt * np.cos(rad) + yt * np.sin(rad)
+    y = -xt * np.sin(rad) + yt * np.cos(rad)
+    return x,y
 
 if __name__ == '__main__':
 

@@ -113,7 +113,7 @@ class ArcAirfoil(object):
 
     def writeAirfoilFile(self):
         name = self.getName()
-        with open(f"data/airfoils/{name}.dat",'w') as fout:
+        with open(f"data/xfoil/{name}.dat",'w') as fout:
 
             # load all points
             xule = self.xule
@@ -172,6 +172,10 @@ class ArcAirfoil(object):
 
 
 if __name__ == '__main__':
-    ra = ArcAirfoil(5, 1)
-    ra.genArc()
-    ra.writeAirfoilFile()
+    # generate arc airfoils for analysis
+    for c in [2,3,4,5,6]:
+        ra = ArcAirfoil(c, 1)
+        ra.genArc()
+        ra.writeAirfoilFile()
+
+

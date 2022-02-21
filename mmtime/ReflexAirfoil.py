@@ -16,7 +16,7 @@ class ReflexAirfoil(object):
         # basic camberline setup
         self.genBSpline()
         self.genCamberLine()
-        self.genSlopes()
+        self.getSlopes()
 
 
     def _ns(self, n):
@@ -146,7 +146,7 @@ class ReflexAirfoil(object):
                     test = 1
                     print("Infinite loop, no converge!")
 
-    def genSlopes(self):
+    def getSlopes(self):
         # generate current camber line
         self.genCamberLine()
         # calculate slope list
@@ -164,6 +164,7 @@ class ReflexAirfoil(object):
             dydx.append(dy/dx)
         self.dydx = dydx
         self.alphaLE = math.atan(self.dydx[0])
+        return self.xp, dydx
 
     def getLE(self):
         nptot = round(180/self.maxLEangle)
@@ -327,6 +328,16 @@ class ReflexAirfoil(object):
                     y = 0.0
                 fout.write("     {0:10.6f}   {1:10.6f}\n".format(x,y))
 
+    def getAirfoilPoints(self):
+        # load all points
+        xtl,ytl,xbl,ybl = self.getLE()
+        xtb,ytb,xbb,ybb = self.getCamberPoints()
+        xtt,ytt,xbt,ybt = self.getTE()
+        xu = xtl + xtb + xtt
+        yu = ytl + ytb + ytt
+        xl = xbl + xbb + xbt
+        yl = ybl + ybb + ybt
+        return xu,yu,xl,yl
 
 
 
