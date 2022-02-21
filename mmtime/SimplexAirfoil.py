@@ -29,15 +29,12 @@ class SimplexAirfoil(object):
     def get_camber_line(self):
 
         """return list of points on camber line. camber is in percentage"""
-        print("generating simplex camberline")
         npoints = self.npoints
         camber = self.camber
         le_radius = self.le_radius
         chord = self.chord - le_radius
         alpha = 1.554 * camber * math.pi/180
         k = 1/math.tan(alpha)
-        print(alpha,k)
-        print(chord, camber, le_radius, npoints)
 
         # generate airfoil points
         roa = np.linspace(0,chord,npoints)/chord

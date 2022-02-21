@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>4. Tenny’s Flight Path Data &#8212; Predicting Indoor Flight Times With Python</title>
+    <title>5. Tenny’s Flight Path Data &#8212; Predicting Indoor Flight Times With Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,8 +55,8 @@
     <link rel="shortcut icon" href="../_static/lpp.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. Data Smoothing" href="data-smoothing.html" />
-    <link rel="prev" title="3. Simplified Indoor Design" href="simplified-indoor-design.html" />
+    <link rel="next" title="6. Data Smoothing" href="data-smoothing.html" />
+    <link rel="prev" title="4. Hodson Wart A6" href="hodson-wart-a6.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -116,24 +116,64 @@
    3. Simplified Indoor Design
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hodson-wart-a6.html">
+   4. Hodson Wart A6
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   4. Tenny’s Flight Path Data
+   5. Tenny’s Flight Path Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-smoothing.html">
-   5. Data Smoothing
+   6. Data Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/mclean-method.html">
+   7. McLean’s Method
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/experimental-airfoil-data.html">
+   8. Airfoil Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/simplex-airfoils.html">
+   9. Simplex Airfoils
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/generating-airfoils-for-xfoil.html">
+   10. Generating Airfoils for XFoil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/level-flight-calculations.html">
+   11. level-flight-calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/indoor-model-propulsion.html">
+   12. Indoor Model Propulsion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/stability-analysis.html">
+   13. Stability Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../backmatter/bibliography.html">
-   6. Bibliography
+   14. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../backmatter/biography.html">
-   7. Biography
+   15. Biography
   </a>
  </li>
 </ul>
@@ -242,71 +282,71 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#capturing-raw-data">
-   4.1. Capturing raw data
+   5.1. Capturing raw data
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#step-1-find-the-data">
-     4.1.1. Step 1: Find the data
+     5.1.1. Step 1: Find the data
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#step2-display-the-raw-image">
-     4.1.2. Step2: Display the raw image
+     5.1.2. Step2: Display the raw image
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#step3-load-the-csv-data">
-     4.1.3. Step3: Load the CSV Data
+     5.1.3. Step3: Load the CSV Data
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#step-4-display-digitized-data">
-     4.1.4. Step 4: Display Digitized Data
+     5.1.4. Step 4: Display Digitized Data
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#propeller-speed-data">
-   4.2. Propeller Speed Data
+   5.2. Propeller Speed Data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#flight-profile-data">
-   4.3. Flight Profile Data
+   5.3. Flight Profile Data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#curve-fit-functions">
-   4.4. Curve Fit Functions
+   5.4. Curve Fit Functions
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#torque-as-a-function-of-turns-q-n">
-     4.4.1. Torque as a Function of Turns (q_n)
+     5.4.1. Torque as a Function of Turns (q_n)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#rpm-as-a-function-of-time-n-t">
-     4.4.2. RPM as a Function of Time (n_t)
+     5.4.2. RPM as a Function of Time (n_t)
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#generate-new-data">
-   4.5. Generate New Data
+   5.5. Generate New Data
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#vertical-velocity">
-     4.5.1. Vertical velocity
+     5.5.1. Vertical velocity
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#propeller-power">
-     4.5.2. Propeller Power
+     5.5.2. Propeller Power
     </a>
    </li>
   </ul>
@@ -333,71 +373,71 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#capturing-raw-data">
-   4.1. Capturing raw data
+   5.1. Capturing raw data
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#step-1-find-the-data">
-     4.1.1. Step 1: Find the data
+     5.1.1. Step 1: Find the data
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#step2-display-the-raw-image">
-     4.1.2. Step2: Display the raw image
+     5.1.2. Step2: Display the raw image
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#step3-load-the-csv-data">
-     4.1.3. Step3: Load the CSV Data
+     5.1.3. Step3: Load the CSV Data
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#step-4-display-digitized-data">
-     4.1.4. Step 4: Display Digitized Data
+     5.1.4. Step 4: Display Digitized Data
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#propeller-speed-data">
-   4.2. Propeller Speed Data
+   5.2. Propeller Speed Data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#flight-profile-data">
-   4.3. Flight Profile Data
+   5.3. Flight Profile Data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#curve-fit-functions">
-   4.4. Curve Fit Functions
+   5.4. Curve Fit Functions
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#torque-as-a-function-of-turns-q-n">
-     4.4.1. Torque as a Function of Turns (q_n)
+     5.4.1. Torque as a Function of Turns (q_n)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#rpm-as-a-function-of-time-n-t">
-     4.4.2. RPM as a Function of Time (n_t)
+     5.4.2. RPM as a Function of Time (n_t)
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#generate-new-data">
-   4.5. Generate New Data
+   5.5. Generate New Data
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#vertical-velocity">
-     4.5.1. Vertical velocity
+     5.5.1. Vertical velocity
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#propeller-power">
-     4.5.2. Propeller Power
+     5.5.2. Propeller Power
     </a>
    </li>
   </ul>
@@ -412,13 +452,13 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="tennys-flight-path-data">
-<h1><span class="section-number">4. </span>Tenny’s Flight Path Data<a class="headerlink" href="#tennys-flight-path-data" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">5. </span>Tenny’s Flight Path Data<a class="headerlink" href="#tennys-flight-path-data" title="Permalink to this headline">¶</a></h1>
 <p>in the 1968 edition of the <em>NFFS Symposium</em>, Bud Tenny published some interesting data on indoor flights. His data captured the flight path of a model in enough detail to be worthy of a deeper look. Specifically, he presented the model altitude, torque level, and prop rpm as a function of time. The only thing missing would have been an estimate of the flight speed during the flight. Considering how hard it was to gather this kind of data, we will work with it.</p>
 <div class="section" id="capturing-raw-data">
-<h2><span class="section-number">4.1. </span>Capturing raw data<a class="headerlink" href="#capturing-raw-data" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1. </span>Capturing raw data<a class="headerlink" href="#capturing-raw-data" title="Permalink to this headline">¶</a></h2>
 <p>NFFS has made PDF files with all past Symposium publications up to about 2015 available to members from their technical library. I loaded up Tenny’s article on my laptop, zoomed his graphs up as large as I could, then used <em>SnagIt</em>, a screen capture program, to capture each graph as an image. Using <em>WebPlotAnalyzer</em> I digitized each curve and exported the data to a simple comma separated data file. Loading the raw data for processing using Python is then pretty simple.</p>
 <div class="section" id="step-1-find-the-data">
-<h3><span class="section-number">4.1.1. </span>Step 1: Find the data<a class="headerlink" href="#step-1-find-the-data" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.1. </span>Step 1: Find the data<a class="headerlink" href="#step-1-find-the-data" title="Permalink to this headline">¶</a></h3>
 <p>This first bit of code let’s me locate the directory holding my Jupyter page ( the one you are reading) on my computer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -441,7 +481,7 @@
 </div>
 </div>
 <div class="section" id="step2-display-the-raw-image">
-<h3><span class="section-number">4.1.2. </span>Step2: Display the raw image<a class="headerlink" href="#step2-display-the-raw-image" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.2. </span>Step2: Display the raw image<a class="headerlink" href="#step2-display-the-raw-image" title="Permalink to this headline">¶</a></h3>
 <p>Displaying an image in a <em>Jupyter</em> page is simple:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -457,7 +497,7 @@
 <p>This is the image I digitized using <em>WebPlotDigitizer</em>.</p>
 </div>
 <div class="section" id="step3-load-the-csv-data">
-<h3><span class="section-number">4.1.3. </span>Step3: Load the CSV Data<a class="headerlink" href="#step3-load-the-csv-data" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.3. </span>Step3: Load the CSV Data<a class="headerlink" href="#step3-load-the-csv-data" title="Permalink to this headline">¶</a></h3>
 <p>This step involves reading the <em>WebPlotDigitizer</em> data file and returning the data a usable Python form. Since we will be doing a lot of this, we will wrap up all the code in a function we can use as needed:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -502,7 +542,7 @@
 </div>
 </div>
 <div class="section" id="step-4-display-digitized-data">
-<h3><span class="section-number">4.1.4. </span>Step 4: Display Digitized Data<a class="headerlink" href="#step-4-display-digitized-data" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.4. </span>Step 4: Display Digitized Data<a class="headerlink" href="#step-4-display-digitized-data" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">torque_curve</span> <span class="o">=</span> <span class="n">datadir</span> <span class="o">/</span> <span class="s1">&#39;torque-curve.csv&#39;</span>
@@ -521,7 +561,7 @@
 </div>
 </div>
 <div class="section" id="propeller-speed-data">
-<h2><span class="section-number">4.2. </span>Propeller Speed Data<a class="headerlink" href="#propeller-speed-data" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2. </span>Propeller Speed Data<a class="headerlink" href="#propeller-speed-data" title="Permalink to this headline">¶</a></h2>
 <p>We can now look at the propeller speed data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -548,7 +588,7 @@
 </div>
 </div>
 <div class="section" id="flight-profile-data">
-<h2><span class="section-number">4.3. </span>Flight Profile Data<a class="headerlink" href="#flight-profile-data" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.3. </span>Flight Profile Data<a class="headerlink" href="#flight-profile-data" title="Permalink to this headline">¶</a></h2>
 <p>Tenny recorded the height of the model as a function of time. This was a tedious process involving a balloon and multiple readers trying to gauge the height of the model and balloon then reading markings on the string holding the balloon!</p>
 <p>Here is Tenny’s graph:</p>
 <div class="cell docutils container">
@@ -578,7 +618,7 @@
 </div>
 </div>
 <div class="section" id="curve-fit-functions">
-<h2><span class="section-number">4.4. </span>Curve Fit Functions<a class="headerlink" href="#curve-fit-functions" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.4. </span>Curve Fit Functions<a class="headerlink" href="#curve-fit-functions" title="Permalink to this headline">¶</a></h2>
 <p>We cannot do much with the data sets in their current form. We need to convert them into Python functions that can deliver a dependent value <strong>y</strong> for any independent value <strong>x</strong>. We can make that happen by using one of the curve fit routines in the Python <strong>scipy</strong> package. <strong>scipy</strong> is a package containing mny collon tools for scientific analysis.</p>
 <p>Here is a function that will accept our data point arrays and return a function we can use to generate results for any <strong>x</strong> value we like.</p>
 <p>Here is a utility curve-fit function:</p>
@@ -596,7 +636,7 @@
 <p>This function accepts two <strong>numpy</strong> arrays and returns a function that will return a value for any input <strong>x</strong> value. Internally, a standard cubic spline is generated that enables it to interpolate between data points. The function will work beyond the ends of the input data, but working there is not to be trusted. Extrapolation assumes something about how the function works in regions where we have no data!</p>
 <p>In the next sections we will create data functions for our digitized data, and show how they work.</p>
 <div class="section" id="torque-as-a-function-of-turns-q-n">
-<h3><span class="section-number">4.4.1. </span>Torque as a Function of Turns (q_n)<a class="headerlink" href="#torque-as-a-function-of-turns-q-n" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.4.1. </span>Torque as a Function of Turns (q_n)<a class="headerlink" href="#torque-as-a-function-of-turns-q-n" title="Permalink to this headline">¶</a></h3>
 <p>We have a minor problem with the torque curve. The raw data <strong>x</strong> axis shows turns remaining, which is a decreasing number. The curve fit routines need increasing values. To cure this, I am going to change the values to turns expended by subtracting the input data from the max turns in our digitized data set. <strong>numpy</strong> makes this is easier than it sounds:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -624,7 +664,7 @@
 </div>
 </div>
 <div class="section" id="rpm-as-a-function-of-time-n-t">
-<h3><span class="section-number">4.4.2. </span>RPM as a Function of Time (n_t)<a class="headerlink" href="#rpm-as-a-function-of-time-n-t" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.4.2. </span>RPM as a Function of Time (n_t)<a class="headerlink" href="#rpm-as-a-function-of-time-n-t" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fn_t</span> <span class="o">=</span> <span class="n">fit_curve</span><span class="p">(</span><span class="n">rpm_x</span><span class="p">,</span> <span class="n">rpm_y</span><span class="p">)</span>
@@ -658,10 +698,10 @@
 </div>
 </div>
 <div class="section" id="generate-new-data">
-<h2><span class="section-number">4.5. </span>Generate New Data<a class="headerlink" href="#generate-new-data" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.5. </span>Generate New Data<a class="headerlink" href="#generate-new-data" title="Permalink to this headline">¶</a></h2>
 <p>Once we have our functions available, we can generate new data.</p>
 <div class="section" id="vertical-velocity">
-<h3><span class="section-number">4.5.1. </span>Vertical velocity<a class="headerlink" href="#vertical-velocity" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.5.1. </span>Vertical velocity<a class="headerlink" href="#vertical-velocity" title="Permalink to this headline">¶</a></h3>
 <p>let’s try to find the slope of the height curve, which gives us the vertical velocity of the vehicle over time. We start off by asking <strong>scipy</strong> to find the value of turns for an input torque. We are basically switching dependent and independent variables here:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -721,11 +761,11 @@
 <p>This kind of result gives you confidence in your analytical tools.</p>
 </div>
 <div class="section" id="propeller-power">
-<h3><span class="section-number">4.5.2. </span>Propeller Power<a class="headerlink" href="#propeller-power" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.5.2. </span>Propeller Power<a class="headerlink" href="#propeller-power" title="Permalink to this headline">¶</a></h3>
 <p>Before we leave Tenny’s data, let’s do one more analysis.</p>
 <p>The rate at which work is done by the propeller is defined as the <em>propeller power</em>, <span class="math notranslate nohighlight">\(P\)</span>:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-26c86f80-572a-42d6-8c43-2a037702a95b">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-26c86f80-572a-42d6-8c43-2a037702a95b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-26c86f80-572a-42d6-8c43-2a037702a95b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P = 2\pi n Q
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n\)</span> is the prop speed (rpm) and <span class="math notranslate nohighlight">\(Q\)</span> is the torque.</p>
@@ -735,26 +775,26 @@ P = 2\pi n Q
 <li><p>torque as a function of turns (<strong>q_n</strong>)</p></li>
 </ul>
 <div class="amsmath math notranslate nohighlight" id="equation-c966052e-f2c2-4834-a336-4ea9b483664e">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-c966052e-f2c2-4834-a336-4ea9b483664e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-c966052e-f2c2-4834-a336-4ea9b483664e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 q_n = Q(n)
 \end{equation}\]</div>
 <ul class="simple">
 <li><p>RPM as a function of time (<strong>fn_t</strong>)</p></li>
 </ul>
 <div class="amsmath math notranslate nohighlight" id="equation-406958e0-ed59-482f-8a52-e04cff8713d5">
-<span class="eqno">(4.3)<a class="headerlink" href="#equation-406958e0-ed59-482f-8a52-e04cff8713d5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(5.3)<a class="headerlink" href="#equation-406958e0-ed59-482f-8a52-e04cff8713d5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 rpm_t = R(t)
 \end{equation}\]</div>
 <ul class="simple">
 <li><p>turns as a function of time (<strong>n_t</strong>)</p></li>
 </ul>
 <div class="amsmath math notranslate nohighlight" id="equation-a1ba0a23-c2da-4151-83fa-1becb34fa36b">
-<span class="eqno">(4.4)<a class="headerlink" href="#equation-a1ba0a23-c2da-4151-83fa-1becb34fa36b" title="Permalink to this equation">¶</a></span>\[\begin{equation}\label
+<span class="eqno">(5.4)<a class="headerlink" href="#equation-a1ba0a23-c2da-4151-83fa-1becb34fa36b" title="Permalink to this equation">¶</a></span>\[\begin{equation}\label
 n_t = N(t) 
 \end{equation}\]</div>
 <p>So, if we have a given time <span class="math notranslate nohighlight">\(t\)</span> then</p>
 <div class="amsmath math notranslate nohighlight" id="equation-62931d25-836e-44f7-9d56-8f8be5562b56">
-<span class="eqno">(4.5)<a class="headerlink" href="#equation-62931d25-836e-44f7-9d56-8f8be5562b56" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(5.5)<a class="headerlink" href="#equation-62931d25-836e-44f7-9d56-8f8be5562b56" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 q_t = Q(R(t))
 \end{equation}\]</div>
 <p>We have rpm data measured over time. If we integrate that function we will get a function for turns as a function of time.</p>
@@ -875,17 +915,17 @@ q_t = Q(R(t))
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="simplified-indoor-design.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="hodson-wart-a6.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">3. </span>Simplified Indoor Design</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>Hodson Wart A6</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="data-smoothing.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Data Smoothing</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Data Smoothing</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

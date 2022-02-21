@@ -127,13 +127,33 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../content/experimental-airfoil-data.html">
+   6. Airfoil Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/simplex-airfoils.html">
+   7. Simplex Airfoils
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/generating-airfoils-for-xfoil.html">
+   8. Generating Airfoils for XFoil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/stability-analysis.html">
+   9. Stability Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../backmatter/bibliography.html">
-   6. Bibliography
+   10. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../backmatter/biography.html">
-   7. Biography
+   11. Biography
   </a>
  </li>
 </ul>
@@ -390,8 +410,8 @@ mu = 1.761999988782331e-05 pascal * second
 <p>Many of the calculations we will perform use data that is dependent on the <em>Reynold’s number</em>. This dimensionless number was invented by George Stokes in 1851, but was promoted widely by Osborne Reynolds and it was named in his honor. It is a measure of the ratio of inertial forces to viscous forces any object experiences while moving through a fluid. It is used to characterize the kind of flow that will develop around that object.</p>
 <p>Let’s see what a typical <em>Reynold’s Number might</em> be for our model. This will also show how <strong>pint</strong> can help you confirm that your units are correct.</p>
 <p>Here is the definition of the Reynold’s Number:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a2173ca1-9738-46a4-bf9f-5732d034cf55">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-a2173ca1-9738-46a4-bf9f-5732d034cf55" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-06ffe030-7a08-4031-b1fb-4fe005a7a884">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-06ffe030-7a08-4031-b1fb-4fe005a7a884" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 RE = \frac{\rho V L}{\mu}
 \end{equation}\]</div>
 <p>where</p>
@@ -401,7 +421,7 @@ RE = \frac{\rho V L}{\mu}
 <li><p><span class="math notranslate nohighlight">\(L\)</span> - some characteristic length. Commonly this is wing chord.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mu\)</span> - the dynamic viscosity of the fluid</p></li>
 </ul>
-<p>Two of these numbers come directly from our flying site data, and the length comes from the model. The big unknown at this point is the flight velocity. From conversations with Gary about flights of the Wart, he estimated the flight velocity at around two miles per hour. We will start off with that number as a test:</p>
+<p>Two of these numbers come directly from our flying site data, and the length comes from the Wart test model. The big unknown at this point is the flight velocity. From conversations with Gary about flights of the Wart, he estimated the flight velocity at around two miles per hour. We will start off with that number and see what we get:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">miles</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">hour</span>
@@ -414,7 +434,7 @@ RE = \frac{\rho V L}{\mu}
 <div class="cell_output docutils container">
 <div class="output text_html">255625.09057361813 inch kilogram mile/(hour meter<sup>3</sup> pascal second)</div></div>
 </div>
-<p>Phew! That does not look right. <strong>pint</strong> may not display the units you expect, but you can force it a bit:</p>
+<p>Phew! That does not look right. <strong>pint</strong> properly combined all the units involved in this calculation, but it has not normalized them into one consistent set. Internally, <strong>pint</strong> uses the metric system, and we can see this by asking for the “base units”:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RE</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
@@ -425,7 +445,6 @@ RE = \frac{\rho V L}{\mu}
 <div class="output text_html">2902.575868446768 dimensionless</div></div>
 </div>
 <p>Now this is correct. The Reynolds number is one of many numbers we work with in aerodynamics that are dimensionless. <strong>pint</strong> can deal with numbers that have no units nicely!</p>
-<p>If you ntices, I used a variety of units of measure in that calculation and <strong>pint</strong> handled all of that with no problems!</p>
 <p>Next, we need a model that will fly through this air!</p>
 </div>
 </div>

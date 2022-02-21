@@ -1,6 +1,9 @@
 # Biography
 
-![Roie Black](../../assets/images/RoieBlack.jpg)
+```python
+from IPython.display import Image
+Image(filename="../../assets/images/roie-black2.jpg")
+```
 
 In 1956, I was on a quest to figure out how airplanes fly. I was 10 years old!
 As a kid growing up in Washington D.C. I was already building model airplanes,
@@ -38,7 +41,7 @@ that time, my model building was put on hold, although I maintained my
 membership in the AMA.
 
 I spent 20 years in the Air Force doing research and teaching.  Eventually I
-was assigned as Deputy Director, then director of a research supercomputer
+was assigned as Deputy Director, then Director of a research supercomputer
 center in New Mexico. After retiring, I started a second career, again teaching
 computer science in Texas, and finally retired for good in 2018.
 
@@ -51,4 +54,3 @@ pursue hobbies we love. My goal now is to continue my teaching, combining both
 of my career paths by building computer tools to assist in designing, building
 , and flying model airplanes. My goal is to help introduce another generation
 of folks to this fascinating world of flight.
-

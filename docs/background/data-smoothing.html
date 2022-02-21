@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>5. Data Smoothing &#8212; Predicting Indoor Flight Times With Python</title>
+    <title>6. Data Smoothing &#8212; Predicting Indoor Flight Times With Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,8 @@
     <link rel="shortcut icon" href="../_static/lpp.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. Bibliography" href="../backmatter/bibliography.html" />
-    <link rel="prev" title="4. Tenny’s Flight Path Data" href="tenny-data-analysis.html" />
+    <link rel="next" title="7. McLean’s Method" href="../content/mclean-method.html" />
+    <link rel="prev" title="5. Tenny’s Flight Path Data" href="tenny-data-analysis.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -115,23 +115,63 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="hodson-wart-a6.html">
+   4. Hodson Wart A6
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="tenny-data-analysis.html">
-   4. Tenny’s Flight Path Data
+   5. Tenny’s Flight Path Data
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   5. Data Smoothing
+   6. Data Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/mclean-method.html">
+   7. McLean’s Method
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/experimental-airfoil-data.html">
+   8. Airfoil Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/simplex-airfoils.html">
+   9. Simplex Airfoils
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/generating-airfoils-for-xfoil.html">
+   10. Generating Airfoils for XFoil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/level-flight-calculations.html">
+   11. level-flight-calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/indoor-model-propulsion.html">
+   12. Indoor Model Propulsion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/stability-analysis.html">
+   13. Stability Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../backmatter/bibliography.html">
-   6. Bibliography
+   14. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../backmatter/biography.html">
-   7. Biography
+   15. Biography
   </a>
  </li>
 </ul>
@@ -252,7 +292,7 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="data-smoothing">
-<h1><span class="section-number">5. </span>Data Smoothing<a class="headerlink" href="#data-smoothing" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">6. </span>Data Smoothing<a class="headerlink" href="#data-smoothing" title="Permalink to this headline">¶</a></h1>
 <p>It is a fact of life that when you digitize data using your mouse, you will not produce the smooth curve you might be trying to capture. I discovered that trying to digitize small images with <em>WebPlotDigitizer</em> caused the expanded view of the curve used to locate points more precisely to jump from pixel to pixel and I was not able to home in on the spot I was after. Blowing the images up to full screen helped, but the curves were still jittery. Time to try some data smoothing.</p>
 <p>Let’s work on some airfoil coefficient curves we will need later and see if we can fix some of this.</p>
 <p>First some setup to access the data:</p>
@@ -277,7 +317,7 @@
 <p>We first consider the digitized lift coefficient data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clfile</span> <span class="o">=</span> <span class="n">datadir</span> <span class="o">/</span> <span class="s1">&#39;CL.csv&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clfile</span> <span class="o">=</span> <span class="n">datadir</span> <span class="o">/</span> <span class="s1">&#39;CL-re3.csv&#39;</span>
 <span class="n">cl_x</span><span class="p">,</span> <span class="n">cl_y</span> <span class="o">=</span> <span class="n">get_points</span><span class="p">(</span><span class="n">clfile</span><span class="p">)</span>
 <span class="n">fit_cl</span> <span class="o">=</span> <span class="n">fit_curve</span><span class="p">(</span><span class="n">cl_x</span><span class="p">,</span> <span class="n">cl_y</span><span class="p">)</span>
 </pre></div>
@@ -296,7 +336,7 @@
 <span class="n">smooth_cl</span> <span class="o">=</span> <span class="n">savgol_filter</span><span class="p">(</span><span class="n">raw_cl</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">raw_cl</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">smooth_cl</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">smooth_cl</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -309,14 +349,14 @@
 <p>Let’s look at the drag coefficient curve:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cdfile</span> <span class="o">=</span> <span class="n">datadir</span> <span class="o">/</span> <span class="s1">&#39;CD.csv&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cdfile</span> <span class="o">=</span> <span class="n">datadir</span> <span class="o">/</span> <span class="s1">&#39;CD-re3.csv&#39;</span>
 <span class="n">cd_x</span><span class="p">,</span> <span class="n">cd_y</span> <span class="o">=</span> <span class="n">get_points</span><span class="p">(</span><span class="n">cdfile</span><span class="p">)</span>
 <span class="n">fit_cd</span> <span class="o">=</span> <span class="n">fit_curve</span><span class="p">(</span><span class="n">cd_x</span><span class="p">,</span> <span class="n">cd_y</span><span class="p">)</span>
 <span class="n">raw_cd</span> <span class="o">=</span> <span class="n">fit_cd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">smooth_cd</span> <span class="o">=</span> <span class="n">savgol_filter</span><span class="p">(</span><span class="n">raw_cd</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">raw_cd</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">smooth_cd</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">smooth_cd</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -327,14 +367,14 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmfile</span> <span class="o">=</span> <span class="n">datadir</span> <span class="o">/</span> <span class="s1">&#39;CM.csv&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmfile</span> <span class="o">=</span> <span class="n">datadir</span> <span class="o">/</span> <span class="s1">&#39;CM-re3.csv&#39;</span>
 <span class="n">cm_x</span><span class="p">,</span> <span class="n">cm_y</span> <span class="o">=</span> <span class="n">get_points</span><span class="p">(</span><span class="n">cdfile</span><span class="p">)</span>
 <span class="n">fit_cm</span> <span class="o">=</span> <span class="n">fit_curve</span><span class="p">(</span><span class="n">cm_x</span><span class="p">,</span> <span class="n">cm_y</span><span class="p">)</span>
 <span class="n">raw_cm</span> <span class="o">=</span> <span class="n">fit_cm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">smooth_cm</span> <span class="o">=</span> <span class="n">savgol_filter</span><span class="p">(</span><span class="n">raw_cm</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">raw_cm</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">smooth_cm</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">smooth_cm</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -446,13 +486,13 @@
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">4. </span>Tenny’s Flight Path Data</p>
+            <p class="prev-next-title"><span class="section-number">5. </span>Tenny’s Flight Path Data</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../backmatter/bibliography.html" title="next page">
+    <a class='right-next' id="next-link" href="../content/mclean-method.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>Bibliography</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>McLean’s Method</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

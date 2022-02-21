@@ -1,0 +1,29 @@
+Traceback (most recent call last):
+  File "/Users/rblack/_dev/nffs-symposium/live-2022/.direnv/python-3.10.2/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/rblack/_dev/nffs-symposium/live-2022/.direnv/python-3.10.2/lib/python3.10/site-packages/nbclient/client.py", line 1093, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/rblack/_dev/nffs-symposium/live-2022/.direnv/python-3.10.2/lib/python3.10/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/rblack/_dev/nffs-symposium/live-2022/.direnv/python-3.10.2/lib/python3.10/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/local/Cellar/python@3.10/3.10.2/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/base_events.py", line 641, in run_until_complete
+    return future.result()
+  File "/Users/rblack/_dev/nffs-symposium/live-2022/.direnv/python-3.10.2/lib/python3.10/site-packages/nbclient/client.py", line 559, in async_execute
+    await self.async_execute_cell(
+  File "/Users/rblack/_dev/nffs-symposium/live-2022/.direnv/python-3.10.2/lib/python3.10/site-packages/nbclient/client.py", line 854, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/Users/rblack/_dev/nffs-symposium/live-2022/.direnv/python-3.10.2/lib/python3.10/site-packages/nbclient/client.py", line 756, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+From this result, we get our equation for $\psi$ shown above,
+------------------
+
+[0;36m  File [0;32m"/var/folders/t9/hc5s57h95tj3rsp4qvk61m8m0000gn/T/ipykernel_36945/1084519830.py"[0;36m, line [0;32m1[0m
+[0;31m    From this result, we get our equation for $\psi$ shown above,[0m
+[0m         ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+
+SyntaxError: invalid syntax (1084519830.py, line 1)
+

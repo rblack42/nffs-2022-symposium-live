@@ -127,13 +127,33 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../content/experimental-airfoil-data.html">
+   6. Airfoil Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/simplex-airfoils.html">
+   7. Simplex Airfoils
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/generating-airfoils-for-xfoil.html">
+   8. Generating Airfoils for XFoil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/stability-analysis.html">
+   9. Stability Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../backmatter/bibliography.html">
-   6. Bibliography
+   10. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../backmatter/biography.html">
-   7. Biography
+   11. Biography
   </a>
  </li>
 </ul>
@@ -250,6 +270,16 @@
    3.2. Aerodynamic Centers
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#estimating-lift">
+   3.3. estimating Lift
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aerodynamic-forces">
+   3.4. Aerodynamic forces
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -280,6 +310,16 @@
    3.2. Aerodynamic Centers
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#estimating-lift">
+   3.3. estimating Lift
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aerodynamic-forces">
+   3.4. Aerodynamic forces
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -291,8 +331,7 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="simplified-indoor-design">
 <h1><span class="section-number">3. </span>Simplified Indoor Design<a class="headerlink" href="#simplified-indoor-design" title="Permalink to this headline">¶</a></h1>
-<p>For this study, we will consider a simplified indoor design. The dimensions we use will be derived from Gary Hodson’s Wart-A6 design <span id="id1">[<a class="reference internal" href="../backmatter/bibliography.html#id4">Hod10</a>]</span>.</p>
-<p>I am using a graphics tool called <em>Tikz</em> to generate the figures in this. article. THis is part of a very high quality publishing system called <span class="math notranslate nohighlight">\(\LaTeX\)</span> which you will probably run into if you end up in graduate school. Many universities require that theses and dissertations use this system for publications. For this article, you can safely ignore the code, and just look at the figures produced.</p>
+<p>For the rest of this work, we will use a simplified indoor design. The dimensions we use will be derived from Gary Hodson’s Wart-A6 design <span id="id1">[<a class="reference internal" href="../backmatter/bibliography.html#id4">Hod10</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> tikzmagic
@@ -378,8 +417,8 @@
 <img alt="../_images/simplified-indoor-design_3_0.png" src="../_images/simplified-indoor-design_3_0.png" />
 </div>
 </div>
-<p>This simplified model allows for a wing and stab offset from the body center line. It also allows for a thrust offset. The center of gravity is marked, together with the aerodynamic centers of the wing and stab. All forces acting on this model are assumed to be applied at these marked points.</p>
-<p>The primary reference point for our model is the center of gravity, which is not shown on the Wart plans, but we can calculate the location from other data.</p>
+<p>This model has a wing and stab offset from the body center line. We also allow for a thrust offset. The center of gravity is marked, together with aerodynamic centers on the wing and stab. These are the points where forces are assumed to act.</p>
+<p>In order to maintain level flight, all of the applied forces must be balanced. Therefore the lift must equal the weight, the thrust must equal the drag, and the moments must add up to zero so there is no tendency to pitch up or down. Our reference point in these calculations is the center of gravity, which is not shown on the Wart plans. However, we can figure out the CG location from other data.</p>
 <div class="section" id="locating-the-center-of-gravity">
 <h2><span class="section-number">3.1. </span>Locating the Center of Gravity<a class="headerlink" href="#locating-the-center-of-gravity" title="Permalink to this headline">¶</a></h2>
 <p>The Wart plans show weights for all of the major model components. We can figure out the center of gravity using those weights and the center of mass location of those parts. OpenSCAD can give us that data directly, but a little geometry will be sufficient here.</p>
@@ -425,12 +464,12 @@
 </div>
 <p>We can estimate the <strong>CG</strong> location by balancing the model, both horizontally, and vertically.</p>
 <p>The definition of the <em>center of mass</em> for a collection of objects is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4b60a34b-4637-492a-b333-46bee392b3e4">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-4b60a34b-4637-492a-b333-46bee392b3e4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7522e5c6-5873-4ef1-bcbf-36dd44711c80">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-7522e5c6-5873-4ef1-bcbf-36dd44711c80" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 {cg}_x = \frac{\sum^{n}_{i=1}x_i W_i}{\sum^{n}_{i=1}W_i}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-fffc163a-c335-4aeb-af60-15b52c4d37a2">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-fffc163a-c335-4aeb-af60-15b52c4d37a2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-10417c81-bcc2-4f88-aa02-db126ecdcbca">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-10417c81-bcc2-4f88-aa02-db126ecdcbca" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 {cg}_y = \frac{\sum^{n}_{i=1}y_i W_i}{\sum^{n}_{i=1}W_i}
 \end{equation}\]</div>
 <p>The reference point for these calculations can be any convenient point. We will use the nose of the motor stick. All dimensions were derived from the plans.</p>
@@ -440,9 +479,9 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cg_arms</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;prop&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">,</span><span class="o">-</span><span class="mf">0.125</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">),</span>
     <span class="s1">&#39;wing&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">2.25</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">,</span> <span class="p">(</span><span class="mi">7</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">),</span>
-    <span class="s1">&#39;stab&#39;</span><span class="p">:</span> <span class="p">((</span><span class="mi">6</span><span class="o">+</span><span class="mf">8.5</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">,</span><span class="mf">0.125</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">),</span>
-    <span class="s1">&#39;motor_stick&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">,</span><span class="mf">0.0625</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">),</span>
-    <span class="s1">&#39;tail_boom&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">10.0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">,</span><span class="mf">0.125</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">),</span>
+    <span class="s1">&#39;stab&#39;</span><span class="p">:</span> <span class="p">((</span><span class="mi">6</span><span class="o">+</span><span class="mf">8.5</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">),</span>
+    <span class="s1">&#39;motor_stick&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">,</span><span class="mf">0.0625</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">),</span>
+    <span class="s1">&#39;tail_boom&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">7.0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">),</span>
     <span class="s1">&#39;rubber&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">,</span><span class="o">-</span><span class="mf">0.125</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
@@ -450,7 +489,7 @@
 </div>
 </div>
 <p>Each of these locations is. shown as an <strong>(x,y)</strong> pair. We need both values to locate the <strong>CG</strong> correctly. Yes, it is tedious to add units to the numbers, but the results will justify adding them.</p>
-<p>Here is code to calculate the <strong>CG</strong> location using the equations shown above:</p>
+<p>Here is code to calculate the model weight:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>   <span class="k">def</span> <span class="nf">cg</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
@@ -470,13 +509,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CG is at (4.058252427184466 inch,0.13895631067961164 inch)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CG is at (4.048543689320388 inch,0.11893203883495145 inch)
 </pre></div>
 </div>
 </div>
 </div>
 <p>That puts the <strong>CG</strong> slightly behind the tailing edge of the wing.</p>
-<p>Before we move on, let’s gather some data from the plans and calculate a few area and lengths we will need in our later work. Eventually, all of this data will be generated from the OpenSCAD design, or input by the user from a simple data file.</p>
+<p>Before we move on, let’s gather some data from the plans and calculate a few area and lengths we will need.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
@@ -518,7 +557,7 @@
 </div>
 </div>
 </div>
-<p>Here is a utility routine to print our the data we just created:</p>
+<p>Here is a utility routine to print our the data we have created:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_dict</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
@@ -567,13 +606,242 @@ stab_data
 <h2><span class="section-number">3.2. </span>Aerodynamic Centers<a class="headerlink" href="#aerodynamic-centers" title="Permalink to this headline">¶</a></h2>
 <p>Flying surfaces generate aerodynamic forces by creating a pressure distribution on their surfaces as they move. We can integrate this pressure distribution to find the total force that will be generated, and locate that force. This point is called the <em>center of pressure</em>. Unfortunately, the center of pressure  point varies with angle of attack. For that reason, aerodynamics researchers prefers to use an <em>aerodynamic center</em> as the point where forces will be applied. Doing this requires the addition of a moment force to ensure that the total force are correct. The aerodynamic center is commonly set at 1/4 of the mean chord of each surface.</p>
 <p>The mean chord is found using:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a20ab357-6cb4-4b15-a554-b09c96e42270">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-a20ab357-6cb4-4b15-a554-b09c96e42270" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-\overline
-{c} = S / b
+<div class="amsmath math notranslate nohighlight" id="equation-956ac4fd-5217-4d65-b69f-79fec42cad62">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-956ac4fd-5217-4d65-b69f-79fec42cad62" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+c_m = S / b
 \end{equation}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(S\)</span> is the projected surface area, and <span class="math notranslate nohighlight">\(b\)</span> is the projected span.</p>
-<p>Now that we have a model and some air to fly in, let’s look at a typical flight, and introduce a few more tools for use in your research projects.</p>
+</div>
+<div class="section" id="estimating-lift">
+<h2><span class="section-number">3.3. </span>estimating Lift<a class="headerlink" href="#estimating-lift" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arms</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;thrust&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.125</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">),</span>
+    <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">),</span>
+    <span class="s1">&#39;wing_ac&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">,</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">),</span>
+    <span class="s1">&#39;stab_ac&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="p">),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forces</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;thrust&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">grams</span><span class="p">,</span>
+    <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="mf">2.06</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">grams</span><span class="p">,</span>
+    <span class="s1">&#39;lift_wing&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">grams</span><span class="p">,</span>
+    <span class="s1">&#39;drag_wing&#39;</span><span class="p">:</span> <span class="mf">0.03</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">grams</span><span class="p">,</span>
+    <span class="s1">&#39;lift_stab&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.4</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">grams</span><span class="p">,</span>
+    <span class="s1">&#39;drag_stab&#39;</span><span class="p">:</span> <span class="mf">0.015</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">grams</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now write a simple function that determines the moment around the <strong>CG</strong> for given values of the various terms. To simplify this function, we will create a Python dictionary holding the values.</p>
+<p>It should be apparent that all six force vectors need to be considered, since none of them (except weight) align with the center of gravity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pint</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We need to estimate the location of the center of gravity. The Wart plans shows some data we can use:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">moment</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">f</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    
+    <span class="c1"># thrust moment</span>
+    <span class="n">ta</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;thrust&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># y </span>
+    <span class="n">tf</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;thrust&#39;</span><span class="p">]</span>
+    <span class="n">tm</span> <span class="o">=</span> <span class="n">ta</span> <span class="o">*</span> <span class="n">tf</span>
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Thrust moment:&quot;</span><span class="p">,</span><span class="n">tm</span><span class="p">)</span>
+    <span class="c1"># weight  - no moment, but we will calculate it anyway</span>
+    <span class="n">wa</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">wf</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span>
+    <span class="n">wm</span> <span class="o">=</span> <span class="n">wa</span> <span class="o">*</span> <span class="n">wf</span>
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Weight moment:&quot;</span><span class="p">,</span><span class="n">wm</span><span class="p">)</span>
+    
+    <span class="c1"># wing lift moment</span>
+    <span class="n">wla</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;wing_ac&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">wlf</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;lift_wing&#39;</span><span class="p">]</span>
+    <span class="n">wlm</span> <span class="o">=</span> <span class="n">wla</span> <span class="o">*</span> <span class="n">wlf</span>
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wing lift moment:&quot;</span><span class="p">,</span><span class="n">wlm</span><span class="p">)</span>
+    
+    <span class="c1"># wing drag moment</span>
+    <span class="n">wda</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;wing_ac&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">wdf</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;drag_wing&#39;</span><span class="p">]</span>
+    <span class="n">wdm</span> <span class="o">=</span> <span class="n">wda</span> <span class="o">*</span> <span class="n">wdf</span>
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wing drag moment:&quot;</span><span class="p">,</span><span class="n">wdm</span><span class="p">)</span>    
+    
+    <span class="c1"># stab lift moment</span>
+    <span class="n">sla</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;stab_ac&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">slf</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;lift_stab&#39;</span><span class="p">]</span>
+    <span class="n">slm</span> <span class="o">=</span> <span class="n">sla</span> <span class="o">*</span> <span class="n">slf</span>
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stab lift moment:&quot;</span><span class="p">,</span><span class="n">slm</span><span class="p">)</span>    
+    
+    <span class="c1"># stab drag moment</span>
+    <span class="n">sda</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;stab_ac&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">sdf</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;drag_stab&#39;</span><span class="p">]</span>
+    <span class="n">sdm</span> <span class="o">=</span> <span class="n">sda</span> <span class="o">*</span> <span class="n">sdf</span> 
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stab drag moment:&quot;</span><span class="p">,</span><span class="n">sdm</span><span class="p">)</span>
+        
+    <span class="n">total_moment</span> <span class="o">=</span> <span class="n">tm</span> <span class="o">+</span> <span class="n">wm</span> <span class="o">+</span> <span class="n">wlm</span> <span class="o">+</span> <span class="n">wdm</span> <span class="o">+</span> <span class="n">slm</span> <span class="o">+</span> <span class="n">sdm</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;total moment =&#39;</span><span class="p">,</span><span class="n">total_moment</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moment</span><span class="p">(</span><span class="n">arms</span><span class="p">,</span> <span class="n">forces</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Thrust moment: -0.00625 gram * inch
+Weight moment: 0.0 gram * inch
+Wing lift moment: -1.5 gram * inch
+Wing drag moment: 0.03 gram * inch
+Stab lift moment: -1.6 gram * inch
+Stab drag moment: -0.015 gram * inch
+total moment = -3.09125 gram * inch
+</pre></div>
+</div>
+</div>
+</div>
+<p>By convention, a positive moment pitched the node up. So this one is going to fly about like many of my  first flights!</p>
+<p>For stable level flight, the total moment needs to be zero. Obviously, I threw in random values here, and our goal is to produce all of these numbers from our design and a little help from aerodynamics theory.</p>
+<p>The nice thing about using code to help us make these calculations is that we can run parametric tests and see results quickly, We will use that fact later.</p>
+</div>
+<div class="section" id="aerodynamic-forces">
+<h2><span class="section-number">3.4. </span>Aerodynamic forces<a class="headerlink" href="#aerodynamic-forces" title="Permalink to this headline">¶</a></h2>
+<p>The forces generated by the wing and stab depend on the airfoils we use and the actual flight conditions. Since most bulders use simple circular arc airfoils, I went in search of data on common thicknesses. The Wart uses a 4% arc on the wing, and a 2% arc on the stab. Of course, I could not find any usable data for those airfoils, but I did find data for a 6% and a 3% arch airfoils that will at least let us begin this development.</p>
+<p>Let’s get some data from the wart plans, and use <strong>pint</strong> to track units:</p>
+<p>let’s see what we have now:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dict_print</span><span class="p">(</span><span class="n">wing</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">t9</span><span class="o">/</span><span class="n">hc5s57h95tj3rsp4qvk61m8m0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_36928</span><span class="o">/</span><span class="mf">1495506983.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dict_print</span><span class="p">(</span><span class="n">wing</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;dict_print&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dict_print</span><span class="p">(</span><span class="n">stab</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tip_span: 5.4375 inch
+center_chord: 1.75 inch
+tip_chord: 1 inch
+tip_dihedral: 0.875 inch
+tip_angle: 0.08028681528301647
+projected_area: 14.90495716456054 inch ** 2
+projected_span: 10.83996884695312 inch
+mean_chord: 1.375 inch
+te_to_ac: 1.03125 inch
+</pre></div>
+</div>
+</div>
+</div>
+<p>We estimated the mean chord values by dividing the projected area by the projected span. The location of the mean aerodynamic centers for both surfaces is set at the quarter chord point. We will locate it from the trailing edges since both are straight on the plans.</p>
+<p>The lift and drag forces will be calculated using the definitions of the lift and drag coefficients:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-984485f0-375c-47d8-ac0e-325e283a3f89">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-984485f0-375c-47d8-ac0e-325e283a3f89" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+C_l = \frac{2L}{\rho u^2 S}
+\end{equation}\]</div>
+<p>or</p>
+<div class="amsmath math notranslate nohighlight" id="equation-533ff29b-0d3a-4f6f-9ca1-92489ced2d50">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-533ff29b-0d3a-4f6f-9ca1-92489ced2d50" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+L = \frac{1}{2}\rho u^2 C_l S
+\end{equation}\]</div>
+<p>IN these equations, <strong>L</strong> and <strong>D</strong> are the lift forces, <strong>S</strong> is the surface area of the wing or stab, <span class="math notranslate nohighlight">\(\rho\)</span> is the air density and <strong>u</strong> is the flight velocity.</p>
+<p>Similarly:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ab3e493f-7838-414c-974c-960f40688501">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-ab3e493f-7838-414c-974c-960f40688501" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+D = \frac{1}{2}\rho u^2 C_d S
+\end{equation}\]</div>
+<p>Formally, we should also include the moment coefficient, which accounts for the center of pressure not falling exactly at the aerodynamic center</p>
+<div class="amsmath math notranslate nohighlight" id="equation-dd8fb41e-5e3d-4f18-ba70-efb68867d369">
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-dd8fb41e-5e3d-4f18-ba70-efb68867d369" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+M = \frac{1}{2}\rho u^2 C_n S c
+\end{equation}\]</div>
+<p>Where <strong>c</strong> is the mean chord.</p>
+<p>For testing purposes, we will use these values for density and velocity:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flight</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;density&#39;</span><span class="p">:</span> <span class="mf">0.00231683</span> <span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">slugs</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">ft</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;dynamic_viscosity&#39;</span><span class="p">:</span> <span class="mf">0.0000180338</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">pascal</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">second</span><span class="p">,</span>
+    <span class="s1">&#39;velocity&#39;</span><span class="p">:</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">mph</span>
+<span class="p">}</span>
+<span class="n">flight</span><span class="p">[</span><span class="s1">&#39;kinematic_viscosity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;dynamic_viscosity&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">flight</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span>
+<span class="n">flight</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span> <span class="p">(</span><span class="n">flight</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">flight</span><span class="p">[</span><span class="s1">&#39;wing_re&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">wing</span><span class="p">[</span><span class="s1">&#39;mean_chord&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;dynamic_viscosity&#39;</span><span class="p">]</span>
+<span class="n">flight</span><span class="p">[</span><span class="s1">&#39;stab_re&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">stab</span><span class="p">[</span><span class="s1">&#39;mean_chord&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;dynamic_viscosity&#39;</span><span class="p">]</span>
+
+<span class="n">dict_print</span><span class="p">(</span><span class="n">flight</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>density: 0.00231683 slug / foot ** 3
+dynamic_viscosity: 1.80338e-05 pascal * second
+velocity: 2.0 mile_per_hour
+kinematic_viscosity: 0.007783825313035483 foot ** 3 * pascal * second / slug
+q: 0.00463366 mile_per_hour ** 2 * slug / foot ** 3
+wing_re: 498.557747973379 inch * mile_per_hour * slug / foot ** 3 / pascal / second
+stab_re: 353.29672614756737 inch * mile_per_hour * slug / foot ** 3 / pascal / second
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wing_re</span> <span class="o">=</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;wing_re&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+<span class="n">wing_re</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">2917.575722064471 dimensionless</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stab_re</span> <span class="o">=</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;stab_re&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+<span class="n">stab_re</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">2067.5036243705945 dimensionless</div></div>
+</div>
+<p>Getting airfoil data for these Reynolds Numbers is not easy. McLean arbitrarily used a <span class="math notranslate nohighlight">\(C_lw\)</span> of 1.0, and calculated the required $C_ls* to balance moments. He used pitching moment coefficient values of -0.10 and -0.05 for the wing and stab.He did not include any other forces.</p>
+<p>Rather than just use these numbers, we will use the most basic theories of aerodynamics to estimate the coefficients.</p>
+<p><em>Thin Airfoil Theory</em>, is often used as a first approximation for calculating lift and pitching moment data. If we use <em>Prandtl’s Lifting Line Theory</em> we can get an approximation for the induced drag, and profile drag which together as the major sources of drag at low speeds.</p>
+<p>we can estimate the <span class="math notranslate nohighlight">\(C_d\)</span> values by examining typical lift/drag curves.</p>
 </div>
 </div>
 

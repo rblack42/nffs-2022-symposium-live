@@ -98,7 +98,6 @@ class Airfoil(object):
 
         x = self.xc[0]
         y = self.yc[0]
-        print(x,y, np1, np2, nptot)
         for i in range(np1+1):
             xule.append(x + r * math.cos(alpha))
             yule.append(y + r * math.sin(alpha))
@@ -141,13 +140,26 @@ class Airfoil(object):
             ybotte.append(yb)
         return xtopte, ytopte, xbotte, ybotte
 
+    def _ns(self, n):
+        """format name values with optional leading zero"""
+        if n < 10:
+            return "0" + str(n)
+        return str(n)
+
+    def getName(self):
+        name = self.name
+        camber = self._ns(self.camber)
+        thickness = self._ns(self.thickness)
+        return  f"{name}{camber}{thickness}"
+
 
     def xfoil_data_file(self,xpath):
         """generate xfoil data file"""
         self.foil_path = xpath
         accuracy = 0.00001
-        dname = f"{self.name}_{self.camber}_{self.thickness}.dat"
+        dname = self.getName() + '.dat'
         dpath = os.path.join(xpath,dname)
+        print("Generating:", dpath)
         with open(dpath,'w') as fout:
 
             # load all points
@@ -222,4 +234,6 @@ class Airfoil(object):
                     y = 0.0
                 fout.write("     {0:10.6f}   {1:10.6f}\n".format(x,y))
 
-
+if __name__ == '__main__':
+    af = Airfoil('simplex',1,2,1,51)
+    af.xfoil_data_file('data/airfoils')

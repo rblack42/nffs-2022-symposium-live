@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>McLean’s Method &#8212; Predicting Indoor Flight Times With Python</title>
+    <title>8. McLean’s Method &#8212; Predicting Indoor Flight Times With Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,8 +52,11 @@
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://rblack42.github.io/nffs-2022-symposium-live/content/mclean-method.html" />
+    <link rel="shortcut icon" href="../_static/lpp.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9. Airfoil Data" href="experimental-airfoil-data.html" />
+    <link rel="prev" title="7. Definitions" href="hacklinger-theory.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -97,35 +100,85 @@
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../frontmatter/overview.html">
    1. Overview
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../background/atmospheric-data.html">
+   2. Atmospheric Data
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../background/simplified-indoor-design.html">
-   2. Simplified Indoor Design
+   3. Simplified Indoor Design
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../background/hodson-wart-a6.html">
+   4. Hodson Wart A6
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../background/tenny-data-analysis.html">
-   3. Tenny’s Flight Path Data
+   5. Tenny’s Flight Path Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../background/data-smoothing.html">
-   4. Data Smoothing
+   6. Data Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hacklinger-theory.html">
+   7. Definitions
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   8. McLean’s Method
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="experimental-airfoil-data.html">
+   9. Airfoil Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="simplex-airfoils.html">
+   10. Simplex Airfoils
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="generating-airfoils-for-xfoil.html">
+   11. Generating Airfoils for XFoil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="level-flight-calculations.html">
+   12. level-flight-calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indoor-model-propulsion.html">
+   13. Indoor Model Propulsion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stability-analysis.html">
+   14. Stability Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../backmatter/bibliography.html">
-   5. Bibliography
+   15. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../backmatter/biography.html">
-   6. Biography
+   16. Biography
   </a>
  </li>
 </ul>
@@ -234,12 +287,17 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#available-energy">
-   Available Energy
+   8.1. Available Energy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#slusarczys-max-turn-calculator">
+   8.2. Slusarczy’s Max Turn Calculator
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#level-flight-power">
-   Level Flight Power
+   8.3. Level Flight Power
   </a>
  </li>
 </ul>
@@ -264,12 +322,17 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#available-energy">
-   Available Energy
+   8.1. Available Energy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#slusarczys-max-turn-calculator">
+   8.2. Slusarczy’s Max Turn Calculator
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#level-flight-power">
-   Level Flight Power
+   8.3. Level Flight Power
   </a>
  </li>
 </ul>
@@ -282,24 +345,129 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="mcleans-method">
-<h1>McLean’s Method<a class="headerlink" href="#mcleans-method" title="Permalink to this headline">¶</a></h1>
-<p>Doug McLean wrote an article in the 1976 issue of the NFFS Symposium <span id="id1">[]</span> that worked through a method for estimating indoor flight times. However his method was purely manual, not what I was after. I decided to use his article as the basis for writing my own code in <em>Python</em>. What follows is a walk through Doug’s method and an explanation of how I created code to make his technique more user friendly.</p>
-<p>Doug starts off with a simple assumption. The total flight time is defined as a function of the energy available in the rubber motor divided by the power needed to maintain level flight.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2d180e0d-2fba-48f6-a22d-2fd6a85e358a">
-<span class="eqno">()<a class="headerlink" href="#equation-2d180e0d-2fba-48f6-a22d-2fd6a85e358a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<h1><span class="section-number">8. </span>McLean’s Method<a class="headerlink" href="#mcleans-method" title="Permalink to this headline">¶</a></h1>
+<p>We have enough background now to begin a look at McLean’s technique for estimating indoor model flight time. In this section, we will work through his development and see what we can produce using Python code.</p>
+<p>Doug starts off his analysis with a simple assumption. The total flight time is a function of the energy available in the rubber motor divided by the power needed to maintain level flight.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ec63d352-8452-4547-9822-aabcdfcf0291">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-ec63d352-8452-4547-9822-aabcdfcf0291" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 t = \eta_{av} E / P
 \end{equation}\]</div>
 <p>In this equation, <span class="math notranslate nohighlight">\(\eta_{av}\)</span> is a term related to the efficiency of the propeller. McLean defines it as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-87968e7e-45cd-4546-928f-54f77b1e0236">
-<span class="eqno">()<a class="headerlink" href="#equation-87968e7e-45cd-4546-928f-54f77b1e0236" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d93540b4-c5b9-40c0-8c36-9ff477582f4d">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-d93540b4-c5b9-40c0-8c36-9ff477582f4d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \eta_{av} = F \eta_p
 \end{equation}\]</div>
 <p><span class="math notranslate nohighlight">\(\eta_p\)</span> is the theoretical propeller efficiency, <strong>F</strong> is a fudge factor derived from a study of actual model flight times.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;../../assets/images/mclean-efficiency-factor.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/mclean-method_3_0.png" src="../_images/mclean-method_3_0.png" />
+</div>
+</div>
+<p>Let’s load the digitized data from this graph and see how it looks:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mmtime_helper</span>
+<span class="kn">from</span> <span class="nn">mmtime.utils</span> <span class="kn">import</span> <span class="n">get_points</span><span class="p">,</span> <span class="n">show_curve</span><span class="p">,</span> <span class="n">fit_curve</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">projdir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/Users/rblack/_dev/nffs-symposium/live-2022&#39;</span><span class="p">)</span>
+<span class="n">datadir</span> <span class="o">=</span> <span class="n">projdir</span> <span class="o">/</span> <span class="s1">&#39;mmtime&#39;</span> <span class="o">/</span> <span class="s1">&#39;data&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F_csv</span> <span class="o">=</span> <span class="n">datadir</span> <span class="o">/</span> <span class="s1">&#39;efficiency-factor.csv&#39;</span>
+<span class="n">F_x</span><span class="p">,</span> <span class="n">F_y</span> <span class="o">=</span> <span class="n">get_points</span><span class="p">(</span><span class="n">F_csv</span><span class="p">)</span>
+<span class="n">fit_F</span> <span class="o">=</span> <span class="n">fit_curve</span><span class="p">(</span><span class="n">F_x</span><span class="p">,</span> <span class="n">F_y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">savgol_filter</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">raw_cl</span> <span class="o">=</span> <span class="n">fit_F</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">smooth_F</span> <span class="o">=</span> <span class="n">savgol_filter</span><span class="p">(</span><span class="n">raw_cl</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">#plt.plot(x,smooth_F, color=&#39;green&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">F_x</span><span class="p">,</span> <span class="n">F_y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/mclean-method_7_0.png" src="../_images/mclean-method_7_0.png" />
+</div>
+</div>
+<p>The following code will generate a least-squares linear fit through these points. Note that this is not the same line as shown on McLean’s graph!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">arange</span>
+
+<span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="n">x_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">F_x</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">F_x</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">popt</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">F_x</span><span class="p">,</span> <span class="n">F_y</span><span class="p">)</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">popt</span>
+<span class="n">y_line</span> <span class="o">=</span> <span class="n">objective</span><span class="p">(</span><span class="n">x_line</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_line</span><span class="p">,</span> <span class="n">y_line</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;He&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">F_x</span><span class="p">,</span> <span class="n">F_y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/mclean-method_9_0.png" src="../_images/mclean-method_9_0.png" />
+</div>
+</div>
+<p>Unfortunately, at the time this graph was developed the A6 class did not exist, so we have to find a place for our type of model. From the site data for the Kibby Dome, we can calculate the Dimensionless Ceiling Height value from McLean’s formula:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pint</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ceiling_height</span> <span class="o">=</span> <span class="mi">147</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">feet</span>
+<span class="n">site_elevation</span> <span class="o">=</span> <span class="mi">2347</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">feet</span>
+<span class="n">motor_weight</span> <span class="o">=</span> <span class="mf">0.86</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span>
+<span class="n">model_weight</span> <span class="o">=</span> <span class="mf">2.06</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span>
+<span class="n">const</span> <span class="o">=</span> <span class="mi">483</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">feet</span>
+
+<span class="n">H_e</span> <span class="o">=</span> <span class="n">ceiling_height</span><span class="o">/</span><span class="p">(</span><span class="n">const</span> <span class="o">*</span> <span class="n">motor_weight</span> <span class="o">/</span> <span class="n">model_weight</span><span class="p">)</span>
+<span class="n">H_e</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.7290192113245703 dimensionless</div></div>
+</div>
+<p>This number is off the current chart, but using the linear fit the data we can extrapolate and find a proper value for the fudge factor.</p>
 <div class="section" id="available-energy">
-<h2>Available Energy<a class="headerlink" href="#available-energy" title="Permalink to this headline">¶</a></h2>
-<p>To determine the amount of energy availble in a flight, McLean turned to an an article by Max Hacklinger <span id="id2">[]</span>. Hacklinger conducted both experimental and theoretical research into indoor model flight and determined that the energy available in indoor rubber motors was approximately just a function of motor weight. He came up with this equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-949dbca3-92de-48d4-9ba7-d617c3fa4a8f">
-<span class="eqno">()<a class="headerlink" href="#equation-949dbca3-92de-48d4-9ba7-d617c3fa4a8f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<h2><span class="section-number">8.1. </span>Available Energy<a class="headerlink" href="#available-energy" title="Permalink to this headline">¶</a></h2>
+<p>To determine the amount of energy available in a flight, McLean turned to an an article by Max Hacklinger <span id="id1">[<a class="reference internal" href="../backmatter/bibliography.html#id8">Hac64</a>]</span>. Hacklinger conducted both experimental and theoretical research into indoor model flight and determined that the energy available in indoor rubber motors was approximately just a function of motor weight. He came up with this equation:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-56296293-9011-48a6-8c34-c82842cfd701">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-56296293-9011-48a6-8c34-c82842cfd701" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 E = k_m w_m
 \end{equation}\]</div>
 <p>Where:</p>
@@ -307,14 +475,13 @@ E = k_m w_m
 <li><p>k_m is a constant = 900 meters</p></li>
 <li><p><span class="math notranslate nohighlight">\(w_m\)</span> is the motor weight</p></li>
 </ul>
-<p>I will be using data from Gary Hodson’s record setting flight in 2003 at the Kibby Dome as we work through this development. Ideally, we will get a final answer somewhere near his record time of 10:18.</p>
-<p>Let’s check the available energy for his motor weight of 0.84 grams:</p>
+<p>Gary Hodson’s record setting flight of 10 minutes, 18 seconds, was made in 2003 at the Kibby Dome. ON that flight the motor weight was 0.84 grams. Let’s see how much energy was available on that flight:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pint</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
 
-<span class="n">w_m</span> <span class="o">=</span> <span class="mf">0.84</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">gram</span>
+<span class="n">w_m</span> <span class="o">=</span> <span class="mf">0.86</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">gram</span>
 <span class="n">k_m</span> <span class="o">=</span> <span class="mi">900</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">meters</span>
 <span class="n">E</span> <span class="o">=</span> <span class="n">k_m</span> <span class="o">*</span> <span class="n">w_m</span>
 
@@ -323,7 +490,7 @@ E = k_m w_m
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>756.0 gram * meter
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>774.0 gram * meter
 </pre></div>
 </div>
 </div>
@@ -335,13 +502,60 @@ E = k_m w_m
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">5.4681584715146805 foot pound</div></div>
+<div class="output text_html">5.598352720836459 foot pound</div></div>
 </div>
-<p>If you know anything about programming, you might notice that I added units to the numbers. The Python <strong>pint</strong> package lets me do that, and that package will make sure we use consistent units in our calculations. This is vitally important in working toward correct results. (Ask NASA about what happened to a Mars lander!) Notice also that we are able to automatically convert between units of measure.</p>
+<p>That is a lot of energy for such a light model. If we really could convert all of that into flight time, we would be making extremely long flights. Unfortunately, we lose a lot of that power due to a number of inefficiencies in our designs.</p>
+<p>The total energy in a system is constant. That energy can be converted from one form to another. The kinetic energy of an object is defines as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ad80d7c4-5ce9-48fe-9e4b-def5d4a9ea10">
+<span class="eqno">(8.4)<a class="headerlink" href="#equation-ad80d7c4-5ce9-48fe-9e4b-def5d4a9ea10" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+E_k = \frac{1}{2}m V^2
+\end{equation}\]</div>
+<p>If the Wart flew at 2 miles per hour for 618 seconds, the kinetic energy burned would be</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E_k</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mf">2.06</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">gravity</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">miles</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">hour</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">E_k</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;ft*pound&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.0006072794793764947 foot pound</div></div>
+</div>
+</div>
+<div class="section" id="slusarczys-max-turn-calculator">
+<h2><span class="section-number">8.2. </span>Slusarczy’s Max Turn Calculator<a class="headerlink" href="#slusarczys-max-turn-calculator" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loop_weight</span> <span class="o">=</span> <span class="mf">1.4</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span>
+<span class="n">loop_length</span> <span class="o">=</span> <span class="mi">14</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inches</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mf">8.5</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">ounces</span> <span class="o">**</span> <span class="mf">0.5</span> <span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">inches</span> <span class="o">**</span> <span class="mf">1.5</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N_max</span> <span class="o">=</span> <span class="n">K</span> <span class="o">*</span> <span class="n">loop_length</span> <span class="o">/</span> <span class="p">(</span><span class="n">loop_weight</span><span class="o">/</span><span class="n">loop_length</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>  
+<span class="n">N_max</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">2003.6406787972865 dimensionless</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;grams**0.5/inches**1.5&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">45.25762969689476 gram<sup>0.5</sup>/inch<sup>1.5</sup></div></div>
+</div>
 </div>
 <div class="section" id="level-flight-power">
-<h2>Level Flight Power<a class="headerlink" href="#level-flight-power" title="Permalink to this headline">¶</a></h2>
-<p>The next term we will consider is the power required to maintain level flight. McLean used a simple model for this part. Basically, his technique involved balancing the aerodynamic forces produced by the flying model so the model would remain level. From this, he predicted the model flight speed. I fond another article by Walter Erbach <span id="id3">[]</span> that used the same scheme to predict flight speed and power required. I decided to use Erbach’s scheme for this calculation, since it seems more complete.</p>
+<h2><span class="section-number">8.3. </span>Level Flight Power<a class="headerlink" href="#level-flight-power" title="Permalink to this headline">¶</a></h2>
+<p>The next term we will consider is the power required to maintain level flight. McLean used a simple model for this part. Basically, his technique involved balancing the aerodynamic forces produced by the flying model so the model would remain level. From this, he predicted the model flight speed. I fond another article by Walter Erbach <span id="id2">[<a class="reference internal" href="../backmatter/bibliography.html#id3">Erb90</a>]</span> that used the same scheme to predict flight speed and power required. I decided to use Erbach’s scheme for this calculation, since it seems more complete.</p>
 </div>
 </div>
 
@@ -369,7 +583,21 @@ E = k_m w_m
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="hacklinger-theory.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">7. </span>Definitions</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="experimental-airfoil-data.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Airfoil Data</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>

@@ -1,0 +1,959 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>10. Simplex Airfoils &#8212; Predicting Indoor Flight Times With Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://rblack42.github.io/nffs-2022-symposium-live/content/simplex-airfoils.html" />
+    <link rel="shortcut icon" href="../_static/lpp.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11. Generating Airfoils for XFoil" href="generating-airfoils-for-xfoil.html" />
+    <link rel="prev" title="9. Airfoil Data" href="experimental-airfoil-data.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/lpp.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Predicting Indoor Flight Times With Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../frontmatter/index.html">
+   Predicting Indoor Model Flight Time Using Python
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../frontmatter/overview.html">
+   1. Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../background/atmospheric-data.html">
+   2. Atmospheric Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../background/simplified-indoor-design.html">
+   3. Simplified Indoor Design
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../background/hodson-wart-a6.html">
+   4. Hodson Wart A6
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../background/tenny-data-analysis.html">
+   5. Tenny’s Flight Path Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../background/data-smoothing.html">
+   6. Data Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hacklinger-theory.html">
+   7. Definitions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mclean-method.html">
+   8. McLean’s Method
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="experimental-airfoil-data.html">
+   9. Airfoil Data
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   10. Simplex Airfoils
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="generating-airfoils-for-xfoil.html">
+   11. Generating Airfoils for XFoil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="level-flight-calculations.html">
+   12. level-flight-calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indoor-model-propulsion.html">
+   13. Indoor Model Propulsion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stability-analysis.html">
+   14. Stability Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../backmatter/bibliography.html">
+   15. Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../backmatter/biography.html">
+   16. Biography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/content/simplex-airfoils.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live/issues/new?title=Issue%20on%20page%20%2Fcontent/simplex-airfoils.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.ord/v2/gh/rblack42/nffs-2022-symposium-live/master?urlpath=tree/docs/content/simplex-airfoils.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simplex-airfoil-spreadsheet-formulas">
+   10.1. Simplex Airfoil Spreadsheet Formulas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#derivation-of-simplex-airfoil-equations">
+   10.2. Derivation of Simplex Airfoil Equations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#slicing-off-the-simplex-airfoil">
+     10.2.1. Slicing off the Simplex Airfoil
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#locating-the-maximum-point">
+     10.2.2. Locating the Maximum Point
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simplex-airfoil-function">
+   10.3. Simplex Airfoil Function
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Simplex Airfoils</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simplex-airfoil-spreadsheet-formulas">
+   10.1. Simplex Airfoil Spreadsheet Formulas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#derivation-of-simplex-airfoil-equations">
+   10.2. Derivation of Simplex Airfoil Equations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#slicing-off-the-simplex-airfoil">
+     10.2.1. Slicing off the Simplex Airfoil
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#locating-the-maximum-point">
+     10.2.2. Locating the Maximum Point
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simplex-airfoil-function">
+   10.3. Simplex Airfoil Function
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="simplex-airfoils">
+<h1><span class="section-number">10. </span>Simplex Airfoils<a class="headerlink" href="#simplex-airfoils" title="Permalink to this headline">¶</a></h1>
+<p>Many indoor models are constructed using a simple circular arc airfoil. I showed how to use the Python <strong>sympy</strong> package to figure out the radius needed for some specified camber in my last article<span id="id1">[<a class="reference internal" href="../backmatter/bibliography.html#id2">Bla21</a>]</span>.</p>
+<p>The circular arc has its high point at the 50% chord point, which does not look much like a traditional airfoil. Another popular shape is called the <em>Simplex</em> airfoil, which moves the high point forward to about the 36% chord point. <em>Simplex</em> airfoils are unique in that one template can be used for any chord width by pinning the leading edge and rotating the template to match the desired chord. A bit of digging on the Internet turned up an Excel spreadsheet <span id="id2">[<a class="reference internal" href="../backmatter/bibliography.html#id14">sim</a>]</span> that contained the code needed to generate the airfoil shape, but I want to be able to generate these shapes directly in Python. Let’s extract the formulas needed from the spreadsheet and see what we get:</p>
+<div class="section" id="simplex-airfoil-spreadsheet-formulas">
+<h2><span class="section-number">10.1. </span>Simplex Airfoil Spreadsheet Formulas<a class="headerlink" href="#simplex-airfoil-spreadsheet-formulas" title="Permalink to this headline">¶</a></h2>
+<p>The formulas from the spreadsheet are these:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1e61add5-ba83-4a4f-a331-07a2504d306c">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-1e61add5-ba83-4a4f-a331-07a2504d306c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\alpha = 1.554 camber
+\end{equation}\]</div>
+<p>Here <strong>camber</strong> is the percentage of the chord desired.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3ef94eb2-ff16-40b4-8675-b6710ef55005">
+<span class="eqno">(10.2)<a class="headerlink" href="#equation-3ef94eb2-ff16-40b4-8675-b6710ef55005" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\psi = \pi \tan(\frac{A \pi}{360})ln(x)
+\end{equation}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(x\)</span> is a number ranging from <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(1\)</span>. This is not the save as the <span class="math notranslate nohighlight">\(x\)</span> coordinate we use for the airfoil. It seems to be related to <span class="math notranslate nohighlight">\(\rho/a\)</span>. We may need to figure this out later.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-66b220b4-3390-4dd8-bcd3-7d797572b502">
+<span class="eqno">(10.3)<a class="headerlink" href="#equation-66b220b4-3390-4dd8-bcd3-7d797572b502" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\rho = {\rm e}^{\psi/\tan(\frac{A\pi}{180})}
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-e48698b3-de92-42fd-99da-a4d4a237fa7c">
+<span class="eqno">(10.4)<a class="headerlink" href="#equation-e48698b3-de92-42fd-99da-a4d4a237fa7c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+x = \rho \sin{\psi}
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-90879bad-251b-48f1-b9bd-b9398887e63c">
+<span class="eqno">(10.5)<a class="headerlink" href="#equation-90879bad-251b-48f1-b9bd-b9398887e63c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+y = \rho \cos({-\psi})
+\end{equation}\]</div>
+<p>These equations work in generating the airfoil shape. However, I prefer to use verifiable equations that I can prove are correct, so we will explore generating the airfoil using <strong>sympy</strong> below.</p>
+<p>For now, let’s explore an example airfoil.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chord</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">camber</span> <span class="o">=</span> <span class="mf">0.10</span>
+<span class="n">npoints</span> <span class="o">=</span> <span class="mi">51</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.554</span> <span class="o">*</span> <span class="n">camber</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.002712241657599188 368.6978057843987
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">roa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">npoints</span><span class="p">)</span>
+<span class="n">roa</span> <span class="o">=</span> <span class="n">roa</span> <span class="o">/</span><span class="n">chord</span>
+<span class="n">roa</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0000001</span>  <span class="c1"># avoid infinity in ln(0)</span>
+<span class="n">psi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">roa</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span> <span class="o">=</span> <span class="n">chord</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">psi</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span>
+<span class="c1">#rho[0] = 0</span>
+<span class="n">xc</span> <span class="o">=</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+<span class="n">yc</span> <span class="o">=</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="o">-</span><span class="n">psi</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  psi    rho     x      y&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">npoints</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%6.3f</span><span class="s2"> </span><span class="si">%6.3f</span><span class="s2"> </span><span class="si">%6.3f</span><span class="s2"> </span><span class="si">%6.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">psi</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">rho</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">xc</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">yc</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+    <span class="c1">#print(psi[i], rho[i], xc[i], yc[i])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  psi    rho     x      y
+-0.069  0.000  0.000  0.000
+-0.020  0.001  0.001  0.000
+-0.017  0.004  0.004  0.000
+-0.015  0.008  0.008  0.000
+-0.014  0.013  0.013  0.000
+-0.013  0.018  0.018  0.000
+-0.012  0.024  0.024  0.000
+-0.011  0.031  0.031  0.000
+-0.011  0.038  0.038  0.000
+-0.010  0.046  0.046  0.000
+-0.010  0.054  0.054  0.001
+-0.009  0.062  0.062  0.001
+-0.009  0.072  0.072  0.001
+-0.009  0.081  0.081  0.001
+-0.008  0.091  0.091  0.001
+-0.008  0.102  0.102  0.001
+-0.008  0.112  0.112  0.001
+-0.008  0.124  0.124  0.001
+-0.007  0.135  0.135  0.001
+-0.007  0.147  0.147  0.001
+-0.007  0.160  0.160  0.001
+-0.007  0.172  0.172  0.001
+-0.006  0.185  0.185  0.001
+-0.006  0.199  0.199  0.001
+-0.006  0.213  0.213  0.001
+-0.006  0.227  0.227  0.001
+-0.006  0.241  0.241  0.001
+-0.006  0.256  0.256  0.001
+-0.005  0.271  0.271  0.001
+-0.005  0.286  0.286  0.002
+-0.005  0.302  0.302  0.002
+-0.005  0.318  0.318  0.002
+-0.005  0.334  0.334  0.002
+-0.005  0.351  0.351  0.002
+-0.005  0.367  0.367  0.002
+-0.004  0.384  0.384  0.002
+-0.004  0.402  0.402  0.002
+-0.004  0.420  0.420  0.002
+-0.004  0.437  0.437  0.002
+-0.004  0.456  0.456  0.002
+-0.004  0.474  0.474  0.002
+-0.004  0.493  0.493  0.002
+-0.004  0.512  0.512  0.002
+-0.004  0.531  0.531  0.002
+-0.003  0.551  0.551  0.002
+-0.003  0.571  0.571  0.002
+-0.003  0.591  0.591  0.002
+-0.003  0.611  0.611  0.002
+-0.003  0.631  0.631  0.002
+-0.003  0.652  0.652  0.002
+-0.003  0.673  0.673  0.002
+</pre></div>
+</div>
+</div>
+</div>
+<p>This looks exactly like the output from the spreadsheet. I used a hack to keep <span class="math notranslate nohighlight">\(r/a\)</span> from reaching zero, which would have sent <span class="math notranslate nohighlight">\(ln(0r/a\)</span> to infinity! There is still a “magic” number here that converts camber to the initial slope of the arc. I will try to figure that out later!</p>
+<p>Let’s get a look at this airfoil:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span><span class="n">yc</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/simplex-airfoils_9_0.png" src="../_images/simplex-airfoils_9_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mm</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">yc</span><span class="p">)</span>
+<span class="n">mmi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">yc</span><span class="o">==</span><span class="n">mm</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Camber&quot;</span><span class="p">,</span><span class="nb">max</span><span class="p">(</span><span class="n">yc</span><span class="p">),</span><span class="s2">&quot;at&quot;</span><span class="p">,</span><span class="n">xc</span><span class="p">[</span><span class="n">mmi</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Camber 0.001988142041151258 at 0.6732434861615944
+</pre></div>
+</div>
+</div>
+</div>
+<p>It looks like this code will generate our airfoil shape. In order to generate aerodynamic coefficient data for this airfoil, we need to set up procedures that will return the camber line for this airfoil so it can be used by the airfoil generator code we will use to set up <strong>xfoil</strong> analysis.</p>
+<p>Here is the procedure we will use:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simplex_camber_line</span><span class="p">(</span><span class="n">camber</span><span class="p">,</span> <span class="n">npoints</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;return list of points on camber line. camber is in percentage&quot;&quot;&quot;</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.554</span> <span class="o">*</span> <span class="n">camber</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+    
+    <span class="c1"># generate airfoil points</span>
+    <span class="n">roa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">npoints</span><span class="p">)</span>
+    <span class="n">roa</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0000001</span>  <span class="c1"># avoid infinity in ln(0)</span>
+    <span class="n">psi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">roa</span><span class="p">)</span>
+    <span class="n">rho</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">psi</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="o">-</span><span class="n">psi</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xc</span><span class="p">,</span> <span class="n">yc</span> <span class="o">=</span> <span class="n">simplex_camber_line</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">51</span><span class="p">)</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span><span class="n">yc</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/simplex-airfoils_13_0.png" src="../_images/simplex-airfoils_13_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="derivation-of-simplex-airfoil-equations">
+<h2><span class="section-number">10.2. </span>Derivation of Simplex Airfoil Equations<a class="headerlink" href="#derivation-of-simplex-airfoil-equations" title="Permalink to this headline">¶</a></h2>
+<p>This section is incomplete, and not necessary if you are willing to accept the code generated above. I am including it since I want to understand exactly how this airfoil gets generated.</p>
+<p>The simplex airfoil is a section of the logarithmic spiral curve first developed in 1525 by  Albrecht Dürer and studied extensively by  Jacob Bernoulli, a name that should be familiar to anyone interested in aerodynamics!. This curve is defined by this equation:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6292e210-62bd-4b18-ab9a-e0d5849709e4">
+<span class="eqno">(10.6)<a class="headerlink" href="#equation-6292e210-62bd-4b18-ab9a-e0d5849709e4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\rho = a{\rm e}^{k\psi}
+\end{equation}\]</div>
+<p>In this equation, written in polar (<span class="math notranslate nohighlight">\(\rho\)</span>,<span class="math notranslate nohighlight">\(\psi\)</span>) coordinates, <span class="math notranslate nohighlight">\(a (a &gt; 0)\)</span> and <span class="math notranslate nohighlight">\(k (k \neq 0)\)</span> are arbitrary constants.</p>
+<p>From this defining equation, we can come up with some other helpful equations.</p>
+<p>If we divide both sides by <span class="math notranslate nohighlight">\(a\)</span> and take the natural logarithm of both sides, we get:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f7e02e56-7e8e-4f39-af9c-56a814025eff">
+<span class="eqno">(10.7)<a class="headerlink" href="#equation-f7e02e56-7e8e-4f39-af9c-56a814025eff" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\psi = \frac{1}{k}ln\frac{\rho}{a}
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-e75acd8a-33a0-49f8-b2bf-416bfe7aaffd">
+<span class="eqno">(10.8)<a class="headerlink" href="#equation-e75acd8a-33a0-49f8-b2bf-416bfe7aaffd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+k = \frac{1}{\tan{\alpha}}
+\end{equation}\]</div>
+<p>Where the slope of the leading edge is defined by <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
+<p>We can define the equations for this curve in cartesian coordinates as follows:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-db698934-5fbc-4635-8e0d-2ed3bce6fb10">
+<span class="eqno">(10.9)<a class="headerlink" href="#equation-db698934-5fbc-4635-8e0d-2ed3bce6fb10" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+x = a{\rm e}^{k\psi} \cos(\psi)
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-9c40c5ec-706f-482c-83f9-187b4a0757eb">
+<span class="eqno">(10.10)<a class="headerlink" href="#equation-9c40c5ec-706f-482c-83f9-187b4a0757eb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+y = a{\rm e}^{k\psi} \sin(\psi)
+\end{equation}\]</div>
+<p>As <span class="math notranslate nohighlight">\(k\)</span> approaches zero, the spiral collapses to a circle. Looking at the documentation for this spiral, as <span class="math notranslate nohighlight">\(k\)</span> approaches zero, the limiting case of <span class="math notranslate nohighlight">\(\alpha\)</span> is <span class="math notranslate nohighlight">\(-\pi/2\)</span>. (I have not convinced <strong>sympy</strong> to prove this yet!)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span>
+<span class="n">psi</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">rho</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;psi a k rho&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq1</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">psi</span><span class="p">)</span>
+<span class="n">eq2</span> <span class="o">=</span> <span class="n">rho</span><span class="o">/</span><span class="n">a</span>
+<span class="n">eq3</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">eq1</span><span class="p">)</span>
+<span class="n">eq4</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">eq2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">eq3</span><span class="o">/</span><span class="n">k</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span><span class="s2">&quot;=&quot;</span><span class="p">,</span><span class="n">eq4</span><span class="o">/</span><span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>psi = log(rho/a)/k
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is equation 7 above.</p>
+<p>The angle <span class="math notranslate nohighlight">\(\alpha\)</span> between the tangent line to the spiral curve and a radial line is given by:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5434c3ec-d7e1-4cde-b74b-ae949382108a">
+<span class="eqno">(10.11)<a class="headerlink" href="#equation-5434c3ec-d7e1-4cde-b74b-ae949382108a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\tan(\alpha) = \frac{r}{\frac{dr}{d\psi}}
+\end{equation}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">sympy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">psi</span><span class="p">)</span>
+<span class="n">eq5</span><span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">psi</span><span class="p">)</span>
+<span class="n">rho</span><span class="o">/</span><span class="n">eq5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{1}{k}\]</div>
+</div>
+</div>
+<p>This is equation 8 above. The angle is constant everywhere on the spiral. As <span class="math notranslate nohighlight">\(k \rightarrow 0\)</span>, the curve collapses to a simple circle with constant radius <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>From this result, we get our equation for $\psi$ shown above,
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  File &quot;/var/folders/t9/hc5s57h95tj3rsp4qvk61m8m0000gn/T/ipykernel_36945/1084519830.py&quot;, line 1
+    From this result, we get our equation for $\psi$ shown above,
+         ^
+SyntaxError: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+<p>It appears that the spreadsheet uses <span class="math notranslate nohighlight">\(\rho/a\)</span> as a parameter, and lets it range from 0 to 1 (actually, from 0 to the chord length). Since the natural logarithm of zero is infinity, the value of <span class="math notranslate nohighlight">\(\psi\)</span> is set to <span class="math notranslate nohighlight">\(-\pi/2\)</span> when <span class="math notranslate nohighlight">\(\rho/a\)</span> is equal to zero. This ends up with the <span class="math notranslate nohighlight">\(x\)</span>  value running from 0 to the chord length as well. This approximation cleans up the actual behavior of the spiral curve as <span class="math notranslate nohighlight">\(\rho/a\)</span> approaches 0.</p>
+<p>If we define the angle made between the spiral and the circle passing through this point as <span class="math notranslate nohighlight">\(\alpha\)</span>, we get:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-57bb8304-daf0-4ae4-a6f0-de3bd5cde6e6">
+<span class="eqno">(10.12)<a class="headerlink" href="#equation-57bb8304-daf0-4ae4-a6f0-de3bd5cde6e6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+tan(\alpha) = \frac{1}{k}
+\end{equation}\]</div>
+<p>Let’s look at this curve:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">n</span><span class="o">=</span><span class="mi">100</span>
+<span class="n">a</span><span class="o">=</span><span class="mf">0.25</span>
+<span class="n">k</span><span class="o">=</span><span class="mf">0.20</span>
+<span class="n">th</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">th</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">th</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">th</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">th</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Obviously, we only need a slice of this curve for our airfoil. In this polar system, <span class="math notranslate nohighlight">\(psi\)</span> is increasing in a counter-clockwise direction. At <span class="math notranslate nohighlight">\(\psi = 0\)</span>, the radius is simply equal to <span class="math notranslate nohighlight">\(a\)</span>. If you look closely at this spiral between angles of <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(\pi/2\)</span>, it is apparent that as we sweep to increasing values of <span class="math notranslate nohighlight">\(\psi\)</span> we are sweeping from the trailing edge of our desired airfoil to the leading edge. Let’s set up a cartesian system that placed the origin at the leading edge <span class="math notranslate nohighlight">\((\psi = 0)\)</span> and the trailing edge at <span class="math notranslate nohighlight">\((\psi = \pi/2)\)</span>. We will scale this new system so the length of the chord is one.</p>
+<div class="section" id="slicing-off-the-simplex-airfoil">
+<h3><span class="section-number">10.2.1. </span>Slicing off the Simplex Airfoil<a class="headerlink" href="#slicing-off-the-simplex-airfoil" title="Permalink to this headline">¶</a></h3>
+<p>The spiral, as defined in polar form, cannot directly define our simplex airfoil. Instead, we need a coordinate transformation that sets up a new cartesian coordinate system we will use instead.</p>
+</div>
+<div class="section" id="locating-the-maximum-point">
+<h3><span class="section-number">10.2.2. </span>Locating the Maximum Point<a class="headerlink" href="#locating-the-maximum-point" title="Permalink to this headline">¶</a></h3>
+<p>We can explore these equations and try to locate the point where the height of our airfoil will be a maximum.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span>
+<span class="n">y</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">psi</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;y k psi&#39;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">E</span><span class="o">**</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">sympy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">E</span><span class="o">**</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">sympy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e1</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">psi</span><span class="p">)</span>
+<span class="n">e1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e2</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">psi</span><span class="p">)</span>
+<span class="n">e2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">ratsimp</span><span class="p">(</span><span class="n">e2</span><span class="o">/</span><span class="n">e1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the above equations <span class="math notranslate nohighlight">\(e1\)</span> is <span class="math notranslate nohighlight">\(\frac{dx}{d\psi}\)</span> and <span class="math notranslate nohighlight">\(e2\)</span> is <span class="math notranslate nohighlight">\(\frac{dy}{d\psi}\)</span>. Using the chain rule, we get the slope of the curve <span class="math notranslate nohighlight">\(\frac{dy}{dx}\)</span>. The high point on the curve will occur where this expression equals zero. We can find the equation for <span class="math notranslate nohighlight">\(\psi\)</span> where this happens:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq2</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">sympy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">-</span> <span class="n">sympy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+<span class="n">eq2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq3</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">eq2</span><span class="p">,</span><span class="n">psi</span><span class="p">)</span>
+<span class="n">eq4</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">eq3</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">eq4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is the value of <span class="math notranslate nohighlight">\(\psi\)</span> where <span class="math notranslate nohighlight">\(y\)</span> is at a max. To find out that height, we plug this back into the equation for <span class="math notranslate nohighlight">\(y\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="simplex-airfoil-function">
+<h2><span class="section-number">10.3. </span>Simplex Airfoil Function<a class="headerlink" href="#simplex-airfoil-function" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mm</span> <span class="o">=</span> <span class="n">slope</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">yp</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">mm</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getLE</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+    <span class="n">r0</span> <span class="o">=</span> <span class="mf">0.005</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">,</span> <span class="mi">19</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">angles</span><span class="p">)):</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x0</span> <span class="o">+</span> <span class="n">r0</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y0</span> <span class="o">+</span> <span class="n">r0</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xl</span><span class="p">,</span><span class="n">yl</span> <span class="o">=</span> <span class="n">getLE</span><span class="p">(</span><span class="n">xa</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ya</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">ma</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">set_figwidth</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xa</span><span class="p">,</span><span class="n">ma</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span><span class="n">yl</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">yp</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xa</span><span class="p">[</span><span class="mi">100</span><span class="p">:],</span><span class="n">ya</span><span class="p">[</span><span class="mi">100</span><span class="p">:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.02</span><span class="p">],[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">bottom</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="mf">0.02</span><span class="p">,</span><span class="n">right</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ma</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simplexCamber</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">m</span><span class="p">,</span> <span class="n">thickness</span><span class="p">):</span>
+    <span class="n">xu</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">yu</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">xl</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">yl</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+        <span class="n">xp</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">yp</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">angle</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">xu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xp</span> <span class="o">-</span> <span class="n">thickness</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span>
+        <span class="n">yu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">yp</span> <span class="o">+</span> <span class="n">thickness</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span>
+        <span class="n">xl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xp</span> <span class="o">+</span> <span class="n">thickness</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span>
+        <span class="n">yl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">yp</span> <span class="o">-</span> <span class="n">thickness</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">xu</span><span class="p">,</span><span class="n">yu</span><span class="p">,</span><span class="n">xl</span><span class="p">,</span><span class="n">yl</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xu</span><span class="p">,</span><span class="n">yu</span><span class="p">,</span><span class="n">xl</span><span class="p">,</span><span class="n">yl</span> <span class="o">=</span> <span class="n">simplexCamber</span><span class="p">(</span><span class="n">xa</span><span class="p">,</span><span class="n">ya</span><span class="p">,</span><span class="n">ma</span><span class="p">,</span><span class="mf">0.005</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">set_figwidth</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">bottom</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="mf">0.05</span><span class="p">,</span><span class="n">right</span><span class="o">=</span><span class="mf">1.05</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xu</span><span class="p">,</span><span class="n">yu</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span><span class="n">yl</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">yp</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">set_figwidth</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xa</span><span class="p">,</span><span class="n">ya</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">yp</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xu</span><span class="p">,</span><span class="n">yu</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span><span class="n">yl</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xa</span><span class="p">[</span><span class="mi">100</span><span class="p">:],</span><span class="n">ya</span><span class="p">[</span><span class="mi">100</span><span class="p">:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.02</span><span class="p">],[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">bottom</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="mf">0.02</span><span class="p">,</span><span class="n">right</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getTE</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">yp</span><span class="p">,</span> <span class="n">mp</span><span class="p">,</span> <span class="n">thickness</span><span class="p">):</span>
+    <span class="n">nx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xc</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">thickness</span><span class="o">/</span><span class="mi">100</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">t</span><span class="o">/</span><span class="mi">2</span>
+    <span class="c1"># set trailing edce distribution</span>
+    <span class="n">aa</span> <span class="o">=</span> <span class="n">r</span><span class="o">/</span><span class="mi">25</span> <span class="o">-</span> <span class="n">r</span>
+    <span class="n">cc</span> <span class="o">=</span> <span class="n">r</span>
+    <span class="n">xtopte</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ytopte</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">xbotte</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ybotte</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">nx</span> <span class="o">-</span> <span class="mi">5</span> <span class="o">+</span> <span class="n">i</span>
+        <span class="n">xx</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="mf">0.2</span>
+        <span class="n">tt</span> <span class="o">=</span> <span class="n">aa</span><span class="o">*</span><span class="n">xx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">cc</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan</span><span class="p">(</span><span class="n">mp</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">xc</span> <span class="o">=</span> <span class="n">xp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">yc</span> <span class="o">=</span> <span class="n">yp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">xt</span> <span class="o">=</span> <span class="n">xc</span> <span class="o">+</span> <span class="n">tt</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">yt</span> <span class="o">=</span> <span class="n">yc</span> <span class="o">+</span> <span class="n">tt</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">xtopte</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xt</span><span class="p">)</span>
+        <span class="n">ytopte</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">yt</span><span class="p">)</span>
+        <span class="n">alpha</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+        <span class="n">xb</span> <span class="o">=</span> <span class="n">xc</span> <span class="o">+</span> <span class="n">tt</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">yb</span> <span class="o">=</span> <span class="n">yc</span> <span class="o">+</span> <span class="n">tt</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">xbotte</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xb</span><span class="p">)</span>
+        <span class="n">ybotte</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">yb</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">xtopte</span><span class="p">,</span> <span class="n">ytopte</span><span class="p">,</span> <span class="n">xbotte</span><span class="p">,</span> <span class="n">ybotte</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="experimental-airfoil-data.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">9. </span>Airfoil Data</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="generating-airfoils-for-xfoil.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Generating Airfoils for XFoil</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Roie R. Black<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

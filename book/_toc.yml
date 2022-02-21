@@ -11,13 +11,19 @@ chapters:
 
 - file: background/atmospheric-data
 - file: background/simplified-indoor-design
+- file: background/hodson-wart-a6
 - file: background/tenny-data-analysis
 - file: background/data-smoothing
+- file: content/hacklinger-theory
+- file: content/mclean-method
+- file: content/experimental-airfoil-data
+- file: content/simplex-airfoils
+- file: content/xfoil-circular-arc
+- file: content/generating-airfoils-for-xfoil
+- file: content/level-flight-calculations
+- file: content/indoor-model-propulsion
+- file: content/stability-analysis
 
-  #- file: content/circular-arc-data
-  #- file: content/mcleans-method
-  #- file: content/model-aerodynamics
-  #- file: content/hacklinger-theory
 
 - file: backmatter/bibliography
 - file: backmatter/biography

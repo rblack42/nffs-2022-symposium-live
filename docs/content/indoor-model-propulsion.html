@@ -1,0 +1,518 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>14. Indoor Model Propulsion &#8212; Predicting Indoor Flight Times With Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://rblack42.github.io/nffs-2022-symposium-live/content/indoor-model-propulsion.html" />
+    <link rel="shortcut icon" href="../_static/lpp.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="15. Stability Analysis" href="stability-analysis.html" />
+    <link rel="prev" title="13. level-flight-calculations" href="level-flight-calculations.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/lpp.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Predicting Indoor Flight Times With Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../frontmatter/index.html">
+   Predicting Indoor Model Flight Time Using Python
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../frontmatter/overview.html">
+   1. Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../background/atmospheric-data.html">
+   2. Atmospheric Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../background/simplified-indoor-design.html">
+   3. Simplified Indoor Design
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../background/hodson-wart-a6.html">
+   4. Hodson Wart A6
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../background/tenny-data-analysis.html">
+   5. Tenny’s Flight Path Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../background/data-smoothing.html">
+   6. Data Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hacklinger-theory.html">
+   7. Hacklinger’s Theories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mclean-method.html">
+   8. McLean’s Method
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="experimental-airfoil-data.html">
+   9. Airfoil Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="simplex-airfoils.html">
+   10. Simplex Airfoils
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="xfoil-circular-arc.html">
+   11. Circular Arc Airfoils for XFoil Tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="generating-airfoils-for-xfoil.html">
+   12. Generating Airfoils for XFoil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="level-flight-calculations.html">
+   13. level-flight-calculations
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   14. Indoor Model Propulsion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stability-analysis.html">
+   15. Stability Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../backmatter/bibliography.html">
+   16. Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../backmatter/biography.html">
+   17. Biography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/content/indoor-model-propulsion.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live/issues/new?title=Issue%20on%20page%20%2Fcontent/indoor-model-propulsion.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.ord/v2/gh/rblack42/nffs-2022-symposium-live/master?urlpath=tree/docs/content/indoor-model-propulsion.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#actuator-disk-theory">
+   14.1. Actuator Disk Theory
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Indoor Model Propulsion</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#actuator-disk-theory">
+   14.1. Actuator Disk Theory
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="indoor-model-propulsion">
+<h1><span class="section-number">14. </span>Indoor Model Propulsion<a class="headerlink" href="#indoor-model-propulsion" title="Permalink to this headline">¶</a></h1>
+<p>We need to find a way to estimate how much power we can expect the propulsion system to deliver in order to complete our calculations. Unfortunately, this is a very complex issue. There are many variables: rubber dimensions, winding turn count and torque, and prop blade geometry. Some of these will not be known until you have a few flights logged. What can propeller theory tell us?</p>
+<div class="section" id="actuator-disk-theory">
+<h2><span class="section-number">14.1. </span>Actuator Disk Theory<a class="headerlink" href="#actuator-disk-theory" title="Permalink to this headline">¶</a></h2>
+<p>We know we will be building a propeller of some sort, and attaching a wound-up rubber motor to that propeller. The model class rules tell us something about the propeller, but for the A6 class, not much about the rubber motor. Let’s start with a look at the propeller.</p>
+<p>A common tactic in thinking about a complex topic, and propellers are certainly complex beasts, is to step back from the details of the problem and take a look at the “big picture”. At that high level, the propeller’s job is pretty simple: Take a bite out of the air in front of the propeller, and push that bite toward the rear at a higher speed. This simple view is complicated a bit if the propeller is moving with the vehicle, but the idea remains the same. If we reduce the propeller to a simple disk and magically have the air increase its speed as it passes through this disk, we can come up with some simple equations for what has to happen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> tikzmagic
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">tikz</span>
+\draw (-2,7) -- (6,7) -- (6,-3) -- (-2,-3) -- cycle;
+\draw (2,7) -- (2,-2);
+\draw (-2,3) -- (6,3);
+\draw [ultra thick,-&gt;] (-3,3) -- node[above left] {$V_\infty$}(-1,3);
+\draw [ultra thick, -&gt;](5,3) -- node[above right] {$V_e$}(7,3);
+\draw [ultra thick] (2,1) -- (2,5);
+\draw (-2,0) 
+    -- (0,0) 
+    to [bend right] (2,1) 
+    to [bend left] (4,2) 
+    -- (6,2);
+\draw (-2,6)
+    -- (0,6)
+    to [bend left] (2,5)
+    to [bend right] (4,4)
+    -- (6,4);
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/indoor-model-propulsion_5_0.png" src="../_images/indoor-model-propulsion_5_0.png" />
+</div>
+</div>
+<p>We are going to assume that the mass of air entering this curved tube (this is a cross section of the circular tube) will equal the mass leaving the tube. The propeller disk will cause the velocity to jump as the air crosses this disk. From Bernoulli’s equation, we can calculate the change in pressure that must occur across the disk:</p>
+<p>We can calculate the thrust that will result by looking at the change of momentum across the disk:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-86c3c7af-eadb-4724-8059-4808d51ffac6">
+<span class="eqno">(14.1)<a class="headerlink" href="#equation-86c3c7af-eadb-4724-8059-4808d51ffac6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+T = \dot{m}(V_e - V_\infty)
+\end{equation}\]</div>
+<p>This thrust is also given by the pressure difference on either side of the disk:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-79016b8c-9b26-458e-bd56-cbd62a627346">
+<span class="eqno">(14.2)<a class="headerlink" href="#equation-79016b8c-9b26-458e-bd56-cbd62a627346" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+T = A_{disk}(p2 - p1)
+\end{equation}\]</div>
+<p>The power added to this flow is equal to the change in kinetic energy;</p>
+<div class="amsmath math notranslate nohighlight" id="equation-105c640d-ecf1-47f4-8e12-2aa28c148647">
+<span class="eqno">(14.3)<a class="headerlink" href="#equation-105c640d-ecf1-47f4-8e12-2aa28c148647" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P = \frac{1}{2} \dot{m}(V_\infty^2 - V_e^2)
+\end{equation}\]</div>
+<p>if this propeller disk was actually powering our model, the power it woul dbe producing is just the thrust times the velocity <span class="math notranslate nohighlight">\(V_\infty\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-06d9f94f-314e-447d-a714-5e36c5f4056a">
+<span class="eqno">(14.4)<a class="headerlink" href="#equation-06d9f94f-314e-447d-a714-5e36c5f4056a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P_{prop} = T V_\infty
+\end{equation}\]</div>
+<p>The efficiency of this propeller <span class="math notranslate nohighlight">\(\eta_p\)</span> is the ratio on th propeller power to the power that was added to the system:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c65d0474-afde-4e20-8028-c71218a49273">
+<span class="eqno">(14.5)<a class="headerlink" href="#equation-c65d0474-afde-4e20-8028-c71218a49273" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\eta_p = \frac{T V_\infty}{\dot{m}(V_\infty^2 - V_e^2)}
+\end{equation}\]</div>
+<p>For a model moving at velocity <span class="math notranslate nohighlight">\(V\)</span> with a propeller rotating at speed <span class="math notranslate nohighlight">\(n\)</span> revolutions per second, any section of the propeller has a rotational speed of <span class="math notranslate nohighlight">\(u\)</span> = <span class="math notranslate nohighlight">\(r\omega\)</span> = <span class="math notranslate nohighlight">\(2\pi r n\)</span>. Here, <span class="math notranslate nohighlight">\(\omega\)</span> is the angular velocity of the propeller.</p>
+<p>The resulting velocity vector represents a free stream velocity over the airfoil section at that radius. We set the propeller blade at some pitch angle <span class="math notranslate nohighlight">\(\gamma\)</span>, so the effective angle of attack of that propeller section is <span class="math notranslate nohighlight">\(\gamma - \alpha\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">tikz</span> -l angles
+
+\draw (-2,0) -- (4,0);
+\draw [ultra thick,-&gt;](0,0) -- node [below]{u}(2.5,0);
+\draw[-&gt;] (0,-1) -- (0,2) node[above] {T};
+\draw [ultra thin](0,0) -- ++(30:3.5);
+\draw [ultra thin](0,0) -- ++(20:3.5);
+\draw[ultra thick] (0,0) -- ++(30:1);
+\draw[ultra thick] (0,0) --++(210:1);
+\draw[thick, -&gt;] (2.5,0)
+    -- node[right] {V} ++(90:{2.5*tan(20)});
+\draw[red,&lt;-&gt;] (0,0)+(0:2) arc (0:20:2);
+\path (0,0) -- ++ (10:1.75) node {$\alpha$}; 
+\draw[blue,&lt;-&gt;] (0,0)+(0:3) arc (0:30:3);
+\path (0,0) -- ++ (10:3.125) node[right] {$\gamma$}; 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/indoor-model-propulsion_8_0.png" src="../_images/indoor-model-propulsion_8_0.png" />
+</div>
+</div>
+<p>From this figure we see that:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-113f709c-d4dc-4e37-91d4-d168bfaad0d5">
+<span class="eqno">(14.6)<a class="headerlink" href="#equation-113f709c-d4dc-4e37-91d4-d168bfaad0d5" title="Permalink to this equation">¶</a></span>\[\begin{equation}\label{eq:}
+\tan{\gamma} = \frac{V}{u} = \frac{V}{2 \pi r n}
+\end{equation}\]</div>
+<p>If <span class="math notranslate nohighlight">\(d\)</span> is the diameter of the propeller, then the <em>advance ratio</em> <span class="math notranslate nohighlight">\(J\)</span> is defined as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-01427e9a-7a2c-42b8-9d3c-1090431e811a">
+<span class="eqno">(14.7)<a class="headerlink" href="#equation-01427e9a-7a2c-42b8-9d3c-1090431e811a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+J = \frac{V}{n d}
+\end{equation}\]</div>
+<p>The propeller torque is defined as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6a1ddc1a-e08a-4c3f-a83a-bfb2fb754576">
+<span class="eqno">(14.8)<a class="headerlink" href="#equation-6a1ddc1a-e08a-4c3f-a83a-bfb2fb754576" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+Q = \rho n^2 d^5 C_q
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(C_q\)</span> is a non-dimensional torque coefficient.</p>
+<p>The propeller thrust is defined as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7e1de7e7-1402-4bed-bb21-907738f94b52">
+<span class="eqno">(14.9)<a class="headerlink" href="#equation-7e1de7e7-1402-4bed-bb21-907738f94b52" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+T = \rho n^2 d^4 C_t
+\end{equation}\]</div>
+<p>The propeller power is defined as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9f2ede5e-02cf-4a68-aace-d200f15033e3">
+<span class="eqno">(14.10)<a class="headerlink" href="#equation-9f2ede5e-02cf-4a68-aace-d200f15033e3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P = 2 \pi n Q = \rho n^3 d^5 C_p
+\end{equation}\]</div>
+<p>The efficiency of the propeller is the ratio of the power output that moves the airplane to input to power applied to the prop shaft.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4d0b2bd6-c4d6-4ddb-b7b8-bb21f30dd0de">
+<span class="eqno">(14.11)<a class="headerlink" href="#equation-4d0b2bd6-c4d6-4ddb-b7b8-bb21f30dd0de" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\eta = \frac{T V}{P} = \frac{T V}{2 \pi n Q} = \frac{C_t}{C_p} J
+\end{equation}\]</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="level-flight-calculations.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">13. </span>level-flight-calculations</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="stability-analysis.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Stability Analysis</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Roie R. Black<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

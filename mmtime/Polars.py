@@ -1,15 +1,21 @@
 import os
 import numpy as np
+from xfoil import XFoil
+from xfoil.test import naca0012
+from xfoil.simplex import Simplex
 
-DIR = 'data/airfoils/xfoil'
+DIR = 'data/airfoils'
 
 class Polars(object):
 
     def __init__(self, anames):
-        for airfoil in anames:
-            self.decode(airfoil)
+        self.anames = anames
 
-    def decode(self, aname):
+    def decode(self):
+        for aname in self.anames:
+            self._decode(aname)
+
+    def _decode(self, aname):
         afile = aname + '.pol'
         apath = os.path.join(DIR, afile)
         if os.path.isfile(apath):
@@ -46,6 +52,7 @@ class Polars(object):
         # create CL file
         dname = os.path.join(dpath, 'CL.csv')
         CL = data['CL']
+        print("Writing CL file:", dpath)
         with open(dname,'w') as fout:
             for i in range(len(alpha)):
                 fout.write(f'{alpha[i]}, {CL[i]}\n')
@@ -62,20 +69,51 @@ class Polars(object):
             for i in range(len(alpha)):
                 fout.write(f'{alpha[i]}, {CM[i]}\n')
         # create CDp file
-        dname = os.path.join(dpath, 'CDp.csv')
-        CDp = data['CDp']
+        dname = os.path.join(dpath, 'CP.csv')
+        CP = data['CP']
         with open(dname,'w') as fout:
             for i in range(len(alpha)):
-                fout.write(f'{alpha[i]}, {CDp[i]}\n')
+                fout.write(f'{alpha[i]}, {CP[i]}\n')
 
+
+    def _aname(self, aname):
+        thickness = int(aname[-2:])
+        camber = int(aname[-4:-2])
+        name = aname[:-4]
+        return name, camber, thickness
+
+    def gen_polars(self):
+        for aname in self.anames:
+            dpath = os.path.join(DIR,aname,aname+'.dat')
+            if not os.path.isfile(dpath):
+                print("No data file:", dpath)
+                continue
+            print("Generating polars for", aname)
+            name, camber, thickness = self._aname(aname)
+            xf = XFoil()
+            s = Simplex()
+            xf.airfoil = s.airfoil(camber)
+            xf.Re = 3000
+            xf.max_iter = 40
+            xf.print = False
+            a,cl,cd,cm,cp = xf.aseq(-20,20,0.5)
+            data = {}
+            data['alpha'] = a
+            data['CL'] = cl
+            data['CD'] = cd
+            data['CM'] = cm
+            data['CP'] = cp
+            self.gen_csv(aname,data)
 
 
 if __name__ == '__main__':
     airfoils = [
-        'arc0401',
-
-        'arc0301',
-        'arc0201'
+        'simplex0201',
+        'simplex0301',
+        'simplex0401',
+        'simplex0501',
+        'simplex0601',
     ]
     p = Polars(airfoils)
+    p.gen_polars()
 
