@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>8. McLean’s Method &#8212; Predicting Indoor Flight Times With Python</title>
+    <title>4. McLean’s Method &#8212; Predicting Indoor Flight Times With Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,8 +55,8 @@
     <link rel="shortcut icon" href="../_static/lpp.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9. Airfoil Data" href="experimental-airfoil-data.html" />
-    <link rel="prev" title="7. Definitions" href="hacklinger-theory.html" />
+    <link rel="next" title="5. Circular Arc Airfoils for XFoil Tests" href="xfoil-circular-arc.html" />
+    <link rel="prev" title="3. Tenny’s Flight Path Data" href="03-tenny-data-analysis.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -95,90 +95,55 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../frontmatter/index.html">
+  <a class="reference internal" href="00-index.html">
    Predicting Indoor Model Flight Time Using Python
   </a>
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../frontmatter/overview.html">
+  <a class="reference internal" href="01-overview.html">
    1. Overview
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../background/atmospheric-data.html">
-   2. Atmospheric Data
+  <a class="reference internal" href="02-hacklinger-theory.html">
+   2. Hacklinger’s Equation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../background/simplified-indoor-design.html">
-   3. Simplified Indoor Design
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../background/hodson-wart-a6.html">
-   4. Hodson Wart A6
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../background/tenny-data-analysis.html">
-   5. Tenny’s Flight Path Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../background/data-smoothing.html">
-   6. Data Smoothing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hacklinger-theory.html">
-   7. Definitions
+  <a class="reference internal" href="03-tenny-data-analysis.html">
+   3. Tenny’s Flight Path Data
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   8. McLean’s Method
+   4. McLean’s Method
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="experimental-airfoil-data.html">
-   9. Airfoil Data
+  <a class="reference internal" href="xfoil-circular-arc.html">
+   5. Circular Arc Airfoils for XFoil Tests
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="simplex-airfoils.html">
-   10. Simplex Airfoils
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="generating-airfoils-for-xfoil.html">
-   11. Generating Airfoils for XFoil
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="level-flight-calculations.html">
-   12. level-flight-calculations
+  <a class="reference internal" href="level-flight-power.html">
+   6. Power Needed for Level Flight
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="indoor-model-propulsion.html">
-   13. Indoor Model Propulsion
+   7. Indoor Model Propulsion
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="stability-analysis.html">
-   14. Stability Analysis
+  <a class="reference internal" href="bibliography.html">
+   8. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../backmatter/bibliography.html">
-   15. Bibliography
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../backmatter/biography.html">
-   16. Biography
+  <a class="reference internal" href="biography.html">
+   9. Biography
   </a>
  </li>
 </ul>
@@ -287,17 +252,12 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#available-energy">
-   8.1. Available Energy
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#slusarczys-max-turn-calculator">
-   8.2. Slusarczy’s Max Turn Calculator
+   4.1. Available Energy
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#level-flight-power">
-   8.3. Level Flight Power
+   4.2. Level Flight Power
   </a>
  </li>
 </ul>
@@ -322,17 +282,12 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#available-energy">
-   8.1. Available Energy
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#slusarczys-max-turn-calculator">
-   8.2. Slusarczy’s Max Turn Calculator
+   4.1. Available Energy
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#level-flight-power">
-   8.3. Level Flight Power
+   4.2. Level Flight Power
   </a>
  </li>
 </ul>
@@ -345,16 +300,32 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="mcleans-method">
-<h1><span class="section-number">8. </span>McLean’s Method<a class="headerlink" href="#mcleans-method" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">4. </span>McLean’s Method<a class="headerlink" href="#mcleans-method" title="Permalink to this headline">¶</a></h1>
 <p>We have enough background now to begin a look at McLean’s technique for estimating indoor model flight time. In this section, we will work through his development and see what we can produce using Python code.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">cwd</span> <span class="o">=</span> <span class="o">!</span>pwd
+<span class="n">pagedir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">cwd</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">projpath</span> <span class="o">=</span> <span class="n">pagedir</span> <span class="o">/</span> <span class="s2">&quot;..&quot;</span> <span class="o">/</span> <span class="s2">&quot;..&quot;</span>
+<span class="n">projdir</span> <span class="o">=</span> <span class="n">projpath</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">projdir</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">projdir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Doug starts off his analysis with a simple assumption. The total flight time is a function of the energy available in the rubber motor divided by the power needed to maintain level flight.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ec63d352-8452-4547-9822-aabcdfcf0291">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-ec63d352-8452-4547-9822-aabcdfcf0291" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-758bf707-fddc-42be-aa50-b104fdaa52a4">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-758bf707-fddc-42be-aa50-b104fdaa52a4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 t = \eta_{av} E / P
 \end{equation}\]</div>
 <p>In this equation, <span class="math notranslate nohighlight">\(\eta_{av}\)</span> is a term related to the efficiency of the propeller. McLean defines it as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d93540b4-c5b9-40c0-8c36-9ff477582f4d">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-d93540b4-c5b9-40c0-8c36-9ff477582f4d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d923453d-7cc1-45ae-ac14-a29fc3e89ea9">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-d923453d-7cc1-45ae-ac14-a29fc3e89ea9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \eta_{av} = F \eta_p
 \end{equation}\]</div>
 <p><span class="math notranslate nohighlight">\(\eta_p\)</span> is the theoretical propeller efficiency, <strong>F</strong> is a fudge factor derived from a study of actual model flight times.</p>
@@ -366,18 +337,17 @@ t = \eta_{av} E / P
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/mclean-method_3_0.png" src="../_images/mclean-method_3_0.png" />
+<img alt="../_images/mclean-method_4_0.png" src="../_images/mclean-method_4_0.png" />
 </div>
 </div>
 <p>Let’s load the digitized data from this graph and see how it looks:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mmtime_helper</span>
-<span class="kn">from</span> <span class="nn">mmtime.utils</span> <span class="kn">import</span> <span class="n">get_points</span><span class="p">,</span> <span class="n">show_curve</span><span class="p">,</span> <span class="n">fit_curve</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mmtime.utils</span> <span class="kn">import</span> <span class="n">get_points</span><span class="p">,</span> <span class="n">show_curve</span><span class="p">,</span> <span class="n">fit_curve</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="n">projdir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/Users/rblack/_dev/nffs-symposium/live-2022&#39;</span><span class="p">)</span>
+<span class="n">projdir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/Users/rblack/_dev/live-2022&#39;</span><span class="p">)</span>
 <span class="n">datadir</span> <span class="o">=</span> <span class="n">projdir</span> <span class="o">/</span> <span class="s1">&#39;mmtime&#39;</span> <span class="o">/</span> <span class="s1">&#39;data&#39;</span>
 </pre></div>
 </div>
@@ -409,7 +379,7 @@ t = \eta_{av} E / P
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/mclean-method_7_0.png" src="../_images/mclean-method_7_0.png" />
+<img alt="../_images/mclean-method_8_0.png" src="../_images/mclean-method_8_0.png" />
 </div>
 </div>
 <p>The following code will generate a least-squares linear fit through these points. Note that this is not the same line as shown on McLean’s graph!</p>
@@ -434,7 +404,7 @@ t = \eta_{av} E / P
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/mclean-method_9_0.png" src="../_images/mclean-method_9_0.png" />
+<img alt="../_images/mclean-method_10_0.png" src="../_images/mclean-method_10_0.png" />
 </div>
 </div>
 <p>Unfortunately, at the time this graph was developed the A6 class did not exist, so we have to find a place for our type of model. From the site data for the Kibby Dome, we can calculate the Dimensionless Ceiling Height value from McLean’s formula:</p>
@@ -464,10 +434,10 @@ t = \eta_{av} E / P
 </div>
 <p>This number is off the current chart, but using the linear fit the data we can extrapolate and find a proper value for the fudge factor.</p>
 <div class="section" id="available-energy">
-<h2><span class="section-number">8.1. </span>Available Energy<a class="headerlink" href="#available-energy" title="Permalink to this headline">¶</a></h2>
-<p>To determine the amount of energy available in a flight, McLean turned to an an article by Max Hacklinger <span id="id1">[<a class="reference internal" href="../backmatter/bibliography.html#id8">Hac64</a>]</span>. Hacklinger conducted both experimental and theoretical research into indoor model flight and determined that the energy available in indoor rubber motors was approximately just a function of motor weight. He came up with this equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-56296293-9011-48a6-8c34-c82842cfd701">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-56296293-9011-48a6-8c34-c82842cfd701" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<h2><span class="section-number">4.1. </span>Available Energy<a class="headerlink" href="#available-energy" title="Permalink to this headline">¶</a></h2>
+<p>To determine the amount of energy available in a flight, McLean turned to an an article by Max Hacklinger <span id="id1">[<a class="reference internal" href="bibliography.html#id11">Hac64</a>]</span>. Hacklinger conducted both experimental and theoretical research into indoor model flight and determined that the energy available in indoor rubber motors was approximately just a function of motor weight. He came up with this equation:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-364cf14d-07ac-4630-8fc7-cd33a78cdd30">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-364cf14d-07ac-4630-8fc7-cd33a78cdd30" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 E = k_m w_m
 \end{equation}\]</div>
 <p>Where:</p>
@@ -475,7 +445,7 @@ E = k_m w_m
 <li><p>k_m is a constant = 900 meters</p></li>
 <li><p><span class="math notranslate nohighlight">\(w_m\)</span> is the motor weight</p></li>
 </ul>
-<p>Gary Hodson’s record setting flight of 10 minutes, 18 seconds, was made in 2003 at the Kibby Dome. ON that flight the motor weight was 0.84 grams. Let’s see how much energy was available on that flight:</p>
+<p>Gary Hodson’s record setting flight of 10 minutes, 18 seconds, was made in 2003 at the Kibby Dome. On that flight the motor weight was 0.84 grams. Let’s see how much energy was available on that flight:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pint</span>
@@ -505,57 +475,45 @@ E = k_m w_m
 <div class="output text_html">5.598352720836459 foot pound</div></div>
 </div>
 <p>That is a lot of energy for such a light model. If we really could convert all of that into flight time, we would be making extremely long flights. Unfortunately, we lose a lot of that power due to a number of inefficiencies in our designs.</p>
-<p>The total energy in a system is constant. That energy can be converted from one form to another. The kinetic energy of an object is defines as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ad80d7c4-5ce9-48fe-9e4b-def5d4a9ea10">
-<span class="eqno">(8.4)<a class="headerlink" href="#equation-ad80d7c4-5ce9-48fe-9e4b-def5d4a9ea10" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>The total energy in a system is constant. That energy can be converted from one form to another. The kinetic energy of an object is defined as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-729fde64-c1ce-44c7-a38e-6b23d5038bef">
+<span class="eqno">(4.4)<a class="headerlink" href="#equation-729fde64-c1ce-44c7-a38e-6b23d5038bef" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 E_k = \frac{1}{2}m V^2
 \end{equation}\]</div>
-<p>If the Wart flew at 2 miles per hour for 618 seconds, the kinetic energy burned would be</p>
+<p>If the Wart flew at 4 miles per hour for 618 seconds, the kinetic energy burned would be</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E_k</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mf">2.06</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">gravity</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">miles</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">hour</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E_k</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mf">2.06</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">gravity</span> <span class="o">*</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">miles</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">hour</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
 <span class="n">E_k</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;ft*pound&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">0.0006072794793764947 foot pound</div></div>
+<div class="output text_html">0.002429117917505979 foot pound</div></div>
 </div>
-</div>
-<div class="section" id="slusarczys-max-turn-calculator">
-<h2><span class="section-number">8.2. </span>Slusarczy’s Max Turn Calculator<a class="headerlink" href="#slusarczys-max-turn-calculator" title="Permalink to this headline">¶</a></h2>
+<p>If this is real, most of that available energy was lost somehow during the flight. Obviously, an A-6 propeller is inefficient, but the ratio of kinetic energy to that potential energy is huge!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loop_weight</span> <span class="o">=</span> <span class="mf">1.4</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span>
-<span class="n">loop_length</span> <span class="o">=</span> <span class="mi">14</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inches</span>
-<span class="n">K</span> <span class="o">=</span> <span class="mf">8.5</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">ounces</span> <span class="o">**</span> <span class="mf">0.5</span> <span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">inches</span> <span class="o">**</span> <span class="mf">1.5</span> 
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N_max</span> <span class="o">=</span> <span class="n">K</span> <span class="o">*</span> <span class="n">loop_length</span> <span class="o">/</span> <span class="p">(</span><span class="n">loop_weight</span><span class="o">/</span><span class="n">loop_length</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>  
-<span class="n">N_max</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">E</span> <span class="o">/</span> <span class="n">E_k</span><span class="p">)</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">2003.6406787972865 dimensionless</div></div>
+<div class="output text_html">2304.685450010756 dimensionless</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;grams**0.5/inches**1.5&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">miles</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">hour</span> <span class="o">*</span> <span class="mi">618</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">seconds</span><span class="p">)</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">45.25762969689476 gram<sup>0.5</sup>/inch<sup>1.5</sup></div></div>
+<div class="output text_html">1105.0828800000002 meter</div></div>
 </div>
 </div>
 <div class="section" id="level-flight-power">
-<h2><span class="section-number">8.3. </span>Level Flight Power<a class="headerlink" href="#level-flight-power" title="Permalink to this headline">¶</a></h2>
-<p>The next term we will consider is the power required to maintain level flight. McLean used a simple model for this part. Basically, his technique involved balancing the aerodynamic forces produced by the flying model so the model would remain level. From this, he predicted the model flight speed. I fond another article by Walter Erbach <span id="id2">[<a class="reference internal" href="../backmatter/bibliography.html#id3">Erb90</a>]</span> that used the same scheme to predict flight speed and power required. I decided to use Erbach’s scheme for this calculation, since it seems more complete.</p>
+<h2><span class="section-number">4.2. </span>Level Flight Power<a class="headerlink" href="#level-flight-power" title="Permalink to this headline">¶</a></h2>
+<p>The next term we will consider is the power required to maintain level flight. McLean used a simple model for this part. Basically, his technique involved balancing the aerodynamic forces produced by the flying model so the model would remain level. From this, he predicted the model flight speed. I fond another article by Walter Erbach <span id="id2">[<a class="reference internal" href="bibliography.html#id6">Erb90</a>]</span> that used the same scheme to predict flight speed and power required. I decided to use Erbach’s scheme for this calculation, since it seems more complete.</p>
 </div>
 </div>
 
@@ -584,17 +542,17 @@ E_k = \frac{1}{2}m V^2
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="hacklinger-theory.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="03-tenny-data-analysis.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">7. </span>Definitions</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Tenny’s Flight Path Data</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="experimental-airfoil-data.html" title="next page">
+    <a class='right-next' id="next-link" href="xfoil-circular-arc.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>Airfoil Data</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Circular Arc Airfoils for XFoil Tests</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

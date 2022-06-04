@@ -1,0 +1,1 @@
+C:\qprop\qmil.exe c:\qprop\solar1qmil.txt c:\qprop\solar1qprop.txt

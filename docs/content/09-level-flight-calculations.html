@@ -1,0 +1,1072 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>9. level-flight-calculations &#8212; Predicting Indoor Flight Times With Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://rblack42.github.io/nffs-2022-symposium-live/content/09-level-flight-calculations.html" />
+    <link rel="shortcut icon" href="../_static/lpp.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10. A-6 Propeller Analysis" href="10-a6-propeller-analysis.html" />
+    <link rel="prev" title="8. Generating Airfoils for XFoil" href="08-generating-airfoils-for-xfoil.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/lpp.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Predicting Indoor Flight Times With Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00-index.html">
+   Predicting Indoor Model Flight Time Using Python
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-overview.html">
+   1. Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-hacklingers-equation.html">
+   2. Hacklinger’s Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-atmospheric-data.html">
+   3. Atmospheric Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-tenny-data-analysis.html">
+   4. Tenny’s Flight Path Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-circular-arc-data.html">
+   5. Circular Arc Airfoil Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-smoothing.html">
+   6. Data Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-simplified-indoor-design.html">
+   7. Simplified Indoor Design
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-generating-airfoils-for-xfoil.html">
+   8. Generating Airfoils for XFoil
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   9. level-flight-calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-a6-propeller-analysis.html">
+   10. A-6 Propeller Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-rubber-motors.html">
+   12. Rubber Motors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/10-minute-guide-to-python.html">
+   13. 10 Minute Guide to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/accessing-the-online-study.html">
+   14. Accessing The Online Study
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/brief-guide-to-using-jupyter.html">
+   15. Brief Guide to Using Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   16. Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="biography.html">
+   17. Biography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/content/09-level-flight-calculations.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live/issues/new?title=Issue%20on%20page%20%2Fcontent/09-level-flight-calculations.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.ord/v2/gh/rblack42/nffs-2022-symposium-live/master?urlpath=tree/docs/content/09-level-flight-calculations.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#erbachs-moment-calculations">
+   9.1. Erbach’s Moment Calculations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-airfoil-data">
+   9.2. Loading Airfoil Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-model-dimensions">
+   9.3. Loading Model Dimensions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-model-moment-arms">
+   9.4. Loading Model Moment Arms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#induced-drag">
+   9.5. Induced Drag
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#including-downwash-effects">
+   9.6. Including Downwash Effects
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>level-flight-calculations</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#erbachs-moment-calculations">
+   9.1. Erbach’s Moment Calculations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-airfoil-data">
+   9.2. Loading Airfoil Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-model-dimensions">
+   9.3. Loading Model Dimensions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-model-moment-arms">
+   9.4. Loading Model Moment Arms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#induced-drag">
+   9.5. Induced Drag
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#including-downwash-effects">
+   9.6. Including Downwash Effects
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="level-flight-calculations">
+<h1><span class="section-number">9. </span>level-flight-calculations<a class="headerlink" href="#level-flight-calculations" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">projdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;../..&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">projdir</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">projdir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will use Erbach’s scheme to determine the level flight velocity. I will add code to determine the best angle for level flight and avoid Erbach’s need to deal with “terrifying yards of tabulated data” to find this flight setting!</p>
+<div class="section" id="erbachs-moment-calculations">
+<h2><span class="section-number">9.1. </span>Erbach’s Moment Calculations<a class="headerlink" href="#erbachs-moment-calculations" title="Permalink to this headline">¶</a></h2>
+<p>Erbach set the wing and stab incidence, then conducted an angle of attack survey to generate the needed data. At each angle of attack, his code calculates the lift and drag forces for the wing and stab. He then calculates the resulting pitching moment using these forces. He plotted the pitching moment curve looking for the zero point, which is where the model would fly level.</p>
+<p>Since we are doing these calculations numerically anyway, it is easy to set up a coordinate transformation system that calculates moments in a coordinate system centered on the center of gravity, and rotated so the body is located at the desired angle of attack. I packaged these transformations in a simple Python routine named <strong>transform</strong>. It takes the center of gravity coordinates and an angle of attack, together with a point of interest as parameters. It returns those coordinates in the CG-centered system.</p>
+<p>The translation will move the model system from the nose to the center of gravity, then we will rotate the system  by a negative <span class="math notranslate nohighlight">\(\alpha\)</span> which will be nose up. Let’s set this up and test it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># model coordinates (referenced to lower body nose)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">mmtime.utils</span> <span class="kn">import</span> <span class="n">transform</span>
+
+<span class="n">xcg</span> <span class="o">=</span> <span class="mf">4.0485</span>
+<span class="n">ycg</span> <span class="o">=</span> <span class="mf">0.1189</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="loading-airfoil-data">
+<h2><span class="section-number">9.2. </span>Loading Airfoil Data<a class="headerlink" href="#loading-airfoil-data" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mmtime.AirfoilMgr</span> <span class="kn">import</span> <span class="n">AirfoilMgr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">am</span> <span class="o">=</span> <span class="n">AirfoilMgr</span><span class="p">()</span>
+<span class="n">am</span><span class="o">.</span><span class="n">showAirfoils</span><span class="p">()</span>
+<span class="n">am</span><span class="o">.</span><span class="n">selectAirfoil</span><span class="p">(</span><span class="s1">&#39;simplex0401&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;mcbride-b7&#39;, &#39;arc0401&#39;, &#39;arc5&#39;, &#39;simplex0401&#39;, &#39;arc3&#39;, &#39;BEZ0625018506&#39;, &#39;arc0301&#39;, &#39;simplex0201&#39;, &#39;ARC0601&#39;, &#39;arc0201&#39;, &#39;flat0001&#39;, &#39;ARC0501&#39;, &#39;simplex0501&#39;]
+Selected: simplex0401
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clw</span><span class="p">,</span> <span class="n">cdw</span><span class="p">,</span> <span class="n">cmw</span><span class="p">,</span> <span class="n">cpw</span> <span class="o">=</span> <span class="n">am</span><span class="o">.</span><span class="n">loadData</span><span class="p">(</span><span class="s1">&#39;re3k&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading simplex0401
+	Loading CD_re3k.csv
+	Loading CP_re3k.csv
+	Loading CM_re3k.csv
+	Loading CL_re3k.csv
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">am</span><span class="o">.</span><span class="n">selectAirfoil</span><span class="p">(</span><span class="s1">&#39;simplex0201&#39;</span><span class="p">)</span>
+<span class="bp">cls</span><span class="p">,</span> <span class="n">cds</span><span class="p">,</span> <span class="n">cms</span><span class="p">,</span> <span class="n">cps</span> <span class="o">=</span> <span class="n">am</span><span class="o">.</span><span class="n">loadData</span><span class="p">(</span><span class="s1">&#39;re3k&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selected: simplex0201
+Loading simplex0201
+	Loading CD_re3k.csv
+	Loading CP_re3k.csv
+	Loading CM_re3k.csv
+	Loading CL_re3k.csv
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now have the coefficient curve fit functions available to run the calculations.</p>
+<p>Before we continue, let’s look at the coefficient curves:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">clx1</span>  <span class="o">=</span> <span class="n">clw</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">clx2</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">clx1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">clx2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x128c658d0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/09-level-flight-calculations_14_1.png" src="../_images/09-level-flight-calculations_14_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cdx1</span>  <span class="o">=</span> <span class="n">cdw</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">cdx2</span> <span class="o">=</span> <span class="n">cds</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">cdx1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">cdx2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x12b037af0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/09-level-flight-calculations_15_1.png" src="../_images/09-level-flight-calculations_15_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmx1</span>  <span class="o">=</span> <span class="n">cmw</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">cmx2</span> <span class="o">=</span> <span class="n">cms</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">cmx1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">cmx2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x12b0b2e90&gt;]
+</pre></div>
+</div>
+<img alt="../_images/09-level-flight-calculations_16_1.png" src="../_images/09-level-flight-calculations_16_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="loading-model-dimensions">
+<h2><span class="section-number">9.3. </span>Loading Model Dimensions<a class="headerlink" href="#loading-model-dimensions" title="Permalink to this headline">¶</a></h2>
+<p>All model data is stored in a data file for loading. Since this data is dimensional, we need to create a <strong>pint</strong> <em>UnitRegistry</em> here, and pass it to the data routine:</p>
+</div>
+<div class="section" id="loading-model-moment-arms">
+<h2><span class="section-number">9.4. </span>Loading Model Moment Arms<a class="headerlink" href="#loading-model-moment-arms" title="Permalink to this headline">¶</a></h2>
+<p>We need to define the moment arms for the wing and stab. All model dimension data is loaded from a model file that sets up basic dimensions and calculates a few other dimensions we will need:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pint</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mmtime.data.models.wart</span> <span class="kn">import</span> <span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wart</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">Wart</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">mdata</span> <span class="o">=</span> <span class="n">wart</span><span class="o">.</span><span class="n">model_data</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xcg</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="s1">&#39;cg&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ycg</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="s1">&#39;cg&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">xwac</span> <span class="o">=</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span>
+<span class="n">ywac</span> <span class="o">=</span> <span class="mi">7</span><span class="o">/</span><span class="mi">8</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span>
+<span class="n">xsac</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="o">+</span><span class="mf">8.5</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span>
+<span class="n">ysac</span> <span class="o">=</span> <span class="mf">0.125</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span>
+<span class="n">wgt</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="s1">&#39;flying_wgt&#39;</span><span class="p">]</span>
+<span class="n">sw</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="s1">&#39;wing&#39;</span><span class="p">][</span><span class="s1">&#39;projected_area&#39;</span><span class="p">]</span>
+<span class="n">ss</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="s1">&#39;stab&#39;</span><span class="p">][</span><span class="s1">&#39;projected_area&#39;</span><span class="p">]</span>
+<span class="n">ss</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">14.763199425922911 inch<sup>2</sup></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ycg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.13895631067961164 inch</div></div>
+</div>
+<p>Next, we need to calculate the air density from the standard atmosphere model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mmtime.StdAtm</span> <span class="kn">import</span> <span class="n">Air</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">Air</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get_properties</span><span class="p">(</span><span class="mi">864</span><span class="p">)</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;rho&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">rho</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;ounce/ft**3&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">magnitude</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1252812541711548
+</pre></div>
+</div>
+</div>
+</div>
+<p>The wart is constructed with the wing set at zero incidence and the stab at -2 degrees. We will run the angle of attack survey from -4 to 10 degrees for our example. <strong>numpy</strong> makes generating lists of values a snap! <strong>x</strong> has our angle of attack survey points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate stab angle of attack</span>
+<span class="n">sa</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">2</span>
+
+<span class="c1"># load coefficient arrays</span>
+<span class="n">cl_w</span> <span class="o">=</span> <span class="n">clw</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">cd_w</span> <span class="o">=</span> <span class="n">cdw</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">cm_w</span> <span class="o">=</span> <span class="n">cmw</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">cl_s</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">sa</span><span class="p">)</span>
+<span class="n">cd_s</span> <span class="o">=</span> <span class="n">cds</span><span class="p">(</span><span class="n">sa</span><span class="p">)</span>
+<span class="n">cm_s</span> <span class="o">=</span> <span class="n">cms</span><span class="p">(</span><span class="n">sa</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we calculate the velocity required to maintain level flight for each of these survey settings. The lift required is equal to the model weight so we calculate the lift generated by the wing and stab at each setting. This calculation is done in steps to avoid taking the square root of a negative number. If the lift goes negative, we will get a negative velocity which makes no sense. We will filter those values out.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># start velocity calculation for this configuration</span>
+<span class="n">VE</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">wgt</span> <span class="o">/</span><span class="p">(</span><span class="n">rho</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">gravity</span><span class="o">*</span><span class="p">(</span><span class="n">cl_w</span> <span class="o">*</span> <span class="n">sw</span> <span class="o">+</span> <span class="n">cl_s</span> <span class="o">*</span> <span class="n">ss</span><span class="p">))</span>
+<span class="n">VE</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table><tbody><tr><th>Magnitude</th><td style='text-align:left;'><pre>[-5.612426064272819 -5.861972578754396 -6.207185344348401<br> -6.821781877327976 -8.087111705647903 -11.072533034805224<br> -21.233900313485176 262.93051104098043 16.94609054983992<br> 8.765039250944605 6.08245647225219 4.80105985062716 4.0443297257785495<br> 3.5414345683799024 3.1699456107019603 2.8744121104698928<br> 2.6344090836869123 2.437941426672365 2.275445482943366 2.1404550004242706<br> 2.029774408656452 1.941461822804866 1.873354529838663 1.8211262226652571<br> 1.7855146076448083 1.7625466172634592 1.7395410880080628<br> 1.7156358301767194 1.693508597999557 1.6694694436697342<br> 1.6425346159889993 1.6130420654921167 1.5822252967484303<br> 1.5508930324959789 1.5194572409243856 1.488273121569477<br> 1.4575970554311284 1.427614449072364 1.3984456439187605<br> 1.3701659562382593 1.3428266972281908 1.316444805156847 1.291022512796325<br> 1.26655589326005 1.2430188142484033 1.2203994799501692 1.1986819735548664<br> 1.1778443159669052 1.157865375861497 1.138723411633691]</pre></td></tr><tr><th>Units</th><td style='text-align:left;'>meter<sup>2</sup>/second<sup>2</sup></td></tr></tbody></table></div></div>
+</div>
+<p>Check for negative velocity:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jj</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+    <span class="n">jj</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">if</span> <span class="n">VE</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">magnitude</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">break</span>
+<span class="n">VE</span> <span class="o">=</span> <span class="n">VE</span><span class="p">[</span><span class="n">jj</span><span class="p">:]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">jj</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># finish velocity calculation</span>
+<span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="n">VE</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+<span class="n">v</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table><tbody><tr><th>Magnitude</th><td style='text-align:left;'><pre>[16.21513216230384 4.116562953464931 2.960580897551121 2.4662636664096134<br> 2.191132093377111 2.011051895346947 1.8818699658530875 1.7804341073743672<br> 1.6954091277535026 1.6230862835003292 1.5613908628759054<br> 1.5084579818289159 1.4630293915107346 1.4247015156363285<br> 1.393363492705642 1.3687054211329266 1.3494910976606171<br> 1.3362314947810532 1.3276093616962252 1.3189166342146355<br> 1.309822823963882 1.3013487610934882 1.2920795036179986<br> 1.2816140667100213 1.2700559300645449 1.25786537306201 1.2453485586356852<br> 1.2326626630690105 1.2199479995350118 1.2073098423483213<br> 1.1948282090210138 1.1825589388773654 1.1705408819166714<br> 1.1588039943097326 1.1473642861606101 1.136231716154907<br> 1.1254136542889686 1.1149075361878236 1.104716922994379<br> 1.0948433557157236 1.085285361537188 1.0760415307326647<br> 1.0671098404727093]</pre></td></tr><tr><th>Units</th><td style='text-align:left;'>meter/second</td></tr></tbody></table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wla</span><span class="p">,</span> <span class="n">wda</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">xcg</span><span class="p">,</span> <span class="n">ycg</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">xwac</span><span class="p">,</span> <span class="n">ywac</span><span class="p">)</span>
+<span class="n">sla</span><span class="p">,</span> <span class="n">sda</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">xcg</span><span class="p">,</span> <span class="n">ycg</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">xsac</span><span class="p">,</span> <span class="n">ysac</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sda</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table><tbody><tr><th>Magnitude</th><td style='text-align:left;'><pre>[0.0802082979528144 -0.0005040902665827286 -0.08121644164843085<br> -0.16192285795309083 -0.24261744137464236 -0.3232942949718804<br> -0.40394752309924786 -0.4845712318376716 -0.5651595294252768<br> -0.6457065266879383 -0.7262063374696474 -0.8066530790626547<br> -0.8870408726373639 -0.9673638436719396 -1.0476161223816014<br> -1.1277918441475725 -1.2078851499456498 -1.2878901867743657<br> -1.367801108082709 -1.4476120741973761 -1.5273172527495162<br> -1.606910819100948 -1.6863869567698067 -1.765739857855597<br> -1.8449637234636171 -1.9240527641287313 -2.0030012002384416<br> -2.0818032624552507 -2.1604531921382684 -2.238945241764037<br> -2.317273675346545 -2.3954327688563968 -2.4734168106391112<br> -2.551220101832512 -2.6288369567831844 -2.706261703461969<br> -2.783488683878458 -2.8605122544944646 -2.937326786636441<br> -3.013926666906799 -3.090306297594131 -3.1664600970822705<br> -3.24238250025818]</pre></td></tr><tr><th>Units</th><td style='text-align:left;'>inch</td></tr></tbody></table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate stab angle of attack</span>
+<span class="n">sa</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">2</span>
+
+<span class="c1"># reset coefficient arrays</span>
+<span class="n">cl_w</span> <span class="o">=</span> <span class="n">clw</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">cd_w</span> <span class="o">=</span> <span class="n">cdw</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">cm_w</span> <span class="o">=</span> <span class="n">cmw</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">cl_s</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">sa</span><span class="p">)</span>
+<span class="n">cd_s</span> <span class="o">=</span> <span class="n">cds</span><span class="p">(</span><span class="n">sa</span><span class="p">)</span>
+<span class="n">cm_s</span> <span class="o">=</span> <span class="n">cms</span><span class="p">(</span><span class="n">sa</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lift_wing</span> <span class="o">=</span> <span class="n">q</span> <span class="o">*</span> <span class="n">cl_w</span> <span class="o">*</span> <span class="n">sw</span>
+<span class="n">lift_wing</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ws</span><span class="o">/</span><span class="mi">5</span><span class="n">h_x4h713cg8w0jmrm5_tfzc0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_61347</span><span class="o">/</span><span class="mf">3337718162.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">lift_wing</span> <span class="o">=</span> <span class="n">q</span> <span class="o">*</span> <span class="n">cl_w</span> <span class="o">*</span> <span class="n">sw</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">lift_wing</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;q&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">lift_wing</span> <span class="o">=</span> <span class="n">q</span> <span class="o">*</span> <span class="n">cl_w</span> <span class="o">*</span> <span class="n">sw</span>
+<span class="n">drag_wing</span> <span class="o">=</span> <span class="n">q</span> <span class="o">*</span> <span class="n">cd_w</span> <span class="o">*</span> <span class="n">sw</span>
+<span class="n">moment_wing</span> <span class="o">=</span> <span class="n">q</span> <span class="o">*</span> <span class="n">cm_w</span> <span class="o">*</span> <span class="n">sw</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span>
+
+<span class="n">lift_stab</span> <span class="o">=</span> <span class="n">q</span> <span class="o">*</span> <span class="n">cl_s</span> <span class="o">*</span> <span class="n">ss</span>
+<span class="n">drag_stab</span> <span class="o">=</span> <span class="n">q</span> <span class="o">*</span> <span class="n">cd_s</span> <span class="o">*</span> <span class="n">ss</span>
+<span class="n">moment_stab</span> <span class="o">=</span> <span class="n">q</span> <span class="o">*</span> <span class="n">cm_s</span> <span class="o">*</span> <span class="n">ss</span> <span class="o">*</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span>
+
+<span class="n">wing_drag_moment</span> <span class="o">=</span> <span class="n">wda</span> <span class="o">*</span> <span class="n">drag_wing</span>
+<span class="n">wing_lift_moment</span> <span class="o">=</span> <span class="n">wla</span> <span class="o">*</span> <span class="n">lift_wing</span>
+<span class="n">stab_lift_moment</span> <span class="o">=</span> <span class="n">sla</span> <span class="o">*</span> <span class="n">lift_stab</span>
+<span class="n">stab_drag_moment</span> <span class="o">=</span> <span class="n">sda</span> <span class="o">*</span> <span class="n">drag_stab</span>
+<span class="n">stab_drag_moment</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table><tbody><tr><th>Magnitude</th><td style='text-align:left;'><pre>[1.6752440233638885e-06 -1.025497011510761e-08 -1.6270543459071714e-06<br> -3.2245226437530448e-06 -4.833455069830466e-06 -6.46286266278875e-06<br> -8.103140609677707e-06 -9.753768705121429e-06 -1.143420178164305e-05<br> -1.3166410041082721e-05 -1.4955915099599107e-05 -1.6846540307483675e-05<br> -1.86406850113991e-05 -2.0638078733539766e-05 -2.32630550063069e-05<br> -2.655419116595279e-05 -3.08990472352681e-05 -3.5104497957076026e-05<br> -3.8682723815376776e-05 -4.402264890508483e-05 -5.112799327990285e-05<br> -5.855649015483495e-05 -6.631313890958796e-05 -7.386252532165737e-05<br> -8.148575893122537e-05 -8.97631870720246e-05 -9.829353631709826e-05<br> -0.0001071653621106875 -0.00011635431527189293 -0.00012586930669198309<br> -0.00013571020876048428 -0.00014588001919737641 -0.00015638054902684866<br> -0.00016721530879444937 -0.00017838738194516992 -0.00018989716464552637<br> -0.00020174557855330607 -0.00021393586719536072 -0.0002264668136137321<br> -0.0002393388893623654 -0.0002525540588969092 -0.00026611212667745763<br> -0.0002800141611672264]</pre></td></tr><tr><th>Units</th><td style='text-align:left;'>kilogram meter<sup>2</sup>/second<sup>2</sup></td></tr></tbody></table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_moment</span> <span class="o">=</span> <span class="o">-</span> <span class="n">wing_lift_moment</span> \
+    <span class="o">+</span> <span class="n">wing_drag_moment</span> \
+    <span class="o">-</span> <span class="n">stab_lift_moment</span> \
+    <span class="o">-</span> <span class="n">stab_drag_moment</span> \
+    <span class="o">+</span> <span class="n">moment_wing</span> <span class="o">+</span> <span class="n">moment_stab</span>
+<span class="n">total_moment</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table><tbody><tr><th>Magnitude</th><td style='text-align:left;'><pre>[0.07986476295719383 0.004882835639013135 0.0022775556458649268<br> 0.0013304176496032132 0.0008138341853221966 0.0004973305516548901<br> 0.00031244527643179126 0.00018853397785119393 8.590238444033198e-05<br> -2.211289417472446e-06 -7.81159045055897e-05 -0.00014618450112342614<br> -0.00020936513924538298 -0.0002668402765299058 -0.00031596959448555457<br> -0.0003545636202514172 -0.00038514501548952724 -0.0003977498374425611<br> -0.00039403786289268175 -0.0003980702637275672 -0.0004059584601371641<br> -0.00040644809059647716 -0.00040638965406480503 -0.0004080635860526358<br> -0.0004116711442801861 -0.00041544766065957587 -0.00041880398902767647<br> -0.00042187740181637577 -0.0004246787399315608 -0.00042723114017356295<br> -0.0004295405319443105 -0.00043161769727532355 -0.00043345071731122343<br> -0.00043504137994886707 -0.00043639761783906793 -0.00043750985619147106<br> -0.0004383774254304094 -0.00043900934020973763 -0.0004394118705801866<br> -0.0004395928689152254 -0.0004395763919250098 -0.00043938254309267965<br> -0.000439031339968601]</pre></td></tr><tr><th>Units</th><td style='text-align:left;'>kilogram meter<sup>2</sup>/second<sup>2</sup></td></tr></tbody></table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">total_moment</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span><span class="o">.</span><span class="n">magnitude</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/09-level-flight-calculations_39_0.png" src="../_images/09-level-flight-calculations_39_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">total_moment</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;alpha = &quot;</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>alpha =  3.836734693877551
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clw</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(0.56191344)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VE</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">wgt</span> <span class="o">/</span><span class="p">(</span><span class="n">rho</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">gravity</span><span class="o">*</span><span class="p">(</span><span class="n">clw</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">sw</span> <span class="o">+</span> <span class="bp">cls</span><span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">ss</span><span class="p">))</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">VE</span><span class="p">)</span>
+<span class="n">v</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;mph&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">3.630740612697587 mile_per_hour</div></div>
+</div>
+<p>Now, let’s calculate the Reynolds Number for this velocity:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_chord</span> <span class="o">=</span> <span class="mf">1.85</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">Air</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">.</span><span class="n">get_properties</span><span class="p">(</span><span class="mi">864</span><span class="p">)[</span><span class="s1">&#39;mu&#39;</span><span class="p">]</span>
+<span class="n">density</span> <span class="o">=</span> <span class="n">Air</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">.</span><span class="n">get_properties</span><span class="p">(</span><span class="mi">864</span><span class="p">)[</span><span class="s1">&#39;rho&#39;</span><span class="p">]</span>
+<span class="n">RE</span> <span class="o">=</span> <span class="n">density</span> <span class="o">*</span> <span class="n">v</span> <span class="o">*</span> <span class="n">mean_chord</span> <span class="o">/</span> <span class="n">mu</span>
+<span class="n">RE</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">4876.004509865407 dimensionless</div></div>
+</div>
+<p>These calculations are for our 2D model. McLean included some 3D effects by adding in induced drag.</p>
+</div>
+<div class="section" id="induced-drag">
+<h2><span class="section-number">9.5. </span>Induced Drag<a class="headerlink" href="#induced-drag" title="Permalink to this headline">¶</a></h2>
+<p>When air flows over a lifting surface several interesting things happen. One is the formation of two vortices that appear behind the wing tips. Although it is common to talk about the formation of these vortices as a result of the pressure difference between the upper and lower surfaces, their formation is more complicated than that. (For a good discussion of this, see Doug McLean’s 2005 article on wing-tip design <span id="id1">[<a class="reference internal" href="bibliography.html#id23">McL</a>]</span>.</p>
+<p>A side effect of those vortices is a downward deflection of the airstream behind the wing that influences the effective angle of attack of the stabilizer. This downward flow is called <em>Downwash</em>.</p>
+<p>In initial designs, the downwash angle can be estimated using this equation:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e91142ab-4e45-4ced-af05-ff4077965a75">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-e91142ab-4e45-4ced-af05-ff4077965a75" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\epsilon = \frac{2C_{lw}}{\pi{AR}_w}
+\end{equation}\]</div>
+<p>The induced drag due to the wing is given by:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6fc0e298-0b4b-47d2-ab13-f6227c9fb328">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-6fc0e298-0b4b-47d2-ab13-f6227c9fb328" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+C_{dif} = \frac{1}{\pi {AR}_f}
+\end{equation}\]</div>
+<p>And the induced drag due to the stab is given by:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b741e20f-6e12-4ffb-82a5-c9cb178eed10">
+<span class="eqno">(9.3)<a class="headerlink" href="#equation-b741e20f-6e12-4ffb-82a5-c9cb178eed10" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+C_{dir} = \frac{C_{lr}^2}{\pi {AR}_r} + 2 C_{lr}C_{dif}
+\end{equation}\]</div>
+<p>Where:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-dfd00ab4-9c5a-4759-8a01-e781e3bed6dd">
+<span class="eqno">(9.4)<a class="headerlink" href="#equation-dfd00ab4-9c5a-4759-8a01-e781e3bed6dd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+{AR}_{wing} = \frac{b_w^2}{S_f}
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-aed07b7a-a228-41b3-a940-3e7e4b2a9a07">
+<span class="eqno">(9.5)<a class="headerlink" href="#equation-aed07b7a-a228-41b3-a940-3e7e4b2a9a07" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+{AR}_{stab} = \frac{b_r^2}{S_r}
+\end{equation}\]</div>
+<p>Here:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(b_w\)</span> is the wing span</p></li>
+<li><p><span class="math notranslate nohighlight">\(b_r\)</span> is the stab span</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_f\)</span> is the wing projected area</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_r\)</span> is the stab projected span</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b_w</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="s1">&#39;wing&#39;</span><span class="p">][</span><span class="s1">&#39;projected_span&#39;</span><span class="p">]</span>
+<span class="n">a_w</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="s1">&#39;wing&#39;</span><span class="p">][</span><span class="s1">&#39;projected_area&#39;</span><span class="p">]</span>
+<span class="n">b_s</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="s1">&#39;stab&#39;</span><span class="p">][</span><span class="s1">&#39;projected_span&#39;</span><span class="p">]</span>
+<span class="n">a_s</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="s1">&#39;stab&#39;</span><span class="p">][</span><span class="s1">&#39;projected_area&#39;</span><span class="p">]</span>
+
+<span class="n">aspect_ratio_wing</span> <span class="o">=</span> <span class="n">b_w</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">a_w</span>
+<span class="n">aspect_ratio_stab</span> <span class="o">=</span> <span class="n">b_s</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">a_s</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">aspect_ratio_wing</span><span class="p">,</span> <span class="n">aspect_ratio_stab</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.8871660432942985 dimensionless 7.959312965493482 dimensionless
+</pre></div>
+</div>
+</div>
+</div>
+<p>The downwash angle seen by the stabilizer is calculated next:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eps</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">cl_w</span><span class="o">/</span><span class="p">(</span><span class="n">aspect_ratio_wing</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="n">eps</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table><tbody><tr><th>Magnitude</th><td style='text-align:left;'><pre>[0.4708216585459101 0.8304696052429581 1.1695106173031853<br> 1.4553342819774586 1.6834954376479758 1.8808780019931224<br> 2.068268774699325 2.2506680704842124 2.4278712780722485<br> 2.5986703392281028 2.7613600694682403 2.913842734729647<br> 3.0536541866582545 3.178231915761888 3.285499049651132 3.3745782309849894<br> 3.44654120200397 3.504349460447585 3.5521763826485406 3.594783557446779<br> 3.6368156160574294 3.6820547911313795 3.7328531710943715<br> 3.790043212353827 3.8533304795156536 3.9218827247773915<br> 3.9947545005468705 4.071063631996272 4.150063147940985 4.231126023357798<br> 4.313739495070567 4.397494824071387 4.482083903429996 4.567214430142499<br> 4.6526677322316985 4.738275886272328 4.823869350978623 4.909337834587565<br> 4.99451780172789 5.079251393770221 5.163379364159408 5.246741480473677<br> 5.329177510291253]</pre></td></tr><tr><th>Units</th><td style='text-align:left;'>dimensionless</td></tr></tbody></table></div></div>
+</div>
+<p>Those angle are significant! Our data will be suspect as the curve fit routines extrapolate to get stab values!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="n">C_lr</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">C_dif</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">aspect_ratio_wing</span><span class="p">)</span>
+<span class="n">C_dir</span> <span class="o">=</span> <span class="n">C_lr</span> <span class="o">**</span> <span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span> <span class="n">aspect_ratio_stab</span><span class="p">)</span> <span class="o">+</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">C_lr</span><span class="o">*</span><span class="n">C_dif</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The total induce drag is given by:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b4d4a051-7a8f-406c-8180-b0c92b131364">
+<span class="eqno">(9.6)<a class="headerlink" href="#equation-b4d4a051-7a8f-406c-8180-b0c92b131364" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+C_di = \frac{C_{dif} + \frac{S_r C_{dir}}{S_f}}{1 + \frac{S_r}{S_f}}
+\end{equation}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C_di</span> <span class="o">=</span> <span class="p">(</span><span class="n">C_dif</span> <span class="o">+</span> <span class="n">C_dir</span><span class="o">*</span><span class="p">(</span><span class="n">a_s</span><span class="p">)</span><span class="o">/</span><span class="n">a_w</span><span class="p">)</span><span class="o">/</span> \
+            <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">a_s</span><span class="o">/</span><span class="n">a_w</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">C_di</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.03616029838117978 dimensionless
+</pre></div>
+</div>
+</div>
+</div>
+<p>The induced drag coefficients are added to the section coefficient data for both the wing and stab. The flight velocity needs to be recalculated to account for these changes.</p>
+<p>We now can calculate the total drag from the wing and stab:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-cb811b92-7f68-45ce-b036-0a3080795f6c">
+<span class="eqno">(9.7)<a class="headerlink" href="#equation-cb811b92-7f68-45ce-b036-0a3080795f6c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+D = \frac{1}{2}\rho u^2 ((C_{dw} + C_{dif})*S_w + (C_{ds} + C_{dir})*S_s)
+\end{equation}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> \
+    <span class="p">((</span><span class="n">clw</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">+</span> <span class="n">C_dif</span><span class="p">)</span><span class="o">*</span><span class="n">a_w</span> <span class="o">+</span> <span class="p">(</span><span class="bp">cls</span><span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">C_dir</span><span class="p">)</span><span class="o">*</span><span class="n">a_s</span><span class="p">)</span>
+<span class="n">D</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.021740785344048996 kilogram meter/second<sup>2</sup></div></div>
+</div>
+</div>
+<div class="section" id="including-downwash-effects">
+<h2><span class="section-number">9.6. </span>Including Downwash Effects<a class="headerlink" href="#including-downwash-effects" title="Permalink to this headline">¶</a></h2>
+<p>We will repeat the moment survey adding in induced drag effects. Only the drag calculations will change.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drag_wing</span> <span class="o">=</span> <span class="n">q</span> <span class="o">*</span> <span class="p">(</span><span class="n">cd_w</span> <span class="o">+</span> <span class="n">C_dif</span><span class="p">)</span><span class="o">*</span> <span class="n">sw</span>
+<span class="n">drag_stab</span> <span class="o">=</span> <span class="n">q</span> <span class="o">*</span> <span class="p">(</span><span class="n">cd_s</span> <span class="o">+</span> <span class="n">C_dir</span><span class="p">)</span> <span class="o">*</span><span class="n">ss</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wing_drag_moment</span> <span class="o">=</span> <span class="n">wda</span> <span class="o">*</span> <span class="n">drag_wing</span>
+<span class="n">stab_drag_moment</span> <span class="o">=</span> <span class="n">sda</span> <span class="o">*</span> <span class="n">drag_stab</span>
+<span class="n">stab_drag_moment</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table><tbody><tr><th>Magnitude</th><td style='text-align:left;'><pre>[0.006725486186293436 -4.1169918464485685e-05 -0.006532022424872997<br> -0.0129452677911395 -0.019404537399238156 -0.025946007242107855<br> -0.03253111754223706 -0.03915777986712227 -0.045904098185836746<br> -0.052858274746486 -0.06004247679914417 -0.06763263891388692<br> -0.07483546742967843 -0.08285426570592713 -0.09339257619420674<br> -0.10660527265526513 -0.12404826547784928 -0.14093159730425586<br> -0.15529685290034304 -0.1767346804202758 -0.20526001450607678<br> -0.23508268655892775 -0.2662227672423793 -0.2965307661495543<br> -0.32713523428732894 -0.3603660519130483 -0.3946122543837792<br> -0.4302293591099159 -0.4671196131208449 -0.5053187903547497<br> -0.5448263785026973 -0.5856544123035282 -0.627810162350659<br> -0.6713077221882315 -0.7161594707093542 -0.7623669983763083<br> -0.809934005304797 -0.8588735130574893 -0.9091806359975325<br> -0.9608572672399002 -1.0139112933486651 -1.0683419293033065<br> -1.1241534645891158]</pre></td></tr><tr><th>Units</th><td style='text-align:left;'>gram inch standard_gravity</td></tr></tbody></table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_moment2</span> <span class="o">=</span> <span class="o">-</span> <span class="n">wing_lift_moment</span> \
+    <span class="o">+</span> <span class="n">wing_drag_moment</span> \
+    <span class="o">-</span> <span class="n">stab_lift_moment</span> \
+    <span class="o">-</span> <span class="n">stab_drag_moment</span> \
+    <span class="o">+</span> <span class="n">moment_wing</span> <span class="o">+</span> <span class="n">moment_stab</span>
+<span class="n">total_moment2</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table><tbody><tr><th>Magnitude</th><td style='text-align:left;'><pre>[0.0007802906724088008 0.0007377281733965118 0.0006617505454459007<br> 0.0005519981902041664 0.0004208988264716981 0.00029685479133753433<br> 0.00020389169892830373 0.00012672145957535381 4.734025038683926e-05<br> -3.502694991069653e-05 -0.0001186503992486566 -0.00020490637459405297<br> -0.00029475950955220893 -0.0003848222787958495 -0.00046865351455880054<br> -0.0005399239575620214 -0.0005998691463224656 -0.0006309827973493208<br> -0.0006344827802445413 -0.0006497759209990526 -0.0006716824223768678<br> -0.0006819793341378553 -0.0006923781508876573 -0.0007069619306845693<br> -0.0007261994235688254 -0.0007469576971732993 -0.0007680048387363403<br> -0.0007894186000135026 -0.0008110663044950336 -0.0008328586153632468<br> -0.0008546912056104498 -0.0008764867233981737 -0.0008981378281650161<br> -0.0009195661468278511 -0.0009407195824826467 -0.0009615163113398841<br> -0.0009818922424449864 -0.001001817454235153 -0.0010212462593871174<br> -0.0010401392370924974 -0.0010584987105677528 -0.0010763211776554128<br> -0.00109360688886915]</pre></td></tr><tr><th>Units</th><td style='text-align:left;'>kilogram meter<sup>2</sup>/second<sup>2</sup></td></tr></tbody></table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">total_moment2</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span><span class="o">.</span><span class="n">magnitude</span><span class="p">)</span>
+<span class="c1">#plt.plot(x, total_moment.to_base_units().magnitude)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/09-level-flight-calculations_61_0.png" src="../_images/09-level-flight-calculations_61_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">total_moment2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;alpha = &quot;</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">i0</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>alpha =  3.836734693877551
+</pre></div>
+</div>
+</div>
+</div>
+<p>Obviously, for level flight these effects are small. Also, the scheme to pick the zero moment point is flawed. I shoult let numpy do the work!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VE</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">wgt</span> <span class="o">/</span><span class="p">(</span><span class="n">rho</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">gravity</span><span class="o">*</span><span class="p">(</span><span class="n">clw</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">sw</span> <span class="o">+</span> <span class="bp">cls</span><span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">ss</span><span class="p">))</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">VE</span><span class="p">)</span>
+<span class="n">v</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;mph&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">3.630740612697587 mile_per_hour</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_drag</span> <span class="o">=</span> <span class="n">drag_wing</span><span class="p">[</span><span class="n">i0</span><span class="p">]</span> <span class="o">+</span> <span class="n">drag_stab</span><span class="p">[</span><span class="n">i0</span><span class="p">]</span>
+<span class="n">total_drag</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.004192078039260456 kilogram meter/second<sup>2</sup></div></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="08-generating-airfoils-for-xfoil.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">8. </span>Generating Airfoils for XFoil</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="10-a6-propeller-analysis.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>A-6 Propeller Analysis</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Roie R. Black<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

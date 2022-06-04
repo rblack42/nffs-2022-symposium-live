@@ -1,0 +1,46 @@
+Traceback (most recent call last):
+  File "/Users/rblack/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/rblack/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/nbclient/client.py", line 1093, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/rblack/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/rblack/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/local/Cellar/python@3.10/3.10.4/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
+    return future.result()
+  File "/Users/rblack/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/nbclient/client.py", line 559, in async_execute
+    await self.async_execute_cell(
+  File "/Users/rblack/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/nbclient/client.py", line 854, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/Users/rblack/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/nbclient/client.py", line 756, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+clfile = datadir / 'CL.csv'
+cl_x, cl_y = get_points(clfile)
+alpha_pts = np.linspace(cl_x[0], cl_x[-1], 50)
+smooth_cl = fit_curve(cl_x, cl_y, smooth=True)
+cl_smooth = smooth_cl(alpha_pts)
+show_curve(alpha_pts, cl_smooth, "Lift Coefficient", "alpha","Cl")
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m/var/folders/ws/5h_x4h713cg8w0jmrm5_tfzc0000gn/T/ipykernel_47840/889189721.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mclfile[0m [0;34m=[0m [0mdatadir[0m [0;34m/[0m [0;34m'CL.csv'[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mcl_x[0m[0;34m,[0m [0mcl_y[0m [0;34m=[0m [0mget_points[0m[0;34m([0m[0mclfile[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0malpha_pts[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mlinspace[0m[0;34m([0m[0mcl_x[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m,[0m [0mcl_x[0m[0;34m[[0m[0;34m-[0m[0;36m1[0m[0;34m][0m[0;34m,[0m [0;36m50[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0msmooth_cl[0m [0;34m=[0m [0mfit_curve[0m[0;34m([0m[0mcl_x[0m[0;34m,[0m [0mcl_y[0m[0;34m,[0m [0msmooth[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0mcl_smooth[0m [0;34m=[0m [0msmooth_cl[0m[0;34m([0m[0malpha_pts[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/_dev/live-2022/mmtime/utils.py[0m in [0;36mget_points[0;34m(filename)[0m
+[1;32m     11[0m     [0mx[0m [0;34m=[0m [0;34m[[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m     12[0m     [0my[0m [0;34m=[0m [0;34m[[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 13[0;31m     [0;32mwith[0m [0mopen[0m[0;34m([0m[0mfilename[0m[0;34m,[0m[0;34m'r'[0m[0;34m)[0m [0;32mas[0m [0mfin[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     14[0m         [0mraw_data[0m [0;34m=[0m [0mcsv[0m[0;34m.[0m[0mreader[0m[0;34m([0m[0mfin[0m[0;34m,[0m[0mdelimiter[0m[0;34m=[0m[0;34m','[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     15[0m         [0;32mfor[0m [0mrow[0m [0;32min[0m [0mraw_data[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '/Users/rblack/_dev/nffs-symposium/live-2022/mmtime/data/airfoils/arc3/CL.csv'
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/rblack/_dev/nffs-symposium/live-2022/mmtime/data/airfoils/arc3/CL.csv'
+

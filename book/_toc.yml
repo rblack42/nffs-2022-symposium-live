@@ -1,30 +1,28 @@
 # Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
 options:
-root: frontmatter/index
+root: content/00-index
 options:
   numbered: true
 chapters:
-- file: frontmatter/overview
+- file: content/01-overview
+- file: content/02-hacklingers-equation
+- file: content/03-atmospheric-data
+- file: content/04-tenny-data-analysis
+- file: content/05-circular-arc-data
+- file: content/06-data-smoothing
+- file: content/07-simplified-indoor-design
+- file: content/08-generating-airfoils-for-xfoil
+- file: content/09-level-flight-calculations
+- file: content/10-a6-propeller-analysis
+- file: content/11-rubber-motors
+- file: content/12-motor-speed
 
-- file: background/atmospheric-data
-- file: background/simplified-indoor-design
-- file: background/hodson-wart-a6
-- file: background/tenny-data-analysis
-- file: background/data-smoothing
-- file: content/hacklinger-theory
-- file: content/mclean-method
-- file: content/experimental-airfoil-data
-- file: content/simplex-airfoils
-- file: content/xfoil-circular-arc
-- file: content/generating-airfoils-for-xfoil
-- file: content/level-flight-calculations
-- file: content/indoor-model-propulsion
-- file: content/stability-analysis
+- file: appendix/10-minute-guide-to-python
+- file: appendix/accessing-the-online-study
+- file: appendix/brief-guide-to-using-jupyter
 
-
-- file: backmatter/bibliography
-- file: backmatter/biography
+- file: content/bibliography
+- file: content/biography
 

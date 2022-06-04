@@ -1,0 +1,16 @@
+solar1 prop                                    
+ 2       ! Nblade
+ 0.0000  6.2832    ! CL0    CL_a 
+-0.8000  1.2000    ! CLmin  CLmax
+ 0.01000   0.008  0.006  0.40  ! CD0    CD2u   CD2l  CLCD0
+ 150000.0 -0.500               ! REref  REexp
+  0.0  0.5  1.0   ! XIdes   (r/R locations where design cl is specified)
+  1.0  0.9  0.8   ! CLdes   (specified cl)
+  0.05    !  hub radius(m)
+ 0.65    !  tip radius(m)
+  10.0    !  speed(m/s)
+  650   !  rpm 
+  0.0      !  Thrust(N)   ( 0 if power  specified )
+  235.0    !  Power(W)    ( 0 if thrust specified )
+ 0   0.2   ! Ldes    KQdes
+ 10    ! Nout    number of output stations (optional)

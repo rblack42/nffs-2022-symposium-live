@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>11. Circular Arc Airfoils for XFoil Tests &#8212; Predicting Indoor Flight Times With Python</title>
+    <title>5. Circular Arc Airfoils for XFoil Tests &#8212; Predicting Indoor Flight Times With Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -42,6 +42,8 @@
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -53,8 +55,8 @@
     <link rel="shortcut icon" href="../_static/lpp.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="12. Generating Airfoils for XFoil" href="generating-airfoils-for-xfoil.html" />
-    <link rel="prev" title="10. Simplex Airfoils" href="simplex-airfoils.html" />
+    <link rel="next" title="6. Power Needed for Level Flight" href="level-flight-power.html" />
+    <link rel="prev" title="4. McLean’s Method" href="mclean-method.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -93,95 +95,55 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../frontmatter/index.html">
+  <a class="reference internal" href="00-index.html">
    Predicting Indoor Model Flight Time Using Python
   </a>
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../frontmatter/overview.html">
+  <a class="reference internal" href="01-overview.html">
    1. Overview
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../background/atmospheric-data.html">
-   2. Atmospheric Data
+  <a class="reference internal" href="02-hacklinger-theory.html">
+   2. Hacklinger’s Equation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../background/simplified-indoor-design.html">
-   3. Simplified Indoor Design
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../background/hodson-wart-a6.html">
-   4. Hodson Wart A6
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../background/tenny-data-analysis.html">
-   5. Tenny’s Flight Path Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../background/data-smoothing.html">
-   6. Data Smoothing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hacklinger-theory.html">
-   7. Hacklinger’s Theories
+  <a class="reference internal" href="03-tenny-data-analysis.html">
+   3. Tenny’s Flight Path Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mclean-method.html">
-   8. McLean’s Method
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="experimental-airfoil-data.html">
-   9. Airfoil Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="simplex-airfoils.html">
-   10. Simplex Airfoils
+   4. McLean’s Method
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   11. Circular Arc Airfoils for XFoil Tests
+   5. Circular Arc Airfoils for XFoil Tests
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="generating-airfoils-for-xfoil.html">
-   12. Generating Airfoils for XFoil
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="level-flight-calculations.html">
-   13. level-flight-calculations
+  <a class="reference internal" href="level-flight-power.html">
+   6. Power Needed for Level Flight
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="indoor-model-propulsion.html">
-   14. Indoor Model Propulsion
+   7. Indoor Model Propulsion
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="stability-analysis.html">
-   15. Stability Analysis
+  <a class="reference internal" href="bibliography.html">
+   8. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../backmatter/bibliography.html">
-   16. Bibliography
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../backmatter/biography.html">
-   17. Biography
+  <a class="reference internal" href="biography.html">
+   9. Biography
   </a>
  </li>
 </ul>
@@ -290,13 +252,25 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#airfoil-basics">
-   11.1. Airfoil Basics
+   5.1. Airfoil Basics
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#leading-edge">
-   11.2. Leading edge
+   5.2. Leading edge
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flat-plate-airfoil">
+   5.3. Flat Plate Airfoil
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trailing-edge-parabolic-arc">
+     5.3.1. Trailing edge parabolic arc
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -320,13 +294,25 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#airfoil-basics">
-   11.1. Airfoil Basics
+   5.1. Airfoil Basics
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#leading-edge">
-   11.2. Leading edge
+   5.2. Leading edge
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flat-plate-airfoil">
+   5.3. Flat Plate Airfoil
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trailing-edge-parabolic-arc">
+     5.3.1. Trailing edge parabolic arc
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -338,11 +324,11 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="circular-arc-airfoils-for-xfoil-tests">
-<h1><span class="section-number">11. </span>Circular Arc Airfoils for XFoil Tests<a class="headerlink" href="#circular-arc-airfoils-for-xfoil-tests" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">5. </span>Circular Arc Airfoils for XFoil Tests<a class="headerlink" href="#circular-arc-airfoils-for-xfoil-tests" title="Permalink to this headline">¶</a></h1>
 <p>After reading through a Master’s Thesis that explored thin airfoils defined by a BSpline curve, I decided to adapt the technique presented and build a circular arc airfoil routine that will generate airfoils with an arbitrary camber and thickness. XFoil cannot deal with super thin airfoils, and the Thesis added a round leading edge and a parabolic thickness distribution at the trailing edge. Both of these additions helped XFoil converge on solutions during analysis.</p>
 <p>In this note, we will build the basic routines needed to build the Python class. At the end of the note, we will import the new class and run tests on a sample airfoil so we can compare results with the data we have already presented.</p>
 <div class="section" id="airfoil-basics">
-<h2><span class="section-number">11.1. </span>Airfoil Basics<a class="headerlink" href="#airfoil-basics" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1. </span>Airfoil Basics<a class="headerlink" href="#airfoil-basics" title="Permalink to this headline">¶</a></h2>
 <p>The airfoils we will produce are normalized to a chord of length one. The camber will be specified as a percentage of this chord, as will be the thickness used in analysis. These two data items can fully define the circular arc that will form the camber line.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -455,10 +441,11 @@
 </div>
 </div>
 <div class="section" id="leading-edge">
-<h2><span class="section-number">11.2. </span>Leading edge<a class="headerlink" href="#leading-edge" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2. </span>Leading edge<a class="headerlink" href="#leading-edge" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maxLEangle</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">nptot</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="mi">180</span><span class="o">/</span><span class="n">maxLEangle</span><span class="p">)</span>
 <span class="n">nptot</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="mi">180</span><span class="o">/</span><span class="n">maxLEangle</span><span class="p">)</span>
 <span class="n">np1</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(((</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">theta</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">nptot</span><span class="p">)</span>
 <span class="n">np2</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(((</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">theta</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">nptot</span><span class="p">)</span>
@@ -577,13 +564,354 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">CL</span><span class="p">,</span><span class="n">CM</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">CL</span><span class="p">,</span><span class="n">CD</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/xfoil-circular-arc_16_0.png" src="../_images/xfoil-circular-arc_16_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="flat-plate-airfoil">
+<h2><span class="section-number">5.3. </span>Flat Plate Airfoil<a class="headerlink" href="#flat-plate-airfoil" title="Permalink to this headline">¶</a></h2>
+<p>For the propeller analysis, we will need a flat plate airfoil. Once again, to keep <strong>xfoil</strong> happy, we will generate this airfoil using a round leading edge and a parabolic arc trailing edge as we used for the circular arc airfoil presented previously.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chord</span> <span class="o">=</span> <span class="mf">1.0</span>      <span class="c1"># includes rounded nose</span>
+<span class="n">thickness</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># percentage of chord</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">thickness</span> <span class="o">/</span> <span class="mf">100.0</span>
+<span class="n">ch</span> <span class="o">=</span> <span class="n">chord</span> <span class="o">-</span> <span class="n">t</span><span class="o">/</span><span class="mf">2.0</span>   <span class="c1"># shorten the chord to allow for the round nose</span>
+
+<span class="n">xc</span> <span class="o">=</span> <span class="n">t</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">ch</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">yc</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span> <span class="n">yc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5025 0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span> <span class="o">=</span> <span class="mi">125</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">nx</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">t</span><span class="o">/</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="trailing-edge-parabolic-arc">
+<h3><span class="section-number">5.3.1. </span>Trailing edge parabolic arc<a class="headerlink" href="#trailing-edge-parabolic-arc" title="Permalink to this headline">¶</a></h3>
+<p>For the flat plate, the equation for the parabolic arc we will use for the trailing edge is this:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-522839e6-81cf-459a-9cb8-83133dafd4a9">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-522839e6-81cf-459a-9cb8-83133dafd4a9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+y = ax^2+b)
+\end{equation}\]</div>
+<p>With conditions:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ef90d970-90db-4e59-b750-9ab315de48a2">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-ef90d970-90db-4e59-b750-9ab315de48a2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+x = 0, y = t/2
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-5de487cd-39d7-488f-80d4-a44dfab00cfc">
+<span class="eqno">(5.3)<a class="headerlink" href="#equation-5de487cd-39d7-488f-80d4-a44dfab00cfc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+x = 5dx, y = 0
+\end{equation}\]</div>
+<p>We will use <strong>sympy</strong> to generate equations for <strong>a</strong> and <strong>b</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span>
+<span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">tnx</span><span class="p">,</span> <span class="n">tt</span><span class="p">,</span> <span class="n">ta</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;tx ty tnx tt ta tb&#39;</span><span class="p">)</span>
+
+<span class="n">eq1</span> <span class="o">=</span> <span class="n">tt</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">tb</span>
+<span class="n">eq2</span> <span class="o">=</span> <span class="n">ta</span> <span class="o">*</span> <span class="mi">25</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span>  <span class="o">+</span> <span class="n">tb</span>
+
+<span class="n">eq3</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">([</span><span class="n">eq1</span><span class="p">,</span><span class="n">eq2</span><span class="p">],[</span><span class="n">ta</span><span class="p">,</span><span class="n">tb</span><span class="p">])</span>
+<span class="n">eq3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ta: -312.5*tt, tb: 0.5*tt}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Obviously, we did not really need <strong>sympy</strong> for this simple problem, but it is nice to be able to do things like this when your math is a bit rusty!</p>
+<p>With these constants defined, we can generate the trailing edge curves as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mf">312.5</span> <span class="o">*</span> <span class="n">t</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">t</span><span class="o">/</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>125 -3.125 0.005
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xu</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">xm</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">xl</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">yu</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">ym</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">yl</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>  
+    <span class="n">x</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">dx</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">nx</span><span class="o">-</span><span class="mi">6</span><span class="p">:</span>
+        <span class="c1"># trailing edge arc</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="p">(</span><span class="n">nx</span> <span class="o">-</span> <span class="mi">6</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">xx</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="n">dx</span>
+        <span class="n">tt</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">xx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">xx</span><span class="p">,</span><span class="n">tt</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">tt</span> <span class="o">=</span> <span class="n">b</span>
+    <span class="n">dy</span> <span class="o">=</span> <span class="n">tt</span>
+    <span class="n">xu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">xm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">xl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">yu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dy</span><span class="p">)</span>
+    <span class="n">ym</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">yl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="n">dy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>120 0 0.0 0.005
+121 1 0.008 0.0048000000000000004
+122 2 0.016 0.004200000000000001
+123 3 0.024 0.0032
+124 4 0.032 0.0018000000000000004
+125 5 0.04 0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xu</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">yu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">i</span><span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 0.0 0.005
+1 0.008 0.005
+2 0.016 0.005
+3 0.024 0.005
+4 0.032 0.005
+5 0.04 0.005
+6 0.048 0.005
+7 0.056 0.005
+8 0.064 0.005
+9 0.07200000000000001 0.005
+10 0.08 0.005
+11 0.088 0.005
+12 0.096 0.005
+13 0.10400000000000001 0.005
+14 0.112 0.005
+15 0.12 0.005
+16 0.128 0.005
+17 0.136 0.005
+18 0.14400000000000002 0.005
+19 0.152 0.005
+20 0.16 0.005
+21 0.168 0.005
+22 0.176 0.005
+23 0.184 0.005
+24 0.192 0.005
+25 0.2 0.005
+26 0.20800000000000002 0.005
+27 0.216 0.005
+28 0.224 0.005
+29 0.232 0.005
+30 0.24 0.005
+31 0.248 0.005
+32 0.256 0.005
+33 0.264 0.005
+34 0.272 0.005
+35 0.28 0.005
+36 0.28800000000000003 0.005
+37 0.296 0.005
+38 0.304 0.005
+39 0.312 0.005
+40 0.32 0.005
+41 0.328 0.005
+42 0.336 0.005
+43 0.34400000000000003 0.005
+44 0.352 0.005
+45 0.36 0.005
+46 0.368 0.005
+47 0.376 0.005
+48 0.384 0.005
+49 0.392 0.005
+50 0.4 0.005
+51 0.40800000000000003 0.005
+52 0.41600000000000004 0.005
+53 0.424 0.005
+54 0.432 0.005
+55 0.44 0.005
+56 0.448 0.005
+57 0.456 0.005
+58 0.464 0.005
+59 0.47200000000000003 0.005
+60 0.48 0.005
+61 0.488 0.005
+62 0.496 0.005
+63 0.504 0.005
+64 0.512 0.005
+65 0.52 0.005
+66 0.528 0.005
+67 0.536 0.005
+68 0.544 0.005
+69 0.552 0.005
+70 0.56 0.005
+71 0.5680000000000001 0.005
+72 0.5760000000000001 0.005
+73 0.584 0.005
+74 0.592 0.005
+75 0.6 0.005
+76 0.608 0.005
+77 0.616 0.005
+78 0.624 0.005
+79 0.632 0.005
+80 0.64 0.005
+81 0.648 0.005
+82 0.656 0.005
+83 0.664 0.005
+84 0.672 0.005
+85 0.68 0.005
+86 0.6880000000000001 0.005
+87 0.6960000000000001 0.005
+88 0.704 0.005
+89 0.712 0.005
+90 0.72 0.005
+91 0.728 0.005
+92 0.736 0.005
+93 0.744 0.005
+94 0.752 0.005
+95 0.76 0.005
+96 0.768 0.005
+97 0.776 0.005
+98 0.784 0.005
+99 0.792 0.005
+100 0.8 0.005
+101 0.808 0.005
+102 0.8160000000000001 0.005
+103 0.8240000000000001 0.005
+104 0.8320000000000001 0.005
+105 0.84 0.005
+106 0.848 0.005
+107 0.856 0.005
+108 0.864 0.005
+109 0.872 0.005
+110 0.88 0.005
+111 0.888 0.005
+112 0.896 0.005
+113 0.904 0.005
+114 0.912 0.005
+115 0.92 0.005
+116 0.928 0.005
+117 0.936 0.005
+118 0.9440000000000001 0.005
+119 0.9520000000000001 0.005
+120 0.96 0.005
+121 0.968 0.0048000000000000004
+122 0.976 0.004200000000000001
+123 0.984 0.0032
+124 0.992 0.0018000000000000004
+125 1.0 0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mf">1.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xu</span><span class="p">,</span><span class="n">yu</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xm</span><span class="p">,</span><span class="n">ym</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span><span class="n">yl</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/xfoil-circular-arc_28_0.png" src="../_images/xfoil-circular-arc_28_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LEangle</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">nptot</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="mi">180</span><span class="o">/</span><span class="n">LEangle</span><span class="p">)</span>
+<span class="n">np1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">nptot</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">np2</span> <span class="o">=</span> <span class="n">nptot</span> <span class="o">-</span> <span class="n">np1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nptot</span><span class="p">,</span> <span class="n">np1</span><span class="p">,</span> <span class="n">np2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12 6 6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mi">90</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">np1</span><span class="p">):</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">-</span> <span class="n">LEangle</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>75 0.004829629131445342
+60 0.004330127018922193
+45 0.0035355339059327372
+30 0.0024999999999999996
+15 0.0012940952255126037
+0 0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">np2</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">+</span> <span class="n">LEangle</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15 0.0012940952255126037
+30 0.0024999999999999996
+45 0.0035355339059327372
+60 0.004330127018922193
+75 0.004829629131445342
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -614,17 +942,17 @@
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="simplex-airfoils.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="mclean-method.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">10. </span>Simplex Airfoils</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>McLean’s Method</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="generating-airfoils-for-xfoil.html" title="next page">
+    <a class='right-next' id="next-link" href="level-flight-power.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">12. </span>Generating Airfoils for XFoil</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Power Needed for Level Flight</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>13. Propeller Speed &#8212; Predicting Indoor Flight Times With Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://rblack42.github.io/nffs-2022-symposium-live/content/12-motor-speed.html" />
+    <link rel="shortcut icon" href="../_static/lpp.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="14. 10 Minute Guide to Python" href="../appendix/10-minute-guide-to-python.html" />
+    <link rel="prev" title="12. Rubber Motors" href="11-rubber-motors.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/lpp.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Predicting Indoor Flight Times With Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00-index.html">
+   Predicting Indoor Model Flight Time Using Python
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-overview.html">
+   1. Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-hacklingers-equation.html">
+   2. Hacklinger’s Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-atmospheric-data.html">
+   3. Atmospheric Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-tenny-data-analysis.html">
+   4. Tenny’s Flight Path Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-circular-arc-data.html">
+   5. Circular Arc Airfoil Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-smoothing.html">
+   6. Data Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-simplified-indoor-design.html">
+   7. Simplified Indoor Design
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-generating-airfoils-for-xfoil.html">
+   8. Generating Airfoils for XFoil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-level-flight-calculations.html">
+   9. level-flight-calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-a6-propeller-analysis.html">
+   10. A-6 Propeller Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-rubber-motors.html">
+   12. Rubber Motors
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   13. Propeller Speed
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/10-minute-guide-to-python.html">
+   14. 10 Minute Guide to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/accessing-the-online-study.html">
+   15. Accessing The Online Study
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/brief-guide-to-using-jupyter.html">
+   16. Brief Guide to Using Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   17. Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="biography.html">
+   18. Biography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/content/12-motor-speed.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live/issues/new?title=Issue%20on%20page%20%2Fcontent/12-motor-speed.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.ord/v2/gh/rblack42/nffs-2022-symposium-live/master?urlpath=tree/docs/content/12-motor-speed.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Propeller Speed</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="propeller-speed">
+<h1><span class="section-number">13. </span>Propeller Speed<a class="headerlink" href="#propeller-speed" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">cwd</span> <span class="o">=</span> <span class="o">!</span>pwd
+<span class="n">pagedir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">cwd</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">projpath</span> <span class="o">=</span> <span class="n">pagedir</span> <span class="o">/</span> <span class="s2">&quot;..&quot;</span> <span class="o">/</span> <span class="s2">&quot;..&quot;</span>
+<span class="n">projdir</span> <span class="o">=</span> <span class="n">projpath</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">projdir</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">projdir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pint</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">mmtime.data.models.wart</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="n">wart</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">Wart</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">mdata</span> <span class="o">=</span> <span class="n">wart</span><span class="o">.</span><span class="n">model_data</span><span class="p">()</span>
+<span class="n">w_m</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">][</span><span class="s1">&#39;rubber&#39;</span><span class="p">]</span>
+<span class="n">K_m</span> <span class="o">=</span> <span class="mi">30000</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span>
+<span class="n">E</span> <span class="o">=</span> <span class="n">K_m</span> <span class="o">*</span> <span class="n">w_m</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">gravity</span>
+<span class="n">E</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;ft*lbf&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">4.739938636974868 foot force_pound</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">torque</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">Qm</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">Nm</span><span class="p">):</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span><span class="o">&lt;</span><span class="n">x1</span><span class="p">:</span> 
+        <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">M</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">Qm</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">M</span><span class="o">*</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Qm</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="n">x1</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="n">Qm</span>
+        <span class="k">return</span> <span class="n">A</span><span class="o">*</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="n">C</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">x2</span><span class="p">:</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">y1</span> <span class="o">+</span> <span class="n">M</span><span class="o">*</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">xp</span> <span class="o">=</span> <span class="n">Nm</span><span class="o">-</span><span class="n">n</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">M</span><span class="o">*</span><span class="n">Nm</span> <span class="o">+</span> <span class="n">M</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="n">y2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Nm</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Nm</span><span class="o">*</span><span class="n">x2</span> <span class="o">+</span> <span class="n">x2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">M</span><span class="o">*</span><span class="n">Nm</span> <span class="o">+</span> <span class="n">M</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">y2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="n">Nm</span> <span class="o">+</span> <span class="n">x2</span><span class="p">)</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">A</span><span class="o">*</span><span class="n">xp</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">xp</span> <span class="o">+</span> <span class="n">C</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Weights</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.90</span><span class="p">,</span><span class="mf">0.98</span><span class="p">,</span><span class="mf">0.83</span><span class="p">,</span><span class="mf">0.88</span><span class="p">,</span>
+               <span class="mf">0.94</span><span class="p">,</span><span class="mf">0.81</span><span class="p">,</span><span class="mf">0.81</span><span class="p">,</span><span class="mf">0.80</span><span class="p">,</span>
+               <span class="mf">0.55</span><span class="p">,</span><span class="mf">0.61</span><span class="p">,</span><span class="mf">0.61</span><span class="p">,</span><span class="mf">0.58</span><span class="p">,</span>
+               <span class="mf">0.8</span><span class="p">,</span><span class="mf">0.84</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Turns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3375</span><span class="p">,</span><span class="mi">3570</span><span class="p">,</span><span class="mi">3860</span><span class="p">,</span><span class="mi">3820</span><span class="p">,</span>
+         <span class="mi">4050</span><span class="p">,</span><span class="mi">3785</span><span class="p">,</span><span class="mi">3740</span><span class="p">,</span><span class="mi">3640</span><span class="p">,</span>
+         <span class="mi">2425</span><span class="p">,</span><span class="mi">1775</span><span class="p">,</span><span class="mi">1800</span><span class="p">,</span><span class="mi">1885</span><span class="p">,</span>
+         <span class="mi">1750</span><span class="p">,</span><span class="mi">2400</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Time</span> <span class="o">=</span> <span class="p">[</span><span class="mi">531</span><span class="p">,</span><span class="mi">536</span><span class="p">,</span><span class="mi">550</span><span class="p">,</span><span class="mi">594</span><span class="p">,</span>
+        <span class="mi">613</span><span class="p">,</span><span class="mi">614</span><span class="p">,</span><span class="mi">594</span><span class="p">,</span><span class="mi">588</span><span class="p">,</span>
+        <span class="mi">276</span><span class="p">,</span><span class="mi">269</span><span class="p">,</span><span class="mi">280</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span>
+        <span class="mi">258</span><span class="p">,</span><span class="mi">248</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">seconds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Lengths</span> <span class="o">=</span> <span class="p">[</span><span class="mf">17.5</span><span class="p">,</span><span class="mf">18.0</span><span class="p">,</span><span class="mf">18.0</span><span class="p">,</span><span class="mf">19.0</span><span class="p">,</span>
+          <span class="mf">19.0</span><span class="p">,</span><span class="mf">18.0</span><span class="p">,</span><span class="mf">18.0</span><span class="p">,</span><span class="mf">18.0</span><span class="p">,</span>
+          <span class="mf">14.0</span><span class="p">,</span><span class="mf">14.5</span><span class="p">,</span><span class="mf">14.5</span><span class="p">,</span><span class="mf">14.0</span><span class="p">,</span>
+          <span class="mf">17.5</span><span class="p">,</span><span class="mf">17.5</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">inches</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Torque</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.3</span><span class="p">,</span><span class="mf">3.4</span><span class="p">,</span><span class="mf">3.2</span><span class="p">,</span><span class="mf">2.8</span><span class="p">,</span>
+          <span class="mf">3.0</span><span class="p">,</span><span class="mf">2.9</span><span class="p">,</span><span class="mf">2.9</span><span class="p">,</span><span class="mf">2.8</span><span class="p">,</span>
+          <span class="mf">0.75</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.55</span><span class="p">,</span>
+          <span class="mf">0.55</span><span class="p">,</span><span class="mf">0.6</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">ounces</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Torque</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table><tbody><tr><th>Magnitude</th><td style='text-align:left;'><pre>[0.0023762570283375004 0.0024482648170750004 0.0023042492396000004<br> 0.0020162180846500003 0.0021602336621250003 0.0020882258733875003<br> 0.0020882258733875003 0.0020162180846500003 0.0005400584155312501<br> 0.00028803115495000005 0.00028803115495000005 0.0003960428380562501<br> 0.0003960428380562501 0.0004320467324250001]</pre></td></tr><tr><th>Units</th><td style='text-align:left;'>kilogram meter</td></tr></tbody></table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T_W</span> <span class="o">=</span> <span class="n">Torque</span><span class="o">/</span><span class="n">Weights</span><span class="o">/</span><span class="n">Lengths</span>
+<span class="n">T_W</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table><tbody><tr><th>Magnitude</th><td style='text-align:left;'><pre>[0.20952380952380953 0.1927437641723356 0.21419009370816602<br> 0.16746411483253587 0.167973124300112 0.1989026063100137<br> 0.1989026063100137 0.19444444444444442 0.0974025974025974<br> 0.04522328999434709 0.04522328999434709 0.06773399014778327<br> 0.039285714285714285 0.04081632653061225]</pre></td></tr><tr><th>Units</th><td style='text-align:left;'>ounce/gram</td></tr></tbody></table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Navg</span> <span class="o">=</span> <span class="p">(</span><span class="n">Turns</span><span class="o">/</span><span class="n">Time</span><span class="p">)</span>
+<span class="n">Navg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table><tbody><tr><th>Magnitude</th><td style='text-align:left;'><pre>[6.3559322033898304 6.66044776119403 7.0181818181818185 6.430976430976431<br> 6.6068515497553015 6.164495114006515 6.296296296296297 6.190476190476191<br> 8.78623188405797 6.598513011152416 6.428571428571429 7.36328125<br> 6.782945736434108 9.67741935483871]</pre></td></tr><tr><th>Units</th><td style='text-align:left;'>1/second</td></tr></tbody></table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N_Q</span> <span class="o">=</span> <span class="n">Navg</span><span class="o">/</span><span class="n">Torque</span>
+<span class="n">N_Q</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table><tbody><tr><th>Magnitude</th><td style='text-align:left;'><pre>[1.926040061633282 1.9589552238805972 2.1931818181818183 2.296777296777297<br> 2.202283849918434 2.1256879703470744 2.171136653895275 2.2108843537414966<br> 11.714975845410628 16.49628252788104 16.07142857142857 13.38778409090909<br> 12.332628611698377 16.129032258064516]</pre></td></tr><tr><th>Units</th><td style='text-align:left;'>1/(inch ounce second)</td></tr></tbody></table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">T_W</span><span class="p">,</span> <span class="n">Navg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/rblack/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/numpy/ma/core.py:2829: UnitStrippedWarning: The unit of the quantity is stripped when downcasting to ndarray.
+  _data = np.array(data, dtype=dtype, copy=copy,
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x110f973a0&gt;
+</pre></div>
+</div>
+<img alt="../_images/12-motor-speed_13_2.png" src="../_images/12-motor-speed_13_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">max_turns</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">weight</span><span class="p">):</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="mf">8.48597</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">ounce</span><span class="o">**</span><span class="mf">0.5</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="o">**</span><span class="mf">1.5</span>
+    <span class="n">Nmax</span> <span class="o">=</span> <span class="n">K</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="p">(</span><span class="n">weight</span><span class="o">/</span><span class="n">length</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="k">return</span> <span class="n">Nmax</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s wind to 95% of the maximum allowed turns:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">motor_weight</span> <span class="o">=</span> <span class="mf">0.86</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span>
+<span class="n">motor_length</span> <span class="o">=</span> <span class="mf">18.0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inches</span>
+<span class="n">winding_turns</span> <span class="o">=</span> <span class="mf">0.95</span> <span class="o">*</span> <span class="n">max_turns</span><span class="p">(</span><span class="n">motor_length</span><span class="p">,</span> <span class="n">motor_weight</span><span class="p">)</span>
+<span class="n">winding_turns</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">3534.7402756112 dimensionless</div></div>
+</div>
+<p>Using the BET function, get the RPM needed for level flight. From the above experiment, I got about:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Level_Flight_RPM</span> <span class="o">=</span>  <span class="mf">6.51456</span><span class="o">*</span><span class="mi">60</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">minute</span>
+<span class="n">Level_Flight_RPM</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">390.8736 1/minute</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">torque</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">Qm</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">Nm</span><span class="p">):</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span><span class="o">&lt;</span><span class="n">x1</span><span class="p">:</span> 
+        <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">M</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">Qm</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">M</span><span class="o">*</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Qm</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="n">x1</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="n">Qm</span>
+        <span class="k">return</span> <span class="n">A</span><span class="o">*</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="n">C</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">x2</span><span class="p">:</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">y1</span> <span class="o">+</span> <span class="n">M</span><span class="o">*</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">xp</span> <span class="o">=</span> <span class="n">Nm</span><span class="o">-</span><span class="n">n</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">M</span><span class="o">*</span><span class="n">Nm</span> <span class="o">+</span> <span class="n">M</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="n">y2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Nm</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Nm</span><span class="o">*</span><span class="n">x2</span> <span class="o">+</span> <span class="n">x2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">M</span><span class="o">*</span><span class="n">Nm</span> <span class="o">+</span> <span class="n">M</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">y2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="n">Nm</span> <span class="o">+</span> <span class="n">x2</span><span class="p">)</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">A</span><span class="o">*</span><span class="n">xp</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">xp</span> <span class="o">+</span> <span class="n">C</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="11-rubber-motors.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">12. </span>Rubber Motors</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../appendix/10-minute-guide-to-python.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>10 Minute Guide to Python</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Roie R. Black<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

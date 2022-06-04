@@ -1,0 +1,876 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>12. Rubber Motors &#8212; Predicting Indoor Flight Times With Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://rblack42.github.io/nffs-2022-symposium-live/content/11-rubber-motors.html" />
+    <link rel="shortcut icon" href="../_static/lpp.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13. 10 Minute Guide to Python" href="../appendix/10-minute-guide-to-python.html" />
+    <link rel="prev" title="10. A-6 Propeller Analysis" href="10-a6-propeller-analysis.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/lpp.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Predicting Indoor Flight Times With Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00-index.html">
+   Predicting Indoor Model Flight Time Using Python
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-overview.html">
+   1. Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-hacklingers-equation.html">
+   2. Hacklinger’s Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-atmospheric-data.html">
+   3. Atmospheric Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-tenny-data-analysis.html">
+   4. Tenny’s Flight Path Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-circular-arc-data.html">
+   5. Circular Arc Airfoil Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-smoothing.html">
+   6. Data Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-simplified-indoor-design.html">
+   7. Simplified Indoor Design
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-generating-airfoils-for-xfoil.html">
+   8. Generating Airfoils for XFoil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-level-flight-calculations.html">
+   9. level-flight-calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-a6-propeller-analysis.html">
+   10. A-6 Propeller Analysis
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   12. Rubber Motors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/10-minute-guide-to-python.html">
+   13. 10 Minute Guide to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/accessing-the-online-study.html">
+   14. Accessing The Online Study
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/brief-guide-to-using-jupyter.html">
+   15. Brief Guide to Using Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   16. Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="biography.html">
+   17. Biography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/content/11-rubber-motors.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live/issues/new?title=Issue%20on%20page%20%2Fcontent/11-rubber-motors.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.ord/v2/gh/rblack42/nffs-2022-symposium-live/master?urlpath=tree/docs/content/11-rubber-motors.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motor-available-energy">
+   12.1. Motor Available Energy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motor-winds">
+   12.2. Motor Winds
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#torque-curve">
+   12.3. Torque Curve
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analytic-torque-curve">
+     12.3.1. Analytic Torque Curve
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#energy-available">
+     12.3.2. Energy Available
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Rubber Motors</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motor-available-energy">
+   12.1. Motor Available Energy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motor-winds">
+   12.2. Motor Winds
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#torque-curve">
+   12.3. Torque Curve
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analytic-torque-curve">
+     12.3.1. Analytic Torque Curve
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#energy-available">
+     12.3.2. Energy Available
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="rubber-motors">
+<h1><span class="section-number">12. </span>Rubber Motors<a class="headerlink" href="#rubber-motors" title="Permalink to this headline">¶</a></h1>
+<p>Before we get started, we need a little setup to access <strong>wart</strong> data for examples on this page.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">cwd</span> <span class="o">=</span> <span class="o">!</span>pwd
+<span class="n">pagedir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">cwd</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">projpath</span> <span class="o">=</span> <span class="n">pagedir</span> <span class="o">/</span> <span class="s2">&quot;..&quot;</span> <span class="o">/</span> <span class="s2">&quot;..&quot;</span>
+<span class="n">projdir</span> <span class="o">=</span> <span class="n">projpath</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">projdir</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">projdir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mmtime</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Probably the most difficult part of the indoor model analysis process is figuring out how to manage the rubber motor. Obviously, the motor is important, but there are many variables to consider.</p>
+<p>Basically, we pick a strand of rubber from some batch we have acquired. That strand has a cross section we can measure with calipers. We cut the strand, then tie a knot to form a loop that has some final length, then lubricate it with some magic lotion. The final motor has a weight that we can easily measure. All of this is simple enough to document. The big issue is what kind of <em>power</em> will that motor supply to our model and how will that power vary over time as a flight proceeds.</p>
+<p>To get power out of the motor, we need to wind it up. The big initial question is how many turns do we put into the motor. Oh,by the way, exactly how we wind the motor has some bearing on how much power it will deliver. Stretching it will let us pack in more winds, and builders develop a feel for how much stretching they should do. As we wind it up, knots will form and those knots need to be managed so they do not bunch up and get stuck on the structure somehow.</p>
+<p>Phew! That is a lot to consider. Some of these issues will defy analysis (like that thing called “feel”). So, how do we handle the analysis of this motor? Let’s take this is stages.</p>
+<div class="section" id="motor-available-energy">
+<h2><span class="section-number">12.1. </span>Motor Available Energy<a class="headerlink" href="#motor-available-energy" title="Permalink to this headline">¶</a></h2>
+<p>In Doug McLean’s paper, we see this formula for the total energy we can get out of a rubber motor:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-887dafc1-3ca9-4ee8-8e6f-4330a54df236">
+<span class="eqno">(12.1)<a class="headerlink" href="#equation-887dafc1-3ca9-4ee8-8e6f-4330a54df236" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+E = K_m w_m
+\end{equation}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(K_m\)</span> is a constant equal to 30,000 inches and <span class="math notranslate nohighlight">\(w_m\)</span> is the motor weight. Basically, this formula says that the energy we can get out of a rubber motor is proportional to the weight of the motor. That will be a maximum amount we might get, since the other variables will determine the actual energy available for each flight. Let’s see how much energy was available for Gary’s record flight.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pint</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">mmtime.data.models.wart</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="n">wart</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">Wart</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">mdata</span> <span class="o">=</span> <span class="n">wart</span><span class="o">.</span><span class="n">model_data</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w_m</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">][</span><span class="s1">&#39;rubber&#39;</span><span class="p">]</span>
+<span class="n">w_m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.86 gram</div></div>
+</div>
+<p>Hacklinger’s energy calculation gives this result:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pint</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">mmtime.data.models.wart</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="n">wart</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">Wart</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">mdata</span> <span class="o">=</span> <span class="n">wart</span><span class="o">.</span><span class="n">model_data</span><span class="p">()</span>
+<span class="n">w_m</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">][</span><span class="s1">&#39;rubber&#39;</span><span class="p">]</span>
+<span class="n">K_m</span> <span class="o">=</span> <span class="mi">30000</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span>
+<span class="n">E</span> <span class="o">=</span> <span class="n">K_m</span> <span class="o">*</span> <span class="n">w_m</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">gravity</span>
+<span class="n">E</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;ft*lbf&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">4.739938636974868 foot force_pound</div></div>
+</div>
+<p>Carl Bakay presented a study of rubber in volume 102 of INAX <span id="id1">[<a class="reference internal" href="bibliography.html#id3">Bak01</a>]</span>. in this article, Carl showed how to determine the available energy using just a stretching test. These tests provide a better estimate of the energy we might get from a particular motor, since manufacturing procedures will deliver different performance for each rubber batch, regardless of the weight of the motor. Here is a sample energy value obtained from stretch testing. The number provided was in energy per pound of the rubber sample.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="mi">3596</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">feet</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">lbf</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">pounds</span> 
+<span class="n">sample</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span> <span class="o">*</span> <span class="mf">0.81</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span>
+<span class="n">sample</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;ft*lbf&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">6.421536588016241 foot force_pound</div></div>
+</div>
+<p>That number is significantly higher than Don’s formula gives. Perhaps that is a sign that the current rubber is not as good as that available back in 2001. In any case, the available energy level seems pretty high, but that is why a broken motor can destroy a model!</p>
+</div>
+<div class="section" id="motor-winds">
+<h2><span class="section-number">12.2. </span>Motor Winds<a class="headerlink" href="#motor-winds" title="Permalink to this headline">¶</a></h2>
+<p>The bare weight of the motor may provide us with a measure of the possible energy we can get out of each motor, but we need to wind it up to get any useful power out of the motor. Don Slusarczyk <span id="id2">[<a class="reference internal" href="bibliography.html#id5">Slu14</a>]</span> presented a simple formula that will tell us approximately how many turns we can pack into the motor.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6e960f8b-7177-41e7-9274-da5099047f97">
+<span class="eqno">(12.2)<a class="headerlink" href="#equation-6e960f8b-7177-41e7-9274-da5099047f97" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+K = \frac{N_{max}}{m_l}\sqrt{\frac{m_w}{m_l}}
+\end{equation}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(K\)</span> is a constant Don set to 8.5. <span class="math notranslate nohighlight">\(m_l\)</span> is the motor length in inches, <span class="math notranslate nohighlight">\(N_{max}\)</span> is the predicted breaking turn count, and <span class="math notranslate nohighlight">\(w_m\)</span> is the motor weight in ounces.</p>
+<p>Don provided a test case that will give us the correct value for <span class="math notranslate nohighlight">\(K\)</span>, and the associated units we need:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nmax</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">w_l</span> <span class="o">=</span> <span class="mf">0.04094</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">ounces</span>
+<span class="n">m_l</span> <span class="o">=</span> <span class="mf">14.0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span>
+<span class="n">m_w</span> <span class="o">=</span> <span class="mf">0.0494</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">ounces</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">Nmax</span> <span class="o">/</span> <span class="n">m_l</span> <span class="o">*</span> <span class="p">(</span> <span class="n">m_w</span> <span class="o">/</span> <span class="n">m_l</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+<span class="n">K</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;ounce**0.5/inch**1.5&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">8.485968525017059 ounce<sup>0.5</sup>/inch<sup>1.5</sup></div></div>
+</div>
+<p>This calculation produces the constant and it also provides the proper units for that constant. Knowing that, we can set up a simple <em>Python</em> function that will take a motor weight and loop length and return the predicted maximun turn count for that motor:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">max_turns</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">weight</span><span class="p">):</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="mf">8.48597</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">ounce</span><span class="o">**</span><span class="mf">0.5</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="o">**</span><span class="mf">1.5</span>
+    <span class="n">Nmax</span> <span class="o">=</span> <span class="n">K</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="p">(</span><span class="n">weight</span><span class="o">/</span><span class="n">length</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="k">return</span> <span class="n">Nmax</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check the functon with the example case:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nt</span> <span class="o">=</span> <span class="n">max_turns</span><span class="p">(</span><span class="n">m_l</span><span class="p">,</span><span class="n">m_w</span><span class="p">)</span>
+<span class="n">Nt</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">2000.000347628662 dimensionless</div></div>
+</div>
+<p>Now we check another point on the Don’s graph:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lt</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span>
+<span class="n">wt</span> <span class="o">=</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">gram</span>
+<span class="n">Nt</span> <span class="o">=</span> <span class="n">max_turns</span><span class="p">(</span><span class="n">lt</span><span class="p">,</span><span class="n">wt</span><span class="p">)</span>
+<span class="n">Nt</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">2857.6192758072957 dimensionless</div></div>
+</div>
+<p>Now, let’s plug in Gary’s record flight numbers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w_m</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">][</span><span class="s1">&#39;rubber&#39;</span><span class="p">]</span>
+<span class="n">m_l</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="s1">&#39;motor&#39;</span><span class="p">][</span><span class="s1">&#39;length&#39;</span><span class="p">]</span>
+<span class="n">Nw</span> <span class="o">=</span> <span class="n">max_turns</span><span class="p">(</span><span class="n">m_l</span><span class="p">,</span> <span class="n">w_m</span><span class="p">)</span>
+<span class="n">Nw</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">3720.7792374854744 dimensionless</div></div>
+</div>
+<p>Gary launched his record flight with 3660 turns, which looks reasonable using this function to calculate a maximum turn limit! He was probably safe, since measuring the loop length is often done after the knot is tied, and the exact length is a bit hard to get with the motor in a loop.</p>
+</div>
+<div class="section" id="torque-curve">
+<h2><span class="section-number">12.3. </span>Torque Curve<a class="headerlink" href="#torque-curve" title="Permalink to this headline">¶</a></h2>
+<p>Once we have a motor ready to go, it must be wound up for a flight. Builders sometimes just count the turns and fly, but it is better to attach the motor to a torque measuring device and wind to some specific torque value. It is easy to measure the torque as it is wound. You simply stop winding at multiple points and record the turn and torque value. This gives us a curve that represents how torque varies with turn count. However, that is not the full story. As the motor delivers power to the propeller as it unwinds, the torque curve will not be the same. A hysteresis effect enters into the picture, meaning that the torque delivered to the propeller at each turn count is lower from the wound torque at the same count value. Measuring this is difficult and data reflecting the delivered torque is difficult to find. Here is a diagram from Carl Bakay’s article showing this effect:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">projdir</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/rblack/_dev/live-2022/book/content/../..&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="n">projpath</span> <span class="o">/</span> <span class="s1">&#39;assets&#39;</span> <span class="o">/</span> <span class="s1">&#39;images&#39;</span> <span class="o">/</span> <span class="s1">&#39;torque-curve-inav-aug-01.png&#39;</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="n">fname</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11-rubber-motors_29_0.png" src="../_images/11-rubber-motors_29_0.png" />
+</div>
+</div>
+<p>This figure gives us a variety of parameters we might use to model a rubber motor. For flight analysis, we are not really interested in the load data, except that it certainly has an effect on the structure of the motor stick! The energy delivered to the propeller is what we want to examine. A simple approach is to assume a fixed percentage loss that accounts for the hysteresis effect. I have seen estimates ranging from 25-30 percent, so we can add this as another parameter for study.</p>
+<p>For the purposes of this study, we will set up a simple analytical curve that models a rubber motor. From this figure, I will use simple polynomial curves for segments <strong>A</strong> and <strong>B</strong> and <strong>D</strong> above, and a straight line for segment  <strong>C</strong>.</p>
+<div class="section" id="analytic-torque-curve">
+<h3><span class="section-number">12.3.1. </span>Analytic Torque Curve<a class="headerlink" href="#analytic-torque-curve" title="Permalink to this headline">¶</a></h3>
+<p>To generate a torque function we can use for study, we first define a few sample points on the curve. The axes we will be using are torque as a function of turns, so the maximum turn cont and launch torque will be our first point. The second point will be the point where the cruise begins. The third point will be at the end of that cruise portion. The final point is the landing point, which we will assume is when the motor fully winds down. THis is obviously an ideal curve, since models often land before the winds run totally out. The two polynomial segments must match slopes at the ends of the cruise segment.</p>
+<p>Here is the basic setup:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> tikzmagic
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">tikz</span> -l calc --scale=2
+
+% draw axes
+
+\draw[thin,-&gt;] (0,0) -- (10,0) node[right]{turns};
+\draw[thin,-&gt;] (0,0) -- (0,5) node[above]{torque};
+
+% max torque point
+\filldraw (0,4.5) circle (3pt) node[right, xshift=8pt] {max Q};
+% start cruise point
+\filldraw (2,2) circle (3pt) node[above right,xshift=8pt] {start cruise}; 
+% end cruise point
+\filldraw (8,1) circle (3pt) node[right,xshift=8pt] {end cruise};
+% end flight point
+\filldraw(9.5,0) circle (3pt);
+
+\draw [thick] (2,2) -- (8,1);
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11-rubber-motors_34_0.png" src="../_images/11-rubber-motors_34_0.png" />
+</div>
+</div>
+<p>We need to find the polynomials that complete this curve. We will use the data points and match slopes to the cruise line.</p>
+<p>Assume the polynomial of this form:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-51b4e582-9c3a-47be-b3a9-a675df6bb1ac">
+<span class="eqno">(12.3)<a class="headerlink" href="#equation-51b4e582-9c3a-47be-b3a9-a675df6bb1ac" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+y = Ax^2 + Bx + C
+\end{equation}\]</div>
+<p>The derivative of this curve is:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9dab335f-5b43-42fe-9866-ac6eefcb11ab">
+<span class="eqno">(12.4)<a class="headerlink" href="#equation-9dab335f-5b43-42fe-9866-ac6eefcb11ab" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\frac{dy}{dx} = M_c = 2ax + B
+\end{equation}\]</div>
+<p>We will match the curve values at the end points, and the slope at one end point. This will give us three equations for three unknowns.</p>
+<p>For the first polynomial, we have:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5c0ff542-c57b-4615-b470-9064aaaa2b1c">
+<span class="eqno">(12.5)<a class="headerlink" href="#equation-5c0ff542-c57b-4615-b470-9064aaaa2b1c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+Q_{max} = C
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-3ae22ff0-af85-4fa1-bfbd-188f3e6ef4b2">
+<span class="eqno">(12.6)<a class="headerlink" href="#equation-3ae22ff0-af85-4fa1-bfbd-188f3e6ef4b2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+y_{c0} = Ax_{c0}^2 + Bx_{c0} + Q_{max}
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-d24b04c8-fbc5-40c0-949f-9011b0bb96b5">
+<span class="eqno">(12.7)<a class="headerlink" href="#equation-d24b04c8-fbc5-40c0-949f-9011b0bb96b5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\frac{y_{c1} - y_{c0}}{x_{c1} - x_{c0}} = M_c = 2Ax_{c0} + B
+\end{equation}\]</div>
+<p>Let’s let <strong>sympy</strong> grind out this math:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span>
+<span class="n">Qm</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">Nm</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;Qm x1 y1 x2 y2 Nm&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For simplicity, we will introduce <strong>M</strong> as the slope of the cruise segment.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;A B C M&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq1</span> <span class="o">=</span> <span class="n">Qm</span> <span class="o">-</span> <span class="n">C</span>
+<span class="n">eq2</span> <span class="o">=</span> <span class="o">-</span><span class="n">M</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">B</span>
+<span class="n">eq3</span> <span class="o">=</span> <span class="n">A</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">C</span> <span class="o">-</span> <span class="n">y1</span>
+<span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">([</span><span class="n">eq1</span><span class="p">,</span><span class="n">eq2</span><span class="p">,</span><span class="n">eq3</span><span class="p">],[</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{A: (M*x1 + Qm - y1)/x1**2, B: (-M*x1 - 2*Qm + 2*y1)/x1, C: Qm}
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the second curve, the equations are a bit different. We will set up the polynomial so it curves from zero at <span class="math notranslate nohighlight">\(N_{max}\)</span> and matches the slope at the end of the curve. To get this curve, we set up the polynomial so <span class="math notranslate nohighlight">\(x_p = N_m - x\)</span>, which is  is zero at <span class="math notranslate nohighlight">\(x_p = 0\)</span> and increases to the left. The new equations we need are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq4</span> <span class="o">=</span> <span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">Nm</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="p">(</span><span class="n">Nm</span><span class="o">-</span><span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">C</span> <span class="o">-</span> <span class="n">y2</span>
+<span class="n">eq5</span> <span class="o">=</span> <span class="n">C</span> 
+<span class="n">eq6</span> <span class="o">=</span> <span class="n">M</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">Nm</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">B</span>
+<span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">([</span><span class="n">eq4</span><span class="p">,</span><span class="n">eq5</span><span class="p">,</span><span class="n">eq6</span><span class="p">],[</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{A: (-M*Nm + M*x2 - y2)/(Nm**2 - 2*Nm*x2 + x2**2),
+ B: (-M*Nm + M*x2 - 2*y2)/(-Nm + x2),
+ C: 0}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Messy, but coding this is easy!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">torque</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">Qm</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">Nm</span><span class="p">):</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span><span class="o">&lt;</span><span class="n">x1</span><span class="p">:</span> 
+        <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">M</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">Qm</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">M</span><span class="o">*</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Qm</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="n">x1</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="n">Qm</span>
+        <span class="k">return</span> <span class="n">A</span><span class="o">*</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="n">C</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">x2</span><span class="p">:</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">y1</span> <span class="o">+</span> <span class="n">M</span><span class="o">*</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">xp</span> <span class="o">=</span> <span class="n">Nm</span><span class="o">-</span><span class="n">n</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">M</span><span class="o">*</span><span class="n">Nm</span> <span class="o">+</span> <span class="n">M</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="n">y2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Nm</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Nm</span><span class="o">*</span><span class="n">x2</span> <span class="o">+</span> <span class="n">x2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">M</span><span class="o">*</span><span class="n">Nm</span> <span class="o">+</span> <span class="n">M</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">y2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="n">Nm</span> <span class="o">+</span> <span class="n">x2</span><span class="p">)</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">A</span><span class="o">*</span><span class="n">xp</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">xp</span> <span class="o">+</span> <span class="n">C</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have not really included the hysteresis effect in this curve. If we want to generate a fixed hysteresis loss to this curve, we need to adjust the cruise end points in some manner so the area under the adjusted curve is some percentage of the original area. This is not simple to do since the effect may be more pronounced at one end of the cruise line rather than the other. We will look at this later.</p>
+<p>Let’s plot a sample torque curve and see what we get:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tQm</span> <span class="o">=</span> <span class="mf">4.5</span>
+<span class="n">tNm</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">tx1</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">ty1</span> <span class="o">=</span> <span class="mf">1.5</span>
+<span class="n">tx2</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">ty2</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="kn">from</span> <span class="nn">mmtime.utils</span> <span class="kn">import</span> <span class="n">show_curve</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">tNm</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">nx</span> <span class="ow">in</span> <span class="n">n</span><span class="p">:</span>
+    <span class="n">Q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torque</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">tQm</span><span class="p">,</span><span class="n">tx1</span><span class="p">,</span><span class="n">ty1</span><span class="p">,</span><span class="n">tx2</span><span class="p">,</span><span class="n">ty2</span><span class="p">,</span><span class="n">tNm</span><span class="p">))</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="s2">&quot;Analytical Torque Curve&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="s2">&quot;Q&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ws</span><span class="o">/</span><span class="mi">5</span><span class="n">h_x4h713cg8w0jmrm5_tfzc0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_61364</span><span class="o">/</span><span class="mf">1047786378.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">ty2</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">mmtime.utils</span> <span class="kn">import</span> <span class="n">show_curve</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">tNm</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">Q</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="k">for</span> <span class="n">nx</span> <span class="ow">in</span> <span class="n">n</span><span class="p">:</span>
+
+<span class="ne">NameError</span>: name &#39;np&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>This curve looks reasonable at the end of the winds, but is too sharp in transitioning to the cruise. We could improve this by trying higher order polynomials, but we will stop here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">torque2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">Qm</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">Nm</span><span class="p">,</span><span class="n">Kc</span><span class="p">):</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span><span class="o">&lt;</span><span class="n">x1</span><span class="p">:</span> 
+        <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">M</span><span class="o">*</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">Qm</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">y1</span> <span class="o">+</span> <span class="n">M</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">Qm</span><span class="o">*</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x1</span><span class="o">*</span><span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">x1</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">M</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">Qm</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">y1</span> <span class="o">-</span> <span class="n">M</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">Qm</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">x1</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">M</span><span class="o">*</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">6</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">Qm</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">y1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">M</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">Qm</span><span class="o">*</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">6</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">x1</span><span class="o">*</span><span class="n">y1</span> <span class="o">-</span> <span class="n">x1</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x1</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="n">Qm</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">A</span><span class="o">*</span><span class="n">n</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">C</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="n">D</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">x2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">y1</span> <span class="o">+</span> <span class="n">M</span><span class="o">*</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">xp</span> <span class="o">=</span> <span class="n">Nm</span><span class="o">-</span><span class="n">n</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">M</span><span class="o">*</span><span class="n">Nm</span> <span class="o">+</span> <span class="n">M</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="n">y2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Nm</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Nm</span><span class="o">*</span><span class="n">x2</span> <span class="o">+</span> <span class="n">x2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">M</span><span class="o">*</span><span class="n">Nm</span> <span class="o">+</span> <span class="n">M</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">y2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="n">Nm</span> <span class="o">+</span> <span class="n">x2</span><span class="p">)</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">A</span><span class="o">*</span><span class="n">xp</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">xp</span> <span class="o">+</span> <span class="n">C</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">tNm</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">tKc</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="k">for</span> <span class="n">nx</span> <span class="ow">in</span> <span class="n">n</span><span class="p">:</span>
+    <span class="n">Q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torque2</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">tQm</span><span class="p">,</span><span class="n">tx1</span><span class="p">,</span><span class="n">ty1</span><span class="p">,</span><span class="n">tx2</span><span class="p">,</span><span class="n">ty2</span><span class="p">,</span><span class="n">tNm</span><span class="p">,</span><span class="n">tKc</span><span class="p">))</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="s2">&quot;Q&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="s2">&quot;example&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
+-1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
+-1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
+-1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
+-1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
+-1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
+-1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
+-1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
+-1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
+-1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
+</pre></div>
+</div>
+<img alt="../_images/11-rubber-motors_49_1.png" src="../_images/11-rubber-motors_49_1.png" />
+</div>
+</div>
+<p>This curve shows the problem with a cubic curve. Depending on where we position the 4 degree point, we can generate a curve that is not what we want at all! We will use the first version of the torque function for the rest of this analysis and revisit the scheme later.</p>
+<p>We want to scale this curve so the maximum torque matches the launch torque, and the maximum turn count matches the launch turn count.</p>
+</div>
+<div class="section" id="energy-available">
+<h3><span class="section-number">12.3.2. </span>Energy Available<a class="headerlink" href="#energy-available" title="Permalink to this headline">¶</a></h3>
+<p>With a torque function available, we can find the available energy to be delivered to the propeller by integrating this curve. That will give us rate at which the energy ir delivered</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ty</span> <span class="o">=</span> <span class="n">tA</span> <span class="o">+</span> <span class="n">tB</span> <span class="o">+</span> <span class="n">tC</span> <span class="o">+</span> <span class="n">tD</span>
+<span class="n">ty</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6601599999999994
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="10-a6-propeller-analysis.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">10. </span>A-6 Propeller Analysis</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../appendix/10-minute-guide-to-python.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">13. </span>10 Minute Guide to Python</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Roie R. Black<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

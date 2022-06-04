@@ -35,6 +35,9 @@ class Wart(object):
             'tip_chord': 1 * u.inches,
             'tip_dihedral': 7/8 * u.inches
         }
+        self.motor = {
+            'length': 18.0 * u.inches,
+        }
 
         # calculate CG location
         x_cg = 0
@@ -48,7 +51,7 @@ class Wart(object):
             W_sum += w[key]
         self.x_cg = x_cg/W_sum
         self.y_cg = y_cg/W_sum
-        self.airframe_wgt = W_sum = self.weights['rubber']
+        self.airframe_wgt = W_sum + self.weights['rubber']
         self.flying_wgt = W_sum
 
 
@@ -83,6 +86,7 @@ class Wart(object):
             'cg': (self.x_cg, self.y_cg),
             'airframe_wgt': self.airframe_wgt,
             'flying_wgt': self.flying_wgt,
+            'motor' : self.motor,
         }
         return model
 

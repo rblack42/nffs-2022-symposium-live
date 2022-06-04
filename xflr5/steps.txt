@@ -1,0 +1,18 @@
+XFLR5 Analysis
+
+# Select and airfoils
+
+file -> direct foil design 
+
+set points to at least 150
+
+
+# Analyze airfoil
+
+file -> xfoil direct analysis (ctrl-5)
+analysis -> define analysis 
+Name it
+set sequence angles
+analyze
+
+

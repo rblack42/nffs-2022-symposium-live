@@ -15,9 +15,10 @@ class Polars(object):
         for aname in self.anames:
             self._decode(aname)
 
-    def _decode(self, aname):
+    def decode_one(self, aname):
         afile = aname + '.pol'
-        apath = os.path.join(DIR, afile)
+        apath = os.path.join(DIR, aname, afile)
+        print("decoding: %s" % apath)
         if os.path.isfile(apath):
             print("decoding:", afile)
 
@@ -33,6 +34,7 @@ class Polars(object):
             try:
                 data = np.genfromtxt(
                     apath,
+                    names = columns,
                     skip_header=12,
                     usecols=np.arange(len(columns))
                 ).reshape(-1, len(columns))
@@ -70,7 +72,7 @@ class Polars(object):
                 fout.write(f'{alpha[i]}, {CM[i]}\n')
         # create CDp file
         dname = os.path.join(dpath, 'CP.csv')
-        CP = data['CP']
+        CP = data['CDp']
         with open(dname,'w') as fout:
             for i in range(len(alpha)):
                 fout.write(f'{alpha[i]}, {CP[i]}\n')
@@ -108,12 +110,13 @@ class Polars(object):
 
 if __name__ == '__main__':
     airfoils = [
-        'simplex0201',
-        'simplex0301',
-        'simplex0401',
-        'simplex0501',
-        'simplex0601',
+        'flat0001',
+        #'simplex0201',
+        #'simplex0301',
+        #'simplex0401',
+        #'simplex0501',
+        #'simplex0601',
     ]
     p = Polars(airfoils)
-    p.gen_polars()
+    p.decode_one("flat0001")
 

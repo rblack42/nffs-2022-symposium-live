@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>15. Stability Analysis &#8212; Predicting Indoor Flight Times With Python</title>
+    <title>17. Stability Analysis &#8212; Predicting Indoor Flight Times With Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,8 @@
     <link rel="shortcut icon" href="../_static/lpp.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="16. Bibliography" href="../backmatter/bibliography.html" />
-    <link rel="prev" title="14. Indoor Model Propulsion" href="indoor-model-propulsion.html" />
+    <link rel="next" title="18. Bibliography" href="bibliography.html" />
+    <link rel="prev" title="16. Indoor Model Propulsion" href="indoor-model-propulsion.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -93,95 +93,105 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../frontmatter/index.html">
+  <a class="reference internal" href="00-index.html">
    Predicting Indoor Model Flight Time Using Python
   </a>
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../frontmatter/overview.html">
+  <a class="reference internal" href="01-overview.html">
    1. Overview
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../background/atmospheric-data.html">
-   2. Atmospheric Data
+  <a class="reference internal" href="02-basic-concepts.html">
+   2. Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../background/simplified-indoor-design.html">
-   3. Simplified Indoor Design
+  <a class="reference internal" href="03-atmospheric-data.html">
+   3. Atmospheric Data
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../background/hodson-wart-a6.html">
-   4. Hodson Wart A6
+  <a class="reference internal" href="04-simplified-indoor-design.html">
+   4. Simplified Indoor Design
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../background/tenny-data-analysis.html">
-   5. Tenny’s Flight Path Data
+  <a class="reference internal" href="05-hodson-wart-a6.html">
+   5. Hodson Wart A6
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../background/data-smoothing.html">
-   6. Data Smoothing
+  <a class="reference internal" href="tenny-data-analysis.html">
+   6. Tenny’s Flight Path Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-smoothing.html">
+   7. Data Smoothing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="hacklinger-theory.html">
-   7. Hacklinger’s Theories
+   8. Hacklinger’s Theories
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mclean-method.html">
-   8. McLean’s Method
+   9. McLean’s Method
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="experimental-airfoil-data.html">
-   9. Airfoil Data
+   10. Airfoil Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="simplex-airfoils.html">
-   10. Simplex Airfoils
+   11. Simplex Airfoils
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="xfoil-circular-arc.html">
-   11. Circular Arc Airfoils for XFoil Tests
+   12. Circular Arc Airfoils for XFoil Tests
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="generating-airfoils-for-xfoil.html">
-   12. Generating Airfoils for XFoil
+   13. Generating Airfoils for XFoil
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="level-flight-calculations.html">
-   13. level-flight-calculations
+   14. level-flight-calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="level-flight-power.html">
+   15. Power Needed for Level Flight
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="indoor-model-propulsion.html">
-   14. Indoor Model Propulsion
+   16. Indoor Model Propulsion
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   15. Stability Analysis
+   17. Stability Analysis
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../backmatter/bibliography.html">
-   16. Bibliography
+  <a class="reference internal" href="bibliography.html">
+   18. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../backmatter/biography.html">
-   17. Biography
+  <a class="reference internal" href="biography.html">
+   19. Biography
   </a>
  </li>
 </ul>
@@ -290,27 +300,27 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#aerodynamic-forces">
-   15.1. Aerodynamic Forces
+   17.1. Aerodynamic Forces
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#weight">
-     15.1.1. Weight
+     17.1.1. Weight
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lift">
-     15.1.2. Lift
+     17.1.2. Lift
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#thrust">
-     15.1.3. Thrust
+     17.1.3. Thrust
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#drag">
-     15.1.4. Drag
+     17.1.4. Drag
     </a>
    </li>
   </ul>
@@ -337,27 +347,27 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#aerodynamic-forces">
-   15.1. Aerodynamic Forces
+   17.1. Aerodynamic Forces
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#weight">
-     15.1.1. Weight
+     17.1.1. Weight
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lift">
-     15.1.2. Lift
+     17.1.2. Lift
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#thrust">
-     15.1.3. Thrust
+     17.1.3. Thrust
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#drag">
-     15.1.4. Drag
+     17.1.4. Drag
     </a>
    </li>
   </ul>
@@ -372,11 +382,11 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="stability-analysis">
-<h1><span class="section-number">15. </span>Stability Analysis<a class="headerlink" href="#stability-analysis" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">17. </span>Stability Analysis<a class="headerlink" href="#stability-analysis" title="Permalink to this headline">¶</a></h1>
 <p>From the moment we let our models go, we want the flight to be “stable”. But what does that even mean?</p>
 <p>A stable condition is one where all the forces acting on the model tend to keep it flying along its current path when a disturbance of some kind hits the model. Disturbances come in many forms: an updraft caused by a hot spot on the floor, a downdraft through an unclosed ceiling vent, or a collision with something. We will not worry about that last one, since all bets are off as to what the model will do! The other disturbances act to change the location, magnitude, and direction of the forces acting on the model. Obviously, we need to look at those forces before we go further.</p>
 <div class="section" id="aerodynamic-forces">
-<h2><span class="section-number">15.1. </span>Aerodynamic Forces<a class="headerlink" href="#aerodynamic-forces" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">17.1. </span>Aerodynamic Forces<a class="headerlink" href="#aerodynamic-forces" title="Permalink to this headline">¶</a></h2>
 <p>There are four primary forces acting on a model: weight, lift, thrust, and drag. Under normal conditions, lift exactly offsets weight, and thrust offsets drag. However, it is not that simple. The location of those forces also enters into our analysis.</p>
 <p>Here is a simplified diagram showing how many variables we have when we consider just straight and level flight:</p>
 <div class="cell docutils container">
@@ -523,415 +533,484 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pdflatex terminated with signal 1
-command:
-    pdflatex --shell-escape tikz.tex
-tkiz.tex:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LaTeX terminated with signal -1
+convert: unable to open image &#39;tikz.pdf&#39;: No such file or directory @ error/blob.c/OpenBlob/3533.
+convert: no images defined `tikz.png&#39; @ error/convert.c/ConvertImageCommand/3325.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.24)  1 JUN 2022 13:49
+entering extended mode
+ \write18 enabled.
+ %&amp;-line parsing enabled.
+**tikz.tex
+(./tikz.tex
+LaTeX2e &lt;2020-10-01&gt; patch level 4
+L3 programming layer &lt;2021-02-18&gt;
+(/usr/local/texlive/2021/texmf-dist/tex/latex/standalone/standalone.cls
+Document Class: standalone 2018/03/26 v1.3a Class to compile TeX sub-files stan
+dalone
+(/usr/local/texlive/2021/texmf-dist/tex/latex/tools/shellesc.sty
+Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
+Package shellesc Info: Unrestricted shell escape enabled on input line 75.
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 
-    \documentclass[convert={convertexe={convert},density=300,size=400x240,outext=.png},border=0pt]{standalone}
-    \usepackage[]{tikz}
-    \usetikzlibrary{calc}
+(/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
 
-    \begin{document}
-    \begin{tikzpicture}[scale=1,]
+(/usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks15
+\XKV@tempa@toks=\toks16
 
-    \newcommand{\radius}{0.125}
+(/usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/keyval.tex))
+\XKV@depth=\count179
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+\sa@internal=\count180
+\c@sapage=\count181
 
-    \newcommand{\CG}[2] {%
-      \draw (#1,#2) circle (\radius);
-      \filldraw[fill=blue] (#1,#2) -- ++(\radius,0) arc (0:90:\radius) -- cycle;
-    \filldraw[fill=blue] (#1,#2) -- ++(-\radius,0) arc(180:270:\radius) -- cycle;
-    }
+(/usr/local/texlive/2021/texmf-dist/tex/latex/standalone/standalone.cfg
+File: standalone.cfg 2018/03/26 v1.3a Default configuration file for &#39;standalon
+e&#39; class
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
+)
+\c@part=\count182
+\c@section=\count183
+\c@subsection=\count184
+\c@subsubsection=\count185
+\c@paragraph=\count186
+\c@subparagraph=\count187
+\c@figure=\count188
+\c@table=\count189
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+)
+\sa@box=\box47
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
+\pgfutil@everybye=\toks17
+\pgfutil@tempdima=\dimen139
+\pgfutil@tempdimb=\dimen140
 
-    \newcommand{\wing}[4]{% x,y,size,angle
-      \draw (#1, #2) -- ++(-#3,0);
-      \draw (#1, #2) -- ++(#3,0);
-        \draw (#1, #3) -- ++(180-#4,3);
-    }
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
+sts.tex))
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box48
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2020/12/27 v3.1.8b (3.1.8b)
+))
+Package: pgf 2020/12/27 v3.1.8b (3.1.8b)
 
-    \newcommand{\axes}[2]{
-      \draw (#1, #2} -- ++(5,0);
-      \draw (#1, #2) -- ++ (0,4);
-    } 
-      
-    \axes{-2}{0};
-    \wing{0}{0}{2}{15};
-        
-    % draw axes
-    %\draw[ultra thin] (-2,0) -- ++(0,4) node [above]{y};
-    % draw body ---------------------------------------------------------
-    %\draw[thin] (-2,0) -- (2,0) -- (2,0.125) -- (-2,0.125) -- cycle;
-    % draw tailboom
-    %\draw[thin] (2,0.0625) -- (6,0.09375) -- (6,0.125) -- (2,0.125) -- cycle;
-    % draw thrust line
-    %\draw (-2,0) -- ++(0,6);
-    %\draw[ultra thin, -&gt;] (6.25,0) -- ++(1,0) node[right]{x};
-    %%\draw (-1.75,0) -- (-1.75,-0.5);
-    %\draw[dashed] (-3.,-0.25) -- (0,-0.25);
-    %\draw[ultra thin](-1.75,-0.25) -- ++(15:4);
-    %\draw [thick,-&gt;] (-1.75,-0.25) -- ++(195:1.25) node[left]{$T$};
-    %\CG{1.5}{1.5};
-    %% draw wing weight force
-    %\draw[thick,-&gt;] (1.5,1.45) -- ++(270:2) node[below]{$W_t$};
-    %% draw wing -------------------------------------------------------------
-    %\draw[ultra thin](-1.5,2.875) rectangle (2,3.175);
-    %% draw AC
-    %\draw[fill=black] (-0.75,3) circle(\radius) node [label={[shift={(0,-0.75)}]AC}]{};
-    %% draw wing lift vector
-    %\draw[ultra thick,-&gt;] (-0.75,3.25) -- ++(0,2) node[above]{$L_w$};
-    % draw wing drag vector
-    \draw[ultra thick,-&gt;] (-0.5,3) -- ++(1.5,0) node[right] {$D_w$};
-    % draw stab ------------------------------------------------------------------
+(/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
 
-    %\draw[ultra thin](4,-0.875) rectangle (6,-1.175);
-    % draw AC
-    %\draw[fill=black] (4.75,-1) circle(\radius) node [label={[shift={(0,-0.75)}]AC}]{};
-    % draw stab lift vector
-    %\draw[ultra thick,-&gt;] (4.75,-1.25) -- ++(0,2) node[above]{$L_s$};
-    % draw stab drag vector
-    %\draw[ultra thick,-&gt;] (4.5,-1) -- ++(1.5,0) node[right] {$D_s$};
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
 
-    \end{tikzpicture}
-    \end{document}
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
 
-stdout:
-    This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex)
-     \write18 enabled.
-    entering extended mode
-    (./tikz.tex
-    LaTeX2e &lt;2020-10-01&gt; patch level 4
-    L3 programming layer &lt;2021-02-18&gt;
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/standalone/standalone.cls
-    Document Class: standalone 2018/03/26 v1.3a Class to compile TeX sub-files stan
-    dalone
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/shellesc.sty)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty))
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/keyval.tex))))
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/standalone/standalone.cfg)
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
-    Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo))This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex)
-     \write18 enabled.
-    entering extended mode
-    LaTeX2e &lt;2020-10-01&gt; patch level 4
-    L3 programming layer &lt;2021-02-18&gt; (./tikz.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/standalone/standalone.cls
-    Document Class: standalone 2018/03/26 v1.3a Class to compile TeX sub-files stan
-    dalone
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/shellesc.sty)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty))
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/keyval.tex))))
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/standalone/standalone.cfg)
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
-    Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo)))
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
-    x
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
-    sts.tex))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-    ) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/graphicx.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/graphics.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/trig.sty)
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-def/pdftex.def)))
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
-    ode.tex))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
-    ef
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
-    df.def)))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
-    code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
-    code.tex)) (/usr/local/texlive/2021/texmf-dist/tex/latex/xcolor/xcolor.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/color.cfg))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-    )
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
-    tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
-    .code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
-    nometric.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
-    m.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
-    rison.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
-    code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
-    .code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
-    code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
-    erarithmetics.code.tex)))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex)
-    ) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
-    de.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
-    ruct.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
-    .code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
-    de.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
-    ate.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
-    ations.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
-    e.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
-    ode.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
-    ssing.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
-    de.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
-    e.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
-    e.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
-    code.tex))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
-    de.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
-    ncy.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
-    code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.
-    tex)))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
-    e.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
-    tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
-    -0-65.sty)
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
-    -1-18.sty))
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
-    ) (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/math/pgfmath.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
-    e.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
-    dlers.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
-    e.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
-    s/tikzlibrarytopaths.code.tex)))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
-    s/tikzlibrarycalc.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-    No file tikz.aux.
-    (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-    [Loading MPS to PDF converter (version 2006.09.02).]
-    ) (/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
-    ! Illegal parameter number in definition of \tikz@scan@point@coordinate.
-    &lt;to be read again&gt; 
-                       1
-    l.25   \draw (#1, #2)
-                          -- ++ (0,4);
-    ? 
-    ! Emergency stop.
-    &lt;to be read again&gt; 
-                       1
-    l.25   \draw (#1, #2)
-                          -- ++ (0,4);
-    !  ==&gt; Fatal error occurred, no output PDF file produced!
-    Transcript written on tikz.log.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen141
+\Gin@req@width=\dimen142
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2020/12/27 v3.1.8b (3.1.8b)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks18
+\pgfkeys@temptoks=\toks19
 
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
+ode.tex
+\pgfkeys@tmptoks=\toks20
+))
+\pgf@x=\dimen143
+\pgf@y=\dimen144
+\pgf@xa=\dimen145
+\pgf@ya=\dimen146
+\pgf@xb=\dimen147
+\pgf@yb=\dimen148
+\pgf@xc=\dimen149
+\pgf@yc=\dimen150
+\pgf@xd=\dimen151
+\pgf@yd=\dimen152
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count190
+\c@pgf@countb=\count191
+\c@pgf@countc=\count192
+\c@pgf@countd=\count193
+\t@pgf@toka=\toks21
+\t@pgf@tokb=\toks22
+\t@pgf@tokc=\toks23
+\pgf@sys@id@count=\count194
 
-    Class standalone Warning: Conversion unsuccessful!
-    (standalone)              There might be something wrong with your
-    (standalone)              conversation software or the file permissions!
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2020/12/27 v3.1.8b (3.1.8b)
+)
+Driver file for pgf: pgfsys-pdftex.def
 
-    ) (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
-    x
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
-    sts.tex))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-    ) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/graphicx.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/graphics.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/trig.sty)
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-def/pdftex.def)))
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
-    ode.tex))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
-    ef
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
-    df.def)))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
-    code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
-    code.tex)) (/usr/local/texlive/2021/texmf-dist/tex/latex/xcolor/xcolor.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/color.cfg))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-    )
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
-    tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
-    .code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
-    nometric.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
-    m.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
-    rison.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
-    code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
-    .code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
-    code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
-    erarithmetics.code.tex)))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex)
-    ) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
-    de.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
-    ruct.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
-    .code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
-    de.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
-    ate.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
-    ations.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
-    e.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
-    ode.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
-    ssing.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
-    de.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
-    e.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
-    e.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
-    code.tex))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
-    de.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
-    ncy.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
-    code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.
-    tex)))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
-    e.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
-    tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
-    -0-65.sty)
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
-    -1-18.sty))
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
-    ) (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/math/pgfmath.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
-    e.tex
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
-    dlers.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
-    e.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
-    s/tikzlibrarytopaths.code.tex)))
-    (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
-    s/tikzlibrarycalc.code.tex)
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-    (./tikz.aux)
-    (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-    [Loading MPS to PDF converter (version 2006.09.02).]
-    ) (/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-    (/usr/local/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
-    ! Illegal parameter number in definition of \tikz@scan@point@coordinate.
-    &lt;to be read again&gt; 
-                       1
-    l.25   \draw (#1, #2)
-                          -- ++ (0,4);
-    ? 
-    ! Emergency stop.
-    &lt;to be read again&gt; 
-                       1
-    l.25   \draw (#1, #2)
-                          -- ++ (0,4);
-    !  ==&gt; Fatal error occurred, no output PDF file produced!
-    Transcript written on tikz.log.
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
+ef
+File: pgfsys-pdftex.def 2020/12/27 v3.1.8b (3.1.8b)
 
-stderr:
-    system returned with code 256
-    convert: unable to open image &#39;tikz.pdf&#39;: No such file or directory @ error/blob.c/OpenBlob/3527.
-    convert: no images defined `tikz.png&#39; @ error/convert.c/ConvertImageCommand/3325.
-    system returned with code 256
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def
+File: pgfsys-common-pdf.def 2020/12/27 v3.1.8b (3.1.8b)
+)))
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex
+File: pgfsyssoftpath.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfsyssoftpath@smallbuffer@items=\count195
+\pgfsyssoftpath@bigbuffer@items=\count196
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex
+File: pgfsysprotocol.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
-No image generated.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy&#39; substituted by `cmy0&#39; on input line 1348.
+Package xcolor Info: Model `hsb&#39; substituted by `rgb&#39; on input line 1352.
+Package xcolor Info: Model `RGB&#39; extended on input line 1364.
+Package xcolor Info: Model `HTML&#39; substituted by `rgb&#39; on input line 1366.
+Package xcolor Info: Model `Hsb&#39; substituted by `hsb&#39; on input line 1367.
+Package xcolor Info: Model `tHsb&#39; substituted by `hsb&#39; on input line 1368.
+Package xcolor Info: Model `HSB&#39; substituted by `hsb&#39; on input line 1369.
+Package xcolor Info: Model `Gray&#39; substituted by `gray&#39; on input line 1370.
+Package xcolor Info: Model `wave&#39; substituted by `hsb&#39; on input line 1371.
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2020/12/27 v3.1.8b (3.1.8b)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen153
+\pgfmath@count=\count197
+\pgfmath@box=\box49
+\pgfmath@toks=\toks24
+\pgfmath@stack@operand=\toks25
+\pgfmath@stack@operation=\toks26
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex)))
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count198
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex
+File: pgfcorepoints.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@picminx=\dimen154
+\pgf@picmaxx=\dimen155
+\pgf@picminy=\dimen156
+\pgf@picmaxy=\dimen157
+\pgf@pathminx=\dimen158
+\pgf@pathmaxx=\dimen159
+\pgf@pathminy=\dimen160
+\pgf@pathmaxy=\dimen161
+\pgf@xx=\dimen162
+\pgf@xy=\dimen163
+\pgf@yx=\dimen164
+\pgf@yy=\dimen165
+\pgf@zx=\dimen166
+\pgf@zy=\dimen167
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex
+File: pgfcorepathconstruct.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@path@lastx=\dimen168
+\pgf@path@lasty=\dimen169
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex
+File: pgfcorepathusage.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@shorten@end@additional=\dimen170
+\pgf@shorten@start@additional=\dimen171
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex
+File: pgfcorescopes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfpic=\box50
+\pgf@hbox=\box51
+\pgf@layerbox@main=\box52
+\pgf@picture@serial@count=\count199
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex
+File: pgfcoregraphicstate.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgflinewidth=\dimen172
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex
+File: pgfcoretransformations.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@pt@x=\dimen173
+\pgf@pt@y=\dimen174
+\pgf@pt@temp=\dimen175
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex
+File: pgfcorequick.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex
+File: pgfcoreobjects.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex
+File: pgfcorepathprocessing.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex
+File: pgfcorearrows.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfarrowsep=\dimen176
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex
+File: pgfcoreshade.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@max=\dimen177
+\pgf@sys@shading@range@num=\count266
+\pgf@shadingcount=\count267
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex
+File: pgfcoreimage.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex
+File: pgfcoreexternal.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfexternal@startupbox=\box53
+))
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex
+File: pgfcorelayers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex
+File: pgfcoretransparency.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex
+File: pgfcorepatterns.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.
+tex
+File: pgfcorerdf.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)))
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
+e.tex
+File: pgfmoduleshapes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfnodeparttextbox=\box54
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
+tex
+File: pgfmoduleplot.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-0-65.sty
+Package: pgfcomp-version-0-65 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@nodesepstart=\dimen178
+\pgf@nodesepend=\dimen179
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-1-18.sty
+Package: pgfcomp-version-1-18 2020/12/27 v3.1.8b (3.1.8b)
+))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen180
+\pgffor@skip=\dimen181
+\pgffor@stack=\toks27
+\pgffor@toks=\toks28
+))
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
+e.tex
+Package: tikz 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
+dlers.code.tex
+File: pgflibraryplothandlers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@plot@mark@count=\count268
+\pgfplotmarksize=\dimen182
+)
+\tikz@lastx=\dimen183
+\tikz@lasty=\dimen184
+\tikz@lastxsaved=\dimen185
+\tikz@lastysaved=\dimen186
+\tikz@lastmovetox=\dimen187
+\tikz@lastmovetoy=\dimen188
+\tikzleveldistance=\dimen189
+\tikzsiblingdistance=\dimen190
+\tikz@figbox=\box55
+\tikz@figbox@bg=\box56
+\tikz@tempbox=\box57
+\tikz@tempbox@bg=\box58
+\tikztreelevel=\count269
+\tikznumberofchildren=\count270
+\tikznumberofcurrentchild=\count271
+\tikz@fig@count=\count272
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
+e.tex
+File: pgfmodulematrix.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfmatrixcurrentrow=\count273
+\pgfmatrixcurrentcolumn=\count274
+\pgf@matrix@numberofcolumns=\count275
+)
+\tikz@expandcount=\count276
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)))
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count277
+\l__pdf_internal_box=\box59
+)
+No file tikz.aux.
+\openout1 = `tikz.aux&#39;.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+(/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count278
+\scratchdimen=\dimen191
+\scratchbox=\box60
+\nofMPsegments=\count279
+\nofMParguments=\count280
+\everyMPshowfont=\toks29
+\MPscratchCnt=\count281
+\MPscratchDim=\dimen192
+\MPnumerator=\count282
+\makeMPintoPDFobject=\count283
+\everyMPtoPDFconversion=\toks30
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps&#39; on input line 4
+85.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Missing character: There is no - in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no + in font nullfont!
+Missing character: There is no + in font nullfont!
+Missing character: There is no ( in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no ) in font nullfont!
+Missing character: There is no ; in font nullfont!
+
+! Illegal parameter number in definition of \tikz@scan@point@coordinate.
+&lt;to be read again&gt; 
+                   1
+l.25   \draw (#1, #2)
+                      -- ++ (0,4);
+? 
+! Emergency stop.
+&lt;to be read again&gt; 
+                   1
+l.25   \draw (#1, #2)
+                      -- ++ (0,4);
+End of file on the terminal!
+
+ 
+Here is how much of TeX&#39;s memory you used:
+ 12034 strings out of 478994
+ 248872 string characters out of 5858184
+ 508186 words of memory out of 5000000
+ 29331 multiletter control sequences out of 15000+600000
+ 403430 words of font info for 27 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 113i,2n,116p,406b,294s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==&gt; Fatal error occurred, no output PDF file produced!
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="weight">
-<h3><span class="section-number">15.1.1. </span>Weight<a class="headerlink" href="#weight" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">17.1.1. </span>Weight<a class="headerlink" href="#weight" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="lift">
-<h3><span class="section-number">15.1.2. </span>Lift<a class="headerlink" href="#lift" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">17.1.2. </span>Lift<a class="headerlink" href="#lift" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="thrust">
-<h3><span class="section-number">15.1.3. </span>Thrust<a class="headerlink" href="#thrust" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">17.1.3. </span>Thrust<a class="headerlink" href="#thrust" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="drag">
-<h3><span class="section-number">15.1.4. </span>Drag<a class="headerlink" href="#drag" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">17.1.4. </span>Drag<a class="headerlink" href="#drag" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>
@@ -965,13 +1044,13 @@ No image generated.
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">14. </span>Indoor Model Propulsion</p>
+            <p class="prev-next-title"><span class="section-number">16. </span>Indoor Model Propulsion</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../backmatter/bibliography.html" title="next page">
+    <a class='right-next' id="next-link" href="bibliography.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">16. </span>Bibliography</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Bibliography</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -53,7 +53,7 @@
     <link rel="shortcut icon" href="../_static/lpp.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="7. McLean’s Method" href="../content/mclean-method.html" />
+    <link rel="next" title="7. Hacklinger’s Theories" href="../content/hacklinger-theory.html" />
     <link rel="prev" title="5. Tenny’s Flight Path Data" href="tenny-data-analysis.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -130,48 +130,63 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../content/hacklinger-theory.html">
+   7. Hacklinger’s Theories
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../content/mclean-method.html">
-   7. McLean’s Method
+   8. McLean’s Method
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../content/experimental-airfoil-data.html">
-   8. Airfoil Data
+   9. Airfoil Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../content/simplex-airfoils.html">
-   9. Simplex Airfoils
+   10. Simplex Airfoils
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/xfoil-circular-arc.html">
+   11. Circular Arc Airfoils for XFoil Tests
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../content/generating-airfoils-for-xfoil.html">
-   10. Generating Airfoils for XFoil
+   12. Generating Airfoils for XFoil
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../content/level-flight-calculations.html">
-   11. level-flight-calculations
+   13. level-flight-calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/level-flight-power.html">
+   14. Power Needed for Level Flight
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../content/indoor-model-propulsion.html">
-   12. Indoor Model Propulsion
+   15. Indoor Model Propulsion
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../content/stability-analysis.html">
-   13. Stability Analysis
+   16. Stability Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../backmatter/bibliography.html">
-   14. Bibliography
+   17. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../backmatter/biography.html">
-   15. Biography
+   18. Biography
   </a>
  </li>
 </ul>
@@ -320,6 +335,130 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clfile</span> <span class="o">=</span> <span class="n">datadir</span> <span class="o">/</span> <span class="s1">&#39;CL-re3.csv&#39;</span>
 <span class="n">cl_x</span><span class="p">,</span> <span class="n">cl_y</span> <span class="o">=</span> <span class="n">get_points</span><span class="p">(</span><span class="n">clfile</span><span class="p">)</span>
 <span class="n">fit_cl</span> <span class="o">=</span> <span class="n">fit_curve</span><span class="p">(</span><span class="n">cl_x</span><span class="p">,</span> <span class="n">cl_y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:root:Internal Python error in the inspect module.
+Below is the traceback from this internal error.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
+  File &quot;/Users/rblack/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/IPython/core/interactiveshell.py&quot;, line 3457, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File &quot;/var/folders/ws/5h_x4h713cg8w0jmrm5_tfzc0000gn/T/ipykernel_1656/700603463.py&quot;, line 2, in &lt;module&gt;
+    cl_x, cl_y = get_points(clfile)
+  File &quot;/Users/rblack/_dev/live-2022/mmtime/utils.py&quot;, line 13, in get_points
+    with open(filename,&#39;r&#39;) as fin:
+FileNotFoundError: [Errno 2] No such file or directory: &#39;/Users/rblack/_dev/nffs-symposium/live-2022/mmtime/data/airfoils/arc3/CL-re3.csv&#39;
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/Users/rblack/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/IPython/core/interactiveshell.py&quot;, line 2077, in showtraceback
+    stb = value._render_traceback_()
+AttributeError: &#39;FileNotFoundError&#39; object has no attribute &#39;_render_traceback_&#39;
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/Users/rblack/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 1101, in get_records
+    return _fixed_getinnerframes(etb, number_of_lines_of_context, tb_offset)
+  File &quot;/Users/rblack/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 248, in wrapped
+    return f(*args, **kwargs)
+  File &quot;/Users/rblack/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 281, in _fixed_getinnerframes
+    records = fix_frame_records_filenames(inspect.getinnerframes(etb, context))
+  File &quot;/usr/local/Cellar/python@3.10/3.10.4/Frameworks/Python.framework/Versions/3.10/lib/python3.10/inspect.py&quot;, line 1667, in getinnerframes
+    frameinfo = (tb.tb_frame,) + getframeinfo(tb, context)
+  File &quot;/usr/local/Cellar/python@3.10/3.10.4/Frameworks/Python.framework/Versions/3.10/lib/python3.10/inspect.py&quot;, line 1625, in getframeinfo
+    filename = getsourcefile(frame) or getfile(frame)
+  File &quot;/usr/local/Cellar/python@3.10/3.10.4/Frameworks/Python.framework/Versions/3.10/lib/python3.10/inspect.py&quot;, line 829, in getsourcefile
+    module = getmodule(object, filename)
+  File &quot;/usr/local/Cellar/python@3.10/3.10.4/Frameworks/Python.framework/Versions/3.10/lib/python3.10/inspect.py&quot;, line 875, in getmodule
+    f = getabsfile(module)
+  File &quot;/usr/local/Cellar/python@3.10/3.10.4/Frameworks/Python.framework/Versions/3.10/lib/python3.10/inspect.py&quot;, line 844, in getabsfile
+    _filename = getsourcefile(object) or getfile(object)
+  File &quot;/usr/local/Cellar/python@3.10/3.10.4/Frameworks/Python.framework/Versions/3.10/lib/python3.10/inspect.py&quot;, line 820, in getsourcefile
+    if any(filename.endswith(s) for s in all_bytecode_suffixes):
+  File &quot;/usr/local/Cellar/python@3.10/3.10.4/Frameworks/Python.framework/Versions/3.10/lib/python3.10/inspect.py&quot;, line 820, in &lt;genexpr&gt;
+    if any(filename.endswith(s) for s in all_bytecode_suffixes):
+AttributeError: &#39;dict&#39; object has no attribute &#39;endswith&#39;
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+    <span class="p">[</span><span class="o">...</span> <span class="n">skipping</span> <span class="n">hidden</span> <span class="mi">1</span> <span class="n">frame</span><span class="p">]</span>
+
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ws</span><span class="o">/</span><span class="mi">5</span><span class="n">h_x4h713cg8w0jmrm5_tfzc0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_1656</span><span class="o">/</span><span class="mf">700603463.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">clfile</span> <span class="o">=</span> <span class="n">datadir</span> <span class="o">/</span> <span class="s1">&#39;CL-re3.csv&#39;</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">cl_x</span><span class="p">,</span> <span class="n">cl_y</span> <span class="o">=</span> <span class="n">get_points</span><span class="p">(</span><span class="n">clfile</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">fit_cl</span> <span class="o">=</span> <span class="n">fit_curve</span><span class="p">(</span><span class="n">cl_x</span><span class="p">,</span> <span class="n">cl_y</span><span class="p">)</span>
+
+<span class="nn">~/_dev/live-2022/mmtime/utils.py</span> in <span class="ni">get_points</span><span class="nt">(filename)</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ne">---&gt; </span><span class="mi">13</span>     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fin</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>         <span class="n">raw_data</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">fin</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/Users/rblack/_dev/nffs-symposium/live-2022/mmtime/data/airfoils/arc3/CL-re3.csv&#39;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">~/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/IPython/core/interactiveshell.py</span> in <span class="ni">showtraceback</span><span class="nt">(self, exc_tuple, filename, tb_offset, exception_only, running_compiled_code)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2076</span>                         <span class="c1"># in the engines. This should return a list of strings.</span>
+<span class="ne">-&gt; </span><span class="mi">2077</span>                         <span class="n">stb</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">_render_traceback_</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">2078</span>                     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+
+<span class="ne">AttributeError</span>: &#39;FileNotFoundError&#39; object has no attribute &#39;_render_traceback_&#39;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+    <span class="p">[</span><span class="o">...</span> <span class="n">skipping</span> <span class="n">hidden</span> <span class="mi">1</span> <span class="n">frame</span><span class="p">]</span>
+
+<span class="nn">~/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/IPython/core/interactiveshell.py</span> in <span class="ni">showtraceback</span><span class="nt">(self, exc_tuple, filename, tb_offset, exception_only, running_compiled_code)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2077</span>                         <span class="n">stb</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">_render_traceback_</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">2078</span>                     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2079</span>                         <span class="n">stb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">InteractiveTB</span><span class="o">.</span><span class="n">structured_traceback</span><span class="p">(</span><span class="n">etype</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2080</span>                                             <span class="n">value</span><span class="p">,</span> <span class="n">tb</span><span class="p">,</span> <span class="n">tb_offset</span><span class="o">=</span><span class="n">tb_offset</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2081</span> 
+
+<span class="nn">~/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/IPython/core/ultratb.py</span> in <span class="ni">structured_traceback</span><span class="nt">(self, etype, value, tb, tb_offset, number_of_lines_of_context)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1365</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1366</span>             <span class="bp">self</span><span class="o">.</span><span class="n">tb</span> <span class="o">=</span> <span class="n">tb</span>
+<span class="ne">-&gt; </span><span class="mi">1367</span>         <span class="k">return</span> <span class="n">FormattedTB</span><span class="o">.</span><span class="n">structured_traceback</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1368</span>             <span class="bp">self</span><span class="p">,</span> <span class="n">etype</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">tb</span><span class="p">,</span> <span class="n">tb_offset</span><span class="p">,</span> <span class="n">number_of_lines_of_context</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1369</span> 
+
+<span class="nn">~/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/IPython/core/ultratb.py</span> in <span class="ni">structured_traceback</span><span class="nt">(self, etype, value, tb, tb_offset, number_of_lines_of_context)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1265</span>         <span class="k">if</span> <span class="n">mode</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose_modes</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1266</span>             <span class="c1"># Verbose modes need a full traceback</span>
+<span class="ne">-&gt; </span><span class="mi">1267</span>             <span class="k">return</span> <span class="n">VerboseTB</span><span class="o">.</span><span class="n">structured_traceback</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1268</span>                 <span class="bp">self</span><span class="p">,</span> <span class="n">etype</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">tb</span><span class="p">,</span> <span class="n">tb_offset</span><span class="p">,</span> <span class="n">number_of_lines_of_context</span>
+<span class="g g-Whitespace">   </span><span class="mi">1269</span>             <span class="p">)</span>
+
+<span class="nn">~/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/IPython/core/ultratb.py</span> in <span class="ni">structured_traceback</span><span class="nt">(self, etype, evalue, etb, tb_offset, number_of_lines_of_context)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1122</span>         <span class="sd">&quot;&quot;&quot;Return a nice text document describing the traceback.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1123</span> 
+<span class="ne">-&gt; </span><span class="mi">1124</span>         <span class="n">formatted_exception</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_exception_as_a_whole</span><span class="p">(</span><span class="n">etype</span><span class="p">,</span> <span class="n">evalue</span><span class="p">,</span> <span class="n">etb</span><span class="p">,</span> <span class="n">number_of_lines_of_context</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1125</span>                                                                <span class="n">tb_offset</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1126</span> 
+
+<span class="nn">~/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/IPython/core/ultratb.py</span> in <span class="ni">format_exception_as_a_whole</span><span class="nt">(self, etype, evalue, etb, number_of_lines_of_context, tb_offset)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1080</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1081</span> 
+<span class="ne">-&gt; </span><span class="mi">1082</span>         <span class="n">last_unique</span><span class="p">,</span> <span class="n">recursion_repeat</span> <span class="o">=</span> <span class="n">find_recursion</span><span class="p">(</span><span class="n">orig_etype</span><span class="p">,</span> <span class="n">evalue</span><span class="p">,</span> <span class="n">records</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1083</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1084</span>         <span class="n">frames</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_records</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="n">last_unique</span><span class="p">,</span> <span class="n">recursion_repeat</span><span class="p">)</span>
+
+<span class="nn">~/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/IPython/core/ultratb.py</span> in <span class="ni">find_recursion</span><span class="nt">(etype, value, records)</span>
+<span class="g g-Whitespace">    </span><span class="mi">380</span>     <span class="c1"># first frame (from in to out) that looks different.</span>
+<span class="g g-Whitespace">    </span><span class="mi">381</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">is_recursion_error</span><span class="p">(</span><span class="n">etype</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">records</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">382</span>         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">),</span> <span class="mi">0</span>
+<span class="g g-Whitespace">    </span><span class="mi">383</span> 
+<span class="g g-Whitespace">    </span><span class="mi">384</span>     <span class="c1"># Select filename, lineno, func_name to track frames with</span>
+
+<span class="ne">TypeError</span>: object of type &#39;NoneType&#39; has no len()
 </pre></div>
 </div>
 </div>
@@ -489,10 +628,10 @@
             <p class="prev-next-title"><span class="section-number">5. </span>Tenny’s Flight Path Data</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../content/mclean-method.html" title="next page">
+    <a class='right-next' id="next-link" href="../content/hacklinger-theory.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>McLean’s Method</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Hacklinger’s Theories</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

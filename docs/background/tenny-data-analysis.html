@@ -132,48 +132,63 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../content/hacklinger-theory.html">
+   7. Hacklinger’s Theories
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../content/mclean-method.html">
-   7. McLean’s Method
+   8. McLean’s Method
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../content/experimental-airfoil-data.html">
-   8. Airfoil Data
+   9. Airfoil Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../content/simplex-airfoils.html">
-   9. Simplex Airfoils
+   10. Simplex Airfoils
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/xfoil-circular-arc.html">
+   11. Circular Arc Airfoils for XFoil Tests
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../content/generating-airfoils-for-xfoil.html">
-   10. Generating Airfoils for XFoil
+   12. Generating Airfoils for XFoil
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../content/level-flight-calculations.html">
-   11. level-flight-calculations
+   13. level-flight-calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/level-flight-power.html">
+   14. Power Needed for Level Flight
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../content/indoor-model-propulsion.html">
-   12. Indoor Model Propulsion
+   15. Indoor Model Propulsion
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../content/stability-analysis.html">
-   13. Stability Analysis
+   16. Stability Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../backmatter/bibliography.html">
-   14. Bibliography
+   17. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../backmatter/biography.html">
-   15. Biography
+   18. Biography
   </a>
  </li>
 </ul>
@@ -764,8 +779,8 @@
 <h3><span class="section-number">5.5.2. </span>Propeller Power<a class="headerlink" href="#propeller-power" title="Permalink to this headline">¶</a></h3>
 <p>Before we leave Tenny’s data, let’s do one more analysis.</p>
 <p>The rate at which work is done by the propeller is defined as the <em>propeller power</em>, <span class="math notranslate nohighlight">\(P\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-26c86f80-572a-42d6-8c43-2a037702a95b">
-<span class="eqno">(5.1)<a class="headerlink" href="#equation-26c86f80-572a-42d6-8c43-2a037702a95b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ea9bdef0-5b8d-4544-ac3d-69b9943716c9">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-ea9bdef0-5b8d-4544-ac3d-69b9943716c9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P = 2\pi n Q
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n\)</span> is the prop speed (rpm) and <span class="math notranslate nohighlight">\(Q\)</span> is the torque.</p>
@@ -774,27 +789,27 @@ P = 2\pi n Q
 <ul class="simple">
 <li><p>torque as a function of turns (<strong>q_n</strong>)</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-c966052e-f2c2-4834-a336-4ea9b483664e">
-<span class="eqno">(5.2)<a class="headerlink" href="#equation-c966052e-f2c2-4834-a336-4ea9b483664e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-af0e6a03-8ef2-44dc-8feb-5097020881b8">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-af0e6a03-8ef2-44dc-8feb-5097020881b8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 q_n = Q(n)
 \end{equation}\]</div>
 <ul class="simple">
 <li><p>RPM as a function of time (<strong>fn_t</strong>)</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-406958e0-ed59-482f-8a52-e04cff8713d5">
-<span class="eqno">(5.3)<a class="headerlink" href="#equation-406958e0-ed59-482f-8a52-e04cff8713d5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-824c4982-7756-4fa3-a1bc-985e6dba96bf">
+<span class="eqno">(5.3)<a class="headerlink" href="#equation-824c4982-7756-4fa3-a1bc-985e6dba96bf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 rpm_t = R(t)
 \end{equation}\]</div>
 <ul class="simple">
 <li><p>turns as a function of time (<strong>n_t</strong>)</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-a1ba0a23-c2da-4151-83fa-1becb34fa36b">
-<span class="eqno">(5.4)<a class="headerlink" href="#equation-a1ba0a23-c2da-4151-83fa-1becb34fa36b" title="Permalink to this equation">¶</a></span>\[\begin{equation}\label
+<div class="amsmath math notranslate nohighlight" id="equation-c55bd3b6-3904-44f3-b6ce-6be811facdca">
+<span class="eqno">(5.4)<a class="headerlink" href="#equation-c55bd3b6-3904-44f3-b6ce-6be811facdca" title="Permalink to this equation">¶</a></span>\[\begin{equation}\label
 n_t = N(t) 
 \end{equation}\]</div>
 <p>So, if we have a given time <span class="math notranslate nohighlight">\(t\)</span> then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-62931d25-836e-44f7-9d56-8f8be5562b56">
-<span class="eqno">(5.5)<a class="headerlink" href="#equation-62931d25-836e-44f7-9d56-8f8be5562b56" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e6d7c9f8-59a6-4c54-bea2-7b371c3f4687">
+<span class="eqno">(5.5)<a class="headerlink" href="#equation-e6d7c9f8-59a6-4c54-bea2-7b371c3f4687" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 q_t = Q(R(t))
 \end{equation}\]</div>
 <p>We have rpm data measured over time. If we integrate that function we will get a function for turns as a function of time.</p>

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>9. Airfoil Data &#8212; Predicting Indoor Flight Times With Python</title>
+    <title>10. Airfoil Data &#8212; Predicting Indoor Flight Times With Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,8 +55,8 @@
     <link rel="shortcut icon" href="../_static/lpp.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10. Simplex Airfoils" href="simplex-airfoils.html" />
-    <link rel="prev" title="8. McLean’s Method" href="mclean-method.html" />
+    <link rel="next" title="11. Simplex Airfoils" href="simplex-airfoils.html" />
+    <link rel="prev" title="9. McLean’s Method" href="mclean-method.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -95,90 +95,105 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../frontmatter/index.html">
+  <a class="reference internal" href="00-index.html">
    Predicting Indoor Model Flight Time Using Python
   </a>
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../frontmatter/overview.html">
+  <a class="reference internal" href="01-overview.html">
    1. Overview
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../background/atmospheric-data.html">
-   2. Atmospheric Data
+  <a class="reference internal" href="02-basic-concepts.html">
+   2. Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../background/simplified-indoor-design.html">
-   3. Simplified Indoor Design
+  <a class="reference internal" href="03-atmospheric-data.html">
+   3. Atmospheric Data
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../background/hodson-wart-a6.html">
-   4. Hodson Wart A6
+  <a class="reference internal" href="04-simplified-indoor-design.html">
+   4. Simplified Indoor Design
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../background/tenny-data-analysis.html">
-   5. Tenny’s Flight Path Data
+  <a class="reference internal" href="05-hodson-wart-a6.html">
+   5. Hodson Wart A6
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../background/data-smoothing.html">
-   6. Data Smoothing
+  <a class="reference internal" href="tenny-data-analysis.html">
+   6. Tenny’s Flight Path Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-smoothing.html">
+   7. Data Smoothing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="hacklinger-theory.html">
-   7. Definitions
+   8. Hacklinger’s Theories
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mclean-method.html">
-   8. McLean’s Method
+   9. McLean’s Method
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   9. Airfoil Data
+   10. Airfoil Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="simplex-airfoils.html">
-   10. Simplex Airfoils
+   11. Simplex Airfoils
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="xfoil-circular-arc.html">
+   12. Circular Arc Airfoils for XFoil Tests
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="generating-airfoils-for-xfoil.html">
-   11. Generating Airfoils for XFoil
+   13. Generating Airfoils for XFoil
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="level-flight-calculations.html">
-   12. level-flight-calculations
+   14. level-flight-calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="level-flight-power.html">
+   15. Power Needed for Level Flight
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="indoor-model-propulsion.html">
-   13. Indoor Model Propulsion
+   16. Indoor Model Propulsion
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="stability-analysis.html">
-   14. Stability Analysis
+   17. Stability Analysis
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../backmatter/bibliography.html">
-   15. Bibliography
+  <a class="reference internal" href="bibliography.html">
+   18. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../backmatter/biography.html">
-   16. Biography
+  <a class="reference internal" href="biography.html">
+   19. Biography
   </a>
  </li>
 </ul>
@@ -287,24 +302,34 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#xfoil-testing">
-   9.1. XFoil Testing
+   10.1. XFoil Testing
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#test-airfoils">
-     9.1.1. Test Airfoils
+     10.1.1. Test Airfoils
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#xfoil-data">
+   10.2. Xfoil Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#lift-and-drag-calculations">
-   9.2. Lift and Drag Calculations
+   10.3. Lift and Drag Calculations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#profile-drag">
+   10.4. Profile Drag
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#downwash-calculations">
-   9.3. Downwash Calculations
+   10.5. Downwash Calculations
   </a>
  </li>
 </ul>
@@ -329,24 +354,34 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#xfoil-testing">
-   9.1. XFoil Testing
+   10.1. XFoil Testing
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#test-airfoils">
-     9.1.1. Test Airfoils
+     10.1.1. Test Airfoils
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#xfoil-data">
+   10.2. Xfoil Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#lift-and-drag-calculations">
-   9.2. Lift and Drag Calculations
+   10.3. Lift and Drag Calculations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#profile-drag">
+   10.4. Profile Drag
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#downwash-calculations">
-   9.3. Downwash Calculations
+   10.5. Downwash Calculations
   </a>
  </li>
 </ul>
@@ -359,24 +394,79 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="airfoil-data">
-<h1><span class="section-number">9. </span>Airfoil Data<a class="headerlink" href="#airfoil-data" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">10. </span>Airfoil Data<a class="headerlink" href="#airfoil-data" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">projdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;../..&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">projdir</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">projdir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Finding airfoil data for the flight range of our indoor models is difficult. However, recent interest in micro flying vehicles has generated some data. Still, my attempts at matching a typical indoor model with experimental airfoil data only turned up a few possible data sources.</p>
 <p>In my past, I conducted some serious computer based studies of the flow of air over high speed vehicles as part of my research work in both graduate school and in the Air Force. In developing new computer tools for this kind of work, we always looked for actual experimental data that could be used to validate our new tools.</p>
 <p>For this project, I decided to try out the freely available <em>XFoil</em> program, and compare results from this program and data I found online.</p>
 <div class="section" id="xfoil-testing">
-<h2><span class="section-number">9.1. </span>XFoil Testing<a class="headerlink" href="#xfoil-testing" title="Permalink to this headline">¶</a></h2>
-<p><em>XFoil</em> is a popular tool often used in the study of low speed airfoils.  The program has been around along time. It was originally developed by MIT Professor Mark Drela as part of his <em>Daedalus</em> <span id="id1">[<a class="reference internal" href="../backmatter/bibliography.html#id16">dre</a>]</span> project which resulted in a man powered airplane that flew 72.4 miles from Crete to the Greek island of Santorini in 1988! Mark often used model airplanes in how aerodynamics classes.</p>
-<p>The only problem with 8XFoil8 is that is was written in Fortran, a language ttt that popular today. Fortunately there is a nice free Fortran compiler available today called <em>gfortran</em>* which can handle this program. I managed to compile the latest version of the <em>XFoil</em> on both my Mac and Linux laptops, (I will get it running on WIndows as soon as I can!)</p>
+<h2><span class="section-number">10.1. </span>XFoil Testing<a class="headerlink" href="#xfoil-testing" title="Permalink to this headline">¶</a></h2>
+<p><em>XFoil</em> is a popular tool often used in the study of low speed airfoils.  The program has been around along time. It was originally developed by MIT Professor Mark Drela as part of his <em>Daedalus</em> <span id="id1">[]</span> project which resulted in a man powered airplane that flew 72.4 miles from Crete to the Greek island of Santorini in 1988! Mark often used model airplanes in how aerodynamics classes.</p>
+<p>The only problem with <em>XFoil</em> is that is was written in Fortran, a language that is not that popular today. Fortunately there is a nice free Fortran compiler available today called <em>gfortran</em>* which can handle this program. I managed to compile the latest version of the <em>XFoil</em> on both my Mac and Linux laptops, (I will get it running on WIndows as soon as I can!)</p>
 <p><em>XFoil</em> is a command line program, making it a bit clumsy to run in today’s mouse driven world. Many folks who use <em>XFoil</em> hide the old-fashioned interface behind something more modern, like a Python front end!</p>
 <p>I will explore some of those tools in a later study. For now, I set up a simple Python front end that drives <em>XFoil</em> as needed to generate aerodynamic data we can use in this current study. I will not cover that code here. Instead, we will look at the final product, the aerodynamic data needed for the Wart-A6!</p>
 <div class="section" id="test-airfoils">
-<h3><span class="section-number">9.1.1. </span>Test Airfoils<a class="headerlink" href="#test-airfoils" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.1.1. </span>Test Airfoils<a class="headerlink" href="#test-airfoils" title="Permalink to this headline">¶</a></h3>
 <p>The Wart uses a simplex airfoil. I was not able to find usable data for that airfoil, but i did find some suitable data for another common indoor airfoil, the simple circular arc.</p>
-<p>To test both of these airfoils, I wrote a routine that produces a thin airfoil at the specified camber height and a specified thickness. <em>XFoil</em> is not really happy working with super thin airfoils like we use on indoor models, so I settled on a one percent thick airfoil with a round leading edge, and a parabolic taper on the trailing edge. Here is an example of the airfoils I generated:</p>
+<p>To test both of these airfoils, I wrote a routine that produces a thin airfoil at the specified camber height and a specified thickness. <em>XFoil</em> is not really happy working with super thin airfoils like we use on indoor models, so I settled on a one percent thick airfoil with a round leading edge, and a parabolic taper on the trailing edge.</p>
+<p>All airfoils are stored in a directory with the airfoil name, and s subdirectory identifying the Reynolds Number. The <strong>AirfoilMgr</strong> module manages access:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mmtime.AirfoilMgr</span> <span class="kn">import</span> <span class="n">AirfoilMgr</span>
+<span class="n">am</span> <span class="o">=</span> <span class="n">AirfoilMgr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can check to see what airfoils are available:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">am</span><span class="o">.</span><span class="n">showAirfoils</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;mcbride-b7&#39;, &#39;arc0401&#39;, &#39;arc5&#39;, &#39;arc3&#39;, &#39;BEZ0625018506&#39;, &#39;arc0301&#39;, &#39;ARC0601&#39;, &#39;arc0201&#39;, &#39;flat0001&#39;, &#39;ARC0501&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we select the airfoil by name from this list, then load coefficient data for the Reynolds Number.</p>
+<p>TODO: the directory should show Reynolds Numbers available</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">am</span><span class="o">.</span><span class="n">selectAirfoil</span><span class="p">(</span><span class="s1">&#39;arc3&#39;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">cl</span><span class="p">,</span> <span class="n">cm</span><span class="p">,</span> <span class="n">cd</span><span class="p">,</span> <span class="n">cp</span> <span class="o">=</span> <span class="n">am</span><span class="o">.</span><span class="n">loadData</span><span class="p">(</span><span class="s1">&#39;re3k&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selected: arc3
+Loading arc3
+	Loading CL-re3k.csv
+	Loading CM-re3k.csv
+	Loading CD-re3k.csv
+	Loading CP-re3k.csv
+</pre></div>
+</div>
+</div>
+</div>
+<p>The coefficients returned are Python functions. You provide an angle of attack (in degrees) and the functions will return the coefficient. We can plot these curves esily using <strong>matplotlib</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">math</span>
 </pre></div>
 </div>
@@ -384,52 +474,52 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mmtime_helper</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">CL</span> <span class="o">=</span> <span class="n">cl</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">CD</span> <span class="o">=</span> <span class="n">cd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mmtime.AirfoilMgr</span> <span class="kn">import</span> <span class="n">AirfoilMgr</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">am</span> <span class="o">=</span> <span class="n">AirfoilMgr</span><span class="p">()</span>
-<span class="n">am</span><span class="o">.</span><span class="n">showAirfoils</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">CL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">CD</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;mcbride-b7&#39;, &#39;arc0401&#39;, &#39;arc5&#39;, &#39;arc3&#39;, &#39;BEZ0625018506&#39;, &#39;arc0301&#39;, &#39;arc0601&#39;, &#39;arc0201&#39;, &#39;arc0501&#39;]
+<img alt="../_images/experimental-airfoil-data_13_0.png" src="../_images/experimental-airfoil-data_13_0.png" />
+</div>
+</div>
+<p>Let’s try a lift-drag polar plot:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">CL</span><span class="p">,</span><span class="n">CD</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/experimental-airfoil-data_15_0.png" src="../_images/experimental-airfoil-data_15_0.png" />
 </div>
+</div>
+</div>
+</div>
+<div class="section" id="xfoil-data">
+<h2><span class="section-number">10.2. </span>Xfoil Data<a class="headerlink" href="#xfoil-data" title="Permalink to this headline">¶</a></h2>
+<p>As a check of how well <em>Xfoil</em> does with this airfoil, I used my simple circular arc airfoil and ran a test for the same Reynolds Number:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">am</span><span class="o">.</span><span class="n">selectAirfoil</span><span class="p">(</span><span class="s1">&#39;arc0301&#39;</span><span class="p">)</span>
+<span class="n">cl2</span><span class="p">,</span> <span class="n">cm2</span><span class="p">,</span> <span class="n">cd2</span><span class="p">,</span> <span class="n">cp2</span> <span class="o">=</span> <span class="n">am</span><span class="o">.</span><span class="n">loadData</span><span class="p">(</span><span class="s1">&#39;re3k&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selected: arc0301
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
-<span class="n">cl3</span><span class="p">,</span> <span class="n">cd3</span><span class="p">,</span> <span class="n">cm3</span><span class="p">,</span> <span class="n">cp3</span> <span class="o">=</span> <span class="n">am</span><span class="o">.</span><span class="n">loadData</span><span class="p">(</span><span class="s1">&#39;re3k&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading arc0301
+Loading arc0301
 	Loading CD_re3k.csv
 	Loading CP_re3k.csv
 	Loading CM_re3k.csv
@@ -440,106 +530,62 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CL3</span> <span class="o">=</span> <span class="n">cl3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">CD3</span> <span class="o">=</span> <span class="n">cd3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CL2</span> <span class="o">=</span> <span class="n">cl2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">CD2</span> <span class="o">=</span> <span class="n">cd2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">CL3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">CD3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">CL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">CD</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">CL2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">CD2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/experimental-airfoil-data_12_0.png" src="../_images/experimental-airfoil-data_12_0.png" />
+<img alt="../_images/experimental-airfoil-data_20_0.png" src="../_images/experimental-airfoil-data_20_0.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">am</span><span class="o">.</span><span class="n">selectAirfoil</span><span class="p">(</span><span class="s1">&#39;arc3&#39;</span><span class="p">)</span>
-<span class="n">cl4</span><span class="p">,</span> <span class="n">cd4</span><span class="p">,</span> <span class="n">cm4</span><span class="p">,</span> <span class="n">cp4</span> <span class="o">=</span> <span class="n">am</span><span class="o">.</span><span class="n">loadData</span><span class="p">(</span><span class="s1">&#39;re3k&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selected: arc3
-Loading arc3
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Loading CL-re3k.csv
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Loading CM-re3k.csv
-	Loading CD-re3k.csv
-	Loading CP-re3k.csv
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CL4</span> <span class="o">=</span> <span class="n">cl4</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">CD4</span> <span class="o">=</span> <span class="n">cd4</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">CL4</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">CL3</span><span class="p">)</span>
-<span class="c1">#plt.plot(x,CD4)</span>
-<span class="c1">#plt.plot(x,CD3)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/experimental-airfoil-data_15_0.png" src="../_images/experimental-airfoil-data_15_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">CD4</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">CD3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/experimental-airfoil-data_16_0.png" src="../_images/experimental-airfoil-data_16_0.png" />
-</div>
-</div>
-<p>The agreement between experimental data and <em>XFoil</em> is reasonable between angles of attack ranging from <span class="math notranslate nohighlight">\(-2\)</span> to <span class="math notranslate nohighlight">\(5\)</span> degrees, but not so good outside that range. For the moment, I will use <em>XFoil</em> data for the rest of this analysis. *XFoil generates pressure distributions, and aerodynamic coefficients which are very useful in further work. It may not be able to handle all input conditions, but so far, I am getting reasonable data for the airfoils needed for this initial study.</p>
+<p>Obviously, <em>Xfoil</em> is not perfect, but it is a reasonable tool for initial design analysis The agreement between experimental data and <em>XFoil</em> is reasonable between angles of attack ranging from <span class="math notranslate nohighlight">\(-2\)</span> to <span class="math notranslate nohighlight">\(5\)</span> degrees, but not so good outside that range. For the moment, I will use <em>XFoil</em> data for the rest of this analysis. *XFoil generates pressure distributions, and aerodynamic coefficients which are very useful in further work. It may not be able to handle all input conditions, but so far, I am getting reasonable data for the airfoils needed for this initial study.</p>
 <p>I have created Python routines to generate both circular arc and simplex airfoils with specified camber values.</p>
 </div>
-</div>
 <div class="section" id="lift-and-drag-calculations">
-<h2><span class="section-number">9.2. </span>Lift and Drag Calculations<a class="headerlink" href="#lift-and-drag-calculations" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.3. </span>Lift and Drag Calculations<a class="headerlink" href="#lift-and-drag-calculations" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="profile-drag">
+<h2><span class="section-number">10.4. </span>Profile Drag<a class="headerlink" href="#profile-drag" title="Permalink to this headline">¶</a></h2>
+<p>The drag produced by skin friction and the pressure distribution around the airfoil is called <em>Profile Drag</em>. <strong>xfoil</strong> returns the pressure drag coefficient <span class="math notranslate nohighlight">\( C_{dp}\)</span>, and can deliver the pressure distribution as well.</p>
 </div>
 <div class="section" id="downwash-calculations">
-<h2><span class="section-number">9.3. </span>Downwash Calculations<a class="headerlink" href="#downwash-calculations" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.5. </span>Downwash Calculations<a class="headerlink" href="#downwash-calculations" title="Permalink to this headline">¶</a></h2>
+<p>The production of lift creates a downwash in the air behind a lifting surface. This downwash contributes to an increase in drag. Furthermore, the downwash produced by the wing affects the flow over the stabilizer. From McLean’s paper, we can use two simple equations include these effects in our drag calculations.</p>
 <p>The induced drag coefficients for the wing and stab are given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d539986a-0af5-4baa-8b21-f1a83e6dde69">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-d539986a-0af5-4baa-8b21-f1a83e6dde69" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-{C_d}_{iw} = \frac{{C_l}_w}{\pi A_w} 
+<div class="amsmath math notranslate nohighlight" id="equation-6c4fda17-6248-49a1-a60c-fcf2c25ea563">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-6c4fda17-6248-49a1-a60c-fcf2c25ea563" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+C_{di,w} = \frac{{C_l}_w^2}{\pi A_w} 
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-1e5bc7c7-045e-406d-9f68-1a3d85078959">
-<span class="eqno">(9.2)<a class="headerlink" href="#equation-1e5bc7c7-045e-406d-9f68-1a3d85078959" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-{C_d}_{it} = \frac{{{C_l}_t}^2}{\pi A_t} + \frac{ 2 {C_l}_w}{\pi A_w} 
+<div class="amsmath math notranslate nohighlight" id="equation-57f9187b-67bb-44e8-83d7-110e296541a8">
+<span class="eqno">(10.2)<a class="headerlink" href="#equation-57f9187b-67bb-44e8-83d7-110e296541a8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+C_{di,t} = \frac{{{C_l}_t}^2}{\pi A_t} + \frac{ 2 {C_l}_w}{\pi A_w} 
 \end{equation}\]</div>
+<p>The aspect ration is calculated from the surface span and area:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f58c599b-6346-43b5-9927-970bd6ad8068">
+<span class="eqno">(10.3)<a class="headerlink" href="#equation-f58c599b-6346-43b5-9927-970bd6ad8068" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+AR = b^2/S
+\end{equation}\]</div>
+<p>Where <strong>b</strong> is the surface span, and <strong>S</strong> is the surface area.</p>
+<p>We will use these equations when we calculate drag later in this study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">epsilon</span><span class="p">(</span><span class="n">alpha</span><span class="p">):</span>
-    <span class="n">CL</span> <span class="o">=</span> <span class="n">cl4</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">CL</span> <span class="o">=</span> <span class="n">cl2</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">CL</span><span class="p">)</span>
-    <span class="n">ARw</span> <span class="o">=</span> <span class="mf">30.0</span><span class="o">/</span><span class="mf">15.03</span>
+    <span class="n">ARw</span> <span class="o">=</span> <span class="mf">15.03</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mf">30.0</span>
     <span class="n">eps</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">CL</span> <span class="o">/</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">ARw</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">eps</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -551,8 +597,7 @@ Loading arc3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6332676339345803
-11.57251555531793
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5853836829836869
 </pre></div>
 </div>
 </div>
@@ -589,13 +634,13 @@ Loading arc3
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">8. </span>McLean’s Method</p>
+            <p class="prev-next-title"><span class="section-number">9. </span>McLean’s Method</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="simplex-airfoils.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">10. </span>Simplex Airfoils</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Simplex Airfoils</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

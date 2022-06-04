@@ -1,5 +1,7 @@
 jupyter-book
 jupyter-contrib-nbextensions
+git+https://github.com/mkrphys/ipython-tikzmagic.git
+
 numpy==1.21.5
 numpy-stl
 scipy
@@ -7,4 +9,9 @@ sympy
 matplotlib
 pint
 fluids
-git+git://github.com/mkrphys/ipython-tikzmagic.git
+
+# testing
+pytest
+pytest-cov
+coverage
+nbmake

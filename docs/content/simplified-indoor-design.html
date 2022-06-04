@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>4. Simplified Indoor Design &#8212; Predicting Indoor Flight Times With Python</title>
+    <title>3. Simplified Indoor Design &#8212; Predicting Indoor Flight Times With Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,8 +55,8 @@
     <link rel="shortcut icon" href="../_static/lpp.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. Basic Aerodynamics" href="model-aerodynamics.html" />
-    <link rel="prev" title="3. Calculating Flight Time" href="mcleans-method.html" />
+    <link rel="next" title="4. Tenny’s Flight Path Data" href="tenny-data-analysis.html" />
+    <link rel="prev" title="2. Atmospheric Data" href="atmospheric-data.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -102,28 +102,28 @@
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="overview.html">
-   1. Overview
+  <a class="reference internal" href="basic-concepts.html">
+   1. Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="tenny-data-analysis.html">
-   2. Tenny’s Flight Path Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="mcleans-method.html">
-   3. Calculating Flight Time
+  <a class="reference internal" href="atmospheric-data.html">
+   2. Atmospheric Data
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   4. Simplified Indoor Design
+   3. Simplified Indoor Design
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="model-aerodynamics.html">
-   5. Basic Aerodynamics
+  <a class="reference internal" href="tenny-data-analysis.html">
+   4. Tenny’s Flight Path Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-smoothing.html">
+   5. Data Smoothing
   </a>
  </li>
  <li class="toctree-l1">
@@ -132,13 +132,58 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="mclean-method.html">
+   7. McLean’s Method
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="experimental-airfoil-data.html">
+   8. Airfoil Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="simplex-airfoils.html">
+   9. Simplex Airfoils
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="xfoil-circular-arc.html">
+   10. Circular Arc Airfoils for XFoil Tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="generating-airfoils-for-xfoil.html">
+   11. Generating Airfoils for XFoil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="level-flight-calculations.html">
+   12. level-flight-calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="level-flight-power.html">
+   13. Power Needed for Level Flight
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indoor-model-propulsion.html">
+   14. Indoor Model Propulsion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stability-analysis.html">
+   15. Stability Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   7. Bibliography
+   16. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="biography.html">
-   8. Biography
+   17. Biography
   </a>
  </li>
 </ul>
@@ -247,22 +292,22 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#locating-the-center-of-gravity">
-   4.1. Locating the Center of Gravity
+   3.1. Locating the Center of Gravity
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#aerodynamic-centers">
-   4.2. Aerodynamic Centers
+   3.2. Aerodynamic Centers
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#estimating-lift">
-   4.3. estimating Lift
+   3.3. estimating Lift
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#aerodynamic-forces">
-   4.4. Aerodynamic forces
+   3.4. Aerodynamic forces
   </a>
  </li>
 </ul>
@@ -287,22 +332,22 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#locating-the-center-of-gravity">
-   4.1. Locating the Center of Gravity
+   3.1. Locating the Center of Gravity
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#aerodynamic-centers">
-   4.2. Aerodynamic Centers
+   3.2. Aerodynamic Centers
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#estimating-lift">
-   4.3. estimating Lift
+   3.3. estimating Lift
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#aerodynamic-forces">
-   4.4. Aerodynamic forces
+   3.4. Aerodynamic forces
   </a>
  </li>
 </ul>
@@ -315,8 +360,8 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="simplified-indoor-design">
-<h1><span class="section-number">4. </span>Simplified Indoor Design<a class="headerlink" href="#simplified-indoor-design" title="Permalink to this headline">¶</a></h1>
-<p>For the rest of this work, we will use a simplified indoor design. The dimensions we use will be derived from Gary Hodson’s Wart-A6 design <span id="id1">[<a class="reference internal" href="bibliography.html#id4">Hod10</a>]</span>.</p>
+<h1><span class="section-number">3. </span>Simplified Indoor Design<a class="headerlink" href="#simplified-indoor-design" title="Permalink to this headline">¶</a></h1>
+<p>For the rest of this work, we will use a simplified 2D indoor design. The dimensions we use will be derived from Gary Hodson’s Wart-A6 design <span id="id1">[<a class="reference internal" href="bibliography.html#id7">Hod10</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> tikzmagic
@@ -381,11 +426,16 @@
 \node[above] at (6.5,0.5) {$L_s$};
 \draw[red,ultra thick,-&gt;] (8,-0.5) -- (9,-0.5);
 \node[right] at (9,-0.5) {$D_w$};
-            
+
+% Moments
+\draw [red,ultra thick,-&gt;] (1.5,1.0) arc (-90:-315:0.5) 
+            node[right] {$M_w$};
+\draw [red,ultra thick,-&gt;] (6.5,-1) arc (-90:-315:0.5) 
+            node[right] {$M_s$};                
 % thrust
-\draw[red,ultra thick,-&gt;] (0,-0.125) -- (-1,-0.125);
+\draw[red,ultra thick, -&gt;] (0,-0.125) -- (-1,-0.125);
 \node[left] at (-1,0) {$T$};
-\draw[ultra thin] (0,-0.125) -- (0.25,-0.125);
+\draw[ultra thick] (0,-0.25) -- (0.25,-0.125);
             
 % weight
 \draw[red,ultra thick,-&gt;] (2.5,0.5) -- (2.5,-0.5);
@@ -397,10 +447,10 @@
 <img alt="../_images/simplified-indoor-design_3_0.png" src="../_images/simplified-indoor-design_3_0.png" />
 </div>
 </div>
-<p>This model has a wing and stab offset from the body center line. We also allow for a thrust offset. The center of gravity is marked, together with aerodynamic centers on the wing and stab. These are the points where forces are assumed to act.</p>
-<p>In order to maintain level flight, all of the applied forces must be balanced. Therefore the lift must equal the weight, the thrust must equal the drag, and here is no tendency to pitch up or down. Our reference point in these calculations is the center of gravity, which is not shown on the Wart plans, but we can figure out the location from other data.</p>
+<p>This model has a wing and stab offset from the body center line. We also allow for a thrust offset. The center of gravity is marked, together with aerodynamic centers on the wing and stab. These are the points where the aerodynamic lift and drag forces are assumed to act.</p>
+<p>In order to maintain level flight, all of the applied forces must be balanced. Therefore the lift must equal the weight, the thrust must equal the drag, and the moments must add up to zero so there is no tendency to pitch up or down. Our reference point in these calculations is the center of gravity, which is not shown on the Wart plans. However, we can figure out the CG location from other data.</p>
 <div class="section" id="locating-the-center-of-gravity">
-<h2><span class="section-number">4.1. </span>Locating the Center of Gravity<a class="headerlink" href="#locating-the-center-of-gravity" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.1. </span>Locating the Center of Gravity<a class="headerlink" href="#locating-the-center-of-gravity" title="Permalink to this headline">¶</a></h2>
 <p>The Wart plans show weights for all of the major model components. We can figure out the center of gravity using those weights and the center of mass location of those parts. OpenSCAD can give us that data directly, but a little geometry will be sufficient here.</p>
 <p>Here are the weights from the plans:</p>
 <div class="cell docutils container">
@@ -444,16 +494,16 @@
 </div>
 <p>We can estimate the <strong>CG</strong> location by balancing the model, both horizontally, and vertically.</p>
 <p>The definition of the <em>center of mass</em> for a collection of objects is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d93332a0-c5c3-4345-865f-aa0c1a80ec32">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-d93332a0-c5c3-4345-865f-aa0c1a80ec32" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dd0238aa-7927-45a4-b36b-4a3900186b5c">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-dd0238aa-7927-45a4-b36b-4a3900186b5c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 {cg}_x = \frac{\sum^{n}_{i=1}x_i W_i}{\sum^{n}_{i=1}W_i}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-a7a41b50-a274-4346-943a-8223b35e1312">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-a7a41b50-a274-4346-943a-8223b35e1312" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4c39131b-400a-49d9-af67-e4cf6578f8e0">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-4c39131b-400a-49d9-af67-e4cf6578f8e0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 {cg}_y = \frac{\sum^{n}_{i=1}y_i W_i}{\sum^{n}_{i=1}W_i}
 \end{equation}\]</div>
 <p>The reference point for these calculations can be any convenient point. We will use the nose of the motor stick. All dimensions were derived from the plans.</p>
-<p>(TODO: all of these need to be fixed):</p>
+<p>(TODO: all of these need to be fixed. The exact center of mass for the wing and stab are off):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cg_arms</span> <span class="o">=</span> <span class="p">{</span>
@@ -469,7 +519,7 @@
 </div>
 </div>
 <p>Each of these locations is. shown as an <strong>(x,y)</strong> pair. We need both values to locate the <strong>CG</strong> correctly. Yes, it is tedious to add units to the numbers, but the results will justify adding them.</p>
-<p>Here is code to calculate the cg location:</p>
+<p>Here is code to calculate the model weight:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>   <span class="k">def</span> <span class="nf">cg</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
@@ -583,17 +633,17 @@ stab_data
 </div>
 </div>
 <div class="section" id="aerodynamic-centers">
-<h2><span class="section-number">4.2. </span>Aerodynamic Centers<a class="headerlink" href="#aerodynamic-centers" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.2. </span>Aerodynamic Centers<a class="headerlink" href="#aerodynamic-centers" title="Permalink to this headline">¶</a></h2>
 <p>Flying surfaces generate aerodynamic forces by creating a pressure distribution on their surfaces as they move. We can integrate this pressure distribution to find the total force that will be generated, and locate that force. This point is called the <em>center of pressure</em>. Unfortunately, the center of pressure  point varies with angle of attack. For that reason, aerodynamics researchers prefers to use an <em>aerodynamic center</em> as the point where forces will be applied. Doing this requires the addition of a moment force to ensure that the total force are correct. The aerodynamic center is commonly set at 1/4 of the mean chord of each surface.</p>
 <p>The mean chord is found using:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e6774ac9-42fd-4d56-ba5e-5dc38e5b623c">
-<span class="eqno">(4.3)<a class="headerlink" href="#equation-e6774ac9-42fd-4d56-ba5e-5dc38e5b623c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4dd88830-a57f-46c0-8e69-f3550fef3bce">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-4dd88830-a57f-46c0-8e69-f3550fef3bce" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 c_m = S / b
 \end{equation}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(S\)</span> is the projected surface area, and <span class="math notranslate nohighlight">\(b\)</span> is the projected span.</p>
 </div>
 <div class="section" id="estimating-lift">
-<h2><span class="section-number">4.3. </span>estimating Lift<a class="headerlink" href="#estimating-lift" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.3. </span>estimating Lift<a class="headerlink" href="#estimating-lift" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arms</span> <span class="o">=</span> <span class="p">{</span>
@@ -622,6 +672,15 @@ c_m = S / b
 </div>
 <p>We can now write a simple function that determines the moment around the <strong>CG</strong> for given values of the various terms. To simplify this function, we will create a Python dictionary holding the values.</p>
 <p>It should be apparent that all six force vectors need to be considered, since none of them (except weight) align with the center of gravity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pint</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We need to estimate the location of the center of gravity. The Wart plans shows some data we can use:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">moment</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">f</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -696,27 +755,67 @@ total moment = -3.09125 gram * inch
 <p>The nice thing about using code to help us make these calculations is that we can run parametric tests and see results quickly, We will use that fact later.</p>
 </div>
 <div class="section" id="aerodynamic-forces">
-<h2><span class="section-number">4.4. </span>Aerodynamic forces<a class="headerlink" href="#aerodynamic-forces" title="Permalink to this headline">¶</a></h2>
-<p>The forces generated by the wing and stab depend on the airfoils we use and the actual flight conditions. Since most builder’s use simple circular arc airfoils, I went in search of data on common thicknesses. The Wart uses a 4% arc on the wing, and a 2% arc on the stab. Of course, I could not find any usable data for those airfoils, but I did find data for a 6% and a 3% arch airfoils that will at least let us begin this development.</p>
+<h2><span class="section-number">3.4. </span>Aerodynamic forces<a class="headerlink" href="#aerodynamic-forces" title="Permalink to this headline">¶</a></h2>
+<p>The forces generated by the wing and stab depend on the airfoils we use and the actual flight conditions. Since most bulders use simple circular arc airfoils, I went in search of data on common thicknesses. The Wart uses a 4% arc on the wing, and a 2% arc on the stab. Of course, I could not find any usable data for those airfoils, but I did find data for a 6% and a 3% arch airfoils that will at least let us begin this development.</p>
+<p>Let’s get some data from the wart plans, and use <strong>pint</strong> to track units:</p>
+<p>let’s see what we have now:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dict_print</span><span class="p">(</span><span class="n">wing</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ws</span><span class="o">/</span><span class="mi">5</span><span class="n">h_x4h713cg8w0jmrm5_tfzc0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_31798</span><span class="o">/</span><span class="mf">1495506983.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dict_print</span><span class="p">(</span><span class="n">wing</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;dict_print&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dict_print</span><span class="p">(</span><span class="n">stab</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tip_span: 5.4375 inch
+center_chord: 1.75 inch
+tip_chord: 1 inch
+tip_dihedral: 0.875 inch
+tip_angle: 0.08028681528301647
+projected_area: 14.90495716456054 inch ** 2
+projected_span: 10.83996884695312 inch
+mean_chord: 1.375 inch
+te_to_ac: 1.03125 inch
+</pre></div>
+</div>
+</div>
+</div>
+<p>We estimated the mean chord values by dividing the projected area by the projected span. The location of the mean aerodynamic centers for both surfaces is set at the quarter chord point. We will locate it from the trailing edges since both are straight on the plans.</p>
 <p>The lift and drag forces will be calculated using the definitions of the lift and drag coefficients:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1370364e-c8bc-4d98-a6db-bd7e4c710193">
-<span class="eqno">(4.4)<a class="headerlink" href="#equation-1370364e-c8bc-4d98-a6db-bd7e4c710193" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7c1da571-ea83-4a6d-95f9-76b80ffa27f8">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-7c1da571-ea83-4a6d-95f9-76b80ffa27f8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 C_l = \frac{2L}{\rho u^2 S}
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8f4f438b-9c4b-444f-8be8-2e29b9e390f5">
-<span class="eqno">(4.5)<a class="headerlink" href="#equation-8f4f438b-9c4b-444f-8be8-2e29b9e390f5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-07b29951-8052-4ab1-9858-d4a0c96f1d30">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-07b29951-8052-4ab1-9858-d4a0c96f1d30" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 L = \frac{1}{2}\rho u^2 C_l S
 \end{equation}\]</div>
-<p>In these equations, <strong>L</strong> and <strong>D</strong> are the lift forces, <strong>S</strong> is the surface area of the wing or stab, <span class="math notranslate nohighlight">\(\rho\)</span> is the air density and <strong>u</strong> is the flight velocity.</p>
+<p>IN these equations, <strong>L</strong> and <strong>D</strong> are the lift forces, <strong>S</strong> is the surface area of the wing or stab, <span class="math notranslate nohighlight">\(\rho\)</span> is the air density and <strong>u</strong> is the flight velocity.</p>
 <p>Similarly:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cbde6788-05ce-4d49-95e6-4debbd0853d2">
-<span class="eqno">(4.6)<a class="headerlink" href="#equation-cbde6788-05ce-4d49-95e6-4debbd0853d2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f4819d0c-a7ee-4128-a46c-ffb0519b2eaf">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-f4819d0c-a7ee-4128-a46c-ffb0519b2eaf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 D = \frac{1}{2}\rho u^2 C_d S
 \end{equation}\]</div>
 <p>Formally, we should also include the moment coefficient, which accounts for the center of pressure not falling exactly at the aerodynamic center</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b0d3156a-38f1-4fad-9570-b56076c58df7">
-<span class="eqno">(4.7)<a class="headerlink" href="#equation-b0d3156a-38f1-4fad-9570-b56076c58df7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-06f7fe61-0896-48db-8f59-0790021678b0">
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-06f7fe61-0896-48db-8f59-0790021678b0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 M = \frac{1}{2}\rho u^2 C_n S c
 \end{equation}\]</div>
 <p>Where <strong>c</strong> is the mean chord.</p>
@@ -733,19 +832,18 @@ M = \frac{1}{2}\rho u^2 C_n S c
 <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;wing_re&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">wing</span><span class="p">[</span><span class="s1">&#39;mean_chord&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;dynamic_viscosity&#39;</span><span class="p">]</span>
 <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;stab_re&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">stab</span><span class="p">[</span><span class="s1">&#39;mean_chord&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">flight</span><span class="p">[</span><span class="s1">&#39;dynamic_viscosity&#39;</span><span class="p">]</span>
 
-<span class="n">print_dict</span><span class="p">(</span><span class="n">flight</span><span class="p">,</span><span class="s2">&quot;Atmosphere Properties&quot;</span><span class="p">)</span>
+<span class="n">dict_print</span><span class="p">(</span><span class="n">flight</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Atmosphere Properties
-	density: 0.00231683 slug / foot ** 3
-	dynamic_viscosity: 1.80338e-05 pascal * second
-	velocity: 2.0 mile_per_hour
-	kinematic_viscosity: 0.007783825313035483 foot ** 3 * pascal * second / slug
-	q: 0.00463366 mile_per_hour ** 2 * slug / foot ** 3
-	wing_re: 498.557747973379 inch * mile_per_hour * slug / foot ** 3 / pascal / second
-	stab_re: 353.29672614756737 inch * mile_per_hour * slug / foot ** 3 / pascal / second
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>density: 0.00231683 slug / foot ** 3
+dynamic_viscosity: 1.80338e-05 pascal * second
+velocity: 2.0 mile_per_hour
+kinematic_viscosity: 0.007783825313035483 foot ** 3 * pascal * second / slug
+q: 0.00463366 mile_per_hour ** 2 * slug / foot ** 3
+wing_re: 498.557747973379 inch * mile_per_hour * slug / foot ** 3 / pascal / second
+stab_re: 353.29672614756737 inch * mile_per_hour * slug / foot ** 3 / pascal / second
 </pre></div>
 </div>
 </div>
@@ -770,7 +868,7 @@ M = \frac{1}{2}\rho u^2 C_n S c
 <div class="cell_output docutils container">
 <div class="output text_html">2067.5036243705945 dimensionless</div></div>
 </div>
-<p>Getting airfoil data for these Reynolds Numbers is not easy. McLean arbitrarily used a <span class="math notranslate nohighlight">\(C_lw\)</span> of 1.0, and calculated the required <span class="math notranslate nohighlight">\(C_ls\)</span> to balance moments. He used pitching moment coefficient values of -0.10 and -0.05 for the wing and stab.He did not include any other forces.</p>
+<p>Getting airfoil data for these Reynolds Numbers is not easy. McLean arbitrarily used a <span class="math notranslate nohighlight">\(C_lw\)</span> of 1.0, and calculated the required $C_ls* to balance moments. He used pitching moment coefficient values of -0.10 and -0.05 for the wing and stab.He did not include any other forces.</p>
 <p>Rather than just use these numbers, we will use the most basic theories of aerodynamics to estimate the coefficients.</p>
 <p><em>Thin Airfoil Theory</em>, is often used as a first approximation for calculating lift and pitching moment data. If we use <em>Prandtl’s Lifting Line Theory</em> we can get an approximation for the induced drag, and profile drag which together as the major sources of drag at low speeds.</p>
 <p>we can estimate the <span class="math notranslate nohighlight">\(C_d\)</span> values by examining typical lift/drag curves.</p>
@@ -802,17 +900,17 @@ M = \frac{1}{2}\rho u^2 C_n S c
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="mcleans-method.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="atmospheric-data.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">3. </span>Calculating Flight Time</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Atmospheric Data</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="model-aerodynamics.html" title="next page">
+    <a class='right-next' id="next-link" href="tenny-data-analysis.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Basic Aerodynamics</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Tenny’s Flight Path Data</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

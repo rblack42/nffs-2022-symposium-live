@@ -37,7 +37,7 @@ class SimplexAirfoil(object):
         k = 1/math.tan(alpha)
 
         # generate airfoil points
-        roa = np.linspace(0,chord,npoints)/chord
+        roa = np.linspace(0,1.0,npoints)
         roa[0] = 0.0000001  # avoid infinity in ln(0)
         psi = np.pi * np.tan(alpha/2) * np.log(roa)
         rho = chord * np.exp(psi / np.tan(alpha))

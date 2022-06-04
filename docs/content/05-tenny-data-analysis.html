@@ -1,0 +1,937 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tenny’s Flight Path Data &#8212; Predicting Indoor Flight Times With Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://rblack42.github.io/nffs-2022-symposium-live/content/05-tenny-data-analysis.html" />
+    <link rel="shortcut icon" href="../_static/lpp.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/lpp.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Predicting Indoor Flight Times With Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00-index.html">
+   Predicting Indoor Model Flight Time Using Python
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-overview.html">
+   1. Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-hacklinger-theory.html">
+   2. Hacklinger’s Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-circular-arc-data.html">
+   3. Circular Arc Airfoil Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-generating-airfoils-for-xfoil.html">
+   4. Generating Airfoils for XFoil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-level-flight-calculations.html">
+   5. level-flight-calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-a6-propeller-analysis.html">
+   6. A-6 Propeller Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   8. Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="biography.html">
+   9. Biography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/content/05-tenny-data-analysis.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live/issues/new?title=Issue%20on%20page%20%2Fcontent/05-tenny-data-analysis.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.ord/v2/gh/rblack42/nffs-2022-symposium-live/master?urlpath=tree/docs/content/05-tenny-data-analysis.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#display-the-raw-image">
+   Display the raw image
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-the-data">
+   Plotting the Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#propeller-speed-data">
+   Propeller Speed Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flight-profile-data">
+   Flight Profile Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#processing-the-data">
+   Processing the Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#torque-as-a-function-of-turns-q-n">
+     Torque as a Function of Turns (q_n)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-the-average-torque">
+     Finding the Average Torque
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rpm-as-a-function-of-time-n-t">
+     RPM as a Function of Time (n_t)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generate-new-data">
+   Generate New Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vertical-velocity">
+     Vertical velocity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#propeller-power">
+     Propeller Power
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tenny’s Flight Path Data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#display-the-raw-image">
+   Display the raw image
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-the-data">
+   Plotting the Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#propeller-speed-data">
+   Propeller Speed Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flight-profile-data">
+   Flight Profile Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#processing-the-data">
+   Processing the Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#torque-as-a-function-of-turns-q-n">
+     Torque as a Function of Turns (q_n)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-the-average-torque">
+     Finding the Average Torque
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rpm-as-a-function-of-time-n-t">
+     RPM as a Function of Time (n_t)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generate-new-data">
+   Generate New Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vertical-velocity">
+     Vertical velocity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#propeller-power">
+     Propeller Power
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="tennys-flight-path-data">
+<h1>Tenny’s Flight Path Data<a class="headerlink" href="#tennys-flight-path-data" title="Permalink to this headline">¶</a></h1>
+<p>In conducting a study like this, it helps to have experimental data available. We can use those data to validate our work and gaining confidence in the tools we use to conduct the research. I did some research and came up with several interesting results.</p>
+<p>Bud Tenny conducted an extensive study of indoor model flight paths in his 1968 Symposium article [7] and presented a graphical technique for estimating flight time.  Bud managed to get some nice data from actual flights of indoor models. Not much detail is provided on the model making those flights, but Bud shows torque curves, flight path data, and rpm data for his test flights. Let’s explore his findings and use Python to see what we can do with them.</p>
+<p>Bud presented his results as a set of graphs in his symposium article. Staring at those plots is nice, but we need the data behind the plots to do much work with these results. The article included some tabulated results, but most of the results are just graphs, so we seem to be stuck. Or are we?</p>
+<p>I found a nice free desktop application called <a class="reference external" href="https://automeris.io/WebPlotDigitizer/">WebPlotDigitizer</a> that lets you take an image of a plot and digitize it with a mouse on your computer. Once done, you can save your curve in a standard comma-separated variable file that you could load into your favorite spreadsheet. I am going to read that file using Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">projdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;../..&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">projdir</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">projdir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is how we embed the original graph image in the notebook page you are writing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span> <span class="c1"># to display the images</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="display-the-raw-image">
+<h2>Display the raw image<a class="headerlink" href="#display-the-raw-image" title="Permalink to this headline">¶</a></h2>
+<p>Displaying an image in a <em>Jupyter</em> page is simple if the image file is in the same directory with the Jupyter page:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;../../assets/images/torque-curve.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05-tenny-data-analysis_7_0.png" src="../_images/05-tenny-data-analysis_7_0.png" />
+</div>
+</div>
+<p>In digitizing this curve, I zoomed the image up to full screen, then used <em>SnagIt</em>, a screen capture program I have used for years, to capture the image.  Digitizing with <em>WebPlotAnalyzer</em> involves defining the axis values to set scaling factors, then using the mouse to pick a series of points along the curve. The data produced is then saved as a CSV file ready to load into a <em>Jupyter</em> notebook page. To make the loading process easier, I created a Python function that takes a file name as a parameter and returns the curve data as two lists, one holding x values, and the other y values. Splitting these values this way makes things much easier to process with other Python tools we will see soon. Here is the loading function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">get_points</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">q_pts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fin</span><span class="p">:</span>
+        <span class="n">raw_data</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">fin</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="p">:</span>
+            <span class="n">q_pts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">pt</span> <span class="ow">in</span> <span class="n">q_pts</span><span class="p">:</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">nx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">ny</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">nx</span><span class="p">,</span><span class="n">ny</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first two lines shown provide access to two Python tools that make this seemingly complicated task much easier! The <strong>numpy</strong> package provides powerful tools for manipulating data sets of all kinds and sizes. We only have a few points to deal with here, but <strong>numpy</strong> can handle huge sets of data! The <strong>csv</strong> package handles loading the <em>CSV</em> file. It can also be used to create CVS files from data you generate in your code.</p>
+<p>Basically, the <strong>get_points</strong> function code receives the name of a <em>CSV</em> data file to process. It reads the file line by line and saves each point into <strong>numpy</strong> arrays holding <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> coordinates of the points you digitized on the image.</p>
+<p><em>Jupyter</em> remembers calculations you set up in previous cells, so you can build up your calculations and test your code in short chunks. It is far easier to correct things this way. After we process a cell with a <em>Python</em> function, we can use that function in code we write in cells that come later.</p>
+</div>
+<div class="section" id="plotting-the-data">
+<h2>Plotting the Data<a class="headerlink" href="#plotting-the-data" title="Permalink to this headline">¶</a></h2>
+<p>What does my digitized data look like? I am not especially interested in looking at a pile of numbers. How about a nice graph of my own? Time for another Python tool:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">show_curve</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">title</span><span class="p">,</span><span class="n">xlabel</span><span class="p">,</span><span class="n">ylabel</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <strong>matplotlib</strong> tool provides plotting capabilities that help you visualize your data. Although we will only show simple plots here, <strong>matplotlib</strong> can generate very fancy displays of three-dimensional data if needed.</p>
+<p>The <strong>show_curve</strong> display function created above accepts two point coordinate lists, a title, and labels for each axis and displays the result. This is a quick and easy way to see your data rather than looking at all those ugly numbers! Here is how we use these new functions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datadir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">projdir</span><span class="p">,</span><span class="s2">&quot;mmtime&quot;</span><span class="p">,</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">torque_curve</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">datadir</span><span class="p">,</span><span class="s2">&quot;torque-curve.csv&quot;</span><span class="p">)</span>
+<span class="n">q_nx</span><span class="p">,</span> <span class="n">q_ny</span> <span class="o">=</span> <span class="n">get_points</span><span class="p">(</span><span class="n">torque_curve</span><span class="p">)</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">q_nx</span><span class="p">,</span> <span class="n">q_ny</span><span class="p">,</span> 
+        <span class="s2">&quot;Torque Curve&quot;</span><span class="p">,</span> <span class="s2">&quot;turns&quot;</span><span class="p">,</span> <span class="s2">&quot;torque (in-oz)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05-tenny-data-analysis_16_0.png" src="../_images/05-tenny-data-analysis_16_0.png" />
+</div>
+</div>
+<p><strong>matplotlib</strong> flipped this curve from the original, but it shows the same data. The curve is flipped, since <strong>matplotlib</strong> thinks the numbers on the x-axis should increase. I can fix that later. In ancient times, researchers had to generate graphs like this manually!</p>
+<p>We now have a process we can use to capture data from any source where we can get an image of a curve. Many research articles show figures with data curves, but space limitations preclude including tabulated data. This entire process is a big part of the new <em>Data Science</em> field that seeks to mine data from multiple sources and generate new useful information from that data! As you might expect, the Python tools we are demonstrating here are very popular in data science research!</p>
+</div>
+<div class="section" id="propeller-speed-data">
+<h2>Propeller Speed Data<a class="headerlink" href="#propeller-speed-data" title="Permalink to this headline">¶</a></h2>
+<p>We can now look at the propeller speed data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rpm_image</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">datadir</span><span class="p">,</span><span class="s2">&quot;prop-rpm.png&quot;</span><span class="p">)</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">rpm_image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05-tenny-data-analysis_20_0.png" src="../_images/05-tenny-data-analysis_20_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rpm_csv</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">datadir</span><span class="p">,</span><span class="s2">&quot;prop-rpm.csv&quot;</span><span class="p">)</span>
+<span class="n">rpm_x</span><span class="p">,</span> <span class="n">rpm_y</span> <span class="o">=</span> <span class="n">get_points</span><span class="p">(</span><span class="n">rpm_csv</span><span class="p">)</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">rpm_x</span><span class="p">,</span> <span class="n">rpm_y</span><span class="p">,</span> <span class="s2">&quot;Propeller Speed&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;RPM&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05-tenny-data-analysis_21_0.png" src="../_images/05-tenny-data-analysis_21_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="flight-profile-data">
+<h2>Flight Profile Data<a class="headerlink" href="#flight-profile-data" title="Permalink to this headline">¶</a></h2>
+<p>Tenny recorded the height of the model as a function of time. This was a tedious process involving a balloon and multiple readers trying to gauge the height of the model and balloon then reading markings on the string holding the balloon!</p>
+<p>Here is Tenny’s graph:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fp_image</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">datadir</span><span class="p">,</span><span class="s2">&quot;flight-profile.png&quot;</span><span class="p">)</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">fp_image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05-tenny-data-analysis_24_0.png" src="../_images/05-tenny-data-analysis_24_0.png" />
+</div>
+</div>
+<p>Here is our digitized result:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fp_csv</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">datadir</span><span class="p">,</span><span class="s2">&quot;flight-profile.csv&quot;</span><span class="p">)</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">fp_image</span><span class="p">)</span>
+<span class="n">fp_x</span><span class="p">,</span> <span class="n">fp_y</span> <span class="o">=</span> <span class="n">get_points</span><span class="p">(</span><span class="n">fp_csv</span><span class="p">)</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">fp_x</span><span class="p">,</span> <span class="n">fp_y</span><span class="p">,</span> <span class="s2">&quot;Flight Profile&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;Height (ft)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05-tenny-data-analysis_26_0.png" src="../_images/05-tenny-data-analysis_26_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="processing-the-data">
+<h2>Processing the Data<a class="headerlink" href="#processing-the-data" title="Permalink to this headline">¶</a></h2>
+<p>Once we have the data in digital form, we can do some amazing things. However, the data currently is just a pile of numbers. We can turn those numbers into a Python function by using a curve fitting scheme. Here is some code that will turn our numbers into a cubic spline function that we can use to get a data at any point along the curve:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interpolate</span>
+
+<span class="k">def</span> <span class="nf">fit_curve</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span> <span class="c1"># using a cubic spline</span>
+    <span class="n">fit</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">CubicSpline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fit</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>scipy</strong> is yet another useful Python tool that provides a set of standard mathematical operations you can use. In this case, we get a function back that we can use to get a value from the curve from any input value along the x-axis. The function will even return values beyond the range of your input data, but doing this extrapolation is risky. You might not like the results.
+We create a curve fit function by passing the curve points to our fitting routine:</p>
+<div class="section" id="torque-as-a-function-of-turns-q-n">
+<h3>Torque as a Function of Turns (q_n)<a class="headerlink" href="#torque-as-a-function-of-turns-q-n" title="Permalink to this headline">¶</a></h3>
+<p>We have a minor problem with the torque curve. The raw data <strong>x</strong> axis shows turns remaining, which is a decreasing number. The curve fit routines need increasing values. To cure this, I am going to change the values to turns expended by subtracting the input data from the max turns in our digitized data set. <strong>numpy</strong> makes this is easier than it sounds. If you set up arithmetic operations using arrays, <strong>numpy</strong> does the math on all the elements of the array. This significantly streamlines your code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_turns</span> <span class="o">=</span> <span class="n">q_nx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">q1_nx</span> <span class="o">=</span> <span class="n">max_turns</span> <span class="o">-</span> <span class="n">q_nx</span>
+<span class="n">q_n</span> <span class="o">=</span> <span class="n">fit_curve</span><span class="p">(</span><span class="n">q1_nx</span><span class="p">,</span> <span class="n">q_ny</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, the second line flips the turn values so they show turns expended, not turns left. numpy makes processing lists of numbers easy!</p>
+<p><strong>q_n</strong> is a new function we can use to get torque for any value of turns at any point alone the curve. With it, we can generate a new plot using as many points as we like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">q1_nx</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">q1_nx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">q_sample</span> <span class="o">=</span> <span class="n">q_n</span><span class="p">(</span><span class="n">n_sample</span><span class="p">)</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">n_sample</span><span class="p">,</span> <span class="n">q_sample</span><span class="p">,</span> 
+           <span class="s2">&quot;Torque Curve Function&quot;</span><span class="p">,</span> 
+           <span class="s2">&quot;Turns&quot;</span><span class="p">,</span> <span class="s2">&quot;Torque (in-oz)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05-tenny-data-analysis_35_0.png" src="../_images/05-tenny-data-analysis_35_0.png" />
+</div>
+</div>
+<p>In this snippet, I create a sample set of 50 turn values evenly distributed between the end point <strong>q1_nx</strong> values from my data, then feed that set of numbers to the curve fit function q_n generated from the original data points. <strong>numpy</strong> gives back a new set of points that I can plot.</p>
+<p>I can use the curve fit function, which normally gives you torque for an input turn count, to get a turn count for some input torque. Here is an example of how this is done when we know the launch torque and want to find out what turn value on the torque curve would produce that torque:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">launch_torque</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">launch_turns</span>  <span class="o">=</span> <span class="n">q_n</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">launch_torque</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">launch_turns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[87.77567122]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="finding-the-average-torque">
+<h3>Finding the Average Torque<a class="headerlink" href="#finding-the-average-torque" title="Permalink to this headline">¶</a></h3>
+<p>Now, let’s find the average torque from this curve. We need to find the area under the curve and locate the point where half of that area is on each side of that point.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ni</span> <span class="o">=</span> <span class="n">n_sample</span>
+<span class="n">qi</span> <span class="o">=</span> <span class="n">q_sample</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will calculate the area under this curve using a simple approximation. The area of a strip bounded by any two adjacent points along the curve is approximately 1/2 of the sum of the torque values of each point times the increment in turns between those two points. The total area is the sum of the areas of each strip.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dn</span> <span class="o">=</span> <span class="n">ni</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">50</span>
+<span class="n">ai</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ni</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">da</span> <span class="o">=</span> <span class="p">(</span><span class="n">qi</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">qi</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="n">dn</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">ai</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ai</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">da</span><span class="p">)</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">ni</span><span class="p">,</span><span class="n">ai</span><span class="p">,</span><span class="s2">&quot;Int Q&quot;</span><span class="p">,</span> <span class="s2">&quot;turns&quot;</span><span class="p">,</span> <span class="s2">&quot;Integral of Q(t)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05-tenny-data-analysis_42_0.png" src="../_images/05-tenny-data-analysis_42_0.png" />
+</div>
+</div>
+<p>From this curve, we see the total area under the torque curve is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area</span> <span class="o">=</span> <span class="n">ai</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">area</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>126.27645550050222
+</pre></div>
+</div>
+</div>
+</div>
+<p>We care interested in the turn value where the area is one half of this total. Rather than resort to complicated scheme to figure this out, I am just going to search for the turn value where the area just goes past this value and use that.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ni</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">ai</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span> <span class="n">ai</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average Torque is&quot;</span><span class="p">,</span><span class="n">qi</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot; which happened at turn count:&quot;</span><span class="p">,</span><span class="n">ni</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">break</span>
+        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average Torque is 0.09977135471227384  which happened at turn count: 428.3438410821636
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="rpm-as-a-function-of-time-n-t">
+<h3>RPM as a Function of Time (n_t)<a class="headerlink" href="#rpm-as-a-function-of-time-n-t" title="Permalink to this headline">¶</a></h3>
+<p>We use a similar scheme to generate a function that will deliver RPM as a function of time:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fn_t</span> <span class="o">=</span> <span class="n">fit_curve</span><span class="p">(</span><span class="n">rpm_x</span><span class="p">,</span> <span class="n">rpm_y</span><span class="p">)</span>
+
+<span class="n">max_time</span> <span class="o">=</span> <span class="n">rpm_x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">t_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_time</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">rpm_samples</span> <span class="o">=</span> <span class="n">fn_t</span><span class="p">(</span><span class="n">t_samples</span><span class="p">)</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">t_samples</span><span class="p">,</span> <span class="n">rpm_samples</span><span class="p">,</span> <span class="s2">&quot;RPM Function&quot;</span><span class="p">,</span> <span class="s2">&quot;Time (min)&quot;</span><span class="p">,</span> <span class="s2">&quot;RPM&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05-tenny-data-analysis_49_0.png" src="../_images/05-tenny-data-analysis_49_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flight_time</span> <span class="o">=</span> <span class="n">fp_x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># last point on the flight profile time axis</span>
+<span class="n">fh_t</span> <span class="o">=</span> <span class="n">fit_curve</span><span class="p">(</span><span class="n">fp_x</span><span class="p">,</span> <span class="n">fp_y</span><span class="p">)</span>
+<span class="n">t_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">flight_time</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">h_samples</span> <span class="o">=</span> <span class="n">fh_t</span><span class="p">(</span><span class="n">t_samples</span><span class="p">)</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">t_samples</span><span class="p">,</span> <span class="n">h_samples</span><span class="p">,</span> <span class="s2">&quot;Flight Profile Function&quot;</span><span class="p">,</span><span class="s2">&quot;time (min)&quot;</span><span class="p">,</span> <span class="s2">&quot;Height (ft)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05-tenny-data-analysis_50_0.png" src="../_images/05-tenny-data-analysis_50_0.png" />
+</div>
+</div>
+<p>At this point, we have a scheme to generate data curve functions we can use to do further analysis. Let’s see examples of using this new capability to generate something new.</p>
+</div>
+</div>
+<div class="section" id="generate-new-data">
+<h2>Generate New Data<a class="headerlink" href="#generate-new-data" title="Permalink to this headline">¶</a></h2>
+<p>Once we have our functions available, we can generate new data.</p>
+<div class="section" id="vertical-velocity">
+<h3>Vertical velocity<a class="headerlink" href="#vertical-velocity" title="Permalink to this headline">¶</a></h3>
+<p>Now, let’s find the vertical velocity of the model by differentiating the height function. This is a numerical differentiation since we do not really have access to an equation defining the curve. I followed the same process outlines above to get a curve fit function fh_t for height as a function of time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">14.5</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">fdh_t</span> <span class="o">=</span> <span class="n">fh_t</span><span class="o">.</span><span class="n">derivative</span><span class="p">()</span>
+<span class="n">dhdt_pts</span> <span class="o">=</span> <span class="n">fdh_t</span><span class="p">(</span><span class="n">t_samples</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_curve</span><span class="p">(</span><span class="n">t_samples</span><span class="p">,</span><span class="n">dhdt_pts</span><span class="p">,</span><span class="s2">&quot;Vertical Velocity&quot;</span><span class="p">,</span><span class="s2">&quot;time (min)&quot;</span><span class="p">,</span> <span class="s2">&quot;V_y (ft/min)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05-tenny-data-analysis_57_0.png" src="../_images/05-tenny-data-analysis_57_0.png" />
+</div>
+</div>
+<p>Digitized data is often a bit lumpy. We see the effects of that in this curve. There are ways to smooth this kind of data, but doing so might introduce more errors. In this case, smoothing the original data might help. WE will see how to do that in the next section.</p>
+<p>Tenny included some tabulated data on vertical speed. Let’s see how this curve compares with his data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">time_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span><span class="mf">7.3</span><span class="p">,</span><span class="mf">4.5</span><span class="p">,</span><span class="mf">3.5</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span>
+     <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span><span class="o">-</span><span class="mf">2.7</span><span class="p">,</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span><span class="o">-</span><span class="mf">7.7</span><span class="p">])</span>
+<span class="n">fitted_dhdt</span> <span class="o">=</span> <span class="n">fdh_t</span><span class="p">(</span><span class="n">t_samples</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_samples</span><span class="p">,</span> <span class="n">fitted_dhdt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time_samples</span><span class="p">,</span> <span class="n">time_values</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05-tenny-data-analysis_59_0.png" src="../_images/05-tenny-data-analysis_59_0.png" />
+</div>
+</div>
+<p>This kind of result gives you confidence in your analytical tools.</p>
+</div>
+<div class="section" id="propeller-power">
+<h3>Propeller Power<a class="headerlink" href="#propeller-power" title="Permalink to this headline">¶</a></h3>
+<p>Let’s try something a bit more complicated. We have shown how to generate functions that represent our input data. I want to see the propeller power curve, but I do not have that data available. What I do have is propeller speed as a function of time, and torque as a function of turns.  If I integrate the propeller speed function I can get turns as a function of time, then pass that into the torque function to get torque as a function of time. I can combine the results to get the power I want using this formula:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-82bfdb55-ecd2-4d36-ab78-297666a7e950">
+<span class="eqno">()<a class="headerlink" href="#equation-82bfdb55-ecd2-4d36-ab78-297666a7e950" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P = 2\pi n Q
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(n\)</span> is the prop speed (rpm) and <span class="math notranslate nohighlight">\(Q\)</span> is the torque.</p>
+<p>The torque data we have is torque/turns and we need torque/time.</p>
+<p>Let’s review the functions we have generated:</p>
+<ul class="simple">
+<li><p>torque as a function of turns (<strong>q_n</strong>)</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-840c41f8-0243-4389-b8c6-f7f32666ac47">
+<span class="eqno">()<a class="headerlink" href="#equation-840c41f8-0243-4389-b8c6-f7f32666ac47" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+q_n = Q(n)
+\end{equation}\]</div>
+<ul class="simple">
+<li><p>RPM as a function of time (<strong>fn_t</strong>)</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-4d66b1bf-ae19-4ea7-a18d-01c23a015b1f">
+<span class="eqno">()<a class="headerlink" href="#equation-4d66b1bf-ae19-4ea7-a18d-01c23a015b1f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+rpm_t = R(t)
+\end{equation}\]</div>
+<ul class="simple">
+<li><p>turns as a function of time (<strong>n_t</strong>)</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-31b42432-1273-49d2-9fad-30a81c77bf51">
+<span class="eqno">()<a class="headerlink" href="#equation-31b42432-1273-49d2-9fad-30a81c77bf51" title="Permalink to this equation">¶</a></span>\[\begin{equation}\label
+n_t = N(t) 
+\end{equation}\]</div>
+<p>So, if we have a given time <span class="math notranslate nohighlight">\(t\)</span> then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8c6f5168-5b12-4945-93d4-bf855e29f4ec">
+<span class="eqno">()<a class="headerlink" href="#equation-8c6f5168-5b12-4945-93d4-bf855e29f4ec" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+q_t = Q(R(t))
+\end{equation}\]</div>
+<p>We have rpm data measured over time. If we integrate that function we will get a function for turns as a function of time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">ft_t</span> <span class="o">=</span> <span class="n">fn_t</span><span class="o">.</span><span class="n">antiderivative</span><span class="p">()</span>
+<span class="n">turn_samples</span> <span class="o">=</span> <span class="n">ft_t</span><span class="p">(</span><span class="n">t_samples</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fq_t</span><span class="p">(</span><span class="n">time</span><span class="p">):</span>
+    <span class="n">turns</span> <span class="o">=</span> <span class="n">ft_t</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">q_n</span><span class="p">(</span><span class="n">turns</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">q</span>
+<span class="n">q_samples</span> <span class="o">=</span> <span class="n">fq_t</span><span class="p">(</span><span class="n">t_samples</span><span class="p">)</span>
+<span class="n">P_samples</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> \
+    <span class="n">rpm_samples</span> <span class="o">*</span> <span class="n">q_samples</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ft_t</span> <span class="o">=</span> <span class="n">fn_t</span><span class="o">.</span><span class="n">antiderivative</span><span class="p">()</span>
+<span class="n">turn_samples</span> <span class="o">=</span> <span class="n">ft_t</span><span class="p">(</span><span class="n">t_samples</span><span class="p">)</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">t_samples</span><span class="p">,</span> <span class="n">turn_samples</span><span class="p">,</span> 
+           <span class="s2">&quot;Propeller Turns&quot;</span><span class="p">,</span> 
+           <span class="s2">&quot;time (min)&quot;</span><span class="p">,</span> <span class="s2">&quot;Turns&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05-tenny-data-analysis_65_0.png" src="../_images/05-tenny-data-analysis_65_0.png" />
+</div>
+</div>
+<p>The last point on this curve is the remaining turns after the airplane landed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Flight turns =&quot;</span><span class="p">,</span><span class="n">turn_samples</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Flight turns = 759.6862469931604
+</pre></div>
+</div>
+</div>
+</div>
+<p>This curve may look straight, but it is not. The interesting thing that it shows is how many turns were used in this flight, 749 from that last number printed. According to Tenny’s article, the motor was wound to  about 1240 turns (0.2 inch-oz of torque, and landed with about 500 turns remaining. This analysis said it would have landed with 1240-749 = 491 turns! Not bad!</p>
+<p>We can now use these two functions to get our new torque/time function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fq_t</span><span class="p">(</span><span class="n">time</span><span class="p">):</span>
+    <span class="n">turns</span> <span class="o">=</span> <span class="n">ft_t</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">q_n</span><span class="p">(</span><span class="n">turns</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">q</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q_samples</span> <span class="o">=</span> <span class="n">fq_t</span><span class="p">(</span><span class="n">t_samples</span><span class="p">)</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">t_samples</span><span class="p">,</span> <span class="n">q_samples</span><span class="p">,</span> <span class="s2">&quot;Torque Function&quot;</span><span class="p">,</span> <span class="s2">&quot;time (min)&quot;</span><span class="p">,</span><span class="s2">&quot;torque (in-oz)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05-tenny-data-analysis_70_0.png" src="../_images/05-tenny-data-analysis_70_0.png" />
+</div>
+</div>
+<p>Now we can get our power curve:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P_samples</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">rpm_samples</span> <span class="o">*</span> <span class="n">q_samples</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_curve</span><span class="p">(</span><span class="n">t_samples</span><span class="p">,</span> <span class="n">P_samples</span><span class="p">,</span><span class="s2">&quot;Power Function&quot;</span><span class="p">,</span> <span class="s2">&quot;time (min)&quot;</span><span class="p">,</span><span class="s2">&quot;Power (in-oz/sec)&quot;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05-tenny-data-analysis_73_0.png" src="../_images/05-tenny-data-analysis_73_0.png" />
+</div>
+</div>
+<p>I think you can see how useful these techniques can be in conducting an analysis. The combination of <em>Jupyter</em> and Python lets you experiment with things, and see results quickly. This speeds up your work significantly!</p>
+<p>Walter Erbach, in a paper we will look at later, lamented that he had to analyze “terrifying yards of tabulated results” to conduct his research. Thankfully, those days are over!”</p>
+<p>At this point, we have introduced most of th tools needed to conduct this study. In the next sections we will work through the development of the equations included in McLean’s paper, and show one more powerfule Python tool: <strong>sympy</strong> which is the tool you wish you had when you were first working through your math courses in school!</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Roie R. Black<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

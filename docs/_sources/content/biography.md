@@ -1,6 +1,9 @@
 # Biography
 
-![Roie Black](RoieBlack.jpg)
+```python
+from IPython.display import Image
+Image(filename="../../assets/images/roie-black2.jpg")
+```
 
 In 1956, I was on a quest to figure out how airplanes fly. I was 10 years old!
 As a kid growing up in Washington D.C. I was already building model airplanes,
@@ -23,7 +26,7 @@ Space Museum. Wow! I met two such important men in the history of aviation, and 
 was just imagining a career in aviation!
 
 My passion for flight took me through college where I earned degrees in
-Aerospace Engineering, then into my career in the as an officer in the USAF. My
+Aerospace Engineering, then into my career as an officer in the USAF. My
 first assignment in the Air Force involved conducting research in the emerging
 field of *Computational Fluid Dynamics*. While working there, I was introduced to
 first-generation supercomputers, and my career shifted direction into Computer
@@ -37,10 +40,10 @@ eventually attending 25 successive annual fly-in's at Oshkosh! Sadly, during
 that time, my model building was put on hold, although I maintained my
 membership in the AMA.
 
-I spent 20 years in the Air Force doing research and teaching Computer Science.
-Eventually I was assigned to manage a research supercomputer center in New
-Mexico. After retiring, I started a second career, again teaching computer science in
-Texas, and finally retired for good in 2018.
+I spent 20 years in the Air Force doing research and teaching.  Eventually I
+was assigned as Deputy Director, then Director of a research supercomputer
+center in New Mexico. After retiring, I started a second career, again teaching
+computer science in Texas, and finally retired for good in 2018.
 
 Since then, I have become a member of the *Heart of America Free Flight
 Association*, and am again active in building and flying rubber powered free
@@ -51,4 +54,3 @@ pursue hobbies we love. My goal now is to continue my teaching, combining both
 of my career paths by building computer tools to assist in designing, building
 , and flying model airplanes. My goal is to help introduce another generation
 of folks to this fascinating world of flight.
-

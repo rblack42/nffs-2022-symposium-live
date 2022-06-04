@@ -1,0 +1,951 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>10. A-6 Propeller Analysis &#8212; Predicting Indoor Flight Times With Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://rblack42.github.io/nffs-2022-symposium-live/content/10-a6-propeller-analysis.html" />
+    <link rel="shortcut icon" href="../_static/lpp.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12. Rubber Motors" href="11-rubber-motors.html" />
+    <link rel="prev" title="9. level-flight-calculations" href="09-level-flight-calculations.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/lpp.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Predicting Indoor Flight Times With Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00-index.html">
+   Predicting Indoor Model Flight Time Using Python
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-overview.html">
+   1. Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-hacklingers-equation.html">
+   2. Hacklinger’s Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-atmospheric-data.html">
+   3. Atmospheric Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-tenny-data-analysis.html">
+   4. Tenny’s Flight Path Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-circular-arc-data.html">
+   5. Circular Arc Airfoil Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-smoothing.html">
+   6. Data Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-simplified-indoor-design.html">
+   7. Simplified Indoor Design
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-generating-airfoils-for-xfoil.html">
+   8. Generating Airfoils for XFoil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-level-flight-calculations.html">
+   9. level-flight-calculations
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   10. A-6 Propeller Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-rubber-motors.html">
+   12. Rubber Motors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/10-minute-guide-to-python.html">
+   13. 10 Minute Guide to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/accessing-the-online-study.html">
+   14. Accessing The Online Study
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/brief-guide-to-using-jupyter.html">
+   15. Brief Guide to Using Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   16. Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="biography.html">
+   17. Biography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/content/10-a6-propeller-analysis.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/rblack42/nffs-2022-symposium-live/issues/new?title=Issue%20on%20page%20%2Fcontent/10-a6-propeller-analysis.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.ord/v2/gh/rblack42/nffs-2022-symposium-live/master?urlpath=tree/docs/content/10-a6-propeller-analysis.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   10. A-6 Propeller Analysis
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wart-propeller-blade">
+   11. Wart Propeller Blade
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-blade-airfoil-data">
+     11.1. Load Blade Airfoil Data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a6-blade-element-theory-analysis">
+     11.2. A6 Blade Element Theory Analysis
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>A-6 Propeller Analysis</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   10. A-6 Propeller Analysis
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wart-propeller-blade">
+   11. Wart Propeller Blade
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-blade-airfoil-data">
+     11.1. Load Blade Airfoil Data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a6-blade-element-theory-analysis">
+     11.2. A6 Blade Element Theory Analysis
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="a-6-propeller-analysis">
+<h1><span class="section-number">10. </span>A-6 Propeller Analysis<a class="headerlink" href="#a-6-propeller-analysis" title="Permalink to this headline">¶</a></h1>
+<p>The next step in our analysis is one of the most difficult. We need to find out if the propeller can deliver that forward velocity we just predicted we will need to maintain level flight.</p>
+<p>Most studies of propellers found in textbooks assume that the propeller is designed in an optimal way. It has a proper blade airfoil, and the pitch is distributed in a logical manner. Unfortunately, all of that goes out the window when we look at an A-6 propeller! The blade is a flat plate and is attached to the prop spar at some fixed angle. No nice airfoil section, and no pitch distribution. THis is one bad design, but it is easy to build! We are not even allowed to round off the edges of the blade! We are allowed to come up with some blade shape, so the chord distribution is something we can vary.</p>
+<p>I used <em>WebPlotDigitizer</em> to digitize the <em>Wart</em> blade outline. Next, I created a flat plate section using the same approach shown with the simplex airfoil. That meant a round leading edge and a tapered trailing edge to help keep <em>Xfoil</em> happy. I was able to obtain lift and drag distributions from that work. The next challenge involves getting thrust and torque estimates for this blade.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">cwd</span> <span class="o">=</span> <span class="o">!</span>pwd
+<span class="n">pagedir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">cwd</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">projpath</span> <span class="o">=</span> <span class="n">pagedir</span> <span class="o">/</span> <span class="s2">&quot;..&quot;</span> <span class="o">/</span> <span class="s2">&quot;..&quot;</span>
+<span class="n">projdir</span> <span class="o">=</span> <span class="n">projpath</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">projdir</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">projdir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="n">DIR</span> <span class="o">=</span> <span class="s2">&quot;../../mmtime/data/airfoils&quot;</span>
+<span class="n">airfoil</span> <span class="o">=</span> <span class="s2">&quot;flat0001&quot;</span>
+
+<span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR</span><span class="p">,</span><span class="n">airfoil</span><span class="p">,</span> <span class="n">airfoil</span> <span class="o">+</span> <span class="s2">&quot;.pol&quot;</span><span class="p">)</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;loading:&quot;</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;decoding&quot;</span><span class="p">)</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;alpha&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;CL&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;CD&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;CDp&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;CM&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;xtr_upper&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;xtr_lower&quot;</span>
+    <span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span>
+            <span class="n">fname</span><span class="p">,</span>
+            <span class="n">skip_header</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+            <span class="n">names</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loading: /Users/rblack/_dev/live-2022/mmtime/data/airfoils/flat0001/flat0001.pol
+decoding
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR</span><span class="p">,</span><span class="n">airfoil</span><span class="p">)</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-20. -18. -16. -14. -12. -10.  -8.  -6.  -4.  -2.   0.   2.   4.   6.
+   8.  10.  12.  14.  16.  18.  20.]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create CL file</span>
+<span class="n">dname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dpath</span><span class="p">,</span> <span class="s1">&#39;CL.csv&#39;</span><span class="p">)</span>
+<span class="n">CL</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;CL&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing CL file:&quot;</span><span class="p">,</span> <span class="n">dpath</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dname</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fout</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alpha</span><span class="p">)):</span>
+        <span class="n">fout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">alpha</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">CL</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing CL file: ../../mmtime/data/airfoils/flat0001
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create CD file</span>
+<span class="n">dname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dpath</span><span class="p">,</span> <span class="s1">&#39;CD.csv&#39;</span><span class="p">)</span>
+<span class="n">CD</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;CD&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing CD file:&quot;</span><span class="p">,</span> <span class="n">dname</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dname</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fout</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alpha</span><span class="p">)):</span>
+        <span class="n">fout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">alpha</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">CD</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing CD file: ../../mmtime/data/airfoils/flat0001/CD.csv
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create CM file</span>
+<span class="n">dname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dpath</span><span class="p">,</span> <span class="s1">&#39;CM.csv&#39;</span><span class="p">)</span>
+<span class="n">CM</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;CM&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing CM file:&quot;</span><span class="p">,</span> <span class="n">dname</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dname</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fout</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alpha</span><span class="p">)):</span>
+        <span class="n">fout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">alpha</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">CM</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing CM file: ../../mmtime/data/airfoils/flat0001/CM.csv
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create CDp file</span>
+<span class="n">dname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dpath</span><span class="p">,</span> <span class="s1">&#39;CP.csv&#39;</span><span class="p">)</span>
+<span class="n">CP</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;CDp&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing CP file:&quot;</span><span class="p">,</span> <span class="n">dname</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dname</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fout</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alpha</span><span class="p">)):</span>
+        <span class="n">fout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">alpha</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">CP</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing CP file: ../../mmtime/data/airfoils/flat0001/CP.csv
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">CD</span><span class="p">,</span><span class="n">CL</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x10f4e3460&gt;]
+</pre></div>
+</div>
+<img alt="../_images/10-a6-propeller-analysis_14_1.png" src="../_images/10-a6-propeller-analysis_14_1.png" />
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="wart-propeller-blade">
+<h1><span class="section-number">11. </span>Wart Propeller Blade<a class="headerlink" href="#wart-propeller-blade" title="Permalink to this headline">¶</a></h1>
+<p>Using <em>WebPlotDigitizer</em>, I digitized the propeller blade outline from Gary’s plan. Here is the outline image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fname</span> <span class="o">=</span> <span class="n">projpath</span> <span class="o">/</span> <span class="s1">&#39;assets&#39;</span> <span class="o">/</span> <span class="s1">&#39;images&#39;</span> <span class="o">/</span> <span class="s1">&#39;prop-blade.png&#39;</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="n">fname</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/10-a6-propeller-analysis_17_0.png" src="../_images/10-a6-propeller-analysis_17_0.png" />
+</div>
+</div>
+<p>The blade is 2.5 inches long and is attached to a shaft with 0.5 inch clearance to get to the six inch maximum diameter allowed for this class. The leading edge and trailing edge were digitized separately.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">savgol_filter</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interpolate</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lename</span> <span class="o">=</span> <span class="n">projpath</span> <span class="o">/</span> <span class="s1">&#39;assets&#39;</span> <span class="o">/</span> <span class="s1">&#39;hodson-wart&#39;</span> <span class="o">/</span> <span class="s1">&#39;propeller&#39;</span> <span class="o">/</span> <span class="s1">&#39;blade-le.csv&#39;</span>
+<span class="n">tename</span> <span class="o">=</span> <span class="n">projpath</span> <span class="o">/</span> <span class="s1">&#39;assets&#39;</span> <span class="o">/</span> <span class="s1">&#39;hodson-wart&#39;</span> <span class="o">/</span> <span class="s1">&#39;propeller&#39;</span> <span class="o">/</span> <span class="s1">&#39;blade-te.csv&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="k">def</span> <span class="nf">fit_curve</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span> <span class="c1"># using a cubic spline</span>
+    <span class="k">if</span> <span class="n">smooth</span><span class="p">:</span>
+        <span class="n">smooth_y</span> <span class="o">=</span> <span class="n">savgol_filter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">fit</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">CubicSpline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">smooth_y</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fit</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">CubicSpline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fit</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fin</span><span class="p">:</span>
+        <span class="n">raw_data</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">fin</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="p">:</span>
+            <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">dy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">fit</span> <span class="o">=</span> <span class="n">fit_curve</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fit</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lecurve</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">lename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">yple</span> <span class="o">=</span> <span class="n">lecurve</span><span class="p">(</span><span class="n">xp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">yple</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/10-a6-propeller-analysis_25_0.png" src="../_images/10-a6-propeller-analysis_25_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tecurve</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">tename</span><span class="p">)</span>
+<span class="n">ypte</span> <span class="o">=</span> <span class="n">tecurve</span><span class="p">(</span><span class="n">xp</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">ypte</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/10-a6-propeller-analysis_26_0.png" src="../_images/10-a6-propeller-analysis_26_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">yple</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">ypte</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/10-a6-propeller-analysis_27_0.png" src="../_images/10-a6-propeller-analysis_27_0.png" />
+</div>
+</div>
+<p>Now, we need an array of propeller stations and chords.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chord</span> <span class="o">=</span> <span class="n">ypte</span> <span class="o">-</span> <span class="n">yple</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">chord</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/10-a6-propeller-analysis_29_0.png" src="../_images/10-a6-propeller-analysis_29_0.png" />
+</div>
+</div>
+<p>The flying speed we want to analyze was found previously as 2.9389 MPH. We will use our blade analysis scheme to determining the efficiency of this propeller for that speed.</p>
+<div class="section" id="load-blade-airfoil-data">
+<h2><span class="section-number">11.1. </span>Load Blade Airfoil Data<a class="headerlink" href="#load-blade-airfoil-data" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mmtime.AirfoilMgr</span> <span class="kn">import</span> <span class="n">AirfoilMgr</span>
+<span class="n">am</span> <span class="o">=</span> <span class="n">AirfoilMgr</span><span class="p">()</span>
+<span class="c1">#am.showAirfoils()</span>
+<span class="n">am</span><span class="o">.</span><span class="n">selectAirfoil</span><span class="p">(</span><span class="s1">&#39;flat0001&#39;</span><span class="p">)</span>
+<span class="n">cl3</span><span class="p">,</span> <span class="n">cd3</span><span class="p">,</span> <span class="n">cm3</span><span class="p">,</span> <span class="n">cp3</span> <span class="o">=</span> <span class="n">am</span><span class="o">.</span><span class="n">loadData</span><span class="p">(</span><span class="s1">&#39;re3k&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selected: flat0001
+Loading flat0001
+	Loading CD_re3k.csv
+	Loading CP_re3k.csv
+	Loading CM_re3k.csv
+	Loading CL_re3k.csv
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="a6-blade-element-theory-analysis">
+<h2><span class="section-number">11.2. </span>A6 Blade Element Theory Analysis<a class="headerlink" href="#a6-blade-element-theory-analysis" title="Permalink to this headline">¶</a></h2>
+<p>We start off by defining the basic blade parameters. We will be using units, so we need to set up <strong>pint</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">pint</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Vinf</span> <span class="o">=</span> <span class="mf">2.9389</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">miles</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">hour</span>
+<span class="n">pitch_angle</span> <span class="o">=</span> <span class="mi">45</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">degrees</span>
+<span class="n">radius</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inches</span>
+<span class="n">RPM</span> <span class="o">=</span> <span class="mi">3660</span> <span class="o">/</span> <span class="p">(</span><span class="mi">618</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">seconds</span><span class="p">)</span>
+<span class="n">RPM</span> <span class="o">=</span> <span class="n">RPM</span> <span class="o">*</span> <span class="mf">1.1</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="mf">0.00231731</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">slugs</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">ft</span><span class="o">**</span><span class="mi">3</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">RPM</span>
+<span class="n">Nblades</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">xp</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inches</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">chord</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inches</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;omega&quot;</span><span class="p">,</span><span class="n">omega</span><span class="p">,</span><span class="s2">&quot;RPM&quot;</span><span class="p">,</span><span class="n">RPM</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>omega 40.932207195315556 / second RPM 6.514563106796117 / second
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we need to set up a basic analysis loop that iterates as shown previously. This scheme needs the local lift and drag coefficients for the blade section, which is a flat plate for the A6.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">velocities</span><span class="p">(</span><span class="n">V_d</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">rad_d</span><span class="p">,</span> <span class="n">theta_d</span><span class="p">,</span> <span class="n">omega</span><span class="p">):</span>
+        <span class="n">V0</span> <span class="o">=</span> <span class="n">V_d</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">a</span><span class="p">)</span>
+        <span class="n">V2</span> <span class="o">=</span> <span class="n">omega</span><span class="o">*</span><span class="n">rad_d</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>
+        <span class="n">v0m</span> <span class="o">=</span> <span class="n">V0</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span><span class="o">.</span><span class="n">magnitude</span>
+        <span class="n">v2m</span> <span class="o">=</span> <span class="n">V2</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span><span class="o">.</span><span class="n">magnitude</span>
+        <span class="n">phi_d</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">v0m</span><span class="p">,</span><span class="n">v2m</span><span class="p">)</span><span class="o">*</span><span class="mf">180.0</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">degrees</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">theta_d</span> <span class="o">-</span> <span class="n">phi_d</span>
+        <span class="n">Vlocal</span> <span class="o">=</span> <span class="p">((</span><span class="n">V0</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">V2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+        <span class="n">Cl_l</span> <span class="o">=</span> <span class="n">cl3</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">Cd_l</span> <span class="o">=</span> <span class="n">cd3</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="c1">#print(V0, V2, phi_d, alpha, Cl_l, Cd_l, Vlocal)</span>
+        <span class="k">return</span> <span class="n">V0</span><span class="p">,</span> <span class="n">V2</span><span class="p">,</span> <span class="n">phi_d</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span> <span class="n">Cl_l</span><span class="p">,</span> <span class="n">Cd_l</span><span class="p">,</span> <span class="n">Vlocal</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">pitch</span> <span class="o">=</span> <span class="mi">45</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">degrees</span>
+<span class="n">rad</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">bchord</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">velocities</span><span class="p">(</span><span class="n">Vinf</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">rad</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">omega</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/rblack/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/scipy/interpolate/interpolate.py:927: UnitStrippedWarning: The unit of the quantity is stripped when downcasting to ndarray.
+  x = np.asarray(x)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.23279 &lt;Unit(&#39;mile / hour&#39;)&gt;,
+ 74.24994668895516 &lt;Unit(&#39;inch / second&#39;)&gt;,
+ 37.462639501085384 &lt;Unit(&#39;degree&#39;)&gt;,
+ 7.537360498914616 &lt;Unit(&#39;degree&#39;)&gt;,
+ array(0.50936473),
+ array(0.10009059),
+ 2.375997926336318 &lt;Unit(&#39;meter / second&#39;)&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">BET</span><span class="p">(</span><span class="n">V_d</span><span class="p">,</span><span class="n">rho_d</span><span class="p">,</span><span class="n">R_d</span><span class="p">,</span><span class="n">P_d</span><span class="p">,</span><span class="n">C_d</span><span class="p">,</span><span class="n">Cl</span><span class="p">,</span><span class="n">Cd</span><span class="p">):</span>
+    <span class="n">dia</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">radius</span>
+    <span class="n">thrust</span><span class="o">=</span><span class="mf">0.0</span>
+    <span class="n">torque</span><span class="o">=</span><span class="mf">0.0</span>
+    <span class="n">rstep</span> <span class="o">=</span> <span class="mf">2.5</span><span class="o">/</span><span class="mi">20</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inches</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="c1"># loop over each blade element</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">R_d</span><span class="p">)):</span>
+        <span class="n">rad</span><span class="o">=</span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+        <span class="n">chord</span> <span class="o">=</span> <span class="n">C_d</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+        
+        <span class="n">theta</span><span class="o">=</span> <span class="n">pitch_angle</span>                     <span class="c1"># calculate local blade element setting angle</span>
+        <span class="n">sigma</span><span class="o">=</span><span class="mf">2.0</span><span class="o">*</span><span class="n">chord</span><span class="o">/</span><span class="mf">2.0</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">rad</span>        <span class="c1"># calculate solidity    </span>
+        <span class="n">a</span><span class="o">=</span><span class="mf">0.1</span>                                  <span class="c1"># guess initial values of inflow and swirl factor</span>
+        <span class="n">b</span><span class="o">=</span><span class="mf">0.01</span>
+        <span class="n">finished</span><span class="o">=</span><span class="kc">False</span>                         <span class="c1"># set logical variable to control iteration</span>
+        <span class="nb">sum</span><span class="o">=</span><span class="mi">1</span>                                  <span class="c1"># set iteration count and check flag</span>
+        <span class="n">itercheck</span><span class="o">=</span><span class="mi">0</span>
+        <span class="c1">#print(&quot;V&quot;,V,rad,theta,sigma)</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">finished</span><span class="p">:</span>
+            <span class="n">V0</span><span class="p">,</span> <span class="n">V2</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">cl</span><span class="p">,</span> <span class="n">cd</span><span class="p">,</span> <span class="n">Vlocal</span> <span class="o">=</span> <span class="n">velocities</span><span class="p">(</span><span class="n">V_d</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">rad</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">omega</span><span class="p">)</span>
+            
+            <span class="n">phi_r</span> <span class="o">=</span> <span class="n">phi</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="p">(</span><span class="mf">180.0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">degrees</span><span class="p">)</span>  <span class="c1"># radians</span>
+            <span class="c1">#print(&quot;phi&quot;,phi, phi_r)</span>
+            <span class="n">q_l</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">rho</span><span class="o">*</span><span class="n">Vlocal</span><span class="o">**</span><span class="mi">2</span>
+            <span class="n">DtDr</span><span class="o">=</span><span class="n">q_l</span><span class="o">*</span><span class="n">B</span><span class="o">*</span><span class="n">chord</span><span class="o">*</span><span class="p">(</span><span class="n">cl</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi_r</span><span class="p">)</span><span class="o">-</span><span class="n">cd</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi_r</span><span class="p">))</span>   <span class="c1"># thrust grading    </span>
+            <span class="n">DqDr</span><span class="o">=</span><span class="n">q_l</span><span class="o">*</span><span class="n">B</span><span class="o">*</span><span class="n">chord</span><span class="o">*</span><span class="n">rad</span><span class="o">*</span><span class="p">(</span><span class="n">cd</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi_r</span><span class="p">)</span><span class="o">+</span><span class="n">cl</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi_r</span><span class="p">))</span>   <span class="c1"># torque grading</span>
+            <span class="n">tem1</span><span class="o">=</span><span class="n">DtDr</span><span class="o">/</span><span class="p">(</span><span class="mf">4.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">rad</span><span class="o">*</span><span class="n">rho</span><span class="o">*</span><span class="n">V_d</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">a</span><span class="p">))</span>  <span class="c1"># momentum check on inflow and swirl factors</span>
+            <span class="n">tem2</span><span class="o">=</span><span class="n">DqDr</span><span class="o">/</span><span class="p">(</span><span class="mf">4.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">rad</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">rho</span><span class="o">*</span><span class="n">V_d</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">omega</span><span class="p">)</span>
+            <span class="n">anew</span><span class="o">=</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">tem1</span><span class="p">)</span>    <span class="c1"># stabilise iteration</span>
+            <span class="n">bnew</span><span class="o">=</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="n">tem2</span><span class="p">)</span>
+            <span class="c1">#print((DtDr*rstep).to_base_units())</span>
+            <span class="c1"># check for convergence</span>
+            <span class="c1">#print(sum,a,anew,b,bnew)</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">anew</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">1.0e-5</span><span class="p">:</span> 
+                <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">bnew</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">1.0e-5</span><span class="p">:</span>
+                    <span class="n">finished</span><span class="o">=</span><span class="kc">True</span>
+                    <span class="c1">#print(&quot;converged in&quot;,sum,&quot;iterations&quot;)</span>
+            <span class="n">a</span><span class="o">=</span><span class="n">anew</span>
+            <span class="n">b</span><span class="o">=</span><span class="n">bnew</span>
+            <span class="c1"># increment iteration count</span>
+            <span class="nb">sum</span><span class="o">=</span><span class="nb">sum</span><span class="o">+</span><span class="mi">1</span>
+            <span class="c1"># check to see if iteration stuck</span>
+            <span class="k">if</span> <span class="nb">sum</span><span class="o">&gt;</span><span class="mi">500</span><span class="p">:</span>
+                <span class="n">finished</span><span class="o">=</span><span class="kc">True</span>
+                <span class="n">itercheck</span><span class="o">=</span><span class="mi">1</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;convergence failed&quot;</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">rad</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">anew</span><span class="p">)</span>
+        <span class="n">thrust</span><span class="o">=</span><span class="n">thrust</span><span class="o">+</span><span class="n">DtDr</span><span class="o">*</span><span class="n">rstep</span>
+        <span class="c1">#print(&quot;thrust&quot;,thrust.to_base_units())</span>
+        <span class="n">torque</span><span class="o">=</span><span class="n">torque</span><span class="o">+</span><span class="n">DqDr</span><span class="o">*</span><span class="n">rstep</span>
+    <span class="n">thrust_coef</span> <span class="o">=</span> <span class="n">thrust</span><span class="o">/</span><span class="p">(</span><span class="n">rho</span><span class="o">*</span><span class="n">RPM</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dia</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">torque_coef</span> <span class="o">=</span> <span class="n">torque</span><span class="o">/</span><span class="p">(</span><span class="n">rho</span><span class="o">*</span><span class="n">RPM</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dia</span><span class="o">**</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">advance_ratio</span> <span class="o">=</span> <span class="n">V_d</span><span class="o">/</span><span class="p">(</span><span class="n">RPM</span><span class="o">*</span><span class="n">dia</span><span class="p">)</span>
+    <span class="n">prop_efficiency</span> <span class="o">=</span> <span class="n">advance_ratio</span> <span class="o">*</span> <span class="n">thrust_coef</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">torque_coef</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;C_T&quot;</span><span class="p">,</span><span class="n">thrust_coef</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">(),</span> 
+          <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">C_Q&quot;</span><span class="p">,</span><span class="n">torque_coef</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">(),</span>
+          <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">J&quot;</span><span class="p">,</span><span class="n">advance_ratio</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">(),</span> 
+          <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">eta_p&quot;</span><span class="p">,</span><span class="n">prop_efficiency</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">(),</span>
+          <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Thrust&quot;</span><span class="p">,</span><span class="n">thrust</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">(),</span>
+          <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">torque&quot;</span><span class="p">,</span><span class="n">torque</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">BET</span><span class="p">(</span><span class="n">Vinf</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span><span class="n">R</span><span class="p">,</span> <span class="n">pitch_angle</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">cl3</span><span class="p">,</span><span class="n">cd3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C_T 0.1514197628558369 dimensionless 
+C_Q 0.06320987170063157 dimensionless 
+J 1.3233079781420765 dimensionless 
+eta_p 0.5045203813647932 dimensionless 
+Thrust 0.004140032227728423 kilogram * meter / second ** 2 
+torque 0.0002633849988586516 kilogram * meter ** 2 / second ** 2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mf">0.000263385</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">kg</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">meter</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">second</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.000263385 kilogram meter<sup>2</sup>/second<sup>2</sup></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">gravity</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;inch*ounces&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.03729845888397937 inch ounce</div></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="09-level-flight-calculations.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">9. </span>level-flight-calculations</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="11-rubber-motors.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Rubber Motors</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Roie R. Black<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

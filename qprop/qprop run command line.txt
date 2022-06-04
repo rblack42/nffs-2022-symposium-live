@@ -1,0 +1,1 @@
+C:\qprop\qprop.exe c:\qprop\solar1qprop.txt c:\qprop\neumotor.txt c:\qprop\solar1run.txt

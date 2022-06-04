@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>14. Indoor Model Propulsion &#8212; Predicting Indoor Flight Times With Python</title>
+    <title>7. Indoor Model Propulsion &#8212; Predicting Indoor Flight Times With Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,8 +55,8 @@
     <link rel="shortcut icon" href="../_static/lpp.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="15. Stability Analysis" href="stability-analysis.html" />
-    <link rel="prev" title="13. level-flight-calculations" href="level-flight-calculations.html" />
+    <link rel="next" title="8. Bibliography" href="bibliography.html" />
+    <link rel="prev" title="6. Power Needed for Level Flight" href="level-flight-power.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -95,95 +95,55 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../frontmatter/index.html">
+  <a class="reference internal" href="00-index.html">
    Predicting Indoor Model Flight Time Using Python
   </a>
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../frontmatter/overview.html">
+  <a class="reference internal" href="01-overview.html">
    1. Overview
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../background/atmospheric-data.html">
-   2. Atmospheric Data
+  <a class="reference internal" href="02-hacklinger-theory.html">
+   2. Hacklinger’s Equation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../background/simplified-indoor-design.html">
-   3. Simplified Indoor Design
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../background/hodson-wart-a6.html">
-   4. Hodson Wart A6
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../background/tenny-data-analysis.html">
-   5. Tenny’s Flight Path Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../background/data-smoothing.html">
-   6. Data Smoothing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hacklinger-theory.html">
-   7. Hacklinger’s Theories
+  <a class="reference internal" href="03-tenny-data-analysis.html">
+   3. Tenny’s Flight Path Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mclean-method.html">
-   8. McLean’s Method
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="experimental-airfoil-data.html">
-   9. Airfoil Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="simplex-airfoils.html">
-   10. Simplex Airfoils
+   4. McLean’s Method
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="xfoil-circular-arc.html">
-   11. Circular Arc Airfoils for XFoil Tests
+   5. Circular Arc Airfoils for XFoil Tests
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="generating-airfoils-for-xfoil.html">
-   12. Generating Airfoils for XFoil
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="level-flight-calculations.html">
-   13. level-flight-calculations
+  <a class="reference internal" href="level-flight-power.html">
+   6. Power Needed for Level Flight
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   14. Indoor Model Propulsion
+   7. Indoor Model Propulsion
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="stability-analysis.html">
-   15. Stability Analysis
+  <a class="reference internal" href="bibliography.html">
+   8. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../backmatter/bibliography.html">
-   16. Bibliography
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../backmatter/biography.html">
-   17. Biography
+  <a class="reference internal" href="biography.html">
+   9. Biography
   </a>
  </li>
 </ul>
@@ -292,7 +252,7 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#actuator-disk-theory">
-   14.1. Actuator Disk Theory
+   7.1. Actuator Disk Theory
   </a>
  </li>
 </ul>
@@ -317,7 +277,7 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#actuator-disk-theory">
-   14.1. Actuator Disk Theory
+   7.1. Actuator Disk Theory
   </a>
  </li>
 </ul>
@@ -330,10 +290,10 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="indoor-model-propulsion">
-<h1><span class="section-number">14. </span>Indoor Model Propulsion<a class="headerlink" href="#indoor-model-propulsion" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">7. </span>Indoor Model Propulsion<a class="headerlink" href="#indoor-model-propulsion" title="Permalink to this headline">¶</a></h1>
 <p>We need to find a way to estimate how much power we can expect the propulsion system to deliver in order to complete our calculations. Unfortunately, this is a very complex issue. There are many variables: rubber dimensions, winding turn count and torque, and prop blade geometry. Some of these will not be known until you have a few flights logged. What can propeller theory tell us?</p>
 <div class="section" id="actuator-disk-theory">
-<h2><span class="section-number">14.1. </span>Actuator Disk Theory<a class="headerlink" href="#actuator-disk-theory" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.1. </span>Actuator Disk Theory<a class="headerlink" href="#actuator-disk-theory" title="Permalink to this headline">¶</a></h2>
 <p>We know we will be building a propeller of some sort, and attaching a wound-up rubber motor to that propeller. The model class rules tell us something about the propeller, but for the A6 class, not much about the rubber motor. Let’s start with a look at the propeller.</p>
 <p>A common tactic in thinking about a complex topic, and propellers are certainly complex beasts, is to step back from the details of the problem and take a look at the “big picture”. At that high level, the propeller’s job is pretty simple: Take a bite out of the air in front of the propeller, and push that bite toward the rear at a higher speed. This simple view is complicated a bit if the propeller is moving with the vehicle, but the idea remains the same. If we reduce the propeller to a simple disk and magically have the air increase its speed as it passes through this disk, we can come up with some simple equations for what has to happen.</p>
 <div class="cell docutils container">
@@ -371,28 +331,28 @@
 </div>
 <p>We are going to assume that the mass of air entering this curved tube (this is a cross section of the circular tube) will equal the mass leaving the tube. The propeller disk will cause the velocity to jump as the air crosses this disk. From Bernoulli’s equation, we can calculate the change in pressure that must occur across the disk:</p>
 <p>We can calculate the thrust that will result by looking at the change of momentum across the disk:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-86c3c7af-eadb-4724-8059-4808d51ffac6">
-<span class="eqno">(14.1)<a class="headerlink" href="#equation-86c3c7af-eadb-4724-8059-4808d51ffac6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-69c623b1-c54c-44c6-8ebd-af175a7a9eac">
+<span class="eqno">(7.1)<a class="headerlink" href="#equation-69c623b1-c54c-44c6-8ebd-af175a7a9eac" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 T = \dot{m}(V_e - V_\infty)
 \end{equation}\]</div>
 <p>This thrust is also given by the pressure difference on either side of the disk:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-79016b8c-9b26-458e-bd56-cbd62a627346">
-<span class="eqno">(14.2)<a class="headerlink" href="#equation-79016b8c-9b26-458e-bd56-cbd62a627346" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a40b1997-71b5-454f-b02a-450f01052dc8">
+<span class="eqno">(7.2)<a class="headerlink" href="#equation-a40b1997-71b5-454f-b02a-450f01052dc8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 T = A_{disk}(p2 - p1)
 \end{equation}\]</div>
 <p>The power added to this flow is equal to the change in kinetic energy;</p>
-<div class="amsmath math notranslate nohighlight" id="equation-105c640d-ecf1-47f4-8e12-2aa28c148647">
-<span class="eqno">(14.3)<a class="headerlink" href="#equation-105c640d-ecf1-47f4-8e12-2aa28c148647" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d41da464-f518-4dfd-b933-60011ad75462">
+<span class="eqno">(7.3)<a class="headerlink" href="#equation-d41da464-f518-4dfd-b933-60011ad75462" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P = \frac{1}{2} \dot{m}(V_\infty^2 - V_e^2)
 \end{equation}\]</div>
 <p>if this propeller disk was actually powering our model, the power it woul dbe producing is just the thrust times the velocity <span class="math notranslate nohighlight">\(V_\infty\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-06d9f94f-314e-447d-a714-5e36c5f4056a">
-<span class="eqno">(14.4)<a class="headerlink" href="#equation-06d9f94f-314e-447d-a714-5e36c5f4056a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ff00f032-b146-42f1-bd8f-9e55abc2bc78">
+<span class="eqno">(7.4)<a class="headerlink" href="#equation-ff00f032-b146-42f1-bd8f-9e55abc2bc78" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P_{prop} = T V_\infty
 \end{equation}\]</div>
 <p>The efficiency of this propeller <span class="math notranslate nohighlight">\(\eta_p\)</span> is the ratio on th propeller power to the power that was added to the system:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c65d0474-afde-4e20-8028-c71218a49273">
-<span class="eqno">(14.5)<a class="headerlink" href="#equation-c65d0474-afde-4e20-8028-c71218a49273" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ba909f63-8a60-4a2b-8b78-d1fbe772432d">
+<span class="eqno">(7.5)<a class="headerlink" href="#equation-ba909f63-8a60-4a2b-8b78-d1fbe772432d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \eta_p = \frac{T V_\infty}{\dot{m}(V_\infty^2 - V_e^2)}
 \end{equation}\]</div>
 <p>For a model moving at velocity <span class="math notranslate nohighlight">\(V\)</span> with a propeller rotating at speed <span class="math notranslate nohighlight">\(n\)</span> revolutions per second, any section of the propeller has a rotational speed of <span class="math notranslate nohighlight">\(u\)</span> = <span class="math notranslate nohighlight">\(r\omega\)</span> = <span class="math notranslate nohighlight">\(2\pi r n\)</span>. Here, <span class="math notranslate nohighlight">\(\omega\)</span> is the angular velocity of the propeller.</p>
@@ -422,34 +382,34 @@ P_{prop} = T V_\infty
 </div>
 </div>
 <p>From this figure we see that:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-113f709c-d4dc-4e37-91d4-d168bfaad0d5">
-<span class="eqno">(14.6)<a class="headerlink" href="#equation-113f709c-d4dc-4e37-91d4-d168bfaad0d5" title="Permalink to this equation">¶</a></span>\[\begin{equation}\label{eq:}
+<div class="amsmath math notranslate nohighlight" id="equation-972b0ddd-cace-4333-acb6-f2b07fb4ed27">
+<span class="eqno">(7.6)<a class="headerlink" href="#equation-972b0ddd-cace-4333-acb6-f2b07fb4ed27" title="Permalink to this equation">¶</a></span>\[\begin{equation}\label{eq:}
 \tan{\gamma} = \frac{V}{u} = \frac{V}{2 \pi r n}
 \end{equation}\]</div>
 <p>If <span class="math notranslate nohighlight">\(d\)</span> is the diameter of the propeller, then the <em>advance ratio</em> <span class="math notranslate nohighlight">\(J\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-01427e9a-7a2c-42b8-9d3c-1090431e811a">
-<span class="eqno">(14.7)<a class="headerlink" href="#equation-01427e9a-7a2c-42b8-9d3c-1090431e811a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-780057e8-9f82-472d-aaaa-fe6e44594bea">
+<span class="eqno">(7.7)<a class="headerlink" href="#equation-780057e8-9f82-472d-aaaa-fe6e44594bea" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 J = \frac{V}{n d}
 \end{equation}\]</div>
 <p>The propeller torque is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6a1ddc1a-e08a-4c3f-a83a-bfb2fb754576">
-<span class="eqno">(14.8)<a class="headerlink" href="#equation-6a1ddc1a-e08a-4c3f-a83a-bfb2fb754576" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2bdbabea-24f6-4439-96f3-a47783342737">
+<span class="eqno">(7.8)<a class="headerlink" href="#equation-2bdbabea-24f6-4439-96f3-a47783342737" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 Q = \rho n^2 d^5 C_q
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(C_q\)</span> is a non-dimensional torque coefficient.</p>
 <p>The propeller thrust is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7e1de7e7-1402-4bed-bb21-907738f94b52">
-<span class="eqno">(14.9)<a class="headerlink" href="#equation-7e1de7e7-1402-4bed-bb21-907738f94b52" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dcb0b9c8-6214-4382-bb62-23f22986f331">
+<span class="eqno">(7.9)<a class="headerlink" href="#equation-dcb0b9c8-6214-4382-bb62-23f22986f331" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 T = \rho n^2 d^4 C_t
 \end{equation}\]</div>
 <p>The propeller power is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9f2ede5e-02cf-4a68-aace-d200f15033e3">
-<span class="eqno">(14.10)<a class="headerlink" href="#equation-9f2ede5e-02cf-4a68-aace-d200f15033e3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-77ca6a05-1c4c-4379-b8d6-ccacd4d2dd3f">
+<span class="eqno">(7.10)<a class="headerlink" href="#equation-77ca6a05-1c4c-4379-b8d6-ccacd4d2dd3f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P = 2 \pi n Q = \rho n^3 d^5 C_p
 \end{equation}\]</div>
 <p>The efficiency of the propeller is the ratio of the power output that moves the airplane to input to power applied to the prop shaft.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4d0b2bd6-c4d6-4ddb-b7b8-bb21f30dd0de">
-<span class="eqno">(14.11)<a class="headerlink" href="#equation-4d0b2bd6-c4d6-4ddb-b7b8-bb21f30dd0de" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4aed9b52-8760-479d-83a9-1c184ee6a362">
+<span class="eqno">(7.11)<a class="headerlink" href="#equation-4aed9b52-8760-479d-83a9-1c184ee6a362" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \eta = \frac{T V}{P} = \frac{T V}{2 \pi n Q} = \frac{C_t}{C_p} J
 \end{equation}\]</div>
 </div>
@@ -480,17 +440,17 @@ P = 2 \pi n Q = \rho n^3 d^5 C_p
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="level-flight-calculations.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="level-flight-power.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">13. </span>level-flight-calculations</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Power Needed for Level Flight</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="stability-analysis.html" title="next page">
+    <a class='right-next' id="next-link" href="bibliography.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>Stability Analysis</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Bibliography</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

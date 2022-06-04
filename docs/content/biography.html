@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>9. Biography &#8212; Predicting Indoor Flight Times With Python</title>
+    <title>18. Biography &#8212; Predicting Indoor Flight Times With Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,7 +53,7 @@
     <link rel="shortcut icon" href="../_static/lpp.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="8. Bibliography" href="bibliography.html" />
+    <link rel="prev" title="17. Bibliography" href="bibliography.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -92,55 +92,95 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="index.html">
+  <a class="reference internal" href="00-index.html">
    Predicting Indoor Model Flight Time Using Python
   </a>
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="overview.html">
+  <a class="reference internal" href="01-overview.html">
    1. Overview
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="tenny-data-analysis.html">
-   2. Tenny’s Flight Path Data
+  <a class="reference internal" href="02-hacklingers-equation.html">
+   2. Hacklinger’s Equation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="circular-arc-data.html">
-   3. Circular Arc Airfoil Data
+  <a class="reference internal" href="03-atmospheric-data.html">
+   3. Atmospheric Data
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="simplified-indoor-design.html">
-   4. Simplified Indoor Design
+  <a class="reference internal" href="04-tenny-data-analysis.html">
+   4. Tenny’s Flight Path Data
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mcleans-method.html">
-   5. Calculating Flight Time
+  <a class="reference internal" href="05-circular-arc-data.html">
+   5. Circular Arc Airfoil Data
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="model-aerodynamics.html">
-   6. Basic Aerodynamics
+  <a class="reference internal" href="06-data-smoothing.html">
+   6. Data Smoothing
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="hacklinger-theory.html">
-   7. Hacklinger’s Theories
+  <a class="reference internal" href="07-simplified-indoor-design.html">
+   7. Simplified Indoor Design
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-generating-airfoils-for-xfoil.html">
+   8. Generating Airfoils for XFoil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-level-flight-calculations.html">
+   9. level-flight-calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-a6-propeller-analysis.html">
+   10. A-6 Propeller Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-rubber-motors.html">
+   12. Rubber Motors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-motor-speed.html">
+   13. Propeller Speed
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/10-minute-guide-to-python.html">
+   14. 10 Minute Guide to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/accessing-the-online-study.html">
+   15. Accessing The Online Study
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/brief-guide-to-using-jupyter.html">
+   16. Brief Guide to Using Jupyter
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   8. Bibliography
+   17. Bibliography
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   9. Biography
+   18. Biography
   </a>
  </li>
 </ul>
@@ -244,8 +284,11 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="biography">
-<h1><span class="section-number">9. </span>Biography<a class="headerlink" href="#biography" title="Permalink to this headline">¶</a></h1>
-<p><img alt="Roie Black" src="../_images/RoieBlack.jpg" /></p>
+<h1><span class="section-number">18. </span>Biography<a class="headerlink" href="#biography" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;../../assets/images/roie-black2.jpg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>In 1956, I was on a quest to figure out how airplanes fly. I was 10 years old!
 As a kid growing up in Washington D.C. I was already building model airplanes,
 mostly control-line Sterling models. That year Paul Poberezeny published an
@@ -265,7 +308,7 @@ Paul Garber, who eventually was named Curator Emeritus of the *National Air and
 Space Museum. Wow! I met two such important men in the history of aviation, and I
 was just imagining a career in aviation!</p>
 <p>My passion for flight took me through college where I earned degrees in
-Aerospace Engineering, then into my career in the as an officer in the USAF. My
+Aerospace Engineering, then into my career as an officer in the USAF. My
 first assignment in the Air Force involved conducting research in the emerging
 field of <em>Computational Fluid Dynamics</em>. While working there, I was introduced to
 first-generation supercomputers, and my career shifted direction into Computer
@@ -277,10 +320,10 @@ understand how to control a real airplane. I continued as a member of the EAA,
 eventually attending 25 successive annual fly-in’s at Oshkosh! Sadly, during
 that time, my model building was put on hold, although I maintained my
 membership in the AMA.</p>
-<p>I spent 20 years in the Air Force doing research and teaching Computer Science.
-Eventually I was assigned to manage a research supercomputer center in New
-Mexico. After retiring, I started a second career, again teaching computer science in
-Texas, and finally retired for good in 2018.</p>
+<p>I spent 20 years in the Air Force doing research and teaching.  Eventually I
+was assigned as Deputy Director, then Director of a research supercomputer
+center in New Mexico. After retiring, I started a second career, again teaching
+computer science in Texas, and finally retired for good in 2018.</p>
 <p>Since then, I have become a member of the <em>Heart of America Free Flight
 Association</em>, and am again active in building and flying rubber powered free
 flight models. I am right back where I started all those years ago.</p>
@@ -320,7 +363,7 @@ of folks to this fascinating world of flight.</p>
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">8. </span>Bibliography</p>
+            <p class="prev-next-title"><span class="section-number">17. </span>Bibliography</p>
         </div>
     </a>
 </div>
