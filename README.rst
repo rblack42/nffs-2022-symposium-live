@@ -11,6 +11,7 @@ developed using notes written using Jupyter Notebook. The documentation found
 at the link above is a static version of those notebook pages produced using
 *Jupyter Book*. 
 
-You can launch an interactive version of this study by clicking this link:
+You can launch an interactive version of this study by clicking this link: |Binder|
 
-[`Binder Live(https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/rblack42/nffs-2022-symposium-live/HEAD)
+..  |Binder| image:: https://mybinder.org/badge_logo.svg
+..  _Binder: https://mybinder.org/v2/gh/rblack42/nffs-2022-symposium-live/HEAD

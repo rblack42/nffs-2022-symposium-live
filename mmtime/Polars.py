@@ -28,8 +28,6 @@ class Polars(object):
                 "CD",
                 "CDp",
                 "CM",
-                "xtr_upper",
-                "xtr_lower"
             ]
             try:
                 data = np.genfromtxt(
