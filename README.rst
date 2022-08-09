@@ -14,4 +14,4 @@ at the link above is a static version of those notebook pages produced using
 You can launch an interactive version of this study by clicking this link: |Binder|
 
 ..  |Binder| image:: https://mybinder.org/badge_logo.svg
-..  _Binder: https://mybinder.org/v2/gh/rblack42/nffs-2022-symposium-live/HEAD
+        :target: https://mybinder.org/v2/gh/rblack42/nffs-2022-symposium-live/HEAD
