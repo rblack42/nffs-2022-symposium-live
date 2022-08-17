@@ -24,6 +24,14 @@ def show_curve(x,y,title,xlabel,ylabel):
     plt.ylabel(ylabel)
     plt.show()
 
+def show_curve2(x,y1,y2,lab1,lab2,title,xlabel,ylabel):
+    plt.plot(x,y1,label=lab1)
+    plt.plot(x,y2,label=lab2)
+    plt.title(title,fontsize=15)
+    plt.xlabel(xlabel,fontsize=13)
+    plt.ylabel(ylabel,fontsize=13)
+    plt.show()
+
 def fit_curve(x, y, smooth=False): # using a cubic spline
     if smooth:
         smooth_y = savgol_filter(y, 21, 3)

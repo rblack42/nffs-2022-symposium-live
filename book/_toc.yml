@@ -7,8 +7,8 @@ options:
   numbered: true
 chapters:
 - file: content/01-overview
-- file: content/02-hacklingers-equation
-- file: content/03-atmospheric-data
+- file: content/02-atmospheric-data
+- file: content/03-hacklingers-equation
 - file: content/04-tenny-data-analysis
 - file: content/05-circular-arc-data
 - file: content/06-data-smoothing
@@ -17,12 +17,12 @@ chapters:
 - file: content/09-level-flight-calculations
 - file: content/10-a6-propeller-analysis
 - file: content/11-rubber-motors
-- file: content/12-motor-speed
 
 - file: appendix/10-minute-guide-to-python
+- file: appendix/project-setup
 - file: appendix/accessing-the-online-study
 - file: appendix/brief-guide-to-using-jupyter
-
+- file: appendix/running-xfoil-with-python
 - file: content/bibliography
 - file: content/biography
 

@@ -153,14 +153,17 @@ class Airfoil(object):
         return  f"{name}{camber}{thickness}"
 
 
-    def xfoil_data_file(self,xpath):
+    def gen_xfoil_data_file(self,data_dir):
         """generate xfoil data file"""
-        self.foil_path = xpath
+        self.foil_dir = data_dir
         accuracy = 0.00001
-        dname = self.getName() + '.dat'
-        dpath = os.path.join(xpath,dname)
-        print("Generating:", dpath)
-        with open(dpath,'w') as fout:
+
+        af = self.getName()
+        afpath = os.path.join(data_dir,af)
+        os.makedirs(afpath, exist_ok=True)
+        dfile = f'{afpath}/{af}.dat'
+        print("Generating:", dfile)
+        with open(dfile,'w') as fout:
 
             # load all points
             xtl,ytl,xbl,ybl = self.get_le()
@@ -233,7 +236,9 @@ class Airfoil(object):
                 if abs(y) < accuracy:
                     y = 0.0
                 fout.write("     {0:10.6f}   {1:10.6f}\n".format(x,y))
+            print('done...')
+            fout.close()
 
 if __name__ == '__main__':
     af = Airfoil('simplex',1,2,1,51)
-    af.xfoil_data_file('data/airfoils')
+    af.gen_xfoil_data_file('data/airfoils')

@@ -107,13 +107,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="02-hacklingers-equation.html">
-   2. Hacklinger’s Equation
+  <a class="reference internal" href="02-atmospheric-data.html">
+   2. Atmospheric Data
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="03-atmospheric-data.html">
-   3. Atmospheric Data
+  <a class="reference internal" href="03-hacklingers-equation.html">
+   3. Hacklinger’s Equation
   </a>
  </li>
  <li class="toctree-l1">
@@ -162,23 +162,33 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/project-setup.html">
+   14. Installing This Project on Your Computer
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../appendix/accessing-the-online-study.html">
-   14. Accessing The Online Study
+   15. Accessing The Online Study
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/brief-guide-to-using-jupyter.html">
-   15. Brief Guide to Using Jupyter
+   16. Brief Guide to Using Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/running-xfoil-with-python.html">
+   17. Running XFOIL with Python
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   16. Bibliography
+   18. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="biography.html">
-   17. Biography
+   19. Biography
   </a>
  </li>
 </ul>
@@ -306,11 +316,16 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#energy-available">
-     12.3.2. Energy Available
+    <a class="reference internal nav-link" href="#analytical-wart-curve">
+     12.3.2. Analytical Wart Curve
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#concluding-remarks">
+   12.4. Concluding Remarks
+  </a>
  </li>
 </ul>
 
@@ -353,11 +368,16 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#energy-available">
-     12.3.2. Energy Available
+    <a class="reference internal nav-link" href="#analytical-wart-curve">
+     12.3.2. Analytical Wart Curve
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#concluding-remarks">
+   12.4. Concluding Remarks
+  </a>
  </li>
 </ul>
 
@@ -401,8 +421,8 @@
 <div class="section" id="motor-available-energy">
 <h2><span class="section-number">12.1. </span>Motor Available Energy<a class="headerlink" href="#motor-available-energy" title="Permalink to this headline">¶</a></h2>
 <p>In Doug McLean’s paper, we see this formula for the total energy we can get out of a rubber motor:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-887dafc1-3ca9-4ee8-8e6f-4330a54df236">
-<span class="eqno">(12.1)<a class="headerlink" href="#equation-887dafc1-3ca9-4ee8-8e6f-4330a54df236" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-27521fec-e5c6-4ae6-87b2-4cce972088f7">
+<span class="eqno">(12.1)<a class="headerlink" href="#equation-27521fec-e5c6-4ae6-87b2-4cce972088f7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 E = K_m w_m
 \end{equation}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(K_m\)</span> is a constant equal to 30,000 inches and <span class="math notranslate nohighlight">\(w_m\)</span> is the motor weight. Basically, this formula says that the energy we can get out of a rubber motor is proportional to the weight of the motor. That will be a maximum amount we might get, since the other variables will determine the actual energy available for each flight. Let’s see how much energy was available for Gary’s record flight.</p>
@@ -463,8 +483,8 @@ E = K_m w_m
 <div class="section" id="motor-winds">
 <h2><span class="section-number">12.2. </span>Motor Winds<a class="headerlink" href="#motor-winds" title="Permalink to this headline">¶</a></h2>
 <p>The bare weight of the motor may provide us with a measure of the possible energy we can get out of each motor, but we need to wind it up to get any useful power out of the motor. Don Slusarczyk <span id="id2">[<a class="reference internal" href="bibliography.html#id5">Slu14</a>]</span> presented a simple formula that will tell us approximately how many turns we can pack into the motor.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6e960f8b-7177-41e7-9274-da5099047f97">
-<span class="eqno">(12.2)<a class="headerlink" href="#equation-6e960f8b-7177-41e7-9274-da5099047f97" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4eae5614-5799-423f-b361-8a0272225e53">
+<span class="eqno">(12.2)<a class="headerlink" href="#equation-4eae5614-5799-423f-b361-8a0272225e53" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 K = \frac{N_{max}}{m_l}\sqrt{\frac{m_w}{m_l}}
 \end{equation}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(K\)</span> is a constant Don set to 8.5. <span class="math notranslate nohighlight">\(m_l\)</span> is the motor length in inches, <span class="math notranslate nohighlight">\(N_{max}\)</span> is the predicted breaking turn count, and <span class="math notranslate nohighlight">\(w_m\)</span> is the motor weight in ounces.</p>
@@ -564,7 +584,7 @@ K = \frac{N_{max}}{m_l}\sqrt{\frac{m_w}{m_l}}
 <p>For the purposes of this study, we will set up a simple analytical curve that models a rubber motor. From this figure, I will use simple polynomial curves for segments <strong>A</strong> and <strong>B</strong> and <strong>D</strong> above, and a straight line for segment  <strong>C</strong>.</p>
 <div class="section" id="analytic-torque-curve">
 <h3><span class="section-number">12.3.1. </span>Analytic Torque Curve<a class="headerlink" href="#analytic-torque-curve" title="Permalink to this headline">¶</a></h3>
-<p>To generate a torque function we can use for study, we first define a few sample points on the curve. The axes we will be using are torque as a function of turns, so the maximum turn cont and launch torque will be our first point. The second point will be the point where the cruise begins. The third point will be at the end of that cruise portion. The final point is the landing point, which we will assume is when the motor fully winds down. THis is obviously an ideal curve, since models often land before the winds run totally out. The two polynomial segments must match slopes at the ends of the cruise segment.</p>
+<p>To generate a torque function we can use for study, we first define a few sample points on the curve. The axes we will be using are torque as a function of turns, so the maximum turn count and launch torque will be our first point. The second point will be the point where the cruise begins. The third point will be at the end of that cruise portion. The final point is the landing point, which we will assume is when the motor fully winds down. This is obviously an ideal curve, since models often land before the winds run totally out. The two polynomial segments must match slopes at the ends of the cruise segment.</p>
 <p>Here is the basic setup:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -601,27 +621,27 @@ K = \frac{N_{max}}{m_l}\sqrt{\frac{m_w}{m_l}}
 </div>
 <p>We need to find the polynomials that complete this curve. We will use the data points and match slopes to the cruise line.</p>
 <p>Assume the polynomial of this form:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-51b4e582-9c3a-47be-b3a9-a675df6bb1ac">
-<span class="eqno">(12.3)<a class="headerlink" href="#equation-51b4e582-9c3a-47be-b3a9-a675df6bb1ac" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-671aa0fc-1e2d-43ef-82e5-2176da823574">
+<span class="eqno">(12.3)<a class="headerlink" href="#equation-671aa0fc-1e2d-43ef-82e5-2176da823574" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 y = Ax^2 + Bx + C
 \end{equation}\]</div>
 <p>The derivative of this curve is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9dab335f-5b43-42fe-9866-ac6eefcb11ab">
-<span class="eqno">(12.4)<a class="headerlink" href="#equation-9dab335f-5b43-42fe-9866-ac6eefcb11ab" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d7a93764-a9f5-40d0-97b4-bc7f02e37978">
+<span class="eqno">(12.4)<a class="headerlink" href="#equation-d7a93764-a9f5-40d0-97b4-bc7f02e37978" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{dy}{dx} = M_c = 2ax + B
 \end{equation}\]</div>
 <p>We will match the curve values at the end points, and the slope at one end point. This will give us three equations for three unknowns.</p>
 <p>For the first polynomial, we have:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5c0ff542-c57b-4615-b470-9064aaaa2b1c">
-<span class="eqno">(12.5)<a class="headerlink" href="#equation-5c0ff542-c57b-4615-b470-9064aaaa2b1c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d7e3e13b-23b3-4ab8-b5f5-6417f0c8bf87">
+<span class="eqno">(12.5)<a class="headerlink" href="#equation-d7e3e13b-23b3-4ab8-b5f5-6417f0c8bf87" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 Q_{max} = C
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-3ae22ff0-af85-4fa1-bfbd-188f3e6ef4b2">
-<span class="eqno">(12.6)<a class="headerlink" href="#equation-3ae22ff0-af85-4fa1-bfbd-188f3e6ef4b2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-31e6faa2-1501-4f83-95a6-3ccc7d41d6ea">
+<span class="eqno">(12.6)<a class="headerlink" href="#equation-31e6faa2-1501-4f83-95a6-3ccc7d41d6ea" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 y_{c0} = Ax_{c0}^2 + Bx_{c0} + Q_{max}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-d24b04c8-fbc5-40c0-949f-9011b0bb96b5">
-<span class="eqno">(12.7)<a class="headerlink" href="#equation-d24b04c8-fbc5-40c0-949f-9011b0bb96b5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c12d40ff-2e6e-4299-94c3-7a46a3c91070">
+<span class="eqno">(12.7)<a class="headerlink" href="#equation-c12d40ff-2e6e-4299-94c3-7a46a3c91070" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{y_{c1} - y_{c0}}{x_{c1} - x_{c0}} = M_c = 2Ax_{c0} + B
 \end{equation}\]</div>
 <p>Let’s let <strong>sympy</strong> grind out this math:</p>
@@ -701,7 +721,7 @@ y_{c0} = Ax_{c0}^2 + Bx_{c0} + Q_{max}
 <p>Let’s plot a sample torque curve and see what we get:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">mp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
@@ -725,91 +745,192 @@ y_{c0} = Ax_{c0}^2 + Bx_{c0} + Q_{max}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ws</span><span class="o">/</span><span class="mi">5</span><span class="n">h_x4h713cg8w0jmrm5_tfzc0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_61364</span><span class="o">/</span><span class="mf">1047786378.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">ty2</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">mmtime.utils</span> <span class="kn">import</span> <span class="n">show_curve</span>
-<span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">tNm</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">Q</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="k">for</span> <span class="n">nx</span> <span class="ow">in</span> <span class="n">n</span><span class="p">:</span>
-
-<span class="ne">NameError</span>: name &#39;np&#39; is not defined
-</pre></div>
-</div>
+<img alt="../_images/11-rubber-motors_46_0.png" src="../_images/11-rubber-motors_46_0.png" />
 </div>
 </div>
 <p>This curve looks reasonable at the end of the winds, but is too sharp in transitioning to the cruise. We could improve this by trying higher order polynomials, but we will stop here.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">torque2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">Qm</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">Nm</span><span class="p">,</span><span class="n">Kc</span><span class="p">):</span>
-    <span class="n">M</span> <span class="o">=</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">n</span><span class="o">&lt;</span><span class="n">x1</span><span class="p">:</span> 
-        <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">M</span><span class="o">*</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">Qm</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">y1</span> <span class="o">+</span> <span class="n">M</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">Qm</span><span class="o">*</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x1</span><span class="o">*</span><span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">x1</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
-        <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">M</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">Qm</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">y1</span> <span class="o">-</span> <span class="n">M</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">Qm</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">x1</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
-        <span class="n">C</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">M</span><span class="o">*</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">6</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">Qm</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">y1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">M</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">Qm</span><span class="o">*</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">6</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">x1</span><span class="o">*</span><span class="n">y1</span> <span class="o">-</span> <span class="n">x1</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">Kc</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">Kc</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x1</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
-        <span class="n">D</span> <span class="o">=</span> <span class="n">Qm</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">A</span><span class="o">*</span><span class="n">n</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">C</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="n">D</span>
-    <span class="k">elif</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">x2</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">y1</span> <span class="o">+</span> <span class="n">M</span><span class="o">*</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">xp</span> <span class="o">=</span> <span class="n">Nm</span><span class="o">-</span><span class="n">n</span>
-        <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">M</span><span class="o">*</span><span class="n">Nm</span> <span class="o">+</span> <span class="n">M</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="n">y2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Nm</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Nm</span><span class="o">*</span><span class="n">x2</span> <span class="o">+</span> <span class="n">x2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">M</span><span class="o">*</span><span class="n">Nm</span> <span class="o">+</span> <span class="n">M</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">y2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="n">Nm</span> <span class="o">+</span> <span class="n">x2</span><span class="p">)</span>
-        <span class="n">C</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">return</span> <span class="n">A</span><span class="o">*</span><span class="n">xp</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">xp</span> <span class="o">+</span> <span class="n">C</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">tNm</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
-<span class="n">tKc</span> <span class="o">=</span> <span class="mf">0.8</span>
-<span class="k">for</span> <span class="n">nx</span> <span class="ow">in</span> <span class="n">n</span><span class="p">:</span>
-    <span class="n">Q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torque2</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">tQm</span><span class="p">,</span><span class="n">tx1</span><span class="p">,</span><span class="n">ty1</span><span class="p">,</span><span class="n">tx2</span><span class="p">,</span><span class="n">ty2</span><span class="p">,</span><span class="n">tNm</span><span class="p">,</span><span class="n">tKc</span><span class="p">))</span>
-<span class="n">show_curve</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="s2">&quot;Q&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="s2">&quot;example&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
--1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
--1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
--1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
--1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
--1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
--1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
--1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
--1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
--1.6319444444444426 7.236111111111104 -9.444444444444436 4.5
-</pre></div>
-</div>
-<img alt="../_images/11-rubber-motors_49_1.png" src="../_images/11-rubber-motors_49_1.png" />
-</div>
-</div>
-<p>This curve shows the problem with a cubic curve. Depending on where we position the 4 degree point, we can generate a curve that is not what we want at all! We will use the first version of the torque function for the rest of this analysis and revisit the scheme later.</p>
 <p>We want to scale this curve so the maximum torque matches the launch torque, and the maximum turn count matches the launch turn count.</p>
 </div>
-<div class="section" id="energy-available">
-<h3><span class="section-number">12.3.2. </span>Energy Available<a class="headerlink" href="#energy-available" title="Permalink to this headline">¶</a></h3>
-<p>With a torque function available, we can find the available energy to be delivered to the propeller by integrating this curve. That will give us rate at which the energy ir delivered</p>
+<div class="section" id="analytical-wart-curve">
+<h3><span class="section-number">12.3.2. </span>Analytical Wart Curve<a class="headerlink" href="#analytical-wart-curve" title="Permalink to this headline">¶</a></h3>
+<p>Let’s run this plot again, using the Wart values:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ty</span> <span class="o">=</span> <span class="n">tA</span> <span class="o">+</span> <span class="n">tB</span> <span class="o">+</span> <span class="n">tC</span> <span class="o">+</span> <span class="n">tD</span>
-<span class="n">ty</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tQm</span> <span class="o">=</span> <span class="mf">0.31</span>
+<span class="n">tNm</span> <span class="o">=</span> <span class="mi">3660</span>
+<span class="n">tx1</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">tNm</span>
+<span class="n">ty1</span> <span class="o">=</span> <span class="mf">0.333</span> <span class="o">*</span> <span class="n">tQm</span>
+<span class="n">tx2</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="n">tNm</span>
+<span class="n">ty2</span> <span class="o">=</span> <span class="mf">0.222</span> <span class="o">*</span> <span class="n">tQm</span>
+<span class="kn">from</span> <span class="nn">mmtime.utils</span> <span class="kn">import</span> <span class="n">show_curve</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">tNm</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">nx</span> <span class="ow">in</span> <span class="n">n</span><span class="p">:</span>
+    <span class="n">Q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torque</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">tQm</span><span class="p">,</span><span class="n">tx1</span><span class="p">,</span><span class="n">ty1</span><span class="p">,</span><span class="n">tx2</span><span class="p">,</span><span class="n">ty2</span><span class="p">,</span><span class="n">tNm</span><span class="p">))</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="s2">&quot;Analytical Torque Curve&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="s2">&quot;Q&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6601599999999994
+<img alt="../_images/11-rubber-motors_50_0.png" src="../_images/11-rubber-motors_50_0.png" />
+</div>
+</div>
+<p>Now, let’s use the same scheme we used in the analysis of Bud Tenny’s data to find the average torque:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ni</span> <span class="o">=</span> <span class="n">n</span>
+<span class="n">qi</span> <span class="o">=</span> <span class="n">Q</span>
+<span class="n">dn</span> <span class="o">=</span> <span class="n">ni</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">50</span>
+<span class="n">ai</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ni</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">da</span> <span class="o">=</span> <span class="p">(</span><span class="n">qi</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">qi</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="n">dn</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">ai</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ai</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">da</span><span class="p">)</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">ni</span><span class="p">,</span><span class="n">ai</span><span class="p">,</span><span class="s2">&quot;Int Q&quot;</span><span class="p">,</span> <span class="s2">&quot;turns&quot;</span><span class="p">,</span> <span class="s2">&quot;Integral of Q(t)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11-rubber-motors_52_0.png" src="../_images/11-rubber-motors_52_0.png" />
+</div>
+</div>
+<p>Now we use the hacky scheme to get the average torque:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ni</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">ai</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span> <span class="n">ai</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span>
+        <span class="n">average</span> <span class="o">=</span> <span class="n">qi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">ounce</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average Torque is&quot;</span><span class="p">,</span><span class="n">average</span><span class="p">,</span> <span class="s2">&quot; which happened at turn count:&quot;</span><span class="p">,</span><span class="n">ni</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average Torque is 0.0948030612244898 inch * ounce  which happened at turn count: 1269.795918367347
 </pre></div>
 </div>
 </div>
 </div>
+<p>Now, let’s try Hacklinger’s equation again!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="n">winds</span> <span class="o">=</span> <span class="mi">3660</span>
+<span class="n">Qavg</span> <span class="o">=</span> <span class="n">average</span>
+<span class="n">W_r</span> <span class="o">=</span> <span class="mf">0.86</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span>
+<span class="n">He</span> <span class="o">=</span> <span class="mi">900</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">meters</span>
+<span class="n">N_r</span> <span class="o">=</span> <span class="mf">6.6480308871856035</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">second</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">He</span> <span class="o">*</span> <span class="n">W_r</span> <span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span><span class="n">Qavg</span> <span class="o">*</span><span class="n">N_r</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">271.4352383959889 second</div></div>
+</div>
+<p>This is off by a factor of two, but I have not included a hysteresis effect. To simulate this, let’s move the cruise portion of the torque down by 40%:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hysterisus</span> <span class="o">=</span> <span class="mf">0.6</span>
+<span class="n">tQm</span> <span class="o">=</span> <span class="mf">0.31</span>
+<span class="n">tNm</span> <span class="o">=</span> <span class="mi">3660</span>
+<span class="n">tx1</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">tNm</span>
+<span class="n">ty1</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.333</span> <span class="o">*</span> <span class="n">tQm</span><span class="p">)</span><span class="o">*</span><span class="n">hysterisus</span>
+<span class="n">tx2</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="n">tNm</span>
+<span class="n">ty2</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.222</span> <span class="o">*</span> <span class="n">tQm</span><span class="p">)</span><span class="o">*</span><span class="n">hysterisus</span>
+<span class="kn">from</span> <span class="nn">mmtime.utils</span> <span class="kn">import</span> <span class="n">show_curve</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">tNm</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">nx</span> <span class="ow">in</span> <span class="n">n</span><span class="p">:</span>
+    <span class="n">Q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torque</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">tQm</span><span class="p">,</span><span class="n">tx1</span><span class="p">,</span><span class="n">ty1</span><span class="p">,</span><span class="n">tx2</span><span class="p">,</span><span class="n">ty2</span><span class="p">,</span><span class="n">tNm</span><span class="p">))</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="s2">&quot;Analytical Torque Curve&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="s2">&quot;Q&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11-rubber-motors_58_0.png" src="../_images/11-rubber-motors_58_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ni</span> <span class="o">=</span> <span class="n">n</span>
+<span class="n">qi</span> <span class="o">=</span> <span class="n">Q</span>
+<span class="n">dn</span> <span class="o">=</span> <span class="n">ni</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">50</span>
+<span class="n">ai</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ni</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">da</span> <span class="o">=</span> <span class="p">(</span><span class="n">qi</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">qi</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="n">dn</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">ai</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ai</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">da</span><span class="p">)</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">ni</span><span class="p">,</span><span class="n">ai</span><span class="p">,</span><span class="s2">&quot;Int Q&quot;</span><span class="p">,</span> <span class="s2">&quot;turns&quot;</span><span class="p">,</span> <span class="s2">&quot;Integral of Q(t)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11-rubber-motors_59_0.png" src="../_images/11-rubber-motors_59_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ni</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">ai</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span> <span class="n">ai</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span>
+        <span class="n">average</span> <span class="o">=</span> <span class="n">qi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">ounce</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average Torque is&quot;</span><span class="p">,</span><span class="n">average</span><span class="p">,</span> <span class="s2">&quot; which happened at turn count:&quot;</span><span class="p">,</span><span class="n">ni</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average Torque is 0.059690816326530616 inch * ounce  which happened at turn count: 971.0204081632653
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="n">winds</span> <span class="o">=</span> <span class="mi">3660</span>
+<span class="n">Qavg</span> <span class="o">=</span> <span class="mf">0.0547</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">ounce</span>
+<span class="n">W_r</span> <span class="o">=</span> <span class="mf">0.86</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">grams</span>
+<span class="n">He</span> <span class="o">=</span> <span class="mi">900</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">meters</span>
+<span class="n">N_r</span> <span class="o">=</span> <span class="mf">6.648</span> <span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">second</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">He</span> <span class="o">*</span> <span class="n">W_r</span> <span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span><span class="n">Qavg</span> <span class="o">*</span><span class="n">N_r</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">470.43895944037854 second</div></div>
+</div>
+<p>Better, but perhaps the the average RPM estimate is too high for this calculation.</p>
+<p>In McLean’s discussion, he used the RPM for level flight, which is what our propeller analysis produced. I have seen some discussions that use the torque value about half way along the flat portion of the torque curve. This happens at around 1500 turns:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">average</span> <span class="o">=</span> <span class="n">torque</span><span class="p">(</span><span class="mi">1500</span><span class="p">,</span><span class="n">tQm</span><span class="p">,</span><span class="n">tx1</span><span class="p">,</span><span class="n">ty1</span><span class="p">,</span><span class="n">tx2</span><span class="p">,</span><span class="n">ty2</span><span class="p">,</span><span class="n">tNm</span><span class="p">)</span>
+<span class="n">Qavg</span> <span class="o">=</span> <span class="n">average</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inch</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">ounce</span>
+<span class="n">Qavg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.05471754098360656 inch ounce</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="n">He</span> <span class="o">*</span> <span class="n">W_r</span> <span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span><span class="n">Qavg</span> <span class="o">*</span><span class="n">N_r</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">to_base_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">470.2881492627447 second</div></div>
+</div>
+<p>This time estimate is better, but still not as close as I would like.</p>
+<p>In the end, McLean resorted to a <em>fudge factor</em> to improve his calculated flight times. I am not ready to do that in my study, so we need to look at this analysis more closely to see where we can make improvements.</p>
+<p>Obviously, several of the analysis schemes are a bit crude and using better analytical tools is sure to help.</p>
+</div>
+</div>
+<div class="section" id="concluding-remarks">
+<h2><span class="section-number">12.4. </span>Concluding Remarks<a class="headerlink" href="#concluding-remarks" title="Permalink to this headline">¶</a></h2>
+<p>The intent of this analysis was not to accurately predict flight times. Instead this is a survey of analytical tools you can use to do your own work. One big benefit of setting up all of this code is that we are well prepared to set up parametric studies where we can modify many of the model design parameters and see how the time changes. Even if we are not extremely accurate in the time estimate, we can test ideas to improve that time, then go to the flying site and see what really happens.</p>
+<p>Remember - the best theories match the real world. This study is not finished, I plan on continuing to work on the tools and code presented here. STay tuned to this project site for improvements.</p>
 </div>
 </div>
 

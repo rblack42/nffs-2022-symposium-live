@@ -53,7 +53,7 @@
     <link rel="shortcut icon" href="../_static/lpp.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="17. Bibliography" href="../content/bibliography.html" />
+    <link rel="next" title="17. Running XFOIL with Python" href="running-xfoil-with-python.html" />
     <link rel="prev" title="15. Accessing The Online Study" href="accessing-the-online-study.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -105,13 +105,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../content/02-hacklingers-equation.html">
-   2. Hacklinger’s Equation
+  <a class="reference internal" href="../content/02-atmospheric-data.html">
+   2. Atmospheric Data
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../content/03-atmospheric-data.html">
-   3. Atmospheric Data
+  <a class="reference internal" href="../content/03-hacklingers-equation.html">
+   3. Hacklinger’s Equation
   </a>
  </li>
  <li class="toctree-l1">
@@ -155,13 +155,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../content/12-motor-speed.html">
-   13. Propeller Speed
+  <a class="reference internal" href="10-minute-guide-to-python.html">
+   13. 10 Minute Guide to Python
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="10-minute-guide-to-python.html">
-   14. 10 Minute Guide to Python
+  <a class="reference internal" href="project-setup.html">
+   14. Installing This Project on Your Computer
   </a>
  </li>
  <li class="toctree-l1">
@@ -175,13 +175,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="running-xfoil-with-python.html">
+   17. Running XFOIL with Python
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../content/bibliography.html">
-   17. Bibliography
+   18. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../content/biography.html">
-   18. Biography
+   19. Biography
   </a>
  </li>
 </ul>
@@ -283,6 +288,19 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-jupyter">
+   16.1. Learning Jupyter
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -295,6 +313,19 @@
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-jupyter">
+   16.1. Learning Jupyter
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -315,10 +346,23 @@
 <p>To get to this environment on a PC just enter <strong>CMD</strong> in the search box at the lower left of your screen, then select the <em>Command Prompt</em> choice that will pop up. From there you just use simple commands to navigate to the folder you want to use for your project.  More details on navigating the command prompt are at the project website, so I will not cover that here.</p>
 <p>Move to the folder where your project is located and type <strong>jupyter notebook</strong>. After a few seconds, your web browser should launch and you will see a view of that project folder.
 This is what mine looks like:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;../../assets/images/jupyter.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/brief-guide-to-using-jupyter_3_0.png" src="../_images/brief-guide-to-using-jupyter_3_0.png" />
+</div>
+</div>
 <p>If you look closely (I know it is small), you will see files with a .ipynb extension. These are notebook pages I created for this study. Clicking on one of those will open that page. To start a new page, you select New, then Python3 from the menu near the top right.New pages are untitled by default. You can rename them using the File menu.</p>
 <p>Basically, you enter either code or text into blocks on a page. When you are in a block, the screen shows a green line on the left edge of the block. The type of block is displayed on the menu at the top. You can change the type if necessary. If the block has already been processed the green line will not appear. Double-clicking in the block will show you the unprocessed text. You should select only code or markdown as a start. In code blocks you type in Python code lines. (Look up any tutorial on Python to get started). In Markdown blocks you just type in text. Lines will automatically fold as you get to the end of the block. Paragraphs are set off using blank lines. There are special formatting marks you can add to style the text in interesting ways. I recommend looking at the pages I created as a start or look for Markdown tutorials online.</p>
-<p>Once you have a block set up the way you want, type Shift-Enter to process that block and create a new block below (or move to the next block if one is already there.
-You can add images, and equations, but we will not cover that here. This is just a quick guide to get you started.  Google Jupyter Turorial to learn more.</p>
+<p>Once you have a block set up the way you want, type Shift-Enter to process that block and create a new block below (or move to the next block if one is already there.</p>
+<div class="section" id="learning-jupyter">
+<h2><span class="section-number">16.1. </span>Learning Jupyter<a class="headerlink" href="#learning-jupyter" title="Permalink to this headline">¶</a></h2>
+<p>Here is alink that will show you much more about using Jupyter: <a class="reference external" href="https://realpython.com/jupyter-notebook-introduction/">Jupyter Tutorial</a>.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -353,10 +397,10 @@ You can add images, and equations, but we will not cover that here. This is just
             <p class="prev-next-title"><span class="section-number">15. </span>Accessing The Online Study</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../content/bibliography.html" title="next page">
+    <a class='right-next' id="next-link" href="running-xfoil-with-python.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">17. </span>Bibliography</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Running XFOIL with Python</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

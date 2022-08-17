@@ -8,16 +8,16 @@ from scipy import interpolate
 
 class AirfoilMgr(object):
 
-    def __init__(self):
+    def __init__(self,data_dir):
         self.here = os.path.abspath(os.path.dirname(__file__))
+        self.data_dir = data_dir
         self.catalog = self._getCatalog()
         self.selected = None
 
     def _getCatalog(self):
-        self.datadir = os.path.join(self.here, 'data/coefdata')
         files = []
-        for file in os.listdir(self.datadir):
-            d = os.path.join(self.datadir, file)
+        for file in os.listdir(self.data_dir):
+            d = os.path.join(self.data_dir, file)
             if os.path.isdir(d):
                 files.append(file)
         return files
@@ -43,7 +43,7 @@ class AirfoilMgr(object):
     def loadData(self,re):
         name = self.selected
         print("Loading",self.selected)
-        cpath = os.path.join(self.datadir,name,re)
+        cpath = os.path.join(self.data_dir,name,re)
         cfiles = os.listdir(cpath)
         for c in cfiles:
             if c.startswith('.'): continue
@@ -74,7 +74,7 @@ class AirfoilMgr(object):
 
 
 if __name__ == '__main__':
-    a = AirfoilMgr()
+    a = AirfoilMgr('data/airfoils')
     a.showAirfoils()
     a.selectAirfoil('arc0401')
     cl, cd, cm = a.loadData()

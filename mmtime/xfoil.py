@@ -61,7 +61,7 @@ if __name__ == '__main__':
     xf.start()
     xf.load_airfoil("FLAT01")
     xf.graphics(False)
-    xf.operating(3000,200)
+    xf.operating(3000,500)
     xf.polar()
     print("terminating...")
     xf.command("QUIT")

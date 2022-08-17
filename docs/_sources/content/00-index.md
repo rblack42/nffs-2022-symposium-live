@@ -21,3 +21,7 @@ A really neat benefit of working with *Jupyter* is the existence of free service
     - Major, USAF (retired)
     - Professor, Computer Science, Austin Community College (retired)
     - AMA 18079
+
+```python
+
+```

@@ -107,13 +107,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="02-hacklingers-equation.html">
-   2. Hacklinger’s Equation
+  <a class="reference internal" href="02-atmospheric-data.html">
+   2. Atmospheric Data
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="03-atmospheric-data.html">
-   3. Atmospheric Data
+  <a class="reference internal" href="03-hacklingers-equation.html">
+   3. Hacklinger’s Equation
   </a>
  </li>
  <li class="toctree-l1">
@@ -157,28 +157,33 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="12-motor-speed.html">
+   13. Propeller Speed
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../appendix/10-minute-guide-to-python.html">
-   13. 10 Minute Guide to Python
+   14. 10 Minute Guide to Python
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/accessing-the-online-study.html">
-   14. Accessing The Online Study
+   15. Accessing The Online Study
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/brief-guide-to-using-jupyter.html">
-   15. Brief Guide to Using Jupyter
+   16. Brief Guide to Using Jupyter
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   16. Bibliography
+   17. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="biography.html">
-   17. Biography
+   18. Biography
   </a>
  </li>
 </ul>
@@ -317,8 +322,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#coefficient-data-for-5-arc">
-   5.2. Coefficient Data for 5% Arc
+  <a class="reference internal nav-link" href="#unpublished-coefficient-data-for-5-arc">
+   5.2. Unpublished Coefficient Data for 5% Arc
   </a>
  </li>
 </ul>
@@ -373,8 +378,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#coefficient-data-for-5-arc">
-   5.2. Coefficient Data for 5% Arc
+  <a class="reference internal nav-link" href="#unpublished-coefficient-data-for-5-arc">
+   5.2. Unpublished Coefficient Data for 5% Arc
   </a>
  </li>
 </ul>
@@ -414,7 +419,7 @@
 <img alt="../_images/05-circular-arc-data_4_0.png" src="../_images/05-circular-arc-data_4_0.png" />
 </div>
 </div>
-<p>Digitizing these curves produced more lumpy curves.  Since I plan on creating a library of airfoil data for testing designs, I wrote a data management routine that lets me select an airfoil by name, then load coefficient data needed for analysis work. I have created my own Python package for this project named <strong>mmtime</strong>.  The <strong>AirfoilMgr</strong> routine manages airfoil data files. Here is an example of using that code:</p>
+<p>Digitizing these curves produced more lumpy curves.  Since I plan on creating a library of airfoil data for testing designs, I wrote a data management routine that lets me select an airfoil by name, then load coefficient data needed for analysis work. I have created my own Python package for this project named <strong>mmtime</strong>.  The <strong>AirfoilMgr</strong> routine manages airfoil data files. I also created utility routines that load data points and smooth the curve through points. You can find this code in the project GitHub directory. Here is an example of using that code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mmtime.utils</span> <span class="kn">import</span> <span class="n">get_points</span><span class="p">,</span> <span class="n">show_curve</span><span class="p">,</span> <span class="n">fit_curve</span>
@@ -426,7 +431,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="n">projdir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/Users/rblack/_dev/live-2022&#39;</span><span class="p">)</span>
+<span class="n">projdir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;../..&#39;</span><span class="p">)</span>
 <span class="n">datadir</span> <span class="o">=</span> <span class="n">projdir</span> <span class="o">/</span> <span class="s1">&#39;mmtime&#39;</span> <span class="o">/</span> <span class="s1">&#39;data&#39;</span> <span class="o">/</span> <span class="s1">&#39;airfoils&#39;</span> <span class="o">/</span> <span class="s1">&#39;arc3&#39;</span>
 </pre></div>
 </div>
@@ -448,7 +453,7 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ws</span><span class="o">/</span><span class="mi">5</span><span class="n">h_x4h713cg8w0jmrm5_tfzc0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_61485</span><span class="o">/</span><span class="mf">2874440686.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ws</span><span class="o">/</span><span class="mi">5</span><span class="n">h_x4h713cg8w0jmrm5_tfzc0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_26040</span><span class="o">/</span><span class="mf">2874440686.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">clfile</span> <span class="o">=</span> <span class="n">datadir</span> <span class="o">/</span> <span class="s1">&#39;CL-re3k.csv&#39;</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">cl_x</span><span class="p">,</span> <span class="n">cl_y</span> <span class="o">=</span> <span class="n">get_points</span><span class="p">(</span><span class="n">clfile</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">alpha_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">cl_x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cl_x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">50</span><span class="p">)</span>
@@ -508,24 +513,26 @@
 </div>
 </div>
 </div>
+<p>To create this plot, we create a sample set of angle of attack values, then for each value in that set, use of lift and drag curve fit functions to generate the associated <span class="math notranslate nohighlight">\(C_l\)</span> and <span class="math notranslate nohighlight">\(C_d\)</span> points.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">alpha_pts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">alpha_pts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">50</span><span class="p">)</span>
 <span class="n">p_x</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">p_y</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">alpha</span><span class="p">:</span>
-    <span class="n">p_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CdFunc</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
-    <span class="n">p_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ClFunc</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
-<span class="n">show_curve</span><span class="p">(</span><span class="n">p_x</span><span class="p">,</span> <span class="n">p_y</span><span class="p">,</span> <span class="s2">&quot;Polar Plot&quot;</span><span class="p">,</span> <span class="s2">&quot;Cd&quot;</span><span class="p">,</span> <span class="s2">&quot;Cl&quot;</span><span class="p">)</span>
+    <span class="n">p_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CdFunc</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+    <span class="n">p_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ClFunc</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">p_x</span><span class="p">,</span> <span class="n">p_y</span><span class="p">,</span> <span class="s2">&quot;Polar Plot&quot;</span><span class="p">,</span> <span class="s2">&quot;Cl&quot;</span><span class="p">,</span> <span class="s2">&quot;Cd&quot;</span><span class="p">)</span>
     
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/05-circular-arc-data_16_0.png" src="../_images/05-circular-arc-data_16_0.png" />
+<img alt="../_images/05-circular-arc-data_17_0.png" src="../_images/05-circular-arc-data_17_0.png" />
 </div>
 </div>
 <p>Cl/Cd PLot</p>
+<p>Next we will generate a lift over drag curve as a function of angle of attack. We already have the functions available, and <strong>numpy</strong> makes generating the <span class="math notranslate nohighlight">\(L/D\)</span> values simple.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Cl</span> <span class="o">=</span> <span class="n">ClFunc</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
@@ -536,15 +543,27 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/05-circular-arc-data_18_0.png" src="../_images/05-circular-arc-data_18_0.png" />
+<img alt="../_images/05-circular-arc-data_20_0.png" src="../_images/05-circular-arc-data_20_0.png" />
 </div>
 </div>
-<p>It looks like the best angle for this airfoil would be about 5 degrees.</p>
+<p>It looks like the most efficient angle of attack for this airfoil would be about 5 degrees.</p>
 </div>
 </div>
-<div class="section" id="coefficient-data-for-5-arc">
-<h2><span class="section-number">5.2. </span>Coefficient Data for 5% Arc<a class="headerlink" href="#coefficient-data-for-5-arc" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="unpublished-coefficient-data-for-5-arc">
+<h2><span class="section-number">5.2. </span>Unpublished Coefficient Data for 5% Arc<a class="headerlink" href="#unpublished-coefficient-data-for-5-arc" title="Permalink to this headline">¶</a></h2>
 <p>For the 5% arc airfoil, we have a problem. The data I found included <span class="math notranslate nohighlight">\(C_l\)</span>, <span class="math notranslate nohighlight">\(C_m\)</span> and <span class="math notranslate nohighlight">\(C_l/C_d\)</span>. That means we have to extract <span class="math notranslate nohighlight">\(C_d\)</span> by processing the other data.</p>
+<p>Here is the lift curve:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;../../assets/images/5</span><span class="si">%-li</span><span class="s2">ft-coefficient.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05-circular-arc-data_24_0.png" src="../_images/05-circular-arc-data_24_0.png" />
+</div>
+</div>
+<p>The Reynolds Number for this data is too high for our study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datadir</span> <span class="o">=</span> <span class="n">projdir</span> <span class="o">/</span> <span class="s1">&#39;mmtime&#39;</span> <span class="o">/</span> <span class="s1">&#39;data&#39;</span> <span class="o">/</span> <span class="s1">&#39;airfoils&#39;</span> <span class="o">/</span> <span class="s1">&#39;arc5&#39;</span>
@@ -582,40 +601,42 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/05-circular-arc-data_25_0.png" src="../_images/05-circular-arc-data_25_0.png" />
+<img alt="../_images/05-circular-arc-data_29_0.png" src="../_images/05-circular-arc-data_29_0.png" />
+</div>
+</div>
+<p>Now let’s look at the pitching moment curve. This curve plots <span class="math notranslate nohighlight">\(C_m\)</span> against <span class="math notranslate nohighlight">\(C_l\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;../../assets/images/5%-moment-coefficient.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05-circular-arc-data_31_0.png" src="../_images/05-circular-arc-data_31_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmfile</span> <span class="o">=</span> <span class="n">datadir</span> <span class="o">/</span> <span class="s1">&#39;CM.csv&#39;</span>
 <span class="n">cm_x</span><span class="p">,</span> <span class="n">cm_y</span> <span class="o">=</span> <span class="n">get_points</span><span class="p">(</span><span class="n">cmfile</span><span class="p">)</span>
-<span class="n">show_curve</span><span class="p">(</span><span class="n">cm_x</span><span class="p">,</span> <span class="n">cm_y</span><span class="p">,</span> <span class="s2">&quot;Moment Coefficient&quot;</span><span class="p">,</span> <span class="s2">&quot;alpha&quot;</span><span class="p">,</span><span class="s2">&quot;Cm&quot;</span><span class="p">)</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">cm_x</span><span class="p">,</span> <span class="n">cm_y</span><span class="p">,</span> <span class="s2">&quot;Moment Coefficient&quot;</span><span class="p">,</span> <span class="s2">&quot;$C_l$&quot;</span><span class="p">,</span><span class="s2">&quot;$C_m$&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/05-circular-arc-data_26_0.png" src="../_images/05-circular-arc-data_26_0.png" />
+<img alt="../_images/05-circular-arc-data_32_0.png" src="../_images/05-circular-arc-data_32_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pfile</span> <span class="o">=</span> <span class="n">datadir</span> <span class="o">/</span> <span class="s1">&#39;CL-CD.csv&#39;</span>
 <span class="n">p_x</span><span class="p">,</span> <span class="n">p_y</span> <span class="o">=</span> <span class="n">get_points</span><span class="p">(</span><span class="n">pfile</span><span class="p">)</span>
-<span class="n">show_curve</span><span class="p">(</span><span class="n">p_x</span><span class="p">,</span> <span class="n">p_y</span><span class="p">,</span> <span class="s2">&quot;Polar Plot&quot;</span><span class="p">,</span> <span class="s2">&quot;Cd&quot;</span><span class="p">,</span><span class="s2">&quot;Cl&quot;</span><span class="p">)</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">p_x</span><span class="p">,</span> <span class="n">p_y</span><span class="p">,</span> <span class="s2">&quot;Polar Plot&quot;</span><span class="p">,</span> <span class="s2">&quot;$C_d$&quot;</span><span class="p">,</span><span class="s2">&quot;$C_l$&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/05-circular-arc-data_27_0.png" src="../_images/05-circular-arc-data_27_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cd_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">p_x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p_x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">50</span><span class="p">)</span>
-<span class="n">fit_polar</span> <span class="o">=</span> <span class="n">fit_curve</span><span class="p">(</span><span class="n">p_x</span><span class="p">,</span> <span class="n">p_y</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">cl_fit</span> <span class="o">=</span> <span class="n">fit_polar</span><span class="p">(</span><span class="n">cd_pts</span><span class="p">)</span>
-</pre></div>
-</div>
+<img alt="../_images/05-circular-arc-data_33_0.png" src="../_images/05-circular-arc-data_33_0.png" />
 </div>
 </div>
 </div>

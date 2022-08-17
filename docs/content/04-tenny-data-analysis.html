@@ -56,7 +56,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="5. Circular Arc Airfoil Data" href="05-circular-arc-data.html" />
-    <link rel="prev" title="3. Atmospheric Data" href="03-atmospheric-data.html" />
+    <link rel="prev" title="3. Hacklinger’s Equation" href="03-hacklingers-equation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -107,13 +107,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="02-hacklingers-equation.html">
-   2. Hacklinger’s Equation
+  <a class="reference internal" href="02-atmospheric-data.html">
+   2. Atmospheric Data
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="03-atmospheric-data.html">
-   3. Atmospheric Data
+  <a class="reference internal" href="03-hacklingers-equation.html">
+   3. Hacklinger’s Equation
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -157,28 +157,43 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="12-motor-speed.html">
+   13. Propeller Speed
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../appendix/10-minute-guide-to-python.html">
-   13. 10 Minute Guide to Python
+   14. 10 Minute Guide to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/project-setup.html">
+   15. Installing This Project on Your Computer
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/accessing-the-online-study.html">
-   14. Accessing The Online Study
+   16. Accessing The Online Study
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/brief-guide-to-using-jupyter.html">
-   15. Brief Guide to Using Jupyter
+   17. Brief Guide to Using Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/running-xfoil-with-python.html">
+   18. Running XFOIL with Python
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   16. Bibliography
+   19. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="biography.html">
-   17. Biography
+   20. Biography
   </a>
  </li>
 </ul>
@@ -439,11 +454,12 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="tennys-flight-path-data">
 <h1><span class="section-number">4. </span>Tenny’s Flight Path Data<a class="headerlink" href="#tennys-flight-path-data" title="Permalink to this headline">¶</a></h1>
 <p>In conducting a study like this, it helps to have experimental data available. We can use those data to validate our work and gaining confidence in the tools we use to conduct the research. I did some research and came up with several interesting results.</p>
-<p>Bud Tenny conducted an extensive study of indoor model flight paths in his 1968 Symposium article [7] and presented a graphical technique for estimating flight time.  Bud managed to get some nice data from actual flights of indoor models. Not much detail is provided on the model making those flights, but Bud shows torque curves, flight path data, and rpm data for his test flights. Let’s explore his findings and use Python to see what we can do with them.</p>
+<p>Bud Tenny conducted an extensive study of indoor model flight paths in his 1968 Symposium article <span id="id1">[<a class="reference internal" href="bibliography.html#id12">Ten68</a>]</span> and presented a graphical technique for estimating flight time.  Bud managed to get some nice data from actual flights of indoor models. Not much detail is provided on the model making those flights, but Bud shows torque curves, flight path data, and rpm data for his test flights. Let’s explore his findings and use Python to see what we can do with them.</p>
 <p>Bud presented his results as a set of graphs in his symposium article. Staring at those plots is nice, but we need the data behind the plots to do much work with these results. The article included some tabulated results, but most of the results are just graphs, so we seem to be stuck. Or are we?</p>
 <div class="section" id="digitizing-graphical-data">
 <h2><span class="section-number">4.1. </span>Digitizing Graphical Data<a class="headerlink" href="#digitizing-graphical-data" title="Permalink to this headline">¶</a></h2>
 <p>I found a nice free desktop application called <a class="reference external" href="https://automeris.io/WebPlotDigitizer/">WebPlotDigitizer</a> that lets you take an image of a plot and digitize it with a mouse on your computer. Once done, you can save your curve in a standard comma-separated variable file that you could load into your favorite spreadsheet. I am going to read that file using Python.</p>
+<p>The following code block prepares <em>Jupyter</em> so it can access my stored data files.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># page setup block</span>
@@ -456,7 +472,7 @@
 </div>
 </div>
 </div>
-<p>We need to run this code to embed images in the notebook page you are writing:</p>
+<p>We need to run this next code block to embed images in the notebook page you are writing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span> <span class="c1"># to display the images</span>
@@ -647,7 +663,7 @@ We create a curve fit function by passing the curve points to our fitting routin
 <img alt="../_images/04-tenny-data-analysis_34_0.png" src="../_images/04-tenny-data-analysis_34_0.png" />
 </div>
 </div>
-<p>In this snippet, I create a sample set of 50 turn values evenly distributed between the end point <strong>q1_nx</strong> values from my data, then feed that set of numbers to the curve fit function q_n generated from the original data points. <strong>numpy</strong> gives back a new set of points that I can plot.</p>
+<p>In this snippet, I create a sample set of 50 turn values evenly distributed between the end point <strong>q1_nx</strong> values from my data, then feed that set of numbers to the curve fit function <strong>q_n</strong> generated from the original data points. <strong>numpy</strong> gives back a new set of points that I can plot.</p>
 <p>I can use the curve fit function, which normally gives you torque for an input turn count, to get a turn count for some input torque. Here is an example of how this is done when we know the launch torque and want to find out what turn value on the torque curve would produce that torque:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -666,7 +682,7 @@ We create a curve fit function by passing the curve points to our fitting routin
 </div>
 <div class="section" id="finding-the-average-torque">
 <h3><span class="section-number">4.4.2. </span>Finding the Average Torque<a class="headerlink" href="#finding-the-average-torque" title="Permalink to this headline">¶</a></h3>
-<p>Now, let’s find the average torque from this curve. We need to find the area under the curve and locate the point where half of that area is on each side of that point.</p>
+<p>Now, let’s find the average torque from this curve. The average value of any function is defined as the integral of that function divided by the length of the interval.  We need to find the area under the curve and locate the point where half of that area is on each side of that point.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ni</span> <span class="o">=</span> <span class="n">n_sample</span>
@@ -705,7 +721,20 @@ We create a curve fit function by passing the curve points to our fitting routin
 </div>
 </div>
 </div>
-<p>We care interested in the turn value where the area is one half of this total. Rather than resort to complicated scheme to figure this out, I am just going to search for the turn value where the area just goes past this value and use that.</p>
+<p>From the definition of <em>average torque</em> we can find the value by dividing this number by the interval length, which is 1200 for this data set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area</span> <span class="o">/</span> <span class="mi">1200</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.10523037958375185
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are interested in the turn value where the area is one half of this total. Rather than resort to complicated scheme to figure this out, I am just going to search for the turn value where the area just goes past this torque value and use that.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ni</span><span class="p">)):</span>
@@ -722,6 +751,7 @@ We create a curve fit function by passing the curve points to our fitting routin
 </div>
 </div>
 </div>
+<p>The two results are close. Obviously, a better function integration routine would give us a more accurate average torque value. This experiment just shows ways you can get quick results using Python.</p>
 </div>
 <div class="section" id="rpm-as-a-function-of-time-n-t">
 <h3><span class="section-number">4.4.3. </span>RPM as a Function of Time (n_t)<a class="headerlink" href="#rpm-as-a-function-of-time-n-t" title="Permalink to this headline">¶</a></h3>
@@ -738,7 +768,7 @@ We create a curve fit function by passing the curve points to our fitting routin
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04-tenny-data-analysis_48_0.png" src="../_images/04-tenny-data-analysis_48_0.png" />
+<img alt="../_images/04-tenny-data-analysis_51_0.png" src="../_images/04-tenny-data-analysis_51_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -752,7 +782,7 @@ We create a curve fit function by passing the curve points to our fitting routin
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04-tenny-data-analysis_49_0.png" src="../_images/04-tenny-data-analysis_49_0.png" />
+<img alt="../_images/04-tenny-data-analysis_52_0.png" src="../_images/04-tenny-data-analysis_52_0.png" />
 </div>
 </div>
 <p>At this point, we have a scheme to generate data curve functions we can use to do further analysis. Let’s see examples of using this new capability to generate something new.</p>
@@ -780,10 +810,10 @@ We create a curve fit function by passing the curve points to our fitting routin
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04-tenny-data-analysis_56_0.png" src="../_images/04-tenny-data-analysis_56_0.png" />
+<img alt="../_images/04-tenny-data-analysis_59_0.png" src="../_images/04-tenny-data-analysis_59_0.png" />
 </div>
 </div>
-<p>Digitized data is often a bit lumpy. We see the effects of that in this curve. There are ways to smooth this kind of data, but doing so might introduce more errors. In this case, smoothing the original data might help. WE will see how to do that in the next section.</p>
+<p>Digitized data is often a bit lumpy. We see the effects of that in this curve. There are ways to smooth this kind of data, but doing so might introduce more errors. In this case, smoothing the original data might help. We will see how to do that in the next section.</p>
 <p>Tenny included some tabulated data on vertical speed. Let’s see how this curve compares with his data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -801,7 +831,7 @@ We create a curve fit function by passing the curve points to our fitting routin
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04-tenny-data-analysis_58_0.png" src="../_images/04-tenny-data-analysis_58_0.png" />
+<img alt="../_images/04-tenny-data-analysis_61_0.png" src="../_images/04-tenny-data-analysis_61_0.png" />
 </div>
 </div>
 <p>This kind of result gives you confidence in your analytical tools.</p>
@@ -809,8 +839,8 @@ We create a curve fit function by passing the curve points to our fitting routin
 <div class="section" id="propeller-power">
 <h3><span class="section-number">4.5.2. </span>Propeller Power<a class="headerlink" href="#propeller-power" title="Permalink to this headline">¶</a></h3>
 <p>Let’s try something a bit more complicated. We have shown how to generate functions that represent our input data. I want to see the propeller power curve, but I do not have that data available. What I do have is propeller speed as a function of time, and torque as a function of turns.  If I integrate the propeller speed function I can get turns as a function of time, then pass that into the torque function to get torque as a function of time. I can combine the results to get the power I want using this formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7cedda2f-e567-4475-8e6a-bff41db25f80">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-7cedda2f-e567-4475-8e6a-bff41db25f80" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6f1f17b7-f8cd-4736-9c4a-8f555cf3c7c5">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-6f1f17b7-f8cd-4736-9c4a-8f555cf3c7c5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P = 2\pi n Q
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n\)</span> is the prop speed (rpm) and <span class="math notranslate nohighlight">\(Q\)</span> is the torque.</p>
@@ -819,27 +849,27 @@ P = 2\pi n Q
 <ul class="simple">
 <li><p>torque as a function of turns (<strong>q_n</strong>)</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-3c183364-2d16-4c5e-89d9-0ff9dccc45c8">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-3c183364-2d16-4c5e-89d9-0ff9dccc45c8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-43d257f2-854a-4128-960f-a2522d937142">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-43d257f2-854a-4128-960f-a2522d937142" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 q_n = Q(n)
 \end{equation}\]</div>
 <ul class="simple">
 <li><p>RPM as a function of time (<strong>fn_t</strong>)</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-6414c15a-31f1-4fb2-93b6-6e542db21d2f">
-<span class="eqno">(4.3)<a class="headerlink" href="#equation-6414c15a-31f1-4fb2-93b6-6e542db21d2f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-387cc612-3e28-4a60-918b-f20ec9f7567a">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-387cc612-3e28-4a60-918b-f20ec9f7567a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 rpm_t = R(t)
 \end{equation}\]</div>
 <ul class="simple">
 <li><p>turns as a function of time (<strong>n_t</strong>)</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-bf70ba3d-f628-4190-884c-903305404722">
-<span class="eqno">(4.4)<a class="headerlink" href="#equation-bf70ba3d-f628-4190-884c-903305404722" title="Permalink to this equation">¶</a></span>\[\begin{equation}\label
+<div class="amsmath math notranslate nohighlight" id="equation-8c9bfa4b-325c-49b8-8cfe-751bb9b6e8d5">
+<span class="eqno">(4.4)<a class="headerlink" href="#equation-8c9bfa4b-325c-49b8-8cfe-751bb9b6e8d5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 n_t = N(t) 
 \end{equation}\]</div>
 <p>So, if we have a given time <span class="math notranslate nohighlight">\(t\)</span> then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-46c77de0-f5be-40f5-b913-96e539cf6e79">
-<span class="eqno">(4.5)<a class="headerlink" href="#equation-46c77de0-f5be-40f5-b913-96e539cf6e79" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-06ac971f-879c-4202-b7dc-9f913c581b01">
+<span class="eqno">(4.5)<a class="headerlink" href="#equation-06ac971f-879c-4202-b7dc-9f913c581b01" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 q_t = Q(R(t))
 \end{equation}\]</div>
 <p>We have rpm data measured over time. If we integrate that function we will get a function for turns as a function of time.</p>
@@ -871,7 +901,7 @@ q_t = Q(R(t))
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04-tenny-data-analysis_64_0.png" src="../_images/04-tenny-data-analysis_64_0.png" />
+<img alt="../_images/04-tenny-data-analysis_67_0.png" src="../_images/04-tenny-data-analysis_67_0.png" />
 </div>
 </div>
 <p>The last point on this curve is the remaining turns after the airplane landed:</p>
@@ -887,7 +917,7 @@ q_t = Q(R(t))
 </div>
 </div>
 </div>
-<p>This curve may look straight, but it is not. The interesting thing that it shows is how many turns were used in this flight, 749 from that last number printed. According to Tenny’s article, the motor was wound to  about 1240 turns (0.2 inch-oz of torque, and landed with about 500 turns remaining. This analysis said it would have landed with 1240-749 = 491 turns! Not bad!</p>
+<p>This curve may look straight, but it is not. The interesting thing that it shows is how many turns were used in this flight, 749 from that last number printed. According to Tenny’s article, the motor was wound to  about 1240 turns (0.2 inch-oz of torque, and landed with about 500 turns remaining. This analysis said it would have landed with 1240-759 = 481 turns! Not bad!</p>
 <p>We can now use these two functions to get our new torque/time function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -907,7 +937,7 @@ q_t = Q(R(t))
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04-tenny-data-analysis_69_0.png" src="../_images/04-tenny-data-analysis_69_0.png" />
+<img alt="../_images/04-tenny-data-analysis_72_0.png" src="../_images/04-tenny-data-analysis_72_0.png" />
 </div>
 </div>
 <p>Now we can get our power curve:</p>
@@ -925,12 +955,12 @@ q_t = Q(R(t))
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04-tenny-data-analysis_72_0.png" src="../_images/04-tenny-data-analysis_72_0.png" />
+<img alt="../_images/04-tenny-data-analysis_75_0.png" src="../_images/04-tenny-data-analysis_75_0.png" />
 </div>
 </div>
 <p>I think you can see how useful these techniques can be in conducting an analysis. The combination of <em>Jupyter</em> and Python lets you experiment with things, and see results quickly. This speeds up your work significantly!</p>
 <p>Walter Erbach, in a paper we will look at later, lamented that he had to analyze “terrifying yards of tabulated results” to conduct his research. Thankfully, those days are over!”</p>
-<p>At this point, we have introduced most of th tools needed to conduct this study. In the next sections we will work through the development of the equations included in McLean’s paper, and show one more powerfule Python tool: <strong>sympy</strong> which is the tool you wish you had when you were first working through your math courses in school!</p>
+<p>At this point, we have introduced most of the tools needed to conduct this study. In the next sections we will work through the development of the equations included in McLean’s paper, and show one more powerful Python tool: <strong>sympy</strong> which is the tool you wish you had when you were first working through your math courses in school!</p>
 </div>
 </div>
 </div>
@@ -960,11 +990,11 @@ q_t = Q(R(t))
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="03-atmospheric-data.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="03-hacklingers-equation.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">3. </span>Atmospheric Data</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Hacklinger’s Equation</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="05-circular-arc-data.html" title="next page">

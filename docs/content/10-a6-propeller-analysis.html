@@ -105,13 +105,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="02-hacklingers-equation.html">
-   2. Hacklinger’s Equation
+  <a class="reference internal" href="02-atmospheric-data.html">
+   2. Atmospheric Data
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="03-atmospheric-data.html">
-   3. Atmospheric Data
+  <a class="reference internal" href="03-hacklingers-equation.html">
+   3. Hacklinger’s Equation
   </a>
  </li>
  <li class="toctree-l1">
@@ -160,23 +160,33 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/project-setup.html">
+   14. Installing This Project on Your Computer
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../appendix/accessing-the-online-study.html">
-   14. Accessing The Online Study
+   15. Accessing The Online Study
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/brief-guide-to-using-jupyter.html">
-   15. Brief Guide to Using Jupyter
+   16. Brief Guide to Using Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/running-xfoil-with-python.html">
+   17. Running XFOIL with Python
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   16. Bibliography
+   18. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="biography.html">
-   17. Biography
+   19. Biography
   </a>
  </li>
 </ul>
@@ -392,8 +402,10 @@
 
 <span class="n">DIR</span> <span class="o">=</span> <span class="s2">&quot;../../mmtime/data/airfoils&quot;</span>
 <span class="n">airfoil</span> <span class="o">=</span> <span class="s2">&quot;flat0001&quot;</span>
+<span class="n">re</span> <span class="o">=</span> <span class="mi">3000</span>
 
-<span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR</span><span class="p">,</span><span class="n">airfoil</span><span class="p">,</span> <span class="n">airfoil</span> <span class="o">+</span> <span class="s2">&quot;.pol&quot;</span><span class="p">)</span>
+<span class="n">afname</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">airfoil</span><span class="si">}</span><span class="s1">_RE</span><span class="si">{</span><span class="n">re</span><span class="si">}</span><span class="s1">.pol&#39;</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR</span><span class="p">,</span><span class="n">airfoil</span><span class="p">,</span> <span class="n">afname</span><span class="p">)</span>
 <span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;loading:&quot;</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
@@ -419,7 +431,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loading: /Users/rblack/_dev/live-2022/mmtime/data/airfoils/flat0001/flat0001.pol
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loading: /Users/rblack/_dev/live-2022/mmtime/data/airfoils/flat0001/flat0001_RE3000.pol
 decoding
 </pre></div>
 </div>
@@ -429,13 +441,18 @@ decoding
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR</span><span class="p">,</span><span class="n">airfoil</span><span class="p">)</span>
 <span class="n">alpha</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dpath</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-20. -18. -16. -14. -12. -10.  -8.  -6.  -4.  -2.   0.   2.   4.   6.
-   8.  10.  12.  14.  16.  18.  20.]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;../../mmtime/data/airfoils/flat0001&#39;
 </pre></div>
 </div>
 </div>
@@ -538,16 +555,21 @@ decoding
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">CD</span><span class="p">,</span><span class="n">CL</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mmtime</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mmtime.utils</span> <span class="kn">import</span> <span class="n">show_curve</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">show_curve</span><span class="p">(</span><span class="n">CL</span><span class="p">,</span><span class="n">CD</span><span class="p">,</span><span class="s2">&quot;Prop Blade Polar&quot;</span><span class="p">,</span><span class="s2">&quot;$C_l$&quot;</span><span class="p">,</span><span class="s2">&quot;$C_d$&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x10f4e3460&gt;]
-</pre></div>
-</div>
-<img alt="../_images/10-a6-propeller-analysis_14_1.png" src="../_images/10-a6-propeller-analysis_14_1.png" />
+<img alt="../_images/10-a6-propeller-analysis_16_0.png" src="../_images/10-a6-propeller-analysis_16_0.png" />
 </div>
 </div>
 </div>
@@ -562,7 +584,7 @@ decoding
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-a6-propeller-analysis_17_0.png" src="../_images/10-a6-propeller-analysis_17_0.png" />
+<img alt="../_images/10-a6-propeller-analysis_19_0.png" src="../_images/10-a6-propeller-analysis_19_0.png" />
 </div>
 </div>
 <p>The blade is 2.5 inches long and is attached to a shaft with 0.5 inch clearance to get to the six inch maximum diameter allowed for this class. The leading edge and trailing edge were digitized separately.</p>
@@ -637,7 +659,7 @@ decoding
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-a6-propeller-analysis_25_0.png" src="../_images/10-a6-propeller-analysis_25_0.png" />
+<img alt="../_images/10-a6-propeller-analysis_27_0.png" src="../_images/10-a6-propeller-analysis_27_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -650,7 +672,7 @@ decoding
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-a6-propeller-analysis_26_0.png" src="../_images/10-a6-propeller-analysis_26_0.png" />
+<img alt="../_images/10-a6-propeller-analysis_28_0.png" src="../_images/10-a6-propeller-analysis_28_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -662,7 +684,7 @@ decoding
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-a6-propeller-analysis_27_0.png" src="../_images/10-a6-propeller-analysis_27_0.png" />
+<img alt="../_images/10-a6-propeller-analysis_29_0.png" src="../_images/10-a6-propeller-analysis_29_0.png" />
 </div>
 </div>
 <p>Now, we need an array of propeller stations and chords.</p>
@@ -675,16 +697,16 @@ decoding
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-a6-propeller-analysis_29_0.png" src="../_images/10-a6-propeller-analysis_29_0.png" />
+<img alt="../_images/10-a6-propeller-analysis_31_0.png" src="../_images/10-a6-propeller-analysis_31_0.png" />
 </div>
 </div>
-<p>The flying speed we want to analyze was found previously as 2.9389 MPH. We will use our blade analysis scheme to determining the efficiency of this propeller for that speed.</p>
+<p>The flying speed we want to analyze was found previously as 3.531 MPH. We will use our blade analysis scheme to determining the efficiency of this propeller for that speed.</p>
 <div class="section" id="load-blade-airfoil-data">
 <h2><span class="section-number">11.1. </span>Load Blade Airfoil Data<a class="headerlink" href="#load-blade-airfoil-data" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mmtime.AirfoilMgr</span> <span class="kn">import</span> <span class="n">AirfoilMgr</span>
-<span class="n">am</span> <span class="o">=</span> <span class="n">AirfoilMgr</span><span class="p">()</span>
+<span class="n">am</span> <span class="o">=</span> <span class="n">AirfoilMgr</span><span class="p">(</span><span class="s1">&#39;../../mmtime/data/airfoils&#39;</span><span class="p">)</span>
 <span class="c1">#am.showAirfoils()</span>
 <span class="n">am</span><span class="o">.</span><span class="n">selectAirfoil</span><span class="p">(</span><span class="s1">&#39;flat0001&#39;</span><span class="p">)</span>
 <span class="n">cl3</span><span class="p">,</span> <span class="n">cd3</span><span class="p">,</span> <span class="n">cm3</span><span class="p">,</span> <span class="n">cp3</span> <span class="o">=</span> <span class="n">am</span><span class="o">.</span><span class="n">loadData</span><span class="p">(</span><span class="s1">&#39;re3k&#39;</span><span class="p">)</span>
@@ -717,12 +739,12 @@ Loading flat0001
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Vinf</span> <span class="o">=</span> <span class="mf">2.9389</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">miles</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">hour</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Vinf</span> <span class="o">=</span> <span class="mf">3.531</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">miles</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">hour</span>
 <span class="n">pitch_angle</span> <span class="o">=</span> <span class="mi">45</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">degrees</span>
 <span class="n">radius</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inches</span>
 <span class="n">RPM</span> <span class="o">=</span> <span class="mi">3660</span> <span class="o">/</span> <span class="p">(</span><span class="mi">618</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">seconds</span><span class="p">)</span>
-<span class="n">RPM</span> <span class="o">=</span> <span class="n">RPM</span> <span class="o">*</span> <span class="mf">1.1</span>
-<span class="n">rho</span> <span class="o">=</span> <span class="mf">0.00231731</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">slugs</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">ft</span><span class="o">**</span><span class="mi">3</span>
+<span class="n">RPM</span> <span class="o">=</span> <span class="n">RPM</span> <span class="o">*</span> <span class="mf">1.1</span> <span class="c1"># adustment for testing</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="mf">1.1941523287329003</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">kilogram</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">meter</span> <span class="o">**</span> <span class="mi">3</span>
 <span class="n">omega</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">RPM</span>
 <span class="n">Nblades</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">R</span> <span class="o">=</span> <span class="n">xp</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">inches</span>
@@ -768,17 +790,17 @@ Loading flat0001
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/rblack/_dev/live-2022/.direnv/python-3.10.4/lib/python3.10/site-packages/scipy/interpolate/interpolate.py:927: UnitStrippedWarning: The unit of the quantity is stripped when downcasting to ndarray.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/rblack/_dev/live-2022/.direnv/python-3.10.5/lib/python3.10/site-packages/scipy/interpolate/interpolate.py:927: UnitStrippedWarning: The unit of the quantity is stripped when downcasting to ndarray.
   x = np.asarray(x)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.23279 &lt;Unit(&#39;mile / hour&#39;)&gt;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.8841000000000006 &lt;Unit(&#39;mile / hour&#39;)&gt;,
  74.24994668895516 &lt;Unit(&#39;inch / second&#39;)&gt;,
- 37.462639501085384 &lt;Unit(&#39;degree&#39;)&gt;,
- 7.537360498914616 &lt;Unit(&#39;degree&#39;)&gt;,
- array(0.50936473),
- array(0.10009059),
- 2.375997926336318 &lt;Unit(&#39;meter / second&#39;)&gt;)
+ 42.63503262972799 &lt;Unit(&#39;degree&#39;)&gt;,
+ 2.364967370272012 &lt;Unit(&#39;degree&#39;)&gt;,
+ array(0.1876561),
+ array(0.0585846),
+ 2.5635340634223223 &lt;Unit(&#39;meter / second&#39;)&gt;)
 </pre></div>
 </div>
 </div>
@@ -856,35 +878,24 @@ Loading flat0001
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C_T 0.1514197628558369 dimensionless 
-C_Q 0.06320987170063157 dimensionless 
-J 1.3233079781420765 dimensionless 
-eta_p 0.5045203813647932 dimensionless 
-Thrust 0.004140032227728423 kilogram * meter / second ** 2 
-torque 0.0002633849988586516 kilogram * meter ** 2 / second ** 2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C_T 0.10100553783631613 dimensionless 
+C_Q 0.05384840782963386 dimensionless 
+J 1.589914754098361 dimensionless 
+eta_p 0.4746421361906486 dimensionless 
+Thrust 0.0027613113268022027 kilogram * meter / second ** 2 
+torque 0.00022435100669020795 kilogram * meter ** 2 / second ** 2
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mf">0.000263385</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">kg</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">meter</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">second</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">T</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mf">0.0027613113268022027</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">kg</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">meter</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">second</span><span class="o">**</span><span class="mi">2</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html">0.000263385 kilogram meter<sup>2</sup>/second<sup>2</sup></div></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">gravity</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;inch*ounces&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">0.03729845888397937 inch ounce</div></div>
-</div>
+<p>This thrust if not what we want. It is off by a significant amount. Perhaps just picking the average RPM using the flight time ans winds is not a good idea. We need more information about the source of power - the rubber band.</p>
 </div>
 </div>
 

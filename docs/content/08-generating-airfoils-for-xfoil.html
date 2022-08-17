@@ -105,13 +105,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="02-hacklinger-theory.html">
-   2. Hacklinger’s Equation
+  <a class="reference internal" href="02-atmospheric-data.html">
+   2. Atmospheric Data
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="03-atmospheric-data.html">
-   3. Atmospheric Data
+  <a class="reference internal" href="03-hacklingers-equation.html">
+   3. Hacklinger’s Equation
   </a>
  </li>
  <li class="toctree-l1">
@@ -150,13 +150,48 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="11-rubber-motors.html">
+   12. Rubber Motors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-motor-speed.html">
+   13. Propeller Speed
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/10-minute-guide-to-python.html">
+   14. 10 Minute Guide to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/project-setup.html">
+   15. Installing This Project on Your Computer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/accessing-the-online-study.html">
+   16. Accessing The Online Study
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/brief-guide-to-using-jupyter.html">
+   17. Brief Guide to Using Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/running-xfoil-with-python.html">
+   18. Running XFOIL with Python
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   12. Bibliography
+   19. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="biography.html">
-   13. Biography
+   20. Biography
   </a>
  </li>
 </ul>
@@ -278,7 +313,7 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="generating-airfoils-for-xfoil">
 <h1><span class="section-number">8. </span>Generating Airfoils for XFoil<a class="headerlink" href="#generating-airfoils-for-xfoil" title="Permalink to this headline">¶</a></h1>
-<p>Generating airfoil data using computer-based tools is a common issue. Fortunately, there are many tools we can use. Unfortunately, many of those tools are written in other programming languages. For this study, I used a program that is very popular among model airplane designers: XFoil. This program was originally developed by Mark Drela at MIT as part of the Daedalus Project {cite}drela that built a man-powered airplane that flew over 72 miles in 1988!</p>
+<p>Generating airfoil data using computer-based tools is a common issue. Fortunately, there are many tools we can use. Unfortunately, many of those tools are written in other programming languages. For this study, I used a program that is very popular among model airplane designers: <em>XFoil</em><span id="id1">[<a class="reference internal" href="bibliography.html#id21">Dre</a>]</span>. This program was originally developed by Mark Drela at MIT as part of the Daedalus Project that built a man-powered airplane that flew over 72 miles in 1988!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
@@ -292,10 +327,10 @@
 </div>
 <p>This sure looks like an overgrown indoor model to me!
 XFoil was written in Fortran and released into the public domain. The program can be compiled on any system with a modern Fortran compiler. I use the Free Software Foundation’s <strong>gfortran</strong> compiler on my systems.</p>
-<p>I found an interesting project on <em>GitHub</em> created by engineers at the by the DARcorporation <span id="id1">[<a class="reference internal" href="bibliography.html#id21">DAR</a>]</span> that packages XFoil so it can be run from a Python program. Getting that running was not something I recommend to beginners, but I am working on that. I will show the results of my work here and refer you to the project website for updates.</p>
+<p>I found an interesting project on <em>GitHub</em> created by engineers at the by the DARcorporation <span id="id2">[<a class="reference internal" href="bibliography.html#id22">DAR</a>]</span> that packages <em>XFoil</em> so it can be run from a Python program. Getting that running was not something I recommend to beginners, but I am working on that. I will show the results of my work here and refer you to the project website for updates.</p>
 <p>I have packaged each airfoil considered for this study into Python classes that will produce a list of points for the camber line based on an input camber, chord length, and number of points desired. We will use those procedures in this section to generate a pseudo-thin airfoil suitable for testing using <em>XFoil</em>.</p>
-<p>The airfoil shape we will use is not as thin as those we typically use on indoor models. <em>XFoil</em> does not like that kind of airfoil. Instead, we will generate an airfoil of some specified thickness and add a round nose at the leading edge, and a short parabolic curve that does not quite close off the trailing edge. Again, <em>XFoil</em> works better if we do not generate a sharp point at the trailing edge. These design choices are based on work by Michael Reid<span id="id2">[<a class="reference internal" href="bibliography.html#id19">Rei06</a>]</span> in his Master’s Thesis project. Michael used <em>XFoil</em> to study thin airfoils with reflexed trailing edges.</p>
-<p>As a check of the basic camber line mechanism, we will draw a simplex airfoil as an example:</p>
+<p>The airfoil shape we will use is not as thin as those we typically use on indoor models. <em>XFoil</em> does not like that kind of airfoil. Instead, we will generate an airfoil of some specified thickness and add a round nose at the leading edge, and a short parabolic curve that does not quite close off the trailing edge. Again, <em>XFoil</em> works better if we do not generate a sharp point at the trailing edge. These design choices are based on work by Michael Reid<span id="id3">[<a class="reference internal" href="bibliography.html#id20">Rei06</a>]</span> in his Master’s Thesis project. Michael used <em>XFoil</em> to study thin airfoils with reflexed trailing edges.</p>
+<p>In this section, we will examine a simplex airfoil since that is what the <em>Wart</em> actually uses. The code we will use has been include din the project <strong>mmtime</strong> package, so we need to set up access to that code first.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -307,6 +342,7 @@ XFoil was written in Fortran and released into the public domain. The program ca
 </div>
 </div>
 </div>
+<p>Airfoil management is handled by the <strong>Airfoil</strong> module:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mmtime.Airfoil</span> <span class="kn">import</span> <span class="n">Airfoil</span>
@@ -314,10 +350,11 @@ XFoil was written in Fortran and released into the public domain. The program ca
 </div>
 </div>
 </div>
+<p>And here is how we create an airfoil for study:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chord</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">camber</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">camber</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># percent</span>
 <span class="n">thickness</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">npoints</span> <span class="o">=</span> <span class="mi">26</span>
 <span class="n">airfoil</span> <span class="o">=</span> <span class="n">Airfoil</span><span class="p">(</span><span class="s1">&#39;simplex&#39;</span><span class="p">,</span> <span class="n">chord</span><span class="p">,</span> <span class="n">camber</span><span class="p">,</span> <span class="n">thickness</span><span class="p">,</span> <span class="n">npoints</span><span class="p">)</span>
@@ -346,6 +383,7 @@ XFoil was written in Fortran and released into the public domain. The program ca
 </div>
 </div>
 </div>
+<p>Let’s take a look at the camber line and local slopes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">chord</span><span class="p">)</span>
@@ -358,10 +396,10 @@ XFoil was written in Fortran and released into the public domain. The program ca
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/08-generating-airfoils-for-xfoil_11_0.png" src="../_images/08-generating-airfoils-for-xfoil_11_0.png" />
+<img alt="../_images/08-generating-airfoils-for-xfoil_14_0.png" src="../_images/08-generating-airfoils-for-xfoil_14_0.png" />
 </div>
 </div>
-<p>This next example shoes a closeup of the leading edge needed for <em>XFoil</em> testing:</p>
+<p>This next example shows a closeup of the leading edge created for <em>XFoil</em> testing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xule</span><span class="p">,</span> <span class="n">yule</span><span class="p">,</span> <span class="n">xlle</span><span class="p">,</span> <span class="n">ylle</span> <span class="o">=</span> <span class="n">airfoil</span><span class="o">.</span><span class="n">get_le</span><span class="p">()</span>
@@ -391,17 +429,37 @@ XFoil was written in Fortran and released into the public domain. The program ca
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/08-generating-airfoils-for-xfoil_15_0.png" src="../_images/08-generating-airfoils-for-xfoil_15_0.png" />
+<img alt="../_images/08-generating-airfoils-for-xfoil_18_0.png" src="../_images/08-generating-airfoils-for-xfoil_18_0.png" />
 </div>
 </div>
-<p>Finally, here is the complete airfoil:</p>
+<p>The trailing edge just uses a simple parabolic arc from a point near the trailing edge to the tip. We leave a tiny gap there to improve <em>XFOIL</em>s perfomance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xute</span><span class="p">,</span><span class="n">yute</span><span class="p">,</span><span class="n">xlte</span><span class="p">,</span><span class="n">ylte</span> <span class="o">=</span> <span class="n">airfoil</span><span class="o">.</span><span class="n">get_te</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xute</span><span class="p">,</span> <span class="n">yute</span><span class="p">,</span> <span class="n">xlte</span><span class="p">,</span> <span class="n">ylte</span> <span class="o">=</span> <span class="n">airfoil</span><span class="o">.</span><span class="n">get_te</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">2.8</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xute</span><span class="p">,</span><span class="n">yute</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xlte</span><span class="p">,</span><span class="n">ylte</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span><span class="n">yc</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xu</span><span class="p">,</span><span class="n">yu</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span><span class="n">yl</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/08-generating-airfoils-for-xfoil_21_0.png" src="../_images/08-generating-airfoils-for-xfoil_21_0.png" />
+</div>
+</div>
+<p>The scaling of this figure definitely distorts the curves, but you can see the smooth transition and gap at the trailing edge.</p>
+<p>Here is the complete airfoil:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mf">1.6</span><span class="p">))</span>
@@ -419,20 +477,21 @@ XFoil was written in Fortran and released into the public domain. The program ca
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/08-generating-airfoils-for-xfoil_18_0.png" src="../_images/08-generating-airfoils-for-xfoil_18_0.png" />
+<img alt="../_images/08-generating-airfoils-for-xfoil_24_0.png" src="../_images/08-generating-airfoils-for-xfoil_24_0.png" />
 </div>
 </div>
 <p>For our indoor models, a rounded trailing edge might be more suitable, but Michael reported convergence problems when hr tried to get <em>XFoil</em> to analyze airfoils of that type. I may test that later.</p>
 <p>This next block creates the final data file needed by <em>XFoil</em>. These files are stored in folders with the airfoil name under <strong>mmtime/data/airfoils</strong> in the project code directory. Coefficient data will be placed in the same directory in a later step.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">projdir</span><span class="p">,</span><span class="s1">&#39;mmtime/airfoil&#39;</span><span class="p">)</span>
-<span class="n">airfoil</span><span class="o">.</span><span class="n">xfoil_data_file</span><span class="p">(</span><span class="n">xpath</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">projdir</span><span class="p">,</span><span class="s1">&#39;mmtime/data/airfoils&#39;</span><span class="p">)</span>
+<span class="n">airfoil</span><span class="o">.</span><span class="n">gen_xfoil_data_file</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generating: /Users/rblack/_dev/live-2022/mmtime/airfoil/simplex0501.dat
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generating: /Users/rblack/_dev/live-2022/mmtime/data/airfoils/simplex0501/simplex0501.dat
+done...
 </pre></div>
 </div>
 </div>
@@ -445,17 +504,23 @@ XFoil was written in Fortran and released into the public domain. The program ca
 <span class="n">npoints</span> <span class="o">=</span> <span class="mi">51</span>
 <span class="k">for</span> <span class="n">camber</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">):</span>
     <span class="n">airfoil</span> <span class="o">=</span> <span class="n">Airfoil</span><span class="p">(</span><span class="s1">&#39;simplex&#39;</span><span class="p">,</span> <span class="n">chord</span><span class="p">,</span> <span class="n">camber</span><span class="p">,</span> <span class="n">thickness</span><span class="p">,</span> <span class="n">npoints</span><span class="p">)</span>
-    <span class="n">airfoil</span><span class="o">.</span><span class="n">xfoil_data_file</span><span class="p">(</span><span class="n">xpath</span><span class="p">)</span>
+    <span class="n">airfoil</span><span class="o">.</span><span class="n">gen_xfoil_data_file</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generating: /Users/rblack/_dev/live-2022/mmtime/airfoil/simplex0101.dat
-Generating: /Users/rblack/_dev/live-2022/mmtime/airfoil/simplex0201.dat
-Generating: /Users/rblack/_dev/live-2022/mmtime/airfoil/simplex0301.dat
-Generating: /Users/rblack/_dev/live-2022/mmtime/airfoil/simplex0401.dat
-Generating: /Users/rblack/_dev/live-2022/mmtime/airfoil/simplex0501.dat
-Generating: /Users/rblack/_dev/live-2022/mmtime/airfoil/simplex0601.dat
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generating: /Users/rblack/_dev/live-2022/mmtime/data/airfoils/simplex0101/simplex0101.dat
+done...
+Generating: /Users/rblack/_dev/live-2022/mmtime/data/airfoils/simplex0201/simplex0201.dat
+done...
+Generating: /Users/rblack/_dev/live-2022/mmtime/data/airfoils/simplex0301/simplex0301.dat
+done...
+Generating: /Users/rblack/_dev/live-2022/mmtime/data/airfoils/simplex0401/simplex0401.dat
+done...
+Generating: /Users/rblack/_dev/live-2022/mmtime/data/airfoils/simplex0501/simplex0501.dat
+done...
+Generating: /Users/rblack/_dev/live-2022/mmtime/data/airfoils/simplex0601/simplex0601.dat
+done...
 </pre></div>
 </div>
 </div>
