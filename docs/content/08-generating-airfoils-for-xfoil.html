@@ -155,43 +155,38 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="12-motor-speed.html">
-   13. Propeller Speed
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../appendix/10-minute-guide-to-python.html">
-   14. 10 Minute Guide to Python
+   13. 10 Minute Guide to Python
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/project-setup.html">
-   15. Installing This Project on Your Computer
+   14. Installing This Project on Your Computer
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/accessing-the-online-study.html">
-   16. Accessing The Online Study
+   15. Accessing The Online Study
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/brief-guide-to-using-jupyter.html">
-   17. Brief Guide to Using Jupyter
+   16. Brief Guide to Using Jupyter
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/running-xfoil-with-python.html">
-   18. Running XFOIL with Python
+   17. Running XFOIL with Python
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   19. Bibliography
+   18. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="biography.html">
-   20. Biography
+   19. Biography
   </a>
  </li>
 </ul>
@@ -313,7 +308,7 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="generating-airfoils-for-xfoil">
 <h1><span class="section-number">8. </span>Generating Airfoils for XFoil<a class="headerlink" href="#generating-airfoils-for-xfoil" title="Permalink to this headline">¶</a></h1>
-<p>Generating airfoil data using computer-based tools is a common issue. Fortunately, there are many tools we can use. Unfortunately, many of those tools are written in other programming languages. For this study, I used a program that is very popular among model airplane designers: <em>XFoil</em><span id="id1">[<a class="reference internal" href="bibliography.html#id21">Dre</a>]</span>. This program was originally developed by Mark Drela at MIT as part of the Daedalus Project that built a man-powered airplane that flew over 72 miles in 1988!</p>
+<p>Generating airfoil data using computer-based tools is a common issue. Fortunately, there are many tools we can use. Unfortunately, many of those tools are written in other programming languages. For this study, I used a program that is very popular among model airplane designers: <em>XFoil</em><span id="id1">[<a class="reference internal" href="bibliography.html#id22">Dre</a>]</span>. This program was originally developed by Mark Drela at MIT as part of the Daedalus Project that built a man-powered airplane that flew over 72 miles in 1988!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
@@ -327,9 +322,9 @@
 </div>
 <p>This sure looks like an overgrown indoor model to me!
 XFoil was written in Fortran and released into the public domain. The program can be compiled on any system with a modern Fortran compiler. I use the Free Software Foundation’s <strong>gfortran</strong> compiler on my systems.</p>
-<p>I found an interesting project on <em>GitHub</em> created by engineers at the by the DARcorporation <span id="id2">[<a class="reference internal" href="bibliography.html#id22">DAR</a>]</span> that packages <em>XFoil</em> so it can be run from a Python program. Getting that running was not something I recommend to beginners, but I am working on that. I will show the results of my work here and refer you to the project website for updates.</p>
+<p>I found an interesting project on <em>GitHub</em> created by engineers at the by the DARcorporation <span id="id2">[<a class="reference internal" href="bibliography.html#id23">DAR</a>]</span> that packages <em>XFoil</em> so it can be run from a Python program. Getting that running was not something I recommend to beginners, but I am working on that. I will show the results of my work here and refer you to the project website for updates.</p>
 <p>I have packaged each airfoil considered for this study into Python classes that will produce a list of points for the camber line based on an input camber, chord length, and number of points desired. We will use those procedures in this section to generate a pseudo-thin airfoil suitable for testing using <em>XFoil</em>.</p>
-<p>The airfoil shape we will use is not as thin as those we typically use on indoor models. <em>XFoil</em> does not like that kind of airfoil. Instead, we will generate an airfoil of some specified thickness and add a round nose at the leading edge, and a short parabolic curve that does not quite close off the trailing edge. Again, <em>XFoil</em> works better if we do not generate a sharp point at the trailing edge. These design choices are based on work by Michael Reid<span id="id3">[<a class="reference internal" href="bibliography.html#id20">Rei06</a>]</span> in his Master’s Thesis project. Michael used <em>XFoil</em> to study thin airfoils with reflexed trailing edges.</p>
+<p>The airfoil shape we will use is not as thin as those we typically use on indoor models. <em>XFoil</em> does not like that kind of airfoil. Instead, we will generate an airfoil of some specified thickness and add a round nose at the leading edge, and a short parabolic curve that does not quite close off the trailing edge. Again, <em>XFoil</em> works better if we do not generate a sharp point at the trailing edge. These design choices are based on work by Michael Reid<span id="id3">[<a class="reference internal" href="bibliography.html#id21">Rei06</a>]</span> in his Master’s Thesis project. Michael used <em>XFoil</em> to study thin airfoils with reflexed trailing edges.</p>
 <p>In this section, we will examine a simplex airfoil since that is what the <em>Wart</em> actually uses. The code we will use has been include din the project <strong>mmtime</strong> package, so we need to set up access to that code first.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -490,7 +485,7 @@ XFoil was written in Fortran and released into the public domain. The program ca
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generating: /Users/rblack/_dev/live-2022/mmtime/data/airfoils/simplex0501/simplex0501.dat
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generating: /Users/rblack/_dev/indoor-research/live-2022/mmtime/data/airfoils/simplex0501/simplex0501.dat
 done...
 </pre></div>
 </div>
@@ -509,17 +504,17 @@ done...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generating: /Users/rblack/_dev/live-2022/mmtime/data/airfoils/simplex0101/simplex0101.dat
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generating: /Users/rblack/_dev/indoor-research/live-2022/mmtime/data/airfoils/simplex0101/simplex0101.dat
 done...
-Generating: /Users/rblack/_dev/live-2022/mmtime/data/airfoils/simplex0201/simplex0201.dat
+Generating: /Users/rblack/_dev/indoor-research/live-2022/mmtime/data/airfoils/simplex0201/simplex0201.dat
 done...
-Generating: /Users/rblack/_dev/live-2022/mmtime/data/airfoils/simplex0301/simplex0301.dat
+Generating: /Users/rblack/_dev/indoor-research/live-2022/mmtime/data/airfoils/simplex0301/simplex0301.dat
 done...
-Generating: /Users/rblack/_dev/live-2022/mmtime/data/airfoils/simplex0401/simplex0401.dat
+Generating: /Users/rblack/_dev/indoor-research/live-2022/mmtime/data/airfoils/simplex0401/simplex0401.dat
 done...
-Generating: /Users/rblack/_dev/live-2022/mmtime/data/airfoils/simplex0501/simplex0501.dat
+Generating: /Users/rblack/_dev/indoor-research/live-2022/mmtime/data/airfoils/simplex0501/simplex0501.dat
 done...
-Generating: /Users/rblack/_dev/live-2022/mmtime/data/airfoils/simplex0601/simplex0601.dat
+Generating: /Users/rblack/_dev/indoor-research/live-2022/mmtime/data/airfoils/simplex0601/simplex0601.dat
 done...
 </pre></div>
 </div>

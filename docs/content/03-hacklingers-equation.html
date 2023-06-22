@@ -157,43 +157,38 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="12-motor-speed.html">
-   13. Propeller Speed
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../appendix/10-minute-guide-to-python.html">
-   14. 10 Minute Guide to Python
+   13. 10 Minute Guide to Python
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/project-setup.html">
-   15. Installing This Project on Your Computer
+   14. Installing This Project on Your Computer
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/accessing-the-online-study.html">
-   16. Accessing The Online Study
+   15. Accessing The Online Study
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/brief-guide-to-using-jupyter.html">
-   17. Brief Guide to Using Jupyter
+   16. Brief Guide to Using Jupyter
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/running-xfoil-with-python.html">
-   18. Running XFOIL with Python
+   17. Running XFOIL with Python
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   19. Bibliography
+   18. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="biography.html">
-   20. Biography
+   19. Biography
   </a>
  </li>
 </ul>
@@ -355,9 +350,9 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="hacklingers-equation">
 <h1><span class="section-number">3. </span>Hacklinger’s Equation<a class="headerlink" href="#hacklingers-equation" title="Permalink to this headline">¶</a></h1>
-<p>One of the key assumptions in Doug’s method was based on an extensive study of indoor model aerodynamics conducted by Max Hacklinger <span id="id1">[<a class="reference internal" href="bibliography.html#id11">Hac64</a>]</span>. After conducting many flight experiments, Max presented this equation to estimate flight times for indoor models.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9be10ae0-7b9c-4796-afd5-c69dca0580ff">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-9be10ae0-7b9c-4796-afd5-c69dca0580ff" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>One of the key assumptions in Doug’s method was based on an extensive study of indoor model aerodynamics conducted by Max Hacklinger <span id="id1">[<a class="reference internal" href="bibliography.html#id12">Hac64</a>]</span>. After conducting many flight experiments, Max presented this equation to estimate flight times for indoor models.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b3cc1baa-740a-4eb8-9c0b-2a2d21fe2c68">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-b3cc1baa-740a-4eb8-9c0b-2a2d21fe2c68" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 time = \frac{H_eW_r}{2\pi Q_h n_h}
 \end{equation}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(H_e\)</span> is a constant “energy height” which Max set at 900 meters, <span class="math notranslate nohighlight">\(W_r\)</span> is the weight of the motor, <span class="math notranslate nohighlight">\(Q_h\)</span> is the average torque over the flight, and <span class="math notranslate nohighlight">\(n_h\)</span> is the average flight prop speed (RPM) for the flight.</p>
@@ -416,8 +411,8 @@ Do not trust these equations yet!</p>
 <li><p>Angular velocity (<span class="math notranslate nohighlight">\(\omega\)</span>) is the rotational speed.</p></li>
 </ul>
 <p>These are related by this equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-85b6cce5-25f7-4d14-a24d-99a89a076a4b">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-85b6cce5-25f7-4d14-a24d-99a89a076a4b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5c1d21ac-9508-49ff-8763-047bb605d293">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-5c1d21ac-9508-49ff-8763-047bb605d293" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P = \tau \omega
 \end{equation}\]</div>
 <p>We know that the torque provided by our rubber motor varies greatly over the flight time. It is very high on launch causing the airplane to climb rapidly. As the <em>torque burst</em> fades, so does the climb, and we enter a period of cruise where altitude is lost slowly. Finally, the model descends to the ground. If we are lucky, the landing happens as the motor runs out of turns.</p>
@@ -442,36 +437,36 @@ P = \tau \omega
 <p>Where <span class="math notranslate nohighlight">\(Q\)</span> is the torque (measured in CM grams) and N is the turn count.</p>
 <p>Hacklinger theorized that the energy expended in the climb is approximately equal to the energy expended during descent, so we should be able to use to the average energy labeled <span class="math notranslate nohighlight">\(Q_H\)</span> in the figure to estimate flying time. The areas indocated  by <span class="math notranslate nohighlight">\(\Phi\)</span> should be equal.</p>
 <p>In working through the power available to an indoor model, he presented a term called the <em>Energy Height</em> which is defined as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3247f78e-4e03-4366-9574-2baefd3cd330">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-3247f78e-4e03-4366-9574-2baefd3cd330" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c767f8bb-d055-4843-8636-4ffefb9f44ac">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-c767f8bb-d055-4843-8636-4ffefb9f44ac" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 H_e = \frac{work}{w_{motor}}
 \end{equation}\]</div>
 <p>Work is the application of a force over a distance. The fore we are interested in from our propeller is the thrust force <span class="math notranslate nohighlight">\(T\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-620b01c7-b042-4133-9642-4d39e6304fd6">
-<span class="eqno">(3.4)<a class="headerlink" href="#equation-620b01c7-b042-4133-9642-4d39e6304fd6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3fac4f3b-c27b-4507-8189-1c2d7fa82596">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-3fac4f3b-c27b-4507-8189-1c2d7fa82596" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 W = T x
 \end{equation}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(x\)</span> is the distance we have moved.</p>
 <p>Taking the derivative of this equation gives:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a88e25ca-2e9b-473c-a290-e00671f4d4aa">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-a88e25ca-2e9b-473c-a290-e00671f4d4aa" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-43f19997-5380-4c6d-9765-57787feb5c06">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-43f19997-5380-4c6d-9765-57787feb5c06" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{dW}{dt} = T \frac{dx}{dt} + x \frac{dT}{dt}
 \end{equation}\]</div>
 <p>Testing showed that for indoor models, <span class="math notranslate nohighlight">\(H_e\)</span> is approximately constant and has a value of 900 meters.</p>
 <p>Velocity is the time rate of change of distance. If the Work expended varies over time, so the Thrust must also vary over time if this equation is to hold. Therefore:</p>
 <p>If <span class="math notranslate nohighlight">\(\eta\)</span> is the propeller efficiency, which is a measure of its ability to convert the torque applied to the propeller to the increase in velocity of the asir through the propeller disk, then we get this equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c69c134b-1d3c-4eea-974a-403a26d25053">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-c69c134b-1d3c-4eea-974a-403a26d25053" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-698772ee-32c6-4b57-ac27-fc7d160fc310">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-698772ee-32c6-4b57-ac27-fc7d160fc310" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 t = \eta E/P
 \end{equation}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(E\)</span> is the available energy, and <span class="math notranslate nohighlight">\(P\)</span> is the power available from the propeller.</p>
 <p>Hacklinger then provides an equation for the rate of climb of a model</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a123386c-832d-44a9-a411-ea8c29e2cb27">
-<span class="eqno">(3.7)<a class="headerlink" href="#equation-a123386c-832d-44a9-a411-ea8c29e2cb27" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1f04df76-b721-4567-94a4-3a392ea36dec">
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-1f04df76-b721-4567-94a4-3a392ea36dec" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{dh}{dt} = \frac{P \eta}{W} - \sqrt{\frac{2 W C_d^2}{\rho S C_l^3}}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-76c669a0-94c7-4448-bb08-4594f015d7ab">
-<span class="eqno">(3.8)<a class="headerlink" href="#equation-76c669a0-94c7-4448-bb08-4594f015d7ab" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b6e5116c-f6ff-482f-a23f-2548053e4aa6">
+<span class="eqno">(3.8)<a class="headerlink" href="#equation-b6e5116c-f6ff-482f-a23f-2548053e4aa6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{dh}{dt} = \frac{\eta}{W} \frac{dE}{dt} - k_1\sqrt{W}
 \end{equation}\]</div>
 <div class="cell docutils container">

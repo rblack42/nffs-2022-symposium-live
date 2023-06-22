@@ -155,43 +155,38 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="12-motor-speed.html">
-   13. Propeller Speed
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../appendix/10-minute-guide-to-python.html">
-   14. 10 Minute Guide to Python
+   13. 10 Minute Guide to Python
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/project-setup.html">
-   15. Installing This Project on Your Computer
+   14. Installing This Project on Your Computer
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/accessing-the-online-study.html">
-   16. Accessing The Online Study
+   15. Accessing The Online Study
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/brief-guide-to-using-jupyter.html">
-   17. Brief Guide to Using Jupyter
+   16. Brief Guide to Using Jupyter
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/running-xfoil-with-python.html">
-   18. Running XFOIL with Python
+   17. Running XFOIL with Python
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   19. Bibliography
+   18. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="biography.html">
-   20. Biography
+   19. Biography
   </a>
  </li>
 </ul>
@@ -339,7 +334,7 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="overview">
 <h1><span class="section-number">1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<p>In the new Data Science profession, researchers are collecting large sets of data, often from Internet sources, and analyzing that data using an amazing array of <em>Python</em> tools. In my <em>Math Majik</em> <span id="id1">[<a class="reference internal" href="bibliography.html#id16">Blaa</a>]</span> project, which I presented in the 2021 edition of the <em>NFFS Symposium</em> <span id="id2">[<a class="reference internal" href="bibliography.html#id2">Bla21</a>]</span>, I showed a bit of <em>Python</em> code that can be used to estimate the model weight and center of gravity location for an indoor model design created using <em>OpenSCAD</em>.  In this article, we will extend that work by adding tools you can use to analyze the design and help estimate flight times as well. I think you will be surprised at how easy data analysis can be if you use the modern tools that are hugely popular in today’s research world.</p>
+<p>In the new Data Science profession, researchers are collecting large sets of data, often from Internet sources, and analyzing that data using an amazing array of <em>Python</em> tools. In my <em>Math Majik</em> <span id="id1">[<a class="reference internal" href="bibliography.html#id17">Blaa</a>]</span> project, which I presented in the 2021 edition of the <em>NFFS Symposium</em> <span id="id2">[<a class="reference internal" href="bibliography.html#id2">Bla21</a>]</span>, I showed a bit of <em>Python</em> code that can be used to estimate the model weight and center of gravity location for an indoor model design created using <em>OpenSCAD</em>.  In this article, we will extend that work by adding tools you can use to analyze the design and help estimate flight times as well. I think you will be surprised at how easy data analysis can be if you use the modern tools that are hugely popular in today’s research world.</p>
 <p>Rather than continue analyzing the <em>Limited Penny Plane</em> design I showed previously, I am going to base this current study on Gary Hodson’s Model of the Year <em>Wart-A6</em> <span id="id3">[<a class="reference internal" href="bibliography.html#id7">Hod10</a>]</span>. Gary is a fellow club member in the <em>Heart of America Free Flight Association</em>, and he has graciously provided flight data and many conversations on his model and his record-setting flights with his design.</p>
 <p>Here is our test model:</p>
 <div class="cell docutils container">
@@ -365,11 +360,11 @@ get interesting results on your personal computer.</p>
 <p>We will work through several aspects of aerodynamic analysis aimed at
 predicting flight times, introducing tools and techniques as we proceed. For simplicity, we will focus on 2D aerodynamics. We will leave a 3D study for another time.</p>
 <p>If you have some experience with programming, the example code included here should be easy enough to follow. An online version of this study, complete with more details on the code developed, is available at https:rblack42.github.com/nffs-2022-symposium-live/. Those with no programming experience should read the 10 Minute Guide to Python in the Appendix.</p>
-<p>Doug drew on extensive research into indoor flight conducted by Max Hacklinger <span id="id6">[<a class="reference internal" href="bibliography.html#id11">Hac64</a>]</span>, and several classical books on flight that I happen to have in my library. In addition, I will use research by Walter Erbach <span id="id7">[<a class="reference internal" href="bibliography.html#id6">Erb90</a>]</span> and Bud Tenny <span id="id8">[<a class="reference internal" href="bibliography.html#id12">Ten68</a>]</span> and a few others. We will work through Doug’s development and demonstrate his scheme using some interesting Python tools to conduct the calculations and check the math!</p>
+<p>Doug drew on extensive research into indoor flight conducted by Max Hacklinger <span id="id6">[<a class="reference internal" href="bibliography.html#id12">Hac64</a>]</span>, and several classical books on flight that I happen to have in my library. In addition, I will use research by Walter Erbach <span id="id7">[<a class="reference internal" href="bibliography.html#id6">Erb90</a>]</span> and Bud Tenny <span id="id8">[<a class="reference internal" href="bibliography.html#id13">Ten68</a>]</span> and a few others. We will work through Doug’s development and demonstrate his scheme using some interesting Python tools to conduct the calculations and check the math!</p>
 <p>Everything you see in this article can be recreated on you own computer if you are willing to do some setup, or you can play with it using a free web interface.</p>
 <div class="section" id="jupyter-notebooks">
 <h2><span class="section-number">1.1. </span>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this headline">¶</a></h2>
-<p>The original document you are reading was developed using a tool very popular in the <em>Data Science</em> world: <em>Jupyter</em>. This is a web based tool that you can install on your personal computer. This program lets you create <em>notebooks</em> where you document your research work, complete with nice figures, math, and code that you can actually run as you work through a development. You cannot easily create a conventional program with <em>Jupyter</em>, but you can write parts of a program that can be copied to a more normal development environment for proper testing and deployment. The program developed as part of this article is available from my <em>GitHub</em> repository <span id="id9">[<a class="reference internal" href="bibliography.html#id17">Blab</a>]</span>.</p>
+<p>The original document you are reading was developed using a tool very popular in the <em>Data Science</em> world: <em>Jupyter</em>. This is a web based tool that you can install on your personal computer. This program lets you create <em>notebooks</em> where you document your research work, complete with nice figures, math, and code that you can actually run as you work through a development. You cannot easily create a conventional program with <em>Jupyter</em>, but you can write parts of a program that can be copied to a more normal development environment for proper testing and deployment. The program developed as part of this article is available from my <em>GitHub</em> repository <span id="id9">[<a class="reference internal" href="bibliography.html#id18">Blab</a>]</span>.</p>
 <p>If you want to try working through the code I developed for this project, there is a basic guide to getting set up in the appendix (see <a class="reference external" href="#setup_guide">Setup Guide</a>).</p>
 <p>A really neat benefit of working with <em>Jupyter</em> is the existence of free services that let anyone with a web browser experience the research environment I used on my personal laptop. Basically, these free services create a “virtual” computer and then install everything you need on that virtual computer to run a <em>Jupyter</em> web server you can interact with using just your normal web browser. The latest copy of my code gets loaded into this machine from its home on <em>GitHub</em>, and you can experiment with it as you like. You are working on a copy of my code, so you cannot hurt anything. When you close your browser, the virtual machine is destroyed, freeing up the service to support the next person who happens by. I am using the <em>Binder</em> service for this. the project is available at <a class="reference external" href="https://mybinder.org/v2/gh/rblack42/nffs-2020-symposium-live/HEAD">https://mybinder.org/v2/gh/rblack42/nffs-2020-symposium-live/HEAD</a>. A brief overview of using this system is in the appendix (see <a class="reference external" href="#binder_guide">Binder Guide</a>).</p>
 <p>Not all code developed for this project will be presented in this discussion. All code is avaliable at the project Github directory at <a class="reference external" href="https://github.com/rblack42/nffs-2022-symposium-live">https://github.com/rblack42/nffs-2022-symposium-live</a>.</p>

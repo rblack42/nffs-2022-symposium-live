@@ -157,13 +157,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="12-motor-speed.html">
-   13. Propeller Speed
+  <a class="reference internal" href="../appendix/10-minute-guide-to-python.html">
+   13. 10 Minute Guide to Python
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../appendix/10-minute-guide-to-python.html">
-   14. 10 Minute Guide to Python
+  <a class="reference internal" href="../appendix/project-setup.html">
+   14. Installing This Project on Your Computer
   </a>
  </li>
  <li class="toctree-l1">
@@ -177,13 +177,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/running-xfoil-with-python.html">
+   17. Running XFOIL with Python
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   17. Bibliography
+   18. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="biography.html">
-   18. Biography
+   19. Biography
   </a>
  </li>
 </ul>
@@ -407,7 +412,7 @@
 <div class="section" id="coefficient-data-for-3-arc">
 <h2><span class="section-number">5.1. </span>Coefficient Data for 3% Arc<a class="headerlink" href="#coefficient-data-for-3-arc" title="Permalink to this headline">¶</a></h2>
 <p>To analyze the Wart’s flights, we need some airfoil data. The wart uses a simplex airfoil for the wing and stab. Looking for suitable experimental data for this shape did not turn up anything useful. However, I was able to find some data for another common airfoil, the circular arc.</p>
-<p>Research into the flight of insects <span id="id1">[<a class="reference internal" href="bibliography.html#id15">ME16</a>]</span> produced some test data that seems appropriate for this study. Here is a sample of that data.</p>
+<p>Research into the flight of insects <span id="id1">[<a class="reference internal" href="bibliography.html#id16">ME16</a>]</span> produced some test data that seems appropriate for this study. Here is a sample of that data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
@@ -453,7 +458,7 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ws</span><span class="o">/</span><span class="mi">5</span><span class="n">h_x4h713cg8w0jmrm5_tfzc0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_26040</span><span class="o">/</span><span class="mf">2874440686.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ws</span><span class="o">/</span><span class="mi">5</span><span class="n">h_x4h713cg8w0jmrm5_tfzc0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46121</span><span class="o">/</span><span class="mf">2874440686.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">clfile</span> <span class="o">=</span> <span class="n">datadir</span> <span class="o">/</span> <span class="s1">&#39;CL-re3k.csv&#39;</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">cl_x</span><span class="p">,</span> <span class="n">cl_y</span> <span class="o">=</span> <span class="n">get_points</span><span class="p">(</span><span class="n">clfile</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">alpha_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">cl_x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cl_x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">50</span><span class="p">)</span>

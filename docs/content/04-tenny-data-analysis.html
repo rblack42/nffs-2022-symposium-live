@@ -157,43 +157,38 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="12-motor-speed.html">
-   13. Propeller Speed
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../appendix/10-minute-guide-to-python.html">
-   14. 10 Minute Guide to Python
+   13. 10 Minute Guide to Python
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/project-setup.html">
-   15. Installing This Project on Your Computer
+   14. Installing This Project on Your Computer
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/accessing-the-online-study.html">
-   16. Accessing The Online Study
+   15. Accessing The Online Study
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/brief-guide-to-using-jupyter.html">
-   17. Brief Guide to Using Jupyter
+   16. Brief Guide to Using Jupyter
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../appendix/running-xfoil-with-python.html">
-   18. Running XFOIL with Python
+   17. Running XFOIL with Python
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   19. Bibliography
+   18. Bibliography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="biography.html">
-   20. Biography
+   19. Biography
   </a>
  </li>
 </ul>
@@ -454,7 +449,7 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="tennys-flight-path-data">
 <h1><span class="section-number">4. </span>Tenny’s Flight Path Data<a class="headerlink" href="#tennys-flight-path-data" title="Permalink to this headline">¶</a></h1>
 <p>In conducting a study like this, it helps to have experimental data available. We can use those data to validate our work and gaining confidence in the tools we use to conduct the research. I did some research and came up with several interesting results.</p>
-<p>Bud Tenny conducted an extensive study of indoor model flight paths in his 1968 Symposium article <span id="id1">[<a class="reference internal" href="bibliography.html#id12">Ten68</a>]</span> and presented a graphical technique for estimating flight time.  Bud managed to get some nice data from actual flights of indoor models. Not much detail is provided on the model making those flights, but Bud shows torque curves, flight path data, and rpm data for his test flights. Let’s explore his findings and use Python to see what we can do with them.</p>
+<p>Bud Tenny conducted an extensive study of indoor model flight paths in his 1968 Symposium article <span id="id1">[<a class="reference internal" href="bibliography.html#id13">Ten68</a>]</span> and presented a graphical technique for estimating flight time.  Bud managed to get some nice data from actual flights of indoor models. Not much detail is provided on the model making those flights, but Bud shows torque curves, flight path data, and rpm data for his test flights. Let’s explore his findings and use Python to see what we can do with them.</p>
 <p>Bud presented his results as a set of graphs in his symposium article. Staring at those plots is nice, but we need the data behind the plots to do much work with these results. The article included some tabulated results, but most of the results are just graphs, so we seem to be stuck. Or are we?</p>
 <div class="section" id="digitizing-graphical-data">
 <h2><span class="section-number">4.1. </span>Digitizing Graphical Data<a class="headerlink" href="#digitizing-graphical-data" title="Permalink to this headline">¶</a></h2>
@@ -839,8 +834,8 @@ We create a curve fit function by passing the curve points to our fitting routin
 <div class="section" id="propeller-power">
 <h3><span class="section-number">4.5.2. </span>Propeller Power<a class="headerlink" href="#propeller-power" title="Permalink to this headline">¶</a></h3>
 <p>Let’s try something a bit more complicated. We have shown how to generate functions that represent our input data. I want to see the propeller power curve, but I do not have that data available. What I do have is propeller speed as a function of time, and torque as a function of turns.  If I integrate the propeller speed function I can get turns as a function of time, then pass that into the torque function to get torque as a function of time. I can combine the results to get the power I want using this formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6f1f17b7-f8cd-4736-9c4a-8f555cf3c7c5">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-6f1f17b7-f8cd-4736-9c4a-8f555cf3c7c5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f53714c1-59ee-4edb-b536-7f71bf04dbd5">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-f53714c1-59ee-4edb-b536-7f71bf04dbd5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P = 2\pi n Q
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n\)</span> is the prop speed (rpm) and <span class="math notranslate nohighlight">\(Q\)</span> is the torque.</p>
@@ -849,27 +844,27 @@ P = 2\pi n Q
 <ul class="simple">
 <li><p>torque as a function of turns (<strong>q_n</strong>)</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-43d257f2-854a-4128-960f-a2522d937142">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-43d257f2-854a-4128-960f-a2522d937142" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e6e31d52-4b87-48ca-88f6-5b9043dac5c2">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-e6e31d52-4b87-48ca-88f6-5b9043dac5c2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 q_n = Q(n)
 \end{equation}\]</div>
 <ul class="simple">
 <li><p>RPM as a function of time (<strong>fn_t</strong>)</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-387cc612-3e28-4a60-918b-f20ec9f7567a">
-<span class="eqno">(4.3)<a class="headerlink" href="#equation-387cc612-3e28-4a60-918b-f20ec9f7567a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-91d542d4-251a-4939-af84-4b4600aa4f29">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-91d542d4-251a-4939-af84-4b4600aa4f29" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 rpm_t = R(t)
 \end{equation}\]</div>
 <ul class="simple">
 <li><p>turns as a function of time (<strong>n_t</strong>)</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-8c9bfa4b-325c-49b8-8cfe-751bb9b6e8d5">
-<span class="eqno">(4.4)<a class="headerlink" href="#equation-8c9bfa4b-325c-49b8-8cfe-751bb9b6e8d5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ba8ca755-8a4d-4961-884e-cb5f337be5c4">
+<span class="eqno">(4.4)<a class="headerlink" href="#equation-ba8ca755-8a4d-4961-884e-cb5f337be5c4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 n_t = N(t) 
 \end{equation}\]</div>
 <p>So, if we have a given time <span class="math notranslate nohighlight">\(t\)</span> then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-06ac971f-879c-4202-b7dc-9f913c581b01">
-<span class="eqno">(4.5)<a class="headerlink" href="#equation-06ac971f-879c-4202-b7dc-9f913c581b01" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-11b294ba-f9cf-40cd-a06f-ecc7ca52447f">
+<span class="eqno">(4.5)<a class="headerlink" href="#equation-11b294ba-f9cf-40cd-a06f-ecc7ca52447f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 q_t = Q(R(t))
 \end{equation}\]</div>
 <p>We have rpm data measured over time. If we integrate that function we will get a function for turns as a function of time.</p>

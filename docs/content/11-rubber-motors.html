@@ -421,8 +421,8 @@
 <div class="section" id="motor-available-energy">
 <h2><span class="section-number">12.1. </span>Motor Available Energy<a class="headerlink" href="#motor-available-energy" title="Permalink to this headline">¶</a></h2>
 <p>In Doug McLean’s paper, we see this formula for the total energy we can get out of a rubber motor:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-27521fec-e5c6-4ae6-87b2-4cce972088f7">
-<span class="eqno">(12.1)<a class="headerlink" href="#equation-27521fec-e5c6-4ae6-87b2-4cce972088f7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d6d6e780-5ae3-40d2-abc3-f01697f1ab35">
+<span class="eqno">(12.1)<a class="headerlink" href="#equation-d6d6e780-5ae3-40d2-abc3-f01697f1ab35" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 E = K_m w_m
 \end{equation}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(K_m\)</span> is a constant equal to 30,000 inches and <span class="math notranslate nohighlight">\(w_m\)</span> is the motor weight. Basically, this formula says that the energy we can get out of a rubber motor is proportional to the weight of the motor. That will be a maximum amount we might get, since the other variables will determine the actual energy available for each flight. Let’s see how much energy was available for Gary’s record flight.</p>
@@ -483,8 +483,8 @@ E = K_m w_m
 <div class="section" id="motor-winds">
 <h2><span class="section-number">12.2. </span>Motor Winds<a class="headerlink" href="#motor-winds" title="Permalink to this headline">¶</a></h2>
 <p>The bare weight of the motor may provide us with a measure of the possible energy we can get out of each motor, but we need to wind it up to get any useful power out of the motor. Don Slusarczyk <span id="id2">[<a class="reference internal" href="bibliography.html#id5">Slu14</a>]</span> presented a simple formula that will tell us approximately how many turns we can pack into the motor.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4eae5614-5799-423f-b361-8a0272225e53">
-<span class="eqno">(12.2)<a class="headerlink" href="#equation-4eae5614-5799-423f-b361-8a0272225e53" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-837d5fb6-97f8-494c-9a8b-898fff129e3d">
+<span class="eqno">(12.2)<a class="headerlink" href="#equation-837d5fb6-97f8-494c-9a8b-898fff129e3d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 K = \frac{N_{max}}{m_l}\sqrt{\frac{m_w}{m_l}}
 \end{equation}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(K\)</span> is a constant Don set to 8.5. <span class="math notranslate nohighlight">\(m_l\)</span> is the motor length in inches, <span class="math notranslate nohighlight">\(N_{max}\)</span> is the predicted breaking turn count, and <span class="math notranslate nohighlight">\(w_m\)</span> is the motor weight in ounces.</p>
@@ -563,7 +563,7 @@ K = \frac{N_{max}}{m_l}\sqrt{\frac{m_w}{m_l}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/rblack/_dev/live-2022/book/content/../..&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/rblack/_dev/indoor-research/live-2022/book/content/../..&#39;
 </pre></div>
 </div>
 </div>
@@ -621,27 +621,27 @@ K = \frac{N_{max}}{m_l}\sqrt{\frac{m_w}{m_l}}
 </div>
 <p>We need to find the polynomials that complete this curve. We will use the data points and match slopes to the cruise line.</p>
 <p>Assume the polynomial of this form:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-671aa0fc-1e2d-43ef-82e5-2176da823574">
-<span class="eqno">(12.3)<a class="headerlink" href="#equation-671aa0fc-1e2d-43ef-82e5-2176da823574" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-05df6725-3851-4bb7-9de6-41add1dcadcd">
+<span class="eqno">(12.3)<a class="headerlink" href="#equation-05df6725-3851-4bb7-9de6-41add1dcadcd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 y = Ax^2 + Bx + C
 \end{equation}\]</div>
 <p>The derivative of this curve is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d7a93764-a9f5-40d0-97b4-bc7f02e37978">
-<span class="eqno">(12.4)<a class="headerlink" href="#equation-d7a93764-a9f5-40d0-97b4-bc7f02e37978" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fff4cbdf-89b9-4abf-8695-63837eb2ea6e">
+<span class="eqno">(12.4)<a class="headerlink" href="#equation-fff4cbdf-89b9-4abf-8695-63837eb2ea6e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{dy}{dx} = M_c = 2ax + B
 \end{equation}\]</div>
 <p>We will match the curve values at the end points, and the slope at one end point. This will give us three equations for three unknowns.</p>
 <p>For the first polynomial, we have:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d7e3e13b-23b3-4ab8-b5f5-6417f0c8bf87">
-<span class="eqno">(12.5)<a class="headerlink" href="#equation-d7e3e13b-23b3-4ab8-b5f5-6417f0c8bf87" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cccb74d9-6633-44f9-9c59-e18fd03624ab">
+<span class="eqno">(12.5)<a class="headerlink" href="#equation-cccb74d9-6633-44f9-9c59-e18fd03624ab" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 Q_{max} = C
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-31e6faa2-1501-4f83-95a6-3ccc7d41d6ea">
-<span class="eqno">(12.6)<a class="headerlink" href="#equation-31e6faa2-1501-4f83-95a6-3ccc7d41d6ea" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bfb7e3b8-a7c4-4b96-9da3-67a78960240f">
+<span class="eqno">(12.6)<a class="headerlink" href="#equation-bfb7e3b8-a7c4-4b96-9da3-67a78960240f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 y_{c0} = Ax_{c0}^2 + Bx_{c0} + Q_{max}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-c12d40ff-2e6e-4299-94c3-7a46a3c91070">
-<span class="eqno">(12.7)<a class="headerlink" href="#equation-c12d40ff-2e6e-4299-94c3-7a46a3c91070" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8678e0eb-5078-4d15-93c2-3be66222e80d">
+<span class="eqno">(12.7)<a class="headerlink" href="#equation-8678e0eb-5078-4d15-93c2-3be66222e80d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{y_{c1} - y_{c0}}{x_{c1} - x_{c0}} = M_c = 2Ax_{c0} + B
 \end{equation}\]</div>
 <p>Let’s let <strong>sympy</strong> grind out this math:</p>
